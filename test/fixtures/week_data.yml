@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  week: 1
+  fan_duel: false
+  yahoo: false
+  dvoa: false
+  fftoday: false
+
+two:
+  week: 1
+  fan_duel: false
+  yahoo: false
+  dvoa: false
+  fftoday: false

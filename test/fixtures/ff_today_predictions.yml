@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  position: MyString
+  team: MyString
+  opponent: MyString
+  expectation: 1
+  week: 1
+
+two:
+  position: MyString
+  team: MyString
+  opponent: MyString
+  expectation: 1
+  week: 1

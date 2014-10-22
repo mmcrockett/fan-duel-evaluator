@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Week:</strong>
+  <%= @week_datum.week %>
+</p>
+
+<p>
+  <strong>Fan duel:</strong>
+  <%= @week_datum.fan_duel %>
+</p>
+
+<p>
+  <strong>Yahoo:</strong>
+  <%= @week_datum.yahoo %>
+</p>
+
+<p>
+  <strong>Dvoa:</strong>
+  <%= @week_datum.dvoa %>
+</p>
+
+<p>
+  <strong>Fftoday:</strong>
+  <%= @week_datum.fftoday %>
+</p>
+
+<%= link_to 'Edit', edit_week_datum_path(@week_datum) %> |
+<%= link_to 'Back', week_data_path %>

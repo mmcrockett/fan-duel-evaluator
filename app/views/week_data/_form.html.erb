@@ -1,0 +1,37 @@
+<%= form_for(@week_datum) do |f| %>
+  <% if @week_datum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@week_datum.errors.count, "error") %> prohibited this week_datum from being saved:</h2>
+
+      <ul>
+      <% @week_datum.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :week %><br>
+    <%= f.number_field :week %>
+  </div>
+  <div class="field">
+    <%= f.label :fan_duel %><br>
+    <%= f.check_box :fan_duel %>
+  </div>
+  <div class="field">
+    <%= f.label :yahoo %><br>
+    <%= f.check_box :yahoo %>
+  </div>
+  <div class="field">
+    <%= f.label :dvoa %><br>
+    <%= f.check_box :dvoa %>
+  </div>
+  <div class="field">
+    <%= f.label :fftoday %><br>
+    <%= f.check_box :fftoday %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
