@@ -16,11 +16,7 @@ class Dvoa < ActiveRecord::Base
       :total => 2
     },
     :special => {
-      :fg_xp    => 6,
-      :kick     => 7,
-      :kick_ret => 8,
-      :punt     => 9,
-      :punt_ret => 10
+      :total    => 2
     },
     :defense => {
       :pass  => 6,
@@ -62,5 +58,24 @@ class Dvoa < ActiveRecord::Base
     end
 
     self.set_week_data(week, self)
+  end
+
+  def self.adjustment(week, position, opponent)
+    params = {:week => week, :team => opponent}
+    if ("D" == position)
+      opponent_offense = Dvoa.find_by(params.merge({:role => :offense, :subrole => :total})).value
+      opponent_special = Dvoa.find_by(params.merge({:role => :special, :subrole => :total})).value
+      return (1/(opponent_offense*opponent_special))
+    else
+      if ("RB" == position)
+        subrole = :rush
+      elsif ("K" == position)
+        subrole = :total
+      else
+        subrole = :pass
+      end
+
+      return Dvoa.find_by(params.merge({:role => :defense, :subrole => subrole})).value
+    end
   end
 end

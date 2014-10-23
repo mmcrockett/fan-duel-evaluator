@@ -59,4 +59,33 @@ class FfTodayPrediction < ActiveRecord::Base
 
     self.set_week_data(week, self)
   end
+
+  def self.translate_team_name(name)
+    teams = FfTodayPrediction.distinct.pluck(:team)
+    parts = name.upcase.split(" ")
+    city_first_three   = parts[0][0,3]
+    city_first_letters = parts[0][0] + parts[1][0]
+    all_first_letters  = "missing"
+
+    if (nil != parts[2])
+      all_first_letters  = parts[0][0] + parts[1][0] + parts[2][0]
+      st_louis_rams      = parts[0][0,2] + parts[1][0]
+    end
+
+    if (true == teams.include?(city_first_three))
+      return city_first_three
+    elsif (true == teams.include?(city_first_letters))
+      return city_first_letters
+    elsif (true == teams.include?(all_first_letters))
+      return all_first_letters
+    elsif (true == teams.include?(st_louis_rams))
+      return st_louis_rams
+    else
+      raise "!ERROR: Couldn't translate NFL name '#{name}' - '#{parts}' - '#{teams}'"
+    end
+  end
+
+  def self.adjustment(week, position, team)
+    return FfTodayPrediction.find_by({:week => week, :team => team, :position => position}).value
+  end
 end

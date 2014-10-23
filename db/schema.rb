@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20141022141024) do
   create_table "fan_duel_players", force: true do |t|
     t.string   "name",                               null: false
     t.integer  "week",                               null: false
-    t.integer  "team",                               null: false
+    t.integer  "team_id",                            null: false
     t.string   "position",                           null: false
     t.decimal  "average",    precision: 4, scale: 2, null: false
     t.integer  "cost",                               null: false

@@ -4,7 +4,8 @@ app.controller('PlayerController', ['$scope', '$http', 'WeekData', 'FanDuelData'
   $scope.week_field = "";
   $scope.new_week = "";
   $scope.chart = {
-    "type": "Table"
+    "type": "Table",
+    "sortColumn": 4
   };
   $scope.create_chart = function() {
     $scope.chart.data = {};
