@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Dvoa < ActiveRecord::Base
   include Auditable
 
@@ -28,13 +30,13 @@ class Dvoa < ActiveRecord::Base
   }
 
   def self.load(week)
-    PAGES.each_type do |type, url_part|
-      audit = self.get_audit({:week => week, :type => "#{Dvoa.class}", :subtype => "#{type}"})
+    PAGES.each_pair do |role, role_url|
+      records = []
+      audit   = self.get_audit({:week => week, :source => "#{self}", :subsource => "#{role}"})
 
       if (0 == audit.status)
         params = {}
-        dvoas  = []
-        uri  = "#{URL}/#{page_url}" 
+        uri  = "#{URL}/#{role_url}" 
         audit.url = uri
         audit.save
         page = Nokogiri::HTML(open(uri))
@@ -42,20 +44,23 @@ class Dvoa < ActiveRecord::Base
           if ((0 != i) && (1 != i) && (18 != i) && (19 != i))
             team = tr.css('td')[1].text()
             params[:team] = team
-            params[:type] = type
+            params[:role] = role
+            params[:week] = week
 
-            SUBPAGES[type].each_pair do |subtype, td_column|
-              value = tr.css('td')[td_column].text().to_f
-              dvoas << self.new(params.merge({:subtype => subtype, :value => value})
+            SUBPAGES[role].each_pair do |subrole, td_column|
+              params[:value] = 1 + (tr.css('td')[td_column].text().to_f/100)
+              params[:subrole] = subrole
+              records << self.new(params)
             end
           end
         end
       end
 
-      Dvoa.import(dvoas)
+      Dvoa.import(records)
       audit.status = 1
-      audit.save
-      self.set_week_data(week, "#{Dvoa.class}")
+      audit.save()
     end
+
+    self.set_week_data(week, self)
   end
 end

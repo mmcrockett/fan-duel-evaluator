@@ -14,15 +14,14 @@ class FanDuelPlayerController < ApplicationController
   end
 
   def create
-    raise "!ERROR: #{params}."
-    @fan_duel_players = FanDuelPlayer.parse()
+    week = params[:week]
+    FanDuelPlayer.parse(params[:data], week)
+    Dvoa.load(week)
+    Yahoo.load(week)
+    FfTodayPrediction.load(week)
 
     respond_to do |format|
-      if FanDuelPlayer.import(@fan_duel_players)
-        format.json { head :no_content }
-      else
-        format.json { render json: @fan_duel_players.errors, status: :unprocessable_entity }
-      end
+      format.json { head :no_content }
     end
   end
 

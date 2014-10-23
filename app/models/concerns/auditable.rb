@@ -13,13 +13,20 @@ module Auditable
       return audit
     end
 
-    def set_week_data(week, type)
-      ws = WeekData.find_by({:week => week})
+    def set_week_data(week, source)
+      puts "#{source}"
+      ws = WeekDatum.find_by({:week => week})
 
-      if (Dvoa.class == type)
+      if (Dvoa == source)
         ws.dvoa = true
+      elsif (FanDuelPlayer == source)
+        ws.fan_duel = true
+      elsif (Yahoo == source)
+        ws.yahoo = true
+      elsif (FfTodayPrediction == source)
+        ws.fftoday = true
       else
-        raise "!ERROR: Unknown type '#{type}'."
+        raise "!ERROR: Unknown source '#{source}'."
       end
 
       ws.save

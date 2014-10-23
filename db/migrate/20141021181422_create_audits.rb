@@ -1,8 +1,8 @@
 class CreateAudits < ActiveRecord::Migration
   def change
     create_table :audits do |t|
-      t.string :type, :null => false
-      t.string :subtype, :null => false
+      t.string :source, :null => false
+      t.string :subsource, :null => false
       t.integer :week, :null => false
       t.integer :status, :null => false, :default => 0
       t.string :url, :null => false

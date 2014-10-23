@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(version: 20141022141024) do
 
   create_table "audits", force: true do |t|
-    t.string   "type",                   null: false
-    t.string   "subtype",                null: false
+    t.string   "source",                 null: false
+    t.string   "subsource",              null: false
     t.integer  "week",                   null: false
     t.integer  "status",     default: 0, null: false
     t.string   "url",                    null: false
@@ -26,9 +26,8 @@ ActiveRecord::Schema.define(version: 20141022141024) do
   create_table "dvoas", force: true do |t|
     t.string   "team",                               null: false
     t.integer  "week",                               null: false
-    t.string   "position",                           null: false
-    t.string   "type",                               null: false
-    t.string   "subtype",                            null: false
+    t.string   "role",                               null: false
+    t.string   "subrole",                            null: false
     t.decimal  "value",      precision: 4, scale: 2, null: false
     t.datetime "created_at"
     t.datetime "updated_at"

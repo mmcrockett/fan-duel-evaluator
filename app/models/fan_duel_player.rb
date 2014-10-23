@@ -1,13 +1,24 @@
 class FanDuelPlayer < ActiveRecord::Base
+  include Auditable
+
   def self.parse(data, week)
-    players  = []
-    json_obj = JSON.load(data)
+    audit = self.get_audit({:week => week, :source => "#{self}", :subsource => ""})
 
-    json_obj.each_value do |player_data|
-      players << FanDuelPlayer.player(player_data, week)
+    if (0 == audit.status)
+      players  = []
+      json_obj = JSON.load(data)
+      audit.url = "User Input"
+      audit.save
+
+      json_obj.each_value do |player_data|
+        players << FanDuelPlayer.player(player_data, week)
+      end
+
+      FanDuelPlayer.import(players)
+      audit.status = 1
+      audit.save
+      self.set_week_data(week, self)
     end
-
-    return players
   end
 
   def self.player(player_data, week)
