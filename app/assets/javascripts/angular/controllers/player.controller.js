@@ -1,4 +1,53 @@
-app.controller('PlayerController', ['$scope', '$http', function($scope, $http) {
+app.controller('PlayerController', ['$scope', '$http', 'WeekData', 'FanDuelData', function($scope, $http, WeekData, FanDuelData) {
+  $scope.week_data = [];
+  $scope.fan_duel_data = "";
+  $scope.week_field = "";
+  $scope.new_week = "";
+  $scope.chart = {
+    "type": "Table"
+  };
+  $scope.create_chart = function() {
+    $scope.chart.data = {};
+    $scope.chart.data.cols = [];
+    $scope.chart.data.rows = [];
+    angular.forEach($scope.week_data, function(wdata, i) {
+      var row = {c:[]};
+      angular.forEach(wdata, function(v, k) {
+        if (0 == i) {
+          var type = "Unknown";
+          if (true == angular.isNumber(v)) {
+            type = "number";
+          } else if (true == angular.isString(v)) {
+            type = "string";
+          } else if (true == angular.isDate(v)) {
+            type = "date";
+          } else if ("boolean" === typeof v) {
+            type = "boolean";
+          } else {
+            console.error("!ERROR: type unknown '" + typeof v + "'.");
+          }
+          $scope.chart.data.cols.push({
+            "id"   : k,
+            "label": k,
+            "type" : type,
+          });
+        }
+
+        row.c.push({v:v});
+      });
+      $scope.chart.data.rows.push(row);
+    });
+  };
+  $scope.$watch('week_data', $scope.create_chart);
+  $scope.add_week = function() {
+    new WeekData({week:$scope.week_field}).$save({}, function(v){$scope.new_week = $scope.week_field;$scope.week_field = "";$scope.get_week_data()}, function(e){console.error("!ERROR adding week data.");});
+  };
+  $scope.add_fan_duel_json = function() {
+    new FanDuelData({data:$scope.fan_duel_data, week:$scope.new_week}).$save({}, function(v){$scope.get_week_data();$scope.new_week="";}, function(e){$scope.get_week_data();console.error("!ERROR saving fan duel json.");});
+  };
+  $scope.get_week_data = function() {
+    WeekData.query({}, function(v){$scope.week_data = v;}, function(e){console.error("Couldn't load week data.");});
+  };
   $scope.cshart = {
   "type": "Table",
   "data": {
@@ -115,33 +164,4 @@ app.controller('PlayerController', ['$scope', '$http', function($scope, $http) {
   "formatters": {},
   "displayed": true
 };
-/*
-  $http.get('/key.json').then(function(result) {$scope.crypt.setKey(result.data);});
-  $scope.reset_data = function() {
-    $scope.login_data = {password: ""};
-    $scope.register_data = {password: ""};
-    $scope.error = "";
-  };
-  $scope.reset_data();
-  $scope.login = function() {
-    var user = new User($scope.login_data);
-    user.$login({password: $scope.crypt.encrypt(user.password)}, function(v){location.reload(true);}, function(v){$scope.reset_data();$scope.error = "Username or password incorrect.";});
-  };
-  $scope.register = function() {
-    var user = new User($scope.register_data);
-    user.$register(
-      {password: $scope.crypt.encrypt(user.password)},
-      function(v){location.reload(true);},
-      function(v){
-        $scope.reset_data();
-        angular.forEach(v.data, function(v, k) {
-            if ("" !== $scope.error) {
-              $scope.error += " AND ";
-            }
-            $scope.error += k + " " + v[0];
-          }
-        );
-      }
-    );
-  };*/
 }]);
