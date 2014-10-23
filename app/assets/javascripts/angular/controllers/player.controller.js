@@ -1,4 +1,4 @@
-app.controller('FanDuelController', ['$scope', '$http', function($scope, $http) {
+app.controller('PlayerController', ['$scope', '$http', function($scope, $http) {
   $scope.cshart = {
   "type": "Table",
   "data": {
