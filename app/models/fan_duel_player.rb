@@ -54,12 +54,14 @@ class FanDuelPlayer < ActiveRecord::Base
     if (nil != week)
       stats  = {}
       averages = {}
-      FanDuelPlayer.where({:week => week}).each do |fd_player|
+      FanDuelPlayer.where({:week => week, :ignore => false}).each do |fd_player|
         player = {}
+        player[:id]       = fd_player.id
         player[:name]     = fd_player.name
         player[:position] = fd_player.position
         player[:team]     = FfTodayPrediction.translate_team_name(FanDuelPlayer.find_by({:week => week, :position => "D", :team_id => fd_player.team_id}).name)
         player[:opponent] = FfTodayPrediction.find_by({:week => week, :position => fd_player.position, :team => player[:team]}).opponent
+        player[:status]   = fd_player.status
         player[:cost]     = fd_player.cost
         player[:stddevs]  = -10
         player[:avg]      = fd_player.average
@@ -77,6 +79,7 @@ class FanDuelPlayer < ActiveRecord::Base
 
         player[:dvoa]     = number_with_precision(player[:avg] * Dvoa.adjustment(week, player[:position], player[:opponent]), :precision => 2).to_f
         player[:fftoday]  = number_with_precision(player[:avg] * FfTodayPrediction.adjustment(week, player[:position], player[:team]), :precision => 2).to_f
+
         players << player
       end
 
@@ -102,10 +105,10 @@ class FanDuelPlayer < ActiveRecord::Base
       players.each do |player|
         position = player[:position]
         player[:stddevs] = number_with_precision((player[:avg] - stats[position][:mean])/Math.sqrt(stats[position][:var]), :precision => 2).to_f
-        player[:avg] = player[:avg].to_f
+        player[:avg]     = player[:avg].to_f
       end
     end
 
-    return players
+    return players.select {|p| (("D" == p[:position]) || ("K" == p[:position]) || (-1 < p[:stddevs]))}
   end
 end
