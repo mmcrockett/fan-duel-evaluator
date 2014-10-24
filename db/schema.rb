@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022141024) do
+ActiveRecord::Schema.define(version: 20141024162320) do
 
   create_table "audits", force: true do |t|
     t.string   "source",                 null: false
@@ -34,14 +34,17 @@ ActiveRecord::Schema.define(version: 20141022141024) do
   end
 
   create_table "fan_duel_players", force: true do |t|
-    t.string   "name",                               null: false
-    t.integer  "week",                               null: false
-    t.integer  "team_id",                            null: false
-    t.string   "position",                           null: false
-    t.decimal  "average",    precision: 4, scale: 2, null: false
-    t.integer  "cost",                               null: false
+    t.string   "name",                                               null: false
+    t.integer  "week",                                               null: false
+    t.integer  "team_id",                                            null: false
+    t.string   "position",                                           null: false
+    t.decimal  "average",    precision: 4, scale: 2,                 null: false
+    t.integer  "cost",                                               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status",                             default: ""
+    t.string   "note",                               default: ""
+    t.boolean  "ignore",                             default: false, null: false
   end
 
   create_table "ff_today_predictions", force: true do |t|
