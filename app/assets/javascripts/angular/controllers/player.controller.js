@@ -1,17 +1,21 @@
-app.controller('PlayerController', ['$scope', '$http', 'WeekData', 'FanDuelData', function($scope, $http, WeekData, FanDuelData) {
-  $scope.week_data = [];
-  $scope.fan_duel_data = "";
-  $scope.week_field = "";
-  $scope.new_week = "";
+app.controller('PlayerController', ['$scope', '$http', 'PlayerData', 'filterFilter', function($scope, $http, PlayerData, filter) {
+  $scope.filter = filter;
+  $scope.positions = [{id:"NONE"}, {id:"QB"}, {id:"WR"}, {id:"RB"}, {id:"TE"}, {id:"K"}, {id:"D"}];
+  $scope.selectedPosition = "NONE";
+  $scope.selected_player_data = [];
+  $scope.player_data = [];
   $scope.chart = {
     "type": "Table",
-    "sortColumn": 4
+    "options": {
+      "sortColumn": 6,
+      "sortAscending": false
+    }
   };
   $scope.create_chart = function() {
     $scope.chart.data = {};
     $scope.chart.data.cols = [];
     $scope.chart.data.rows = [];
-    angular.forEach($scope.week_data, function(wdata, i) {
+    angular.forEach($scope.selected_player_data, function(wdata, i) {
       var row = {c:[]};
       angular.forEach(wdata, function(v, k) {
         if (0 == i) {
@@ -39,130 +43,16 @@ app.controller('PlayerController', ['$scope', '$http', 'WeekData', 'FanDuelData'
       $scope.chart.data.rows.push(row);
     });
   };
-  $scope.$watch('week_data', $scope.create_chart);
-  $scope.add_week = function() {
-    new WeekData({week:$scope.week_field}).$save({}, function(v){$scope.new_week = $scope.week_field;$scope.week_field = "";$scope.get_week_data()}, function(e){console.error("!ERROR adding week data.");});
-  };
-  $scope.add_fan_duel_json = function() {
-    new FanDuelData({data:$scope.fan_duel_data, week:$scope.new_week}).$save({}, function(v){$scope.get_week_data();$scope.new_week="";}, function(e){$scope.get_week_data();console.error("!ERROR saving fan duel json.");});
-  };
-  $scope.get_week_data = function() {
-    WeekData.query({}, function(v){$scope.week_data = v;}, function(e){console.error("Couldn't load week data.");});
-  };
-  $scope.cshart = {
-  "type": "Table",
-  "data": {
-    "cols": [
-      {
-        "id": "month",
-        "label": "Month",
-        "type": "string",
-        "p": {}
-      },
-      {
-        "id": "laptop-id",
-        "label": "Laptop",
-        "type": "number",
-        "p": {}
-      },
-      {
-        "id": "desktop-id",
-        "label": "Desktop",
-        "type": "number",
-        "p": {}
-      },
-      {
-        "id": "server-id",
-        "label": "Server",
-        "type": "number",
-        "p": {}
-      },
-      {
-        "id": "cost-id",
-        "label": "Shipping",
-        "type": "number"
-      }
-    ],
-    "rows": [
-      {
-        "c": [
-          {
-            "v": "January"
-          },
-          {
-            "v": 19,
-            "f": "42 items"
-          },
-          {
-            "v": 12,
-            "f": "Ony 12 items"
-          },
-          {
-            "v": 7,
-            "f": "7 servers"
-          },
-          {
-            "v": 4
-          }
-        ]
-      },
-      {
-        "c": [
-          {
-            "v": "February"
-          },
-          {
-            "v": 13
-          },
-          {
-            "v": 1,
-            "f": "1 unit (Out of stock this month)"
-          },
-          {
-            "v": 12
-          },
-          {
-            "v": 2
-          }
-        ]
-      },
-      {
-        "c": [
-          {
-            "v": "March"
-          },
-          {
-            "v": 24
-          },
-          {
-            "v": 0
-          },
-          {
-            "v": 11
-          },
-          {
-            "v": 6
-          }
-        ]
-      }
-    ]
-  },
-  "options": {
-    "title": "Sales per month",
-    "isStacked": "true",
-    "fill": 20,
-    "displayExactValues": true,
-    "vAxis": {
-      "title": "Sales unit",
-      "gridlines": {
-        "count": 6
-      }
-    },
-    "hAxis": {
-      "title": "Date"
+  $scope.select_player_data = function() {
+    if ("NONE" == $scope.selectedPosition) {
+      $scope.selected_player_data = $scope.player_data;
+    } else {
+      $scope.selected_player_data = $scope.filter($scope.player_data, {position: $scope.selectedPosition}, true)
     }
-  },
-  "formatters": {},
-  "displayed": true
-};
+  };
+  $scope.$watch('selected_player_data', $scope.create_chart);
+  $scope.$watch('selectedPosition', $scope.select_player_data);
+  $scope.get_player_data = function() {
+    PlayerData.query({}, function(v){$scope.player_data = v;$scope.select_player_data();}, function(e){console.error("Couldn't load player data.");});
+  };
 }]);

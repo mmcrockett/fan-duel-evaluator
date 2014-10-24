@@ -1,4 +1,46 @@
+class Roster
+  attr_reader :budget, :pts, :roster, :name, :s
+
+  def initialize(name)
+    @name   = name
+    @s      = ""
+    @budget = 60000
+    @pts    = 0
+    @roster = []
+  end
+
+  def <<(player)
+    @budget -= player[:cost]
+    @pts    += player[:avg]
+    @s      << "#{player[:name]}-"
+    @roster << player
+  end
+
+  def average_budget
+    positions_remaining = 9 - @roster.size
+    if (0 == positions_remaining)
+      return @budget
+    else
+      return (@budget/positions_remaining).to_i
+    end
+  end
+
+  def to_s
+    return "#{@name}:#{@pts}:#{@budget}"
+  end
+end
+
 class Array
+  def best(budget, roster)
+    self.each do |player|
+      if (budget >= player[:cost])
+        if (false == roster.include?(player))
+          return player
+        end
+      end
+    end
+  end
+
   def sum_all
     sum  = Float(0)
 

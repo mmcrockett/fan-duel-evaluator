@@ -1,4 +1,10 @@
 <%= render :partial => "common/nav_bar" %>
-<div ng-controller="PlayerController" ng-init="get_week_data()">
-  <div google-chart chart="chart"></div>
+<div ng-controller="PlayerController">
+  <div>
+    <select ng-model="selectedPosition" ng-options="item.id as item.id for item in positions"></select>
+  </div>
+  <hr>
+  <div ng-init="get_player_data()">
+    <div google-chart chart="chart"></div>
+  </div>
 </div>

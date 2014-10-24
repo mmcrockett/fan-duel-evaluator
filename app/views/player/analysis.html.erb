@@ -1,0 +1,6 @@
+<%= render :partial => "common/nav_bar" %>
+<div ng-controller="AnalysisController">
+  <div ng-init="get_analysis_data()">
+    <div google-chart chart="chart"></div>
+  </div>
+</div>
