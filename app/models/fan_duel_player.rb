@@ -38,6 +38,8 @@ class FanDuelPlayer < ActiveRecord::Base
       :position => player_data[0],
       :average  => player_data[6].to_f,
       :cost     => player_data[5].to_i,
+      :status   => player_data[12],
+      :note     => player_data[10]
     })
   end
 
