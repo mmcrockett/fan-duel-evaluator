@@ -1,4 +1,4 @@
-app.controller('PlayerController', ['$scope', '$http', 'PlayerData', 'filterFilter', function($scope, $http, PlayerData, filter) {
+app.controller('PlayerController', ['$scope', '$http', 'PlayerData', 'JsLiteral', 'filterFilter', function($scope, $http, PlayerData, JsLiteral, filter) {
   $scope.filter = filter;
   $scope.positions = [{id:"NONE"}, {id:"QB"}, {id:"WR"}, {id:"RB"}, {id:"TE"}, {id:"K"}, {id:"D"}];
   $scope.selectedPosition = "NONE";
@@ -12,36 +12,7 @@ app.controller('PlayerController', ['$scope', '$http', 'PlayerData', 'filterFilt
     }
   };
   $scope.create_chart = function() {
-    $scope.chart.data = {};
-    $scope.chart.data.cols = [];
-    $scope.chart.data.rows = [];
-    angular.forEach($scope.selected_player_data, function(wdata, i) {
-      var row = {c:[]};
-      angular.forEach(wdata, function(v, k) {
-        if (0 == i) {
-          var type = "Unknown";
-          if (true == angular.isNumber(v)) {
-            type = "number";
-          } else if (true == angular.isString(v)) {
-            type = "string";
-          } else if (true == angular.isDate(v)) {
-            type = "date";
-          } else if ("boolean" === typeof v) {
-            type = "boolean";
-          } else {
-            console.error("!ERROR: type unknown '" + typeof v + "'.");
-          }
-          $scope.chart.data.cols.push({
-            "id"   : k,
-            "label": k,
-            "type" : type,
-          });
-        }
-
-        row.c.push({v:v});
-      });
-      $scope.chart.data.rows.push(row);
-    });
+    $scope.chart.data = JsLiteral.get_chart_data($scope.selected_player_data);
   };
   $scope.select_player_data = function() {
     if ("NONE" == $scope.selectedPosition) {
