@@ -3,8 +3,9 @@ include ActionView::Helpers::NumberHelper
 class Roster < ActiveRecord::Base
   serialize :players, JSON
 
-  DEBUG_SAMPLE_SIZE  = 10
-  MAX_NUMBER_ROSTERS = 100
+  SAMPLE_SET_SIZE    = 3
+  SAMPLE_TOP_PERCENT = 0.2
+  MAX_NUMBER_ROSTERS = 25
 
   def players_str
     pstr = ""
@@ -25,9 +26,10 @@ class Roster < ActiveRecord::Base
     week       = WeekDatum.get_week()
     max_avgs   = {}
     min_costs  = {}
-    skipped    = {:L1 => 0, :L2 => 0}
+    skipped    = {:L1 => 0, :L2 => 0, :sort_t => 0}
     positions = ["QB", "TE", "K", "D", "RB", "RB", "WR", "WR", "WR"]
     players   = {}
+    sampled_players = {}
     completed = []
     rb_combos  = []
     wr_combos  = []
@@ -52,15 +54,27 @@ class Roster < ActiveRecord::Base
       end
     end
 
-    if (true == params[:debug])
-      smaller_players = {}
+    players.each_pair do |k,v|
+      tmp = []
+      sampled_players[k] = []
+      players[k].sort_by! {|p| -p[:cost]}
+      players_count = players[k].size
 
-      players.each_pair do |k,v|
-        smaller_players[k] = players[k].sample(DEBUG_SAMPLE_SIZE)
+      players[k].each_with_index do |player, i|
+        if (i < (players_count * SAMPLE_TOP_PERCENT))
+          sampled_players[k] << player
+        else
+          tmp << player
+        end
+
+        if (SAMPLE_SET_SIZE < tmp.size)
+          sampled_players[k] << tmp.sample
+          tmp = []
+        end
       end
-
-      players = smaller_players
     end
+
+    players = sampled_players
 
     wr_combos    = players["WR"].combination(3).to_a
     rb_combos    = players["RB"].combination(2).to_a
@@ -160,7 +174,7 @@ class Roster < ActiveRecord::Base
     end
 
     puts ""
-    puts "#{Time.now - start_time}"
+    puts "Exec Time: #{Time.now - start_time}"
 
     puts "Processed: #{number_with_delimiter(total_size)}"
     puts "Skipped 1: #{number_with_delimiter(skipped[:L1])}."
