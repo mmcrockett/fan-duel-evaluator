@@ -105,6 +105,6 @@ class FanDuelPlayer < ActiveRecord::Base
       player[:avg]     = player[:avg].to_f
     end
 
-    return players.select {|p| (("D" == p[:position]) || ("K" == p[:position]) || (-1 < p[:stddevs]))}
+    return players.select {|p| (("D" == p[:position]) || ("K" == p[:position]) || (5 < p[:avg]))}
   end
 end
