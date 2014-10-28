@@ -20,7 +20,7 @@ class Roster < ActiveRecord::Base
     return "#{self.cost}:#{self.average}:#{self.players_str()}"
   end
 
-  def self.analyze(debug = false)
+  def self.analyze(params = {:debug => false, :k_d_ignore => true})
     start_time = Time.now
     week       = WeekDatum.get_week()
     max_avgs   = {}
@@ -52,7 +52,7 @@ class Roster < ActiveRecord::Base
       end
     end
 
-    if (true == debug)
+    if (true == params[:debug])
       smaller_players = {}
 
       players.each_pair do |k,v|
@@ -71,10 +71,24 @@ class Roster < ActiveRecord::Base
       end
     end
 
-    players["K"].each do |k|
-      players["D"].each do |d|
-        k_d_combos << [k,d]
+    if (false == params[:k_d_ignore])
+      players["K"].each do |k|
+        players["D"].each do |d|
+          k_d_combos << [k,d]
+        end
       end
+    else
+      kicker = {:cost => min_costs["K"],
+                :avg  => 0,
+                :dvoa => 0,
+                :name => "Team K"
+      }
+      defense = {:cost => min_costs["D"],
+                :avg  => 0,
+                :dvoa => 0,
+                :name => "Team D"
+      }
+      k_d_combos << [kicker, defense]
     end
 
     total_size = wr_combos.size * rb_combos.size * k_d_combos.size * qb_te_combos.size
@@ -152,7 +166,7 @@ class Roster < ActiveRecord::Base
     puts "Skipped 1: #{number_with_delimiter(skipped[:L1])}."
     puts "Skipped 2: #{number_with_delimiter(skipped[:L2])}."
 
-    if (false == debug)
+    if (false == params[:debug])
       Roster.import(completed)
     else
       completed[0,10].each do |best_roster|
