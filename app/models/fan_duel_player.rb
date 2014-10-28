@@ -1,4 +1,6 @@
+require 'array_mod'
 include ActionView::Helpers::NumberHelper
+
 class FanDuelPlayer < ActiveRecord::Base
   include Auditable
 
@@ -45,68 +47,62 @@ class FanDuelPlayer < ActiveRecord::Base
 
   def self.player_data(params = {})
     players = []
-    week = params[:week]
+    week = WeekDatum.get_week(params)
 
-    if (nil == week)
-      week = WeekDatum.maximum(:week)
+    stats  = {}
+    averages = {}
+    FanDuelPlayer.where({:week => week, :ignore => false}).each do |fd_player|
+      player = {}
+      player[:id]       = fd_player.id
+      player[:name]     = fd_player.name
+      player[:position] = fd_player.position
+      player[:team]     = FfTodayPrediction.translate_team_name(FanDuelPlayer.find_by({:week => week, :position => "D", :team_id => fd_player.team_id}).name)
+      player[:opponent] = FfTodayPrediction.find_by({:week => week, :position => fd_player.position, :team => player[:team]}).opponent
+      player[:status]   = fd_player.status
+      player[:cost]     = fd_player.cost
+      player[:stddevs]  = -10
+      player[:avg]      = fd_player.average
+
+      if (true == fd_player.defense?())
+        if (0 == player[:avg])
+          player[:avg] = Yahoo.find_by({:week => week, :team => player[:team]}).average
+        else
+          raise "!ERROR: Non-zero defense '#{player[:name]}' average '#{player[:avg]}' - Can't reset."
+        end
+      end
+
+      averages[player[:position]] ||= []
+      averages[player[:position]] << player[:avg]
+
+      player[:dvoa]     = number_with_precision(player[:avg] * Dvoa.adjustment(week, player[:position], player[:opponent]), :precision => 2).to_f
+      player[:fftoday]  = number_with_precision(player[:avg] * FfTodayPrediction.adjustment(week, player[:position], player[:team]), :precision => 2).to_f
+
+      players << player
     end
 
-    if (nil != week)
-      stats  = {}
-      averages = {}
-      FanDuelPlayer.where({:week => week, :ignore => false}).each do |fd_player|
-        player = {}
-        player[:id]       = fd_player.id
-        player[:name]     = fd_player.name
-        player[:position] = fd_player.position
-        player[:team]     = FfTodayPrediction.translate_team_name(FanDuelPlayer.find_by({:week => week, :position => "D", :team_id => fd_player.team_id}).name)
-        player[:opponent] = FfTodayPrediction.find_by({:week => week, :position => fd_player.position, :team => player[:team]}).opponent
-        player[:status]   = fd_player.status
-        player[:cost]     = fd_player.cost
-        player[:stddevs]  = -10
-        player[:avg]      = fd_player.average
+    averages.each_pair do |position, player_averages|
+      player_averages.sort!.reverse!
+      top_players = nil
 
-        if (true == fd_player.defense?())
-          if (0 == player[:avg])
-            player[:avg] = Yahoo.find_by({:week => week, :team => player[:team]}).average
-          else
-            raise "!ERROR: Non-zero defense '#{player[:name]}' average '#{player[:avg]}' - Can't reset."
-          end
-        end
-
-        averages[player[:position]] ||= []
-        averages[player[:position]] << player[:avg]
-
-        player[:dvoa]     = number_with_precision(player[:avg] * Dvoa.adjustment(week, player[:position], player[:opponent]), :precision => 2).to_f
-        player[:fftoday]  = number_with_precision(player[:avg] * FfTodayPrediction.adjustment(week, player[:position], player[:team]), :precision => 2).to_f
-
-        players << player
+      if (FanDuelPlayer::SINGLE.include?(position))
+        top_players = player_averages[0,30]
+      elsif (FanDuelPlayer::DOUBLE.include?(position))
+        top_players = player_averages[0,60]
+      elsif (FanDuelPlayer::TRIPLE.include?(position))
+        top_players = player_averages[0,90]
+      else
+        raise "!ERROR: Missing position '#{position}'."
       end
 
-      averages.each_pair do |position, player_averages|
-        player_averages.sort!.reverse!
-        top_players = nil
+      stats[position] ||= {}
+      stats[position][:var]  = top_players.variance
+      stats[position][:mean] = top_players.mean
+    end
 
-        if (FanDuelPlayer::SINGLE.include?(position))
-          top_players = player_averages[0,30]
-        elsif (FanDuelPlayer::DOUBLE.include?(position))
-          top_players = player_averages[0,60]
-        elsif (FanDuelPlayer::TRIPLE.include?(position))
-          top_players = player_averages[0,90]
-        else
-          raise "!ERROR: Missing position '#{position}'."
-        end
-
-        stats[position] ||= {}
-        stats[position][:var]  = top_players.variance
-        stats[position][:mean] = top_players.mean
-      end
-
-      players.each do |player|
-        position = player[:position]
-        player[:stddevs] = number_with_precision((player[:avg] - stats[position][:mean])/Math.sqrt(stats[position][:var]), :precision => 2).to_f
-        player[:avg]     = player[:avg].to_f
-      end
+    players.each do |player|
+      position = player[:position]
+      player[:stddevs] = number_with_precision((player[:avg] - stats[position][:mean])/Math.sqrt(stats[position][:var]), :precision => 2).to_f
+      player[:avg]     = player[:avg].to_f
     end
 
     return players.select {|p| (("D" == p[:position]) || ("K" == p[:position]) || (-1 < p[:stddevs]))}

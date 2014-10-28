@@ -1,3 +1,6 @@
-json.array!(@analysis_data) do |d|
-  json.extract! d, :name, :pts, :budget, :s
+rosters = Roster.where({:week => WeekDatum.get_week(params)})
+
+json.array!(rosters) do |d|
+  json.roster("#{d.players_str()}")
+  json.extract! d, :cost, :average, :dvoa
 end
