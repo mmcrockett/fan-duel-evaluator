@@ -3,7 +3,14 @@ include ActionView::Helpers::NumberHelper
 class Roster < ActiveRecord::Base
   serialize :players, JSON
 
-  SAMPLE_SET_SIZE    = 3
+  SAMPLE_SET_SIZE    = {
+    "QB" => 3,
+    "WR" => 10,
+    "RB" => 6,
+    "TE" => 3,
+    "K"  => 10,
+    "D"  => 10,
+  }
   SAMPLE_TOP_PERCENT = 0.2
   MAX_NUMBER_ROSTERS = 25
 
@@ -23,7 +30,7 @@ class Roster < ActiveRecord::Base
     return "#{self.cost}:#{self.average}:#{self.players_str()}"
   end
 
-  def self.analyze(params = {:debug => false, :k_d_ignore => true})
+  def self.analyze(params = {:debug => false, :k_d_ignore => false})
     start_time = Time.now
     week       = WeekDatum.get_week()
     max_avgs   = {}
@@ -57,6 +64,7 @@ class Roster < ActiveRecord::Base
     end
 
     players.each_pair do |k,v|
+      sample_size = SAMPLE_SET_SIZE[k]
       tmp = []
       sampled_players[k] = []
       players[k].sort_by! {|p| -p[:cost]}
@@ -65,13 +73,13 @@ class Roster < ActiveRecord::Base
       players[k].each_with_index do |player, i|
         if (i < (players_count * SAMPLE_TOP_PERCENT))
           sampled_players[k] << player
-        elsif (("QB" == player[:position]) && (i > (players_count - SAMPLE_SET_SIZE)))
+        elsif (("QB" == player[:position]) && (i > (players_count - sample_size)))
           sampled_players[k] << player
         else
           tmp << player
         end
 
-        if (SAMPLE_SET_SIZE < tmp.size)
+        if (sample_size < tmp.size)
           sampled_players[k] << tmp.sample
           tmp = []
         end
