@@ -1,3 +1,4 @@
+#Roster.analyze(true)
 rosters = Roster.where({:week => WeekDatum.get_week(params)})
 
 json.array!(rosters) do |d|

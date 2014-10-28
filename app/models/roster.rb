@@ -1,50 +1,7 @@
 class Roster < ActiveRecord::Base
-  class RosterBudgetException < Exception
-  end
-
   serialize :players, JSON
 
   DEBUG_SAMPLE_SIZE = 5
-  MAX_ROSTER_SIZE = 9
-  MAX_BUDGET      = 60000
-
-  def initialize(attributes=nil)
-    attr_with_defaults = {:cost => 0, :average => 0, :dvoa => 0, :players => []}.merge(attributes)
-    super(attr_with_defaults)
-  end
-
-  def copy
-    attrs = {}
-
-    self.attributes.each_pair do |k,v|
-      if (true == v.is_a?(Array))
-        attrs[k] = v.dup
-      else
-        attrs[k] = v
-      end
-    end
-
-    return Roster.new(attrs)
-  end
-
-  def add(players)
-    players.each do |player|
-      if (MAX_BUDGET < (self.cost + player[:cost]))
-        raise RosterBudgetException.new("!ERROR: Over budget. '#{self}' + '#{player}'")
-      end
-
-      if (MAX_ROSTER_SIZE < (self.players.size + 1))
-        raise "!ERROR: Too many players. '#{self}' + '#{player}'"
-      end
-
-      self.cost    += player[:cost]
-      self.average += player[:avg]
-      self.dvoa    += player[:dvoa]
-      self.players << player
-    end
-
-    return self
-  end
 
   def players_str
     pstr = ""
@@ -106,7 +63,7 @@ class Roster < ActiveRecord::Base
       players["TE"].each do |te|
         players["K"].each do |k|
           players["D"].each do |d|
-            r = Roster.new({:week => week}).add([qb,te,k,d])
+            r = SimpleRoster.new.add([qb,te,k,d])
             possibilities << r
           end
         end
@@ -124,31 +81,33 @@ class Roster < ActiveRecord::Base
       end
 
       wr_combos.each do |wrs|
-        wr_added_roster    = roster.copy
-        wr_added_roster.add(wrs)
-        max_avg_iteration  = wr_added_roster.average + rb_max_avg + rb_max_avg
-        min_cost_iteration = wr_added_roster.cost + rb_min_cost + rb_min_cost
+        wr_roster          = SimpleRoster.new.add(wrs)
+        max_avg_iteration  = wr_roster.average + roster.average + rb_max_avg + rb_max_avg
+        min_cost_iteration = wr_roster.cost + roster.cost + rb_min_cost + rb_min_cost
 
-        if ((max_avg_iteration > completed_min) && (Roster::MAX_BUDGET >= min_cost_iteration))
+        if ((max_avg_iteration > completed_min) && (SimpleRoster::MAX_BUDGET >= min_cost_iteration))
           rb_combos.each do |rbs|
-            begin
-              full_roster = wr_added_roster.copy.add(rbs)
+            rb_roster = SimpleRoster.new.add(rbs)
 
-              if (false == completed_init)
-                completed << full_roster
+            if ((SimpleRoster::MAX_BUDGET >= (roster.cost + wr_roster.cost + rb_roster.cost)))
+              if ((false == completed_init) || ((roster.average + wr_roster.average + rb_roster.average) > completed_min))
+                completed << Roster.new(
+                                        {
+                                          :week => week,
+                                          :average => roster.average + wr_roster.average + rb_roster.average,
+                                          :dvoa    => roster.dvoa    + wr_roster.dvoa    + rb_roster.dvoa,
+                                          :cost    => roster.cost    + wr_roster.cost    + rb_roster.cost,
+                                          :players => roster.players + wr_roster.players + rb_roster.players
+                                        }
+                                       )
 
-                if (10 <= completed.size)
+                if (10 < completed.size)
                   completed.sort_by! {|r| -r.average}
+                  completed.pop
                   completed_min  = completed[-1].average
                   completed_init = true
                 end
-              elsif (full_roster.average > completed_min)
-                completed.pop
-                completed << full_roster
-                completed.sort_by! {|r| -r.average}
-                completed_min  = completed[-1].average
               end
-            rescue RosterBudgetException => e
             end
           end
         else
