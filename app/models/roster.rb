@@ -11,7 +11,9 @@ class Roster < ActiveRecord::Base
     pstr = ""
 
     self.players.each do |p|
-      pstr << "#{p['name'] || p[:name]}-"
+      cost = p['cost'] || p[:cost]
+      name = p['name'] || p[:name]
+      pstr << "#{name} (#{cost})-"
     end
 
     return pstr.chop
@@ -62,6 +64,8 @@ class Roster < ActiveRecord::Base
 
       players[k].each_with_index do |player, i|
         if (i < (players_count * SAMPLE_TOP_PERCENT))
+          sampled_players[k] << player
+        elsif (("QB" == player[:position]) && (i > (players_count - SAMPLE_SET_SIZE)))
           sampled_players[k] << player
         else
           tmp << player
