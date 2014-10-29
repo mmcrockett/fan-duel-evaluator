@@ -84,6 +84,7 @@
                     chart: '=chart',
                     onReady: '&',
                     onSelect: '&',
+                    onSort: '&',
                     select: '&'
                 },
                 link: function ($scope, $elm, $attrs) {
@@ -190,6 +191,11 @@
                                         $scope.chart.displayed = true;
                                         $scope.$apply(function (scope) {
                                             scope.onReady({ chartWrapper: scope.chartWrapper });
+                                        });
+                                        google.visualization.events.addListener($scope.chartWrapper.getChart(), 'sort', function (sortParams) {
+                                            $scope.$apply(function () {
+                                                $scope.onSort({sortParams:sortParams});
+                                            });
                                         });
                                     });
                                     google.visualization.events.addListener($scope.chartWrapper, 'error', function (err) {
