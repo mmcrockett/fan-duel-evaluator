@@ -22,7 +22,11 @@ class FanDuelPlayer < ActiveRecord::Base
       audit.save
 
       json_obj.each_value do |player_data|
-        players << FanDuelPlayer.player(player_data, week)
+        player = FanDuelPlayer.player(player_data, week)
+
+        if (("D" == player.position) || ("K" == player.position) || (0 < player.average))
+          players << player
+        end
       end
 
       FanDuelPlayer.import(players)
@@ -52,7 +56,7 @@ class FanDuelPlayer < ActiveRecord::Base
     stats  = {}
     averages = {}
     FanDuelPlayer.where({:week => week, :ignore => false}).each do |fd_player|
-      last_week_fd_player = FanDuelPlayer.find_by({:week => (week - 1), :name => fd_player.name}) || FanDuelPlayer.new({:cost => 0, :average => 0})
+      last_week_fd_player = FanDuelPlayer.find_by({:week => (week - 1), :name => fd_player.name}) || FanDuelPlayer.find_by({:week => (week - 2)}) || FanDuelPlayer.new({:cost => 0, :average => 0})
       player = {}
       player[:id]       = fd_player.id
       player[:name]     = fd_player.name
@@ -108,6 +112,7 @@ class FanDuelPlayer < ActiveRecord::Base
       player[:avg]     = player[:avg].to_f
     end
 
-    return players.select {|p| (("D" == p[:position]) || ("K" == p[:position]) || (5 < p[:avg]))}
+    #return players.select {|p| (("D" == p[:position]) || ("K" == p[:position]) || (5 < p[:avg]))}
+    return players
   end
 end
