@@ -52,6 +52,7 @@ class FanDuelPlayer < ActiveRecord::Base
     stats  = {}
     averages = {}
     FanDuelPlayer.where({:week => week, :ignore => false}).each do |fd_player|
+      last_week_fd_player = FanDuelPlayer.find_by({:week => (week - 1), :name => fd_player.name}) || FanDuelPlayer.new({:cost => 0, :average => 0})
       player = {}
       player[:id]       = fd_player.id
       player[:name]     = fd_player.name
@@ -60,8 +61,10 @@ class FanDuelPlayer < ActiveRecord::Base
       player[:opponent] = FfTodayPrediction.find_by({:week => week, :position => fd_player.position, :team => player[:team]}).opponent
       player[:status]   = fd_player.status
       player[:cost]     = fd_player.cost
+      player[:pcost]    = last_week_fd_player.cost
       player[:stddevs]  = -10
       player[:avg]      = fd_player.average
+      player[:pavg]     = last_week_fd_player.average
 
       if (true == fd_player.defense?())
         if (0 == player[:avg])
