@@ -4,15 +4,15 @@ class Roster < ActiveRecord::Base
   serialize :players, JSON
 
   SAMPLE_SET_SIZE    = {
-    "QB" => 3,
-    "WR" => 8,
-    "RB" => 5,
-    "TE" => 3,
-    "K"  => 10,
-    "D"  => 10,
+    "QB" => 2,
+    "WR" => 4,
+    "RB" => 2,
+    "TE" => 2,
+    "K"  => 4,
+    "D"  => 4,
   }
   SAMPLE_TOP_PERCENT = 0.2
-  MAX_NUMBER_ROSTERS = 25
+  MAX_NUMBER_ROSTERS = 20
 
   def players_str
     pstr = ""
@@ -20,7 +20,17 @@ class Roster < ActiveRecord::Base
     self.players.each do |p|
       cost = p['cost'] || p[:cost]
       name = p['name'] || p[:name]
-      pstr << "#{name} (#{cost})-"
+      pos  = p['position'] || p[:position]
+      team = p['team'] || p[:team]
+      display_name = "ERROR"
+
+      if ("D" == pos)
+        display_name = "#{team[0,3]} D"
+      else
+        (first_name, last_name) = name.split(" ", 2)
+        display_name = "#{first_name[0]}. #{last_name}"
+      end
+      pstr << "#{display_name} (#{cost})-"
     end
 
     return pstr.chop
