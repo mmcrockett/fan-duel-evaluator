@@ -5,8 +5,8 @@ class Roster < ActiveRecord::Base
 
   SAMPLE_SET_SIZE    = {
     "QB" => 3,
-    "WR" => 10,
-    "RB" => 6,
+    "WR" => 8,
+    "RB" => 5,
     "TE" => 3,
     "K"  => 10,
     "D"  => 10,
