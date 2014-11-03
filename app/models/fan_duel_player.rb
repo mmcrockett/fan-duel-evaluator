@@ -1,6 +1,8 @@
 require 'array_mod'
 include ActionView::Helpers::NumberHelper
 
+#https://www.fanduel.com/eg/Player/11432/Stats/showLB/10833#tab2
+
 class FanDuelPlayer < ActiveRecord::Base
   include Auditable
 
