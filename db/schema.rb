@@ -11,76 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027153521) do
-
-  create_table "audits", force: true do |t|
-    t.string   "source",                 null: false
-    t.string   "subsource",              null: false
-    t.integer  "week",                   null: false
-    t.integer  "status",     default: 0, null: false
-    t.string   "url",                    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "dvoas", force: true do |t|
-    t.string   "team",                               null: false
-    t.integer  "week",                               null: false
-    t.string   "role",                               null: false
-    t.string   "subrole",                            null: false
-    t.decimal  "value",      precision: 4, scale: 2, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20141103222627) do
 
   create_table "fan_duel_players", force: true do |t|
     t.string   "name",                                               null: false
-    t.integer  "week",                                               null: false
+    t.integer  "import_id",                                          null: false
+    t.integer  "player_id",                                          null: false
     t.integer  "team_id",                                            null: false
+    t.integer  "game_id",                                            null: false
     t.string   "position",                                           null: false
     t.decimal  "average",    precision: 4, scale: 2,                 null: false
     t.integer  "cost",                                               null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "status",                             default: ""
     t.string   "note",                               default: ""
     t.boolean  "ignore",                             default: false, null: false
-  end
-
-  create_table "ff_today_predictions", force: true do |t|
-    t.string   "position",                           null: false
-    t.integer  "week",                               null: false
-    t.string   "team",                               null: false
-    t.string   "opponent",                           null: false
-    t.decimal  "value",      precision: 4, scale: 2, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "rosters", force: true do |t|
-    t.integer  "week",                               null: false
-    t.integer  "cost",                               null: false
-    t.decimal  "average",    precision: 4, scale: 2, null: false
-    t.decimal  "dvoa",       precision: 4, scale: 2, null: false
-    t.string   "players",                            null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "week_data", force: true do |t|
-    t.integer  "week",                       null: false
-    t.boolean  "fan_duel",   default: false
-    t.boolean  "yahoo",      default: false
-    t.boolean  "dvoa",       default: false
-    t.boolean  "fftoday",    default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "yahoos", force: true do |t|
-    t.string   "team",                               null: false
-    t.integer  "week",                               null: false
-    t.decimal  "average",    precision: 4, scale: 2, null: false
+  create_table "imports", force: true do |t|
+    t.string   "league"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

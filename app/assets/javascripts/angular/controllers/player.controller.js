@@ -1,4 +1,8 @@
-app.controller('PlayerController', ['$scope', '$http', '$window', 'PlayerData', 'JsLiteral', 'filterFilter', function($scope, $http, $window, PlayerData, JsLiteral, filter) {
+app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData', 'JsLiteral', 'filterFilter', function($scope, Leagues, $window, PlayerData, JsLiteral, filter) {
+  $scope.leagues = Leagues.options;
+  $scope.selectedLeague = "NONE";
+  $scope.positions = [{id:"NONE"}];
+  $scope.selectedPosition = "NONE";
   $scope.wrapper = null;
   angular.element($window).bind('keyup.delete', function(e) {
     if ((46 == e.keyCode) || (8 == e.keyCode)) {
@@ -8,7 +12,7 @@ app.controller('PlayerController', ['$scope', '$http', '$window', 'PlayerData', 
           ids_to_ignore.push($scope.wrapper.getDataTable().getValue(gitem.row, 0));
         });
         if (0 <= ids_to_ignore.length) {
-          new PlayerData({ignore:ids_to_ignore}).$save({}, function(v){$scope.wrapper.getChart().setSelection();$scope.selected = [];$scope.get_player_data();}, function(e){console.error("!ERROR: Unable to hide players.");});
+          new PlayerData({ignore:ids_to_ignore}).$save({}, function(v){$scope.wrapper.getChart().setSelection();$scope.selected = [];$scope.get_player_data();$scope.message = "Ignored " + ids_to_ignore.length + " players."}, function(e){$scope.message = "!ERROR: Unable to hide players.";});
         }
       }
     }
@@ -21,8 +25,6 @@ app.controller('PlayerController', ['$scope', '$http', '$window', 'PlayerData', 
     $scope.wrapper = wrapper;
   };
   $scope.filter = filter;
-  $scope.positions = [{id:"NONE"}, {id:"QB"}, {id:"WR"}, {id:"RB"}, {id:"TE"}, {id:"K"}, {id:"D"}];
-  $scope.selectedPosition = "NONE";
   $scope.selected_player_data = [];
   $scope.player_data = [];
   $scope.chart = {
@@ -38,7 +40,7 @@ app.controller('PlayerController', ['$scope', '$http', '$window', 'PlayerData', 
     } else if (false == angular.isNumber($scope.chart.options.sortColumn)) {
       var i = 0;
       angular.forEach($scope.selected_player_data[0], function(v, k) {
-        if ("avg" == k) {
+        if ("average" == k) {
           $scope.chart.options.sortColumn = i;
           return true;
         } else {
@@ -58,9 +60,23 @@ app.controller('PlayerController', ['$scope', '$http', '$window', 'PlayerData', 
       $scope.selected_player_data = $scope.filter($scope.player_data, {position: $scope.selectedPosition}, true)
     }
   };
+  $scope.build_positions = function() {
+    $scope.positions = [{id:"NONE"}];
+    var positions = {};
+
+    angular.forEach($scope.player_data, function(player, i) {
+      if (true !== positions[player.position]) {
+        positions[player.position] = true;
+        $scope.positions.push({id:player.position});
+      }
+    });
+  };
+  $scope.get_player_data = function() {
+    if ("NONE" != $scope.selectedLeague) {
+      PlayerData.query({league:$scope.selectedLeague}, function(v){$scope.player_data = v;$scope.build_positions();$scope.select_player_data();}, function(e){$scope.message = "Couldn't load player data.";});
+    }
+  };
   $scope.$watch('selected_player_data', $scope.create_chart);
   $scope.$watch('selectedPosition', $scope.select_player_data);
-  $scope.get_player_data = function() {
-    PlayerData.query({}, function(v){$scope.player_data = v;$scope.select_player_data();}, function(e){console.error("Couldn't load player data.");});
-  };
+  $scope.$watch('selectedLeague', $scope.get_player_data);
 }]);

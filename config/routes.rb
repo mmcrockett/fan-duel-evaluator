@@ -1,10 +1,10 @@
 FanDuelEvaluator::Application.routes.draw do
   root :to => redirect('/players')
-  resources :week_data
-  resources :fan_duel_player
-  get 'players'  => 'player#index'
-  get 'analysis' => 'player#analysis'
-  post 'players' => 'player#ignore'
+  get  'players'  => 'player#index'
+  post 'players'  => 'player#ignore'
+  get  'import'   => 'player#import'
+  post 'import'   => 'player#create'
+  get  'analysis' => 'player#analysis'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

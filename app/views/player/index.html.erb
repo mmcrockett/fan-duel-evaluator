@@ -1,10 +1,11 @@
 <%= render :partial => "common/nav_bar" %>
 <div ng-controller="PlayerController">
+  <%= render :partial => "common/league_selector" %>
   <div>
     <select ng-model="selectedPosition" ng-options="item.id as item.id for item in positions"></select><span style="padding-left: 10px;">{{selected_player_data.length}}</span>
   </div>
   <hr>
-  <div ng-init="get_player_data()">
+  <div>
     <div google-chart chart="chart" on-sort="set_sort(sortParams)" on-select="set_selected(selectedItems)" on-ready="set_wrapper(chartWrapper)"></div>
   </div>
 </div>
