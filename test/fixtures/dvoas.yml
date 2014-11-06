@@ -2,12 +2,14 @@
 
 one:
   team: MyString
-  week: 1
-  type: 
-  value: 1
+  import_id: 
+  role: MyString
+  subrole: MyString
+  value: 9.99
 
 two:
   team: MyString
-  week: 1
-  type: 
-  value: 1
+  import_id: 
+  role: MyString
+  subrole: MyString
+  value: 9.99

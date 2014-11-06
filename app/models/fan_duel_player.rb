@@ -1,22 +1,27 @@
+require 'array_mod'
+
 class FanDuelPlayer < ActiveRecord::Base
   belongs_to :import
+  attr_accessor :team, :pavg, :pcost, :opponent, :scoring
 
-  OVERUNDER_URL = "http://sports.yahoo.com/nba/odds/pointspread"
+  def team
+    return @team || "?"
+  end
 
-  def pavg
-    return @pavg || 0
+  def opponent
+    return @opponent || "?"
   end
 
   def pcost
     return @pcost || 0
   end
 
-  def pavg=(v)
-    @pavg = v
+  def pavg
+    return @pavg || 0
   end
 
-  def pcost=(v)
-    @pcost = v
+  def scoring
+    return @scoring || 0
   end
 
   def self.team_id(team_name)
@@ -60,15 +65,57 @@ class FanDuelPlayer < ActiveRecord::Base
   def self.player_data(params = {})
     import = Import.where({:league => params[:league]}).last
 
-    return FanDuelPlayer.where({:ignore => false, :import => import})
-    players = []
+    if (nil == import)
+      return []
+    end
 
-    FanDuelPlayer.where("ignore = ? AND created_at >= ?", false, Date.today).each do |fd_player|
-      fd_player_previous = FanDuelPlayer.find_by("created_at < ? and name = ?", Date.today, fd_player.name)
+    if ("NFL" == import.league)
+      klazz = NflPlayer
+    elsif ("NHL" == import.league)
+      klazz = NhlPlayer
+    elsif ("NBA" == import.league)
+      klazz = NbaPlayer
+    end
+
+    players = []
+    scores  = []
+    overunders = {}
+
+    OverUnder.where({:import => import}).each do |overunder|
+      home    = OverUnder.translate(import.league, overunder[:home])
+      visitor = OverUnder.translate(import.league, overunder[:visitor])
+      puts "#{visitor}:#{home}"
+      h_score = (overunder[:overunder] - overunder[:home_spread])/2
+      v_score = (overunder[:overunder] - h_score)
+      overunders[home] = {:opponent => visitor, :score => h_score}
+      overunders[visitor] = {:opponent => home, :score => v_score}
+
+      if (0 != overunder[:overunder])
+        scores << h_score
+        scores << v_score
+      end
+    end
+
+    klazz.where({:ignore => false, :import => import}).each do |fd_player|
+      fd_player_previous = FanDuelPlayer.where("import_id != ? AND player_id = ?", import.id, fd_player.player_id).last
 
       if (nil != fd_player_previous)
         fd_player.pcost = fd_player_previous.cost
         fd_player.pavg  = fd_player_previous.average
+      end
+
+      fd_player.team     = fd_player.team_name
+      puts "#{fd_player.team_name}:#{overunders.keys}"
+      fd_player.opponent = overunders[fd_player.team_name][:opponent]
+
+      if (false == overunders.include?(:boost))
+        overunders[fd_player.team_name][:boost] = OverUnder.calculate_boost(overunders[fd_player.team_name][:score], scores)
+      end
+
+      if ("D" == fd_player.position)
+        fd_player.scoring  = overunders[fd_player.opponent][:boost]
+      else
+        fd_player.scoring  = overunders[fd_player.team_name][:boost]
       end
 
       players << fd_player

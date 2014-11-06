@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  overunder: 1
+  home: MyString
+  visitor: MyString
+  import_id: 
+
+two:
+  overunder: 1
+  home: MyString
+  visitor: MyString
+  import_id: 

@@ -54,6 +54,7 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
     $scope.chart.data = JsLiteral.get_chart_data($scope.selected_player_data);
   };
   $scope.select_player_data = function() {
+    $scope.message = "";
     if ("NONE" == $scope.selectedPosition) {
       $scope.selected_player_data = $scope.player_data;
     } else {
@@ -61,6 +62,8 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
     }
   };
   $scope.build_positions = function() {
+    $scope.selectedPosition = "NONE";
+    $scope.chart.options.sortColumn = null;
     $scope.positions = [{id:"NONE"}];
     var positions = {};
 
@@ -72,6 +75,7 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
     });
   };
   $scope.get_player_data = function() {
+    $scope.message = "";
     if ("NONE" != $scope.selectedLeague) {
       PlayerData.query({league:$scope.selectedLeague}, function(v){$scope.player_data = v;$scope.build_positions();$scope.select_player_data();}, function(e){$scope.message = "Couldn't load player data.";});
     }

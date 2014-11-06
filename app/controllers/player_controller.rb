@@ -2,6 +2,11 @@ require 'open-uri'
 
 class PlayerController < ApplicationController
   def index
+    if ("NFL" == params[:league])
+      @players = NflPlayer.player_data(params)
+    else
+      @players = FanDuelPlayer.player_data(params)
+    end
   end
 
   def analysis
@@ -17,7 +22,10 @@ class PlayerController < ApplicationController
 
     if ("NFL" == @import.league)
       Yahoo.load(@import.id)
+      Dvoa.load(@import.id)
     end
+
+    OverUnder.load(@import)
 
     respond_to do |format|
       format.json { head :no_content }

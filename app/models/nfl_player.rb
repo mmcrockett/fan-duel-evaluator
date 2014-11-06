@@ -1,4 +1,6 @@
 class NflPlayer < FanDuelPlayer
+  attr_accessor :dvoa
+
   TEAMS_BY_FD_ID = {
     1 => "NYJ",
     2 => "MIA",
@@ -33,4 +35,18 @@ class NflPlayer < FanDuelPlayer
     31 => "SEA",
     32 => "STL"
   }
+
+  def dvoa
+    return @dvoa || 0
+  end
+
+  def self.player_data(params)
+    players = FanDuelPlayer.player_data(params)
+
+    players.each do |player|
+      player.dvoa = (Dvoa.adjustment(player.import_id, player.position, player.opponent)).round(2)
+    end
+
+    return players
+  end
 end
