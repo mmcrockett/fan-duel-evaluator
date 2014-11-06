@@ -21,13 +21,14 @@ class OverUnder < ActiveRecord::Base
       "CAL" => "CGY",
     },
     "NBA" => {
+      "SAN" => "SA"
     }
   }
 
   URLS = {
     "NFL" => "http://m.vegasinsider.com/thisweek/3/NFL",
     "NBA" => "http://m.vegasinsider.com/today/3/NBA",
-    "NHL" => "http://m.vegasinsider.com/tomorrow/3/NHL"
+    "NHL" => "http://m.vegasinsider.com/today/3/NHL"
   }
 
   def self.translate(league, name)
