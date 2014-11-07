@@ -29,7 +29,7 @@ class NhlPlayer < FanDuelPlayer
     674 => "STL",
     675 => "TB",
     676 => "TOR",
-    677 => "VAN"
+    677 => "VAN",
     678 => "WAS",
   }
 end
