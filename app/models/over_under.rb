@@ -19,9 +19,13 @@ class OverUnder < ActiveRecord::Base
       "NAS" => "NSH",
       "NJD" => "NJ",
       "CAL" => "CGY",
+      "ANA" => "ANH",
+      "Arizona" => "ARI",
+      "CLB" => "CLS",
     },
     "NBA" => {
-      "SAN" => "SA"
+      "SAN" => "SA",
+      "NYN" => "NY",
     }
   }
 

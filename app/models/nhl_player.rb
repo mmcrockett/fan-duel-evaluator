@@ -1,15 +1,17 @@
 class NhlPlayer < FanDuelPlayer
   TEAMS_BY_FD_ID = {
+    649 => "ANH",
     650 => "WPG",
     651 => "BOS",
     652 => "?",
+    652 => "BUF",
     653 => "CGY",
-    654 => "?",
-    655 => "?",
+    654 => "CAR",
+    655 => "CHI",
     656 => "COL",
-    657 => "?",
+    657 => "CLS",
     658 => "DAL",
-    659 => "?",
+    659 => "DET",
     660 => "EDM",
     661 => "FLA",
     662 => "LA",
@@ -21,12 +23,13 @@ class NhlPlayer < FanDuelPlayer
     668 => "?",
     669 => "OTT",
     670 => "PHI",
-    671 => "?",
+    671 => "ARI",
     672 => "PIT",
     673 => "SJ",
     674 => "STL",
     675 => "TB",
     676 => "TOR",
     677 => "VAN"
+    678 => "WAS",
   }
 end
