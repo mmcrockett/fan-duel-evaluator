@@ -29,6 +29,10 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def team_name
+    if (false == self.class::TEAMS_BY_FD_ID.include?(self.team_id))
+      raise "!ERROR: team_id '#{self.team_id}' not defined in TEAMS_BY_FD_ID."
+    end
+
     return self.class::TEAMS_BY_FD_ID[self.team_id]
   end
 
@@ -105,8 +109,12 @@ class FanDuelPlayer < ActiveRecord::Base
       end
 
       fd_player.team     = fd_player.team_name
-      puts "#{fd_player.team_name}:#{overunders.keys}"
-      fd_player.opponent = overunders[fd_player.team_name][:opponent]
+
+      if (false == overunders.include?(fd_player.team_name))
+        raise "!ERROR: OverUnder not defined for '#{fd_player.team_name}'."
+      else
+        fd_player.opponent = overunders[fd_player.team_name][:opponent]
+      end
 
       if (false == overunders.include?(:boost))
         overunders[fd_player.team_name][:boost] = OverUnder.calculate_boost(overunders[fd_player.team_name][:score], scores)
