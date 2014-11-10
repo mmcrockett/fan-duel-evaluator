@@ -48,7 +48,7 @@ namespace :deploy do
   desc 'Backup SQLite DB'
   task :backup_db do
     on roles(:app), in: :sequence, wait: 5 do
-      if test("[ -d #{release_path.join('db/production.sqlite3')}]")
+      if test("[ -f #{release_path.join('db/production.sqlite3')} ]")
         execute :cp, release_path.join('db/production.sqlite3'), shared_path.join('production.backup.sqlite3')
       end
     end
@@ -57,7 +57,7 @@ namespace :deploy do
   desc 'Copy SQLite DB'
   task :copy_db do
     on roles(:app), in: :sequence, wait: 5 do
-      if test("[ -d #{shared_path.join('production.backup.sqlite3')}]")
+      if test("[ -f #{shared_path.join('production.backup.sqlite3')} ]")
         execute :cp, shared_path.join('production.backup.sqlite3'), release_path.join('db/production.sqlite3')
       end
     end
