@@ -1,6 +1,8 @@
 class NflPlayer < FanDuelPlayer
   attr_accessor :dvoa
 
+  MAX_GAMES = 4
+
   TEAMS_BY_FD_ID = {
     1 => "NYJ",
     2 => "MIA",
@@ -38,6 +40,14 @@ class NflPlayer < FanDuelPlayer
 
   def dvoa
     return @dvoa || 0
+  end
+
+  def valid
+    if (("D" == self.position) || ("K" == self.position))
+      return true
+    else
+      return (2 < self.average)
+    end
   end
 
   def self.player_data(params)

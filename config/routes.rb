@@ -2,6 +2,7 @@ FanDuelEvaluator::Application.routes.draw do
   root :to => redirect('/players')
   get  'players'  => 'player#index'
   post 'players'  => 'player#ignore'
+  put  'players'  => 'player#details'
   get  'import'   => 'player#import'
   post 'import'   => 'player#create'
   get  'analysis' => 'player#analysis'

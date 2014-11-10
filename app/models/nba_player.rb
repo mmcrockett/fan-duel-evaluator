@@ -1,4 +1,6 @@
 class NbaPlayer < FanDuelPlayer
+  MAX_GAMES = 12
+
   TEAMS_BY_FD_ID = {
     679 => "ATL",
     680 => "BOS",
@@ -28,4 +30,8 @@ class NbaPlayer < FanDuelPlayer
     707 => "UTA",
     708 => "WAS",
   }
+
+  def valid
+    return (8 < self.average)
+  end
 end

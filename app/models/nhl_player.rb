@@ -1,4 +1,6 @@
 class NhlPlayer < FanDuelPlayer
+  MAX_GAMES = 12
+
   TEAMS_BY_FD_ID = {
     649 => "ANH",
     650 => "WPG",
@@ -32,4 +34,18 @@ class NhlPlayer < FanDuelPlayer
     677 => "VAN",
     678 => "WAS",
   }
+
+  def valid
+    if (3800 > self.cost)
+      return false
+    else
+      if ("D" == self.position)
+        return (1 < self.average)
+      elsif ("G" == self.position)
+        return (7000 < self.cost)
+      else
+        return (1.2 < self.average)
+      end
+    end
+  end
 end

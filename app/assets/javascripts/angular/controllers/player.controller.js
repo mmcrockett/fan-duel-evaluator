@@ -1,8 +1,9 @@
-app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData', 'JsLiteral', 'filterFilter', function($scope, Leagues, $window, PlayerData, JsLiteral, filter) {
+app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData', 'JsLiteral', '$filter', function($scope, Leagues, $window, PlayerData, JsLiteral, $filter) {
   $scope.leagues = Leagues.options;
   $scope.selectedLeague = "NONE";
   $scope.positions = [{id:"NONE"}];
   $scope.selectedPosition = "NONE";
+  $scope.value   = 0;
   $scope.wrapper = null;
   angular.element($window).bind('keyup.delete', function(e) {
     if ((46 == e.keyCode) || (8 == e.keyCode)) {
@@ -24,7 +25,6 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
   $scope.set_wrapper = function(wrapper) {
     $scope.wrapper = wrapper;
   };
-  $scope.filter = filter;
   $scope.selected_player_data = [];
   $scope.player_data = [];
   $scope.chart = {
@@ -58,8 +58,29 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
     if ("NONE" == $scope.selectedPosition) {
       $scope.selected_player_data = $scope.player_data;
     } else {
-      $scope.selected_player_data = $scope.filter($scope.player_data, {position: $scope.selectedPosition}, true)
+      $scope.selected_player_data = $filter('filter')($scope.player_data, {position: $scope.selectedPosition}, true);
     }
+
+    $scope.calculate_average_value();
+  };
+  $scope.calculate_average_value = function() {
+    var top_25 = 0;
+    var cost   = 0;
+    var points = 1;
+
+    $scope.selected_player_data = $filter('orderBy')($scope.selected_player_data, 'average', true);
+
+    top_25 = $scope.selected_player_data.length * 0.25;
+
+    for (var i = 0; i < (top_25); i += 1) {
+      var wdata = $scope.selected_player_data[i];
+      if (i < top_25) {
+        cost   += wdata.cost;
+        points += wdata.average;
+      }
+    }
+
+    $scope.value = parseInt(cost/points);
   };
   $scope.build_positions = function() {
     $scope.selectedPosition = "NONE";
@@ -79,6 +100,9 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
     if ("NONE" != $scope.selectedLeague) {
       PlayerData.query({league:$scope.selectedLeague}, function(v){$scope.player_data = v;$scope.build_positions();$scope.select_player_data();}, function(e){$scope.message = "Couldn't load player data.";});
     }
+  };
+  $scope.get_player_details = function() {
+    new PlayerData({league:$scope.selectedLeague}).$update({}, function(v){$scope.get_player_data();}, function(e){$scope.message = "!ERROR: Unable to get game details.";});
   };
   $scope.$watch('selected_player_data', $scope.create_chart);
   $scope.$watch('selectedPosition', $scope.select_player_data);

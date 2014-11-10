@@ -16,7 +16,7 @@ class PlayerController < ApplicationController
   end
 
   def create
-    @import = Import.create({:league => params[:league]})
+    @import = Import.create({:league => params[:league], :fd_game_id => params[:fd_game_id]})
 
     FanDuelPlayer.parse(params[:data], @import)
 
@@ -40,6 +40,14 @@ class PlayerController < ApplicationController
         fd_player.ignore = true
         fd_player.save
       end
+    end
+  end
+
+  def details
+    FanDuelPlayer.load_player_details(params)
+
+    respond_to do |format|
+      format.json { head :no_content }
     end
   end
 end
