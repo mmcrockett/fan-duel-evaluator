@@ -10,6 +10,7 @@ class NbaPlayer < FanDuelPlayer
     686 => "DET",
     688 => "HOU",
     689 => "IND",
+    690 => "LAC",
     692 => "MEM",
     694 => "MIL",
     695 => "MIN",
