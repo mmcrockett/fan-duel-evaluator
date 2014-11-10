@@ -14,6 +14,7 @@ class NbaPlayer < FanDuelPlayer
     694 => "MIL",
     695 => "MIN",
     696 => "BKN",
+    697 => "NO",
     698 => "NY",
     699 => "OKC",
     700 => "ORL",

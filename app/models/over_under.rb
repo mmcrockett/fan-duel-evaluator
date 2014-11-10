@@ -26,6 +26,7 @@ class OverUnder < ActiveRecord::Base
     "NBA" => {
       "SAN" => "SA",
       "NYN" => "NY",
+      "NOP" => "NO",
     }
   }
 
