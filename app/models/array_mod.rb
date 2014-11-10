@@ -54,4 +54,9 @@ class Array
 
     return mean
   end
+
+  def median
+    i = (self.size/2).to_i
+    return self.sort[i]
+  end
 end
