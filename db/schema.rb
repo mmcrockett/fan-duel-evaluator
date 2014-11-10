@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106003020) do
+ActiveRecord::Schema.define(version: 20141110190243) do
 
   create_table "dvoas", force: true do |t|
     t.string   "team"
@@ -39,12 +39,14 @@ ActiveRecord::Schema.define(version: 20141106003020) do
     t.boolean  "ignore",                             default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "game_data"
   end
 
   create_table "imports", force: true do |t|
     t.string   "league"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "fd_game_id"
   end
 
   create_table "over_unders", force: true do |t|

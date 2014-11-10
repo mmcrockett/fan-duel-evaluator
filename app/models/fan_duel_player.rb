@@ -1,8 +1,45 @@
 require 'array_mod'
+require 'open-uri'
 
 class FanDuelPlayer < ActiveRecord::Base
   belongs_to :import
-  attr_accessor :team, :pavg, :pcost, :opponent, :scoring
+  serialize :game_data, JSON
+  attr_accessor :team, :pavg, :pcost, :opponent, :scoring, :max, :min, :median, :ravg, :value
+
+  PLAYER_DETAIL_URL     = "https://www.fanduel.com/eg/Player/"
+  PLAYER_DETAIL_URL_EXT = "/Stats/showLB/"
+
+  def max
+    if (true == self.game_data.is_a?(Array))
+      return self.game_data.max
+    else
+      return 0
+    end
+  end
+
+  def min
+    if (true == self.game_data.is_a?(Array))
+      return self.game_data.min
+    else
+      return 0
+    end
+  end
+
+  def median
+    if (true == self.game_data.is_a?(Array))
+      return self.game_data.median
+    else
+      return 0
+    end
+  end
+
+  def ravg
+    if (true == self.game_data.is_a?(Array))
+      return self.game_data.mean.round(1)
+    else
+      return 0
+    end
+  end
 
   def team
     return @team || "?"
@@ -24,6 +61,14 @@ class FanDuelPlayer < ActiveRecord::Base
     return @scoring || 0
   end
 
+  def value
+    if (0 != self.average)
+      return (self.cost/self.average).to_i
+    else
+      return 0
+    end
+  end
+
   def self.team_id(team_name)
     return self::TEAMS_BY_FD_ID.key(team_name)
   end
@@ -36,16 +81,31 @@ class FanDuelPlayer < ActiveRecord::Base
     return self.class::TEAMS_BY_FD_ID[self.team_id]
   end
 
+  def self.factory(import)
+    if ("NFL" == import.league)
+      klazz = NflPlayer
+    elsif ("NHL" == import.league)
+      klazz = NhlPlayer
+    elsif ("NBA" == import.league)
+      klazz = NbaPlayer
+    else
+      raise "!ERROR: league type is unknown '#{import}'."
+    end
+
+    return klazz
+  end
+
   def self.parse(data, import)
     players  = []
     json_obj = JSON.load(data)
+    klazz    = FanDuelPlayer.factory(import)
 
     json_obj.each_pair do |player_id, player_data|
-      player = FanDuelPlayer.player(player_data)
+      player = klazz.player(player_data)
       player.player_id = player_id.to_i
       player.import_id = import.id
 
-      if ((0 < player.average) || (("NFL" == import.league) && ("D" == player.position)))
+      if (true == player.valid?())
         players << player
       end
     end
@@ -66,6 +126,34 @@ class FanDuelPlayer < ActiveRecord::Base
     })
   end
 
+  def self.load_player_details(params = {})
+    import = Import.where({:league => params[:league]}).last
+
+    if ((nil != import) && (nil != import.fd_game_id))
+      klazz = FanDuelPlayer.factory(import)
+
+      klazz.where({:ignore => false, :import => import, :game_data => nil}).each do |fd_player|
+        points = []
+        uri  = "#{PLAYER_DETAIL_URL}#{fd_player.player_id}#{PLAYER_DETAIL_URL_EXT}#{import.fd_game_id}"
+        begin
+          page = Nokogiri::HTML(open("#{uri}"))
+          page.css('table.game-log')[0].css('tbody')[0].css('tr').each_with_index do |tr,i|
+            if (i < klazz::MAX_GAMES)
+              tds = tr.css('td')
+              points << tds[-1].text().to_f.round(2)
+            else
+              break
+            end
+          end
+          fd_player.game_data = points
+          fd_player.save
+        rescue
+          logger.warn "Couldn't load player '#{fd_player.name}' in import '#{fd_player.import_id}' - '#{uri}'"
+        end
+      end
+    end
+  end
+
   def self.player_data(params = {})
     import = Import.where({:league => params[:league]}).last
 
@@ -73,13 +161,7 @@ class FanDuelPlayer < ActiveRecord::Base
       return []
     end
 
-    if ("NFL" == import.league)
-      klazz = NflPlayer
-    elsif ("NHL" == import.league)
-      klazz = NhlPlayer
-    elsif ("NBA" == import.league)
-      klazz = NbaPlayer
-    end
+    klazz = FanDuelPlayer.factory(import)
 
     players = []
     scores  = []

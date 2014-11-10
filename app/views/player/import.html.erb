@@ -1,6 +1,8 @@
 <%= render :partial => "common/nav_bar" %>
 <div ng-controller="ImportController">
   <%= render :partial => "common/league_selector" %>
+  Game Id <input class="ui-widget ui-state-default ui-corner-all ui-button-text-only" size="10" type="text" ng-model="fan_duel_game_id">
+  <hr>
   <div class="bulk-import" ng-show="('NONE' != selectedLeague)">
     <textarea style="height:200px;width:800px;" id="bulk-import-field" ng-model="fan_duel_data">
     </textarea>
