@@ -85,7 +85,7 @@ class OverUnder < ActiveRecord::Base
     if (0 == expected_team_score)
       return 0
     else
-      return ((expected_team_score - scores.mean)/Math.sqrt(scores.variance)).round()
+      return (((expected_team_score - scores.mean)/scores.mean)*100).round()
     end
   end
 end

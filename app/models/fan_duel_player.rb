@@ -45,7 +45,7 @@ class FanDuelPlayer < ActiveRecord::Base
       player.player_id = player_id.to_i
       player.import_id = import.id
 
-      if ((0 < player.average) || ("D" == player.position))
+      if ((0 < player.average) || (("NFL" == import.league) && ("D" == player.position)))
         players << player
       end
     end
@@ -88,8 +88,18 @@ class FanDuelPlayer < ActiveRecord::Base
     OverUnder.where({:import => import}).each do |overunder|
       home    = OverUnder.translate(import.league, overunder[:home])
       visitor = OverUnder.translate(import.league, overunder[:visitor])
-      puts "#{visitor}:#{home}"
-      h_score = (overunder[:overunder] - overunder[:home_spread])/2
+
+      if (overunder[:overunder] > overunder[:home_spread].abs)
+        h_score = (overunder[:overunder] - overunder[:home_spread])/2
+      else
+        if (overunder[:home_spread] > 0)
+          p_win = 100/(100+overunder[:home_spread])
+        else
+          p_win = -(overunder[:home_spread])/(100-overunder[:home_spread])
+        end
+        h_score = (overunder[:overunder]*p_win).round(2)
+      end
+
       v_score = (overunder[:overunder] - h_score)
       overunders[home] = {:opponent => visitor, :score => h_score}
       overunders[visitor] = {:opponent => home, :score => v_score}
@@ -120,7 +130,7 @@ class FanDuelPlayer < ActiveRecord::Base
         overunders[fd_player.team_name][:boost] = OverUnder.calculate_boost(overunders[fd_player.team_name][:score], scores)
       end
 
-      if ("D" == fd_player.position)
+      if (("D" == fd_player.position) && ("NFL" == import.league))
         fd_player.scoring  = overunders[fd_player.opponent][:boost]
       else
         fd_player.scoring  = overunders[fd_player.team_name][:boost]
