@@ -5,6 +5,7 @@ app.controller('ImportController', ['$scope', 'Leagues', 'FanDuelData', function
   $scope.message = "";
   $scope.fan_duel_game_id = null;
   $scope.add_fan_duel_json = function() {
+    $scope.message = "Processing...";
     new FanDuelData({
       data:$scope.fan_duel_data,
       league:$scope.selectedLeague,
