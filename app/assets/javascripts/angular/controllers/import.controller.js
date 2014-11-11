@@ -12,6 +12,7 @@ app.controller('ImportController', ['$scope', 'Leagues', 'FanDuelData', function
     }).$save({},
       function(v){
         $scope.fan_duel_data="";
+        $scope.fan_duel_game_id=null;
         $scope.message = "Successfully imported."
       }, function(e){
         $scope.message = "!ERROR saving fan duel json."
