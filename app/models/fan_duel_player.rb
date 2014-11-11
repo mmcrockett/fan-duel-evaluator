@@ -4,41 +4,47 @@ require 'open-uri'
 class FanDuelPlayer < ActiveRecord::Base
   belongs_to :import
   serialize :game_data, JSON
-  attr_accessor :team, :pavg, :pcost, :opponent, :scoring, :max, :min, :median, :ravg, :value
+  attr_accessor :team, :pavg, :pcost, :opponent, :scoring, :max, :min, :median, :ravg, :rgames, :value, :rvalue
 
   PLAYER_DETAIL_URL     = "https://www.fanduel.com/eg/Player/"
   PLAYER_DETAIL_URL_EXT = "/Stats/showLB/"
 
-  def max
+  def game_data_no_zeros
     if (true == self.game_data.is_a?(Array))
-      return self.game_data.max
+      return self.game_data.reject {|d| d == 0}
+    else
+      return [0]
+    end
+  end
+
+  def rvalue
+    if (0 != self.game_data_no_zeros.mean)
+      return (self.cost/self.game_data_no_zeros.mean).to_i
     else
       return 0
     end
+  end
+
+  def max
+    return self.game_data_no_zeros.max
+  end
+
+  def rgames
+    return self.game_data_no_zeros.size
   end
 
   def min
-    if (true == self.game_data.is_a?(Array))
-      return self.game_data.min
-    else
-      return 0
-    end
+    return self.game_data_no_zeros.min
   end
 
   def median
-    if (true == self.game_data.is_a?(Array))
-      return self.game_data.median
-    else
-      return 0
-    end
+    return self.game_data_no_zeros.median
   end
 
   def ravg
-    if (true == self.game_data.is_a?(Array))
-      return self.game_data.mean.round(1)
-    else
-      return 0
-    end
+    diff = self.game_data_no_zeros.mean.round(1) - self.average
+
+    return diff
   end
 
   def team
@@ -195,12 +201,12 @@ class FanDuelPlayer < ActiveRecord::Base
     end
 
     klazz.where({:ignore => false, :import => import}).each do |fd_player|
-      fd_player_previous = FanDuelPlayer.where("import_id != ? AND player_id = ?", import.id, fd_player.player_id).last
+      #fd_player_previous = FanDuelPlayer.where("import_id != ? AND player_id = ?", import.id, fd_player.player_id).last
 
-      if (nil != fd_player_previous)
-        fd_player.pcost = fd_player_previous.cost
-        fd_player.pavg  = fd_player_previous.average
-      end
+      #if (nil != fd_player_previous)
+        #fd_player.pcost = fd_player_previous.cost
+        #fd_player.pavg  = fd_player_previous.average
+      #end
 
       fd_player.team     = fd_player.team_name
 
