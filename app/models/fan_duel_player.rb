@@ -42,7 +42,11 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def ravg
-    diff = self.game_data_no_zeros.mean.round(1) - self.average
+    begin
+      diff = self.game_data_no_zeros.mean.round(1) - self.average
+    rescue
+      diff = 0
+    end
 
     return diff
   end
