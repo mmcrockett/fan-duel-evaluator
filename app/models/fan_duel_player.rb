@@ -133,22 +133,24 @@ class FanDuelPlayer < ActiveRecord::Base
       klazz = FanDuelPlayer.factory(import)
 
       klazz.where({:ignore => false, :import => import}).each do |fd_player|
-        points = []
-        uri  = "#{PLAYER_DETAIL_URL}#{fd_player.player_id}#{PLAYER_DETAIL_URL_EXT}#{import.fd_game_id}"
-        begin
-          page = Nokogiri::HTML(open("#{uri}"))
-          page.css('table.game-log')[0].css('tbody')[0].css('tr').each_with_index do |tr,i|
-            if (i < klazz::MAX_GAMES)
-              tds = tr.css('td')
-              points << tds[-1].text().to_f.round(2)
-            else
-              break
+        if (false == fd_player.game_data.is_a?(Array))
+          points = []
+          uri  = "#{PLAYER_DETAIL_URL}#{fd_player.player_id}#{PLAYER_DETAIL_URL_EXT}#{import.fd_game_id}"
+          begin
+            page = Nokogiri::HTML(open("#{uri}"))
+            page.css('table.game-log')[0].css('tbody')[0].css('tr').each_with_index do |tr,i|
+              if (i < klazz::MAX_GAMES)
+                tds = tr.css('td')
+                points << tds[-1].text().to_f.round(2)
+              else
+                break
+              end
             end
+            fd_player.game_data = points
+            fd_player.save
+          rescue
+            logger.warn "Couldn't load player '#{fd_player.name}' in import '#{fd_player.import_id}' - '#{uri}'"
           end
-          fd_player.game_data = points
-          fd_player.save
-        rescue
-          logger.warn "Couldn't load player '#{fd_player.name}' in import '#{fd_player.import_id}' - '#{uri}'"
         end
       end
     end
