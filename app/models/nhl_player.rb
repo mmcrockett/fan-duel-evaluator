@@ -5,7 +5,6 @@ class NhlPlayer < FanDuelPlayer
     649 => "ANH",
     650 => "WPG",
     651 => "BOS",
-    652 => "?",
     652 => "BUF",
     653 => "CGY",
     654 => "CAR",
@@ -18,11 +17,11 @@ class NhlPlayer < FanDuelPlayer
     661 => "FLA",
     662 => "LA",
     663 => "MIN",
-    664 => "?",
+    664 => "MON",
     665 => "NSH",
     666 => "NJ",
     667 => "NYI",
-    668 => "?",
+    668 => "NYR",
     669 => "OTT",
     670 => "PHI",
     671 => "ARI",
@@ -35,7 +34,7 @@ class NhlPlayer < FanDuelPlayer
     678 => "WAS",
   }
 
-  def valid
+  def valid?
     if (3800 > self.cost)
       return false
     else

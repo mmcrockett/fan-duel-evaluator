@@ -27,6 +27,7 @@ class OverUnder < ActiveRecord::Base
       "SAN" => "SA",
       "NYN" => "NY",
       "NOP" => "NO",
+      "GOL" => "GS",
     }
   }
 

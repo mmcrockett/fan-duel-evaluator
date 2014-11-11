@@ -42,7 +42,7 @@ class NflPlayer < FanDuelPlayer
     return @dvoa || 0
   end
 
-  def valid
+  def valid?
     if (("D" == self.position) || ("K" == self.position))
       return true
     else

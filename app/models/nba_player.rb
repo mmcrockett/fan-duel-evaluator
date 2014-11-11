@@ -10,6 +10,7 @@ class NbaPlayer < FanDuelPlayer
     684 => "DAL",
     685 => "DEN",
     686 => "DET",
+    687 => "GS",
     688 => "HOU",
     689 => "IND",
     690 => "LAC",
@@ -31,7 +32,7 @@ class NbaPlayer < FanDuelPlayer
     708 => "WAS",
   }
 
-  def valid
+  def valid?
     return (8 < self.average)
   end
 end
