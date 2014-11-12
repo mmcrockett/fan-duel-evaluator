@@ -1,5 +1,6 @@
 class NhlPlayer < FanDuelPlayer
-  MAX_GAMES = 12
+  MAX_GAMES = 10
+  MAX_DATES = (MAX_GAMES * 2.2).to_i
 
   TEAMS_BY_FD_ID = {
     649 => "ANH",

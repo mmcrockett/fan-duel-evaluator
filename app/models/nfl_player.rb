@@ -2,6 +2,7 @@ class NflPlayer < FanDuelPlayer
   attr_accessor :dvoa
 
   MAX_GAMES = 4
+  MAX_DATES = MAX_GAMES * 10
 
   TEAMS_BY_FD_ID = {
     1 => "NYJ",
