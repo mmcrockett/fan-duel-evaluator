@@ -1,14 +1,4 @@
 class Array
-  def best(budget, roster)
-    self.each do |player|
-      if (budget >= player[:cost])
-        if (false == roster.include?(player))
-          return player
-        end
-      end
-    end
-  end
-
   def sum_all
     sum  = Float(0)
 
@@ -22,9 +12,8 @@ class Array
   def variance
     mean = nil
     var  = nil
-    size = self.size()
 
-    if (0 != size)
+    if (0 != self.size)
       mean = self.mean()
       var  = Float(0)
 
@@ -33,7 +22,7 @@ class Array
         var += dev*dev
       end
 
-      var = (var/Float(size))
+      var = (var/Float(self.size))
     end
 
     return var
@@ -42,21 +31,26 @@ class Array
   def mean
     mean = nil
     sum  = Float(0)
-    size = self.size()
 
-    if (0 != size)
+    if (0 != self.size)
       self.each do |val|
         sum += Float(val)
       end
 
-      mean = (sum/Float(size))
+      mean = (sum/Float(self.size))
+    else
+      mean = 0
     end
 
     return mean
   end
 
   def median
-    i = (self.size/2).to_i
-    return self.sort[i]
+    if (0 != self.size)
+      i = (self.size/2).to_i
+      return self.sort[i]
+    else
+      return 0
+    end
   end
 end
