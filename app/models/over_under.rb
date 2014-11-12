@@ -10,6 +10,8 @@ class OverUnder < ActiveRecord::Base
       "NOS" => "NO",
       "KAN" => "KC",
       "TAM" => "TB",
+      "NEP" => "NE",
+      "SDC" => "SD",
     },
     "NHL" => {
       "LAK" => "LA",
