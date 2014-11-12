@@ -13,7 +13,18 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
           ids_to_ignore.push($scope.wrapper.getDataTable().getValue(gitem.row, 0));
         });
         if (0 <= ids_to_ignore.length) {
-          new PlayerData({ignore:ids_to_ignore}).$save({}, function(v){$scope.wrapper.getChart().setSelection();$scope.selected = [];$scope.get_player_data();$scope.message = "Ignored " + ids_to_ignore.length + " players."}, function(e){$scope.message = "!ERROR: Unable to hide players.";});
+          $scope.message = "Adding players to ignore list...";
+          new PlayerData({ignore:ids_to_ignore}).$save({},
+            function(v){
+              $scope.wrapper.getChart().setSelection();
+              $scope.selected = [];
+              $scope.get_player_data();
+              $scope.message = "Ignored " + ids_to_ignore.length + " players."
+            },
+            function(e){
+              $scope.message = "!ERROR: Unable to hide players.";
+            }
+          );
         }
       }
     }
@@ -98,11 +109,33 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
   $scope.get_player_data = function() {
     $scope.message = "";
     if ("NONE" != $scope.selectedLeague) {
-      PlayerData.query({league:$scope.selectedLeague}, function(v){$scope.player_data = v;$scope.build_positions();$scope.select_player_data();}, function(e){$scope.message = "Couldn't load player data.";});
+      $scope.message = "Retrieving player data...";
+      PlayerData.query({league:$scope.selectedLeague},
+          function(v){
+            $scope.message = "";
+            $scope.player_data = v;
+            $scope.build_positions();
+            $scope.select_player_data();
+          },
+          function(e){
+            $scope.message = "Couldn't load player data.";
+          }
+      );
+    } else {
+      $scope.player_data = [];
+      $scope.select_player_data();
     }
   };
   $scope.get_player_details = function() {
-    new PlayerData({league:$scope.selectedLeague}).$update({}, function(v){$scope.get_player_data();}, function(e){$scope.message = "!ERROR: Unable to get game details.";});
+    $scope.message = "Processing player details...";
+    new PlayerData({league:$scope.selectedLeague}).$update({},
+        function(v){
+          $scope.message="Retrieved player details.";
+          $scope.get_player_data();
+        },
+        function(e){
+          $scope.message = "!ERROR: Unable to get game details.";
+        });
   };
   $scope.$watch('selected_player_data', $scope.create_chart);
   $scope.$watch('selectedPosition', $scope.select_player_data);
