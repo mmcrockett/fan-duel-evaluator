@@ -5,7 +5,7 @@ class FanDuelPlayer < ActiveRecord::Base
   belongs_to :import
   serialize :game_data, JSON
   before_create :initialize_game_data
-  attr_accessor :team, :pavg, :pcost, :opponent, :scoring, :max, :min, :median, :ravg, :rgames, :value, :rvalue
+  attr_accessor :team, :pavg, :pcost, :opp, :exp, :max, :min, :med, :ravg, :rgms, :value, :rvalue, :pos, :avg, :opponent
 
   PLAYER_DETAIL_URL     = "https://www.fanduel.com/eg/Player/"
   PLAYER_DETAIL_URL_EXT = "/Stats/showLB/"
@@ -19,11 +19,25 @@ class FanDuelPlayer < ActiveRecord::Base
     end
   end
 
+  def avg
+    return self.average
+  end
+
+  def pos
+    return self.position
+  end
+
   def rvalue
     if (0 != self.game_data_no_zeros.mean)
-      return (self.cost/self.game_data_no_zeros.mean).to_i
+      recent_value = (self.cost/self.game_data_no_zeros.mean).to_i
     else
-      return 0
+      recent_value = 0
+    end
+
+    if ((10000 <= recent_value) || (0 >= recent_value))
+      return 9999
+    else
+      return recent_value
     end
   end
 
@@ -31,7 +45,7 @@ class FanDuelPlayer < ActiveRecord::Base
     return self.game_data_no_zeros.max || 0
   end
 
-  def rgames
+  def rgms
     return self.game_data_no_zeros.size || 0
   end
 
@@ -39,18 +53,12 @@ class FanDuelPlayer < ActiveRecord::Base
     return self.game_data_no_zeros.min || 0
   end
 
-  def median
+  def med
     return self.game_data_no_zeros.median || 0
   end
 
   def ravg
-    non_zero_mean = self.game_data_no_zeros.mean.round(1)
-
-    if (0 != non_zero_mean)
-      return (non_zero_mean - self.average)
-    else
-      return 0
-    end
+    return self.game_data_no_zeros.mean.round(1)
   end
 
   def team
@@ -58,7 +66,11 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def opponent
-    return @opponent || "?"
+    return self.opp()
+  end
+
+  def opp
+    return @opp || "?"
   end
 
   def pcost
@@ -69,8 +81,8 @@ class FanDuelPlayer < ActiveRecord::Base
     return @pavg || 0
   end
 
-  def scoring
-    return @scoring || 0
+  def exp
+    return @exp || 0
   end
 
   def value
@@ -215,8 +227,8 @@ class FanDuelPlayer < ActiveRecord::Base
       end
 
       v_score = (overunder[:overunder] - h_score)
-      overunders[home] = {:opponent => visitor, :score => h_score}
-      overunders[visitor] = {:opponent => home, :score => v_score}
+      overunders[home] = {:opp => visitor, :score => h_score}
+      overunders[visitor] = {:opp => home, :score => v_score}
 
       if (0 != overunder[:overunder])
         scores << h_score
@@ -237,17 +249,21 @@ class FanDuelPlayer < ActiveRecord::Base
       if (false == overunders.include?(fd_player.team_name))
         raise "!ERROR: OverUnder not defined for '#{fd_player.team_name}'."
       else
-        fd_player.opponent = overunders[fd_player.team_name][:opponent]
+        fd_player.opp = overunders[fd_player.team_name][:opp]
       end
 
-      if (false == overunders.include?(:boost))
+      if (false == overunders[fd_player.team_name].include?(:boost))
         overunders[fd_player.team_name][:boost] = OverUnder.calculate_boost(overunders[fd_player.team_name][:score], scores)
       end
 
-      if (("D" == fd_player.position) && ("NFL" == import.league))
-        fd_player.scoring  = overunders[fd_player.opponent][:boost]
+      if (false == overunders[fd_player.opp].include?(:boost))
+        overunders[fd_player.opp][:boost] = OverUnder.calculate_boost(overunders[fd_player.opp][:score], scores)
+      end
+
+      if ((("D" == fd_player.position) && ("NFL" == import.league)) || (("G" == fd_player.position) && ("NHL" == import.league)))
+        fd_player.exp  = -overunders[fd_player.opp][:boost]
       else
-        fd_player.scoring  = overunders[fd_player.team_name][:boost]
+        fd_player.exp  = overunders[fd_player.team_name][:boost]
       end
 
       players << fd_player

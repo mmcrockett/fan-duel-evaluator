@@ -1,9 +1,9 @@
 json.array!(@players) do |player|
-  json.extract! player, :id, :name, :position, :team, :opponent
+  json.extract! player, :id, :name, :pos, :team, :opp
 
   if (true == player.is_a?(NflPlayer))
     json.partial! 'nfl', player: player
   end
 
-  json.extract! player, :scoring, :average, :ravg, :max, :median, :min, :rgames, :pavg, :cost, :value, :rvalue, :status
+  json.extract! player, :exp, :avg, :ravg, :max, :med, :min, :rgms, :cost, :value, :rvalue, :status
 end
