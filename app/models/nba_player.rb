@@ -17,6 +17,7 @@ class NbaPlayer < FanDuelPlayer
     690 => "LAC",
     691 => "LAL",
     692 => "MEM",
+    693 => "MIA",
     694 => "MIL",
     695 => "MIN",
     696 => "BKN",
