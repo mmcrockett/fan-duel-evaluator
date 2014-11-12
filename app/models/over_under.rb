@@ -28,6 +28,7 @@ class OverUnder < ActiveRecord::Base
       "NYN" => "NY",
       "NOP" => "NO",
       "GOL" => "GS",
+      "LAK" => "LAL",
     }
   }
 

@@ -10,9 +10,12 @@ class FanDuelPlayer < ActiveRecord::Base
   PLAYER_DETAIL_URL_EXT = "/Stats/showLB/"
 
   def game_data_no_zeros
+    no_zeros_array = [0]
     if (true == self.game_data.is_a?(Array))
-      return self.game_data.reject {|d| d == 0}
-    else
+      no_zeros_array = self.game_data.reject {|d| d == 0}
+    end
+
+    if (0 == no_zeros_array.size)
       return [0]
     end
   end
@@ -42,11 +45,7 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def ravg
-    begin
-      diff = self.game_data_no_zeros.mean.round(1) - self.average
-    rescue
-      diff = 0
-    end
+    diff = self.game_data_no_zeros.mean.round(1) - self.average
 
     return diff
   end
