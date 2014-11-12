@@ -129,6 +129,8 @@ class FanDuelPlayer < ActiveRecord::Base
       player.player_id = player_id.to_i
       player.import_id = import.id
 
+      puts "#{klazz}"
+
       if (true == player.important?())
         players << player
       end
@@ -138,7 +140,7 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def self.player(player_data)
-    return FanDuelPlayer.new({
+    return self.new({
       :name      => player_data[1],
       :team_id   => player_data[3].to_i,
       :game_id   => player_data[2].to_i,
