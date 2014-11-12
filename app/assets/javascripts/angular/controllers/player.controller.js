@@ -67,6 +67,7 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
   };
   $scope.select_player_data = function() {
     $scope.message = "";
+    $scope.update_chart_columns();
     if ("NONE" == $scope.selectedPosition) {
       $scope.selected_player_data = $scope.player_data;
     } else {
@@ -114,14 +115,18 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
   $scope.update_chart_columns = function() {
     var i = 0;
     var show_columns = [];
-    angular.forEach($scope.selected_player_data[0], function(v, k) {
+    angular.forEach($scope.player_data[0], function(v, k) {
       if ("id" != k) {
         show_columns.push(i);
       }
 
       i += 1;
     });
-    $scope.chart.view = {columns:show_columns};
+    if (0 != show_columns.length) {
+      $scope.chart.view = {columns:show_columns};
+    } else {
+      $scope.chart.view = undefined;
+    }
   };
   $scope.get_player_data = function() {
     $scope.message = "";
@@ -134,7 +139,6 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
             $scope.select_player_data();
             if (true == $scope.league_changed) {
               $scope.build_positions();
-              $scope.update_chart_columns();
               $scope.league_changed = false;
             }
           },
@@ -146,7 +150,6 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
       $scope.player_data = [];
       $scope.select_player_data();
       if (true == $scope.league_changed) {
-        $scope.update_chart_columns();
         $scope.league_changed = false;
       }
     }
