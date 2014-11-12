@@ -9,6 +9,7 @@ class FanDuelPlayer < ActiveRecord::Base
 
   PLAYER_DETAIL_URL     = "https://www.fanduel.com/eg/Player/"
   PLAYER_DETAIL_URL_EXT = "/Stats/showLB/"
+  DATE_FORMAT = "%m/%d/%Y"
 
   def game_data_no_zeros
     if (true == self.game_data.is_a?(Array))
@@ -27,19 +28,19 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def max
-    return self.game_data_no_zeros.max
+    return self.game_data_no_zeros.max || 0
   end
 
   def rgames
-    return self.game_data_no_zeros.size
+    return self.game_data_no_zeros.size || 0
   end
 
   def min
-    return self.game_data_no_zeros.min
+    return self.game_data_no_zeros.min || 0
   end
 
   def median
-    return self.game_data_no_zeros.median
+    return self.game_data_no_zeros.median || 0
   end
 
   def ravg
@@ -139,29 +140,47 @@ class FanDuelPlayer < ActiveRecord::Base
 
   def self.load_player_details(params = {})
     import = Import.where({:league => params[:league]}).last
+    altered_players = []
 
     if ((nil != import) && (nil != import.fd_game_id))
       klazz = FanDuelPlayer.factory(import)
 
       klazz.where({:ignore => false, :import => import}).each do |fd_player|
-        if (false == fd_player.game_data.is_a?(Array))
+        if ((false == fd_player.game_data.is_a?(Array)) || (0 == fd_player.game_data.size))
           points = []
           uri  = "#{PLAYER_DETAIL_URL}#{fd_player.player_id}#{PLAYER_DETAIL_URL_EXT}#{import.fd_game_id}"
+          cutoff_date = Date.today() - klazz::MAX_DATES
           begin
             page = Nokogiri::HTML(open("#{uri}"))
             page.css('table.game-log')[0].css('tbody')[0].css('tr').each_with_index do |tr,i|
               if (i < klazz::MAX_GAMES)
                 tds = tr.css('td')
-                points << tds[-1].text().to_f.round(2)
+                date = Date.strptime("#{tds[0].text()}/#{Date.today.year}", DATE_FORMAT)
+
+                if (date > Date.today)
+                  date = date - 365
+                end
+
+                if (date > cutoff_date)
+                  points << tds[-1].text().to_f.round(2)
+                end
               else
                 break
               end
             end
             fd_player.game_data = points
-            fd_player.save
+            altered_players << fd_player
           rescue
             logger.warn "Couldn't load player '#{fd_player.name}' in import '#{fd_player.import_id}' - '#{uri}'"
           end
+        end
+      end
+    end
+
+    if (0 != altered_players.size)
+      FanDuelPlayer.transaction do
+        altered_players.each do |p|
+          p.save
         end
       end
     end
