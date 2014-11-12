@@ -106,6 +106,10 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
       }
     });
   };
+  $scope.select_league = function() {
+    $scope.league_changed = true;
+    $scope.get_player_data();
+  };
   $scope.get_player_data = function() {
     $scope.message = "";
     if ("NONE" != $scope.selectedLeague) {
@@ -114,8 +118,11 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
           function(v){
             $scope.message = "";
             $scope.player_data = v;
-            $scope.build_positions();
             $scope.select_player_data();
+            if (true == $scope.league_changed) {
+              $scope.build_positions();
+              $scope.league_changed = false;
+            }
           },
           function(e){
             $scope.message = "Couldn't load player data.";
@@ -139,5 +146,5 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
   };
   $scope.$watch('selected_player_data', $scope.create_chart);
   $scope.$watch('selectedPosition', $scope.select_player_data);
-  $scope.$watch('selectedLeague', $scope.get_player_data);
+  $scope.$watch('selectedLeague', $scope.select_league);
 }]);
