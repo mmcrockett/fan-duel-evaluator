@@ -33,7 +33,7 @@ class NbaPlayer < FanDuelPlayer
     708 => "WAS",
   }
 
-  def valid?
+  def important?
     return (8 < self.average)
   end
 end

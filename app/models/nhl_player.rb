@@ -34,7 +34,7 @@ class NhlPlayer < FanDuelPlayer
     678 => "WAS",
   }
 
-  def valid?
+  def important?
     if (3800 > self.cost)
       return false
     else

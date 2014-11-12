@@ -4,6 +4,7 @@ require 'open-uri'
 class FanDuelPlayer < ActiveRecord::Base
   belongs_to :import
   serialize :game_data, JSON
+  before_create :initialize_game_data
   attr_accessor :team, :pavg, :pcost, :opponent, :scoring, :max, :min, :median, :ravg, :rgames, :value, :rvalue
 
   PLAYER_DETAIL_URL     = "https://www.fanduel.com/eg/Player/"
@@ -13,7 +14,7 @@ class FanDuelPlayer < ActiveRecord::Base
     if (true == self.game_data.is_a?(Array))
       return self.game_data.reject {|d| d == 0}
     else
-      return [0]
+      return []
     end
   end
 
@@ -42,9 +43,13 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def ravg
-    diff = self.game_data_no_zeros.mean.round(1) - self.average
+    non_zero_mean = self.game_data_no_zeros.mean.round(1)
 
-    return diff
+    if (0 != non_zero_mean)
+      return (non_zero_mean - self.average)
+    else
+      return 0
+    end
   end
 
   def team
@@ -111,7 +116,7 @@ class FanDuelPlayer < ActiveRecord::Base
       player.player_id = player_id.to_i
       player.import_id = import.id
 
-      if (true == player.valid?())
+      if (true == player.important?())
         players << player
       end
     end
@@ -230,5 +235,10 @@ class FanDuelPlayer < ActiveRecord::Base
     end
 
     return players
+  end
+
+  private
+  def initialize_game_data
+    self.game_data ||= []
   end
 end
