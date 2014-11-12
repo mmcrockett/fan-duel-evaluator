@@ -145,6 +145,10 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
     } else {
       $scope.player_data = [];
       $scope.select_player_data();
+      if (true == $scope.league_changed) {
+        $scope.update_chart_columns();
+        $scope.league_changed = false;
+      }
     }
   };
   $scope.get_player_details = function() {
