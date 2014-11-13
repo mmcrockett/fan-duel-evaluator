@@ -42,7 +42,7 @@ class NhlPlayer < FanDuelPlayer
       if ("D" == self.position)
         return (1 < self.average)
       elsif ("G" == self.position)
-        return (7000 < self.cost)
+        return (6500 < self.cost)
       else
         return (1.2 < self.average)
       end
