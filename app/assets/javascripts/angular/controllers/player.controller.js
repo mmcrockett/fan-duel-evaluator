@@ -6,56 +6,104 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
   $scope.selectedPosition = "NONE";
   $scope.avg_value   = 0;
   $scope.recalculate = 0;
-  $scope.wrapper = null;
+  $scope.player_wrapper = null;
+  $scope.player_selected = [];
+  $scope.roster_wrapper = null;
+  $scope.roster = [];
+  $scope.roster_selected = [];
+  $scope.filtered_player_data = [];
+  $scope.player_data = [];
   angular.element($window).bind('keyup.delete', function(e) {
     if ((46 == e.keyCode) || (8 == e.keyCode)) {
-      if (true == angular.isObject($scope.wrapper)) {
-        var ids_to_ignore = [];
-        angular.forEach($scope.selected, function(gitem, i) {
-          ids_to_ignore.push($scope.wrapper.getDataTable().getValue(gitem.row, 0));
-        });
-        if (0 <= ids_to_ignore.length) {
-          $scope.message = "Adding players to ignore list...";
-          new PlayerData({ignore:ids_to_ignore}).$save({},
-            function(v){
-              $scope.wrapper.getChart().setSelection();
-              $scope.selected = [];
-              $scope.get_player_data();
-              $scope.message = "Ignored " + ids_to_ignore.length + " players."
-            },
-            function(e){
-              $scope.message = "!ERROR: Unable to hide players.";
-            }
-          );
-        }
-      }
+      $scope.ignore_players();
+    } else if (107 == e.keyCode) {
+      $scope.$apply($scope.add_player_to_roster());
+    } else if (109 == e.keyCode) {
+      $scope.$apply($scope.remove_player_from_roster());
     }
   });
-  $scope.selected = [];
-  $scope.set_selected = function(selected_items) {
-    $scope.selected = selected_items;
+  $scope.get_selected_ids = function(wrapper, selection) {
+    var selected_ids = [];
+
+    if (true == angular.isObject(wrapper)) {
+      angular.forEach(selection, function(gitem, i) {
+        selected_ids.push(wrapper.getDataTable().getValue(gitem.row, 0));
+      });
+    }
+
+    return selected_ids;
   };
-  $scope.set_wrapper = function(wrapper) {
-    $scope.wrapper = wrapper;
+  $scope.add_player_to_roster = function() {
+    var ids = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);
+    for (var i = 0; i < ids.length; i += 1) {
+      $scope.roster.push($filter('filter')($scope.player_data, {id: ids[i]}, true)[0]);
+    }
+    $scope.calculate_roster();
   };
-  $scope.selected_player_data = [];
-  $scope.player_data = [];
-  $scope.chart = {
+  $scope.remove_player_from_roster = function() {
+    var ids = $scope.get_selected_ids($scope.roster_wrapper, $scope.roster_selected);
+    var roster = [];
+    for (var i = 0; i < $scope.roster.length; i += 1) {
+      if (-1 == ids.indexOf($scope.roster[i].id)) {
+        roster.push($scope.roster[i]);
+      }
+    }
+    $scope.roster = roster;
+    $scope.calculate_roster();
+  };
+  $scope.ignore_players = function() {
+    var ids_to_ignore = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);
+
+    if (0 <= ids_to_ignore.length) {
+      $scope.message = "Adding players to ignore list...";
+      new PlayerData({ignore:ids_to_ignore}).$save({},
+        function(v){
+          $scope.player_wrapper.getChart().setSelection();
+          $scope.player_selected = [];
+          $scope.get_player_data();
+          $scope.message = "Ignored " + ids_to_ignore.length + " players."
+        },
+        function(e){
+          $scope.message = "!ERROR: Unable to hide players.";
+        }
+      );
+    }
+  };
+  $scope.set_player_selected = function(selected_items) {
+    $scope.player_selected = selected_items;
+  };
+  $scope.set_player_wrapper = function(wrapper) {
+    $scope.player_wrapper = wrapper;
+  };
+  $scope.set_roster_selected = function(selected_items) {
+    $scope.roster_selected = selected_items;
+  };
+  $scope.set_roster_wrapper = function(wrapper) {
+    $scope.roster_wrapper = wrapper;
+  };
+  $scope.player_chart = {
     "type": "Table",
     "options": {
       "sortAscending": false
     }
   };
+  $scope.roster_chart = {
+    "type": "Table",
+    "options": {
+      "sortAscending": false
+    },
+    data: JsLiteral.get_chart_data($scope.roster)
+  };
   $scope.set_sort = function(sortParams) {
     if (true == angular.isObject(sortParams)) {
-      $scope.chart.options.sortColumn = sortParams.column;
-      $scope.chart.options.sortAscending = sortParams.ascending;
+      $scope.player_chart.options.sortColumn = sortParams.column;
+      $scope.player_chart.options.sortAscending = sortParams.ascending;
       $scope.recalculate += 1;
-    } else if (false == angular.isNumber($scope.chart.options.sortColumn)) {
+    } else if (false == angular.isNumber($scope.player_chart.options.sortColumn)) {
       var i = 0;
-      angular.forEach($scope.selected_player_data[0], function(v, k) {
+      angular.forEach($scope.filtered_player_data[0], function(v, k) {
         if ("avg" == k) {
-          $scope.chart.options.sortColumn = i - 1;
+          $scope.player_chart.options.sortColumn = i - 1;
           return true;
         } else {
           i += 1;
@@ -64,17 +112,20 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
       $scope.recalculate += 1;
     }
   };
-  $scope.create_chart = function() {
+  $scope.create_player_chart = function() {
     $scope.set_sort(null);
-    $scope.chart.data = JsLiteral.get_chart_data($scope.selected_player_data);
+    $scope.player_chart.data = JsLiteral.get_chart_data($scope.filtered_player_data);
+  };
+  $scope.create_roster_chart = function() {
+    $scope.roster_chart.data = JsLiteral.get_chart_data($scope.roster);
   };
   $scope.select_player_data = function() {
     $scope.message = "";
-    $scope.update_chart_columns();
+    $scope.update_chart_columns($scope.player_data, $scope.player_chart);
     if ("NONE" == $scope.selectedPosition) {
-      $scope.selected_player_data = $scope.player_data;
+      $scope.filtered_player_data = $scope.player_data;
     } else {
-      $scope.selected_player_data = $filter('filter')($scope.player_data, {pos: $scope.selectedPosition}, true);
+      $scope.filtered_player_data = $filter('filter')($scope.player_data, {pos: $scope.selectedPosition}, true);
     }
     $scope.recalculate += 1;
   };
@@ -84,21 +135,21 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
     var points = 0;
     var i = 0;
     var column_name = null;
-    var sorted_selected_player_data = null;
+    var sorted_filtered_player_data = null;
 
-    angular.forEach($scope.selected_player_data[0], function(v, k) {
-      if ($scope.chart.options.sortColumn == (i - 1)) {
+    angular.forEach($scope.filtered_player_data[0], function(v, k) {
+      if ($scope.player_chart.options.sortColumn == (i - 1)) {
         column_name = k;
       }
       i += 1;
     });
 
-    sorted_selected_player_data = $filter('orderBy')($scope.selected_player_data, column_name, true);
+    sorted_filtered_player_data = $filter('orderBy')($scope.filtered_player_data, column_name, true);
 
-    top_25 = sorted_selected_player_data.length * 0.25;
+    top_25 = sorted_filtered_player_data.length * 0.25;
 
     for (var i = 0; i < (top_25); i += 1) {
-      var wdata = sorted_selected_player_data[i];
+      var wdata = sorted_filtered_player_data[i];
       if (i < top_25) {
         var count_data = wdata[column_name];
         cost   += wdata.cost;
@@ -115,7 +166,7 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
   };
   $scope.build_positions = function() {
     $scope.selectedPosition = "NONE";
-    $scope.chart.options.sortColumn = null;
+    $scope.player_chart.options.sortColumn = null;
     $scope.positions = [{id:"NONE"}];
     var positions = {};
 
@@ -130,10 +181,10 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
     $scope.league_changed = true;
     $scope.get_player_data();
   };
-  $scope.update_chart_columns = function() {
+  $scope.update_chart_columns = function(data, chart) {
     var i = 0;
     var show_columns = [];
-    angular.forEach($scope.player_data[0], function(v, k) {
+    angular.forEach(data[0], function(v, k) {
       if ("id" != k) {
         show_columns.push(i);
       }
@@ -141,10 +192,46 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
       i += 1;
     });
     if (0 != show_columns.length) {
-      $scope.chart.view = {columns:show_columns};
+      chart.view = {columns:show_columns};
     } else {
-      $scope.chart.view = undefined;
+      chart.view = undefined;
     }
+  };
+  $scope.calculate_roster = function() {
+    var total_row = {};
+    var ignore_columns = ["id"];
+    $scope.roster = $filter('filter')($scope.roster, {name: "!Totals"}, true);
+    $scope.roster = $filter('orderBy')($scope.roster, 'pos', true);
+
+    angular.forEach($scope.roster, function(player, i) {
+      angular.forEach(player, function(v, k) {
+        if (0 == i) {
+          if ("name" == k) {
+            total_row[k] = "Totals";
+          } else if ("id" == k) {
+            total_row[k] = 0;
+          } else if (true == angular.isNumber(v)) {
+            total_row[k] = 0;
+          } else if (true == angular.isString(v)) {
+            total_row[k] = "";
+          }
+        }
+
+        if ((true == angular.isNumber(v)) && (-1 == ignore_columns.indexOf(k))) {
+          total_row[k] += v;
+        }
+      });
+    });
+
+    angular.forEach(total_row, function(v, k) {
+      if (true == angular.isNumber(v)) {
+        total_row[k] = +v.toFixed(1);
+      }
+    });
+
+    $scope.roster.push(total_row);
+    $scope.create_roster_chart();
+    $scope.update_chart_columns($scope.roster, $scope.roster_chart);
   };
   $scope.get_player_data = function() {
     $scope.message = "";
@@ -183,7 +270,7 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
           $scope.message = "!ERROR: Unable to get game details.";
         });
   };
-  $scope.$watch('selected_player_data', $scope.create_chart);
+  $scope.$watch('filtered_player_data', $scope.create_player_chart);
   $scope.$watch('selectedPosition', $scope.select_player_data);
   $scope.$watch('selectedLeague', $scope.select_league);
   $scope.$watch('recalculate', $scope.calculate_value);

@@ -7,6 +7,10 @@
   </div>
   <hr>
   <div>
-    <div google-chart chart="chart" on-sort="set_sort(sortParams)" on-select="set_selected(selectedItems)" on-ready="set_wrapper(chartWrapper)"></div>
+    <div google-chart chart="roster_chart" on-select="set_roster_selected(selectedItems)" on-ready="set_roster_wrapper(chartWrapper)"></div>
+  </div>
+  <hr>
+  <div>
+    <div google-chart chart="player_chart" on-sort="set_sort(sortParams)" on-select="set_player_selected(selectedItems)" on-ready="set_player_wrapper(chartWrapper)"></div>
   </div>
 </div>
