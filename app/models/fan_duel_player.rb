@@ -4,20 +4,11 @@ require 'open-uri'
 class FanDuelPlayer < ActiveRecord::Base
   belongs_to :import
   serialize :game_data, JSON
-  before_create :initialize_game_data
-  attr_accessor :team, :pavg, :pcost, :opp, :exp, :max, :min, :med, :ravg, :rgms, :value, :rvalue, :pos, :avg, :opponent
+  attr_accessor :team, :pavg, :pcost, :opp, :exp, :max, :min, :med, :mean, :rgms, :value, :rvalue, :pos, :avg, :opponent
 
   PLAYER_DETAIL_URL     = "https://www.fanduel.com/eg/Player/"
   PLAYER_DETAIL_URL_EXT = "/Stats/showLB/"
   DATE_FORMAT = "%m/%d/%Y"
-
-  def game_data_no_zeros
-    if (true == self.game_data.is_a?(Array))
-      return self.game_data.reject {|d| d == 0}
-    else
-      return []
-    end
-  end
 
   def avg
     return self.average
@@ -28,8 +19,8 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def rvalue
-    if (0 != self.game_data_no_zeros.mean)
-      recent_value = (self.cost/self.game_data_no_zeros.mean).to_i
+    if (0 != self.mean)
+      recent_value = (self.cost/self.mean).to_i
     else
       recent_value = 0
     end
@@ -42,23 +33,23 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def max
-    return self.game_data_no_zeros.max || 0
+    return self.game_data.max || 0
   end
 
   def rgms
-    return self.game_data_no_zeros.size || 0
+    return self.game_data.size || 0
   end
 
   def min
-    return self.game_data_no_zeros.min || 0
+    return self.game_data.min || 0
   end
 
   def med
-    return self.game_data_no_zeros.median || 0
+    return self.game_data.median || 0
   end
 
-  def ravg
-    return self.game_data_no_zeros.mean.round(1)
+  def mean
+    return self.game_data.mean.round(1)
   end
 
   def team
@@ -129,8 +120,6 @@ class FanDuelPlayer < ActiveRecord::Base
       player.player_id = player_id.to_i
       player.import_id = import.id
 
-      puts "#{klazz}"
-
       if (true == player.important?())
         players << player
       end
@@ -140,6 +129,17 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def self.player(player_data)
+    added_note = ""
+    priority   = player_data[11]
+
+    if ("breaking" == priority)
+      added_note = "*"
+    elsif ("recent" == priority)
+      added_note = "+"
+    elsif ("old" == priority)
+      added_note = "-"
+    end
+
     return self.new({
       :name      => player_data[1],
       :team_id   => player_data[3].to_i,
@@ -148,7 +148,9 @@ class FanDuelPlayer < ActiveRecord::Base
       :average   => player_data[6].to_f,
       :cost      => player_data[5].to_i,
       :status    => player_data[12],
-      :note      => player_data[10]
+      :note      => player_data[10],
+      :game_data => [],
+      :game_log_loaded => false
     })
   end
 
@@ -159,8 +161,8 @@ class FanDuelPlayer < ActiveRecord::Base
     if ((nil != import) && (nil != import.fd_game_id))
       klazz = FanDuelPlayer.factory(import)
 
-      klazz.where({:ignore => false, :import => import}).each do |fd_player|
-        if ((false == fd_player.game_data.is_a?(Array)) || (0 == fd_player.game_data.size))
+      klazz.where({:ignore => false, :import => import, :game_log_loaded => false}).limit(10).each do |fd_player|
+        if (true == fd_player.game_data.is_a?(Array))
           points = []
           uri  = "#{PLAYER_DETAIL_URL}#{fd_player.player_id}#{PLAYER_DETAIL_URL_EXT}#{import.fd_game_id}"
           cutoff_date = Date.today() - klazz::MAX_DATES
@@ -176,17 +178,25 @@ class FanDuelPlayer < ActiveRecord::Base
                 end
 
                 if (date > cutoff_date)
-                  points << tds[-1].text().to_f.round(2)
+                  fantasy_points = tds[-1].text().to_f.round(2)
+                  minutes        = tds[2].text().to_i
+
+                  if ((0 != fantasy_points) || (minutes != 0))
+                    points << tds[-1].text().to_f.round(2)
+                  end
                 end
               else
                 break
               end
             end
             fd_player.game_data = points
+            fd_player.game_log_loaded = true
             altered_players << fd_player
           rescue
             logger.warn "Couldn't load player '#{fd_player.name}' in import '#{fd_player.import_id}' - '#{uri}'"
           end
+        else
+          raise "!ERROR: #{fd_player.name} in import #{import.id} has non-array in game_data."
         end
       end
     end
@@ -272,10 +282,5 @@ class FanDuelPlayer < ActiveRecord::Base
     end
 
     return players
-  end
-
-  private
-  def initialize_game_data
-    self.game_data ||= []
   end
 end

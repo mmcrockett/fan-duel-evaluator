@@ -5,5 +5,5 @@ json.array!(@players) do |player|
     json.partial! 'nfl', player: player
   end
 
-  json.extract! player, :exp, :avg, :ravg, :max, :med, :min, :rgms, :cost, :value, :rvalue, :status
+  json.extract! player, :exp, :avg, :mean, :max, :med, :min, :rgms, :cost, :value, :rvalue, :status
 end
