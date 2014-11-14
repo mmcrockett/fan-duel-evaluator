@@ -161,7 +161,7 @@ class FanDuelPlayer < ActiveRecord::Base
     if ((nil != import) && (nil != import.fd_game_id))
       klazz = FanDuelPlayer.factory(import)
 
-      klazz.where({:ignore => false, :import => import, :game_log_loaded => false}).limit(10).each do |fd_player|
+      klazz.where({:ignore => false, :import => import, :game_log_loaded => false}).each do |fd_player|
         if (true == fd_player.game_data.is_a?(Array))
           points = []
           uri  = "#{PLAYER_DETAIL_URL}#{fd_player.player_id}#{PLAYER_DETAIL_URL_EXT}#{import.fd_game_id}"
