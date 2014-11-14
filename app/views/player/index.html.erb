@@ -2,8 +2,10 @@
 <div ng-controller="PlayerController">
   <%= render :partial => "common/league_selector" %>
   <div>
-    <select ng-model="selectedPosition" ng-options="item.id as item.id for item in positions"></select><span style="padding-left: 10px;">{{selected_player_data.length}}</span><span style="padding-left: 10px;">{{value}}</span>
+    <select ng-model="selectedPosition" ng-options="item.id as item.id for item in positions"></select>
+    <input class="ui-widget ui-state-default ui-corner-all ui-button-text-only" ng-model="selected_player_data.length" name="name" size="8" type="text" ng-disabled="true">
     <button id="import-games-button" ng-click="get_player_details()">Import Games</button>
+    <input class="ui-widget ui-state-default ui-corner-all ui-button-text-only" ng-model="avg_value" name="name" size="8" type="text" ng-disabled="true">
   </div>
   <hr>
   <div>
