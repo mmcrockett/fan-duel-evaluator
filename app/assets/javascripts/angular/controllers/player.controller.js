@@ -4,7 +4,8 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
   $scope.selectedLeague = "NONE";
   $scope.positions = [{id:"NONE"}];
   $scope.selectedPosition = "NONE";
-  $scope.value   = 0;
+  $scope.avg_value   = 0;
+  $scope.recalculate = 0;
   $scope.wrapper = null;
   angular.element($window).bind('keyup.delete', function(e) {
     if ((46 == e.keyCode) || (8 == e.keyCode)) {
@@ -49,6 +50,7 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
     if (true == angular.isObject(sortParams)) {
       $scope.chart.options.sortColumn = sortParams.column;
       $scope.chart.options.sortAscending = sortParams.ascending;
+      $scope.recalculate += 1;
     } else if (false == angular.isNumber($scope.chart.options.sortColumn)) {
       var i = 0;
       angular.forEach($scope.selected_player_data[0], function(v, k) {
@@ -59,6 +61,7 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
           i += 1;
         }
       });
+      $scope.recalculate += 1;
     }
   };
   $scope.create_chart = function() {
@@ -73,27 +76,42 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
     } else {
       $scope.selected_player_data = $filter('filter')($scope.player_data, {pos: $scope.selectedPosition}, true);
     }
-
-    $scope.calculate_avg_value();
+    $scope.recalculate += 1;
   };
-  $scope.calculate_avg_value = function() {
+  $scope.calculate_value = function() {
     var top_25 = 0;
     var cost   = 0;
-    var points = 1;
+    var points = 0;
+    var i = 0;
+    var column_name = null;
+    var sorted_selected_player_data = null;
 
-    $scope.selected_player_data = $filter('orderBy')($scope.selected_player_data, 'avg', true);
+    angular.forEach($scope.selected_player_data[0], function(v, k) {
+      if ($scope.chart.options.sortColumn == (i - 1)) {
+        column_name = k;
+      }
+      i += 1;
+    });
 
-    top_25 = $scope.selected_player_data.length * 0.25;
+    sorted_selected_player_data = $filter('orderBy')($scope.selected_player_data, column_name, true);
+
+    top_25 = sorted_selected_player_data.length * 0.25;
 
     for (var i = 0; i < (top_25); i += 1) {
-      var wdata = $scope.selected_player_data[i];
+      var wdata = sorted_selected_player_data[i];
       if (i < top_25) {
+        var count_data = wdata[column_name];
         cost   += wdata.cost;
-        points += wdata.avg;
+
+        if (true == angular.isNumber(count_data)) {
+          points += count_data;
+        } else {
+          points += wdata.avg;
+        }
       }
     }
 
-    $scope.value = parseInt(cost/points);
+    $scope.avg_value = parseInt(cost/points);
   };
   $scope.build_positions = function() {
     $scope.selectedPosition = "NONE";
@@ -168,4 +186,5 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
   $scope.$watch('selected_player_data', $scope.create_chart);
   $scope.$watch('selectedPosition', $scope.select_player_data);
   $scope.$watch('selectedLeague', $scope.select_league);
+  $scope.$watch('recalculate', $scope.calculate_value);
 }]);
