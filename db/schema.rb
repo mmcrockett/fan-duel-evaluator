@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110190243) do
+ActiveRecord::Schema.define(version: 20141114153735) do
 
   create_table "dvoas", force: true do |t|
     t.string   "team"
@@ -26,20 +26,21 @@ ActiveRecord::Schema.define(version: 20141110190243) do
   add_index "dvoas", ["import_id"], name: "index_dvoas_on_import_id"
 
   create_table "fan_duel_players", force: true do |t|
-    t.string   "name",                                               null: false
-    t.integer  "import_id",                                          null: false
-    t.integer  "player_id",                                          null: false
-    t.integer  "team_id",                                            null: false
-    t.integer  "game_id",                                            null: false
-    t.string   "position",                                           null: false
-    t.decimal  "average",    precision: 4, scale: 2,                 null: false
-    t.integer  "cost",                                               null: false
-    t.string   "status",                             default: ""
-    t.string   "note",                               default: ""
-    t.boolean  "ignore",                             default: false, null: false
+    t.string   "name",                                                    null: false
+    t.integer  "import_id",                                               null: false
+    t.integer  "player_id",                                               null: false
+    t.integer  "team_id",                                                 null: false
+    t.integer  "game_id",                                                 null: false
+    t.string   "position",                                                null: false
+    t.decimal  "average",         precision: 4, scale: 2,                 null: false
+    t.integer  "cost",                                                    null: false
+    t.string   "status",                                  default: ""
+    t.string   "note",                                    default: ""
+    t.boolean  "ignore",                                  default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "game_data"
+    t.boolean  "game_log_loaded",                         default: false
   end
 
   create_table "imports", force: true do |t|
