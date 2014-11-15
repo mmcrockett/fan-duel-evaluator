@@ -147,7 +147,7 @@ class FanDuelPlayer < ActiveRecord::Base
       :position  => player_data[0],
       :average   => player_data[6].to_f,
       :cost      => player_data[5].to_i,
-      :status    => player_data[12],
+      :status    => "player_data[12]#{added_note}",
       :note      => player_data[10],
       :game_data => [],
       :game_log_loaded => false
