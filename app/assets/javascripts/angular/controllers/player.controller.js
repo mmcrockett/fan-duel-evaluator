@@ -16,9 +16,9 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
   angular.element($window).bind('keyup.delete', function(e) {
     if ((46 == e.keyCode) || (8 == e.keyCode)) {
       $scope.ignore_players();
-    } else if (107 == e.keyCode) {
+    } else if ((107 == e.keyCode) || (65 == e.keyCode)) {
       $scope.$apply($scope.add_player_to_roster());
-    } else if (109 == e.keyCode) {
+    } else if ((109 == e.keyCode) || (68 == e.keyCode)) {
       $scope.$apply($scope.remove_player_from_roster());
     }
   });
@@ -241,6 +241,7 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
           function(v){
             $scope.message = "";
             $scope.player_data = v;
+            $scope.roster = [];
             $scope.select_player_data();
             if (true == $scope.league_changed) {
               $scope.build_positions();
