@@ -1,46 +1,58 @@
-include ActionView::Helpers::NumberHelper
-
 class Roster < ActiveRecord::Base
   serialize :players, JSON
 
-  SAMPLE_SET_SIZE    = {
-    "QB" => 2,
-    "WR" => 4,
-    "RB" => 2,
-    "TE" => 2,
-    "K"  => 4,
-    "D"  => 4,
+  POSITIONS = {
+    "NFL" => ["QB","WR","WR","WR","RB","RB","TE","K","D"],
+    "NBA" => ["PG","PG","SG","SG","SF","SF","PF","PF","C"],
+    "NHL" => ["LW","LW","RW","RW","C","C","D","D","G"]
   }
-  SAMPLE_TOP_PERCENT = 0.2
-  MAX_NUMBER_ROSTERS = 20
+  SALARY = {
+    "NFL" => 60000,
+    "NBA" => 60000,
+    "NHL" => 55000
+  }
 
-  def players_str
-    pstr = ""
+  def self.find_best(rosters,combos)
+    position = combos.keys.first
+    pcombos  = combos.delete(positions)
 
-    self.players.each do |p|
-      cost = p['cost'] || p[:cost]
-      name = p['name'] || p[:name]
-      pos  = p['position'] || p[:position]
-      team = p['team'] || p[:team]
-      display_name = "ERROR"
+    pcombos.each do |pcombo|
+    end
+  end
 
-      if ("D" == pos)
-        display_name = "#{team[0,3]} D"
-      else
-        (first_name, last_name) = name.split(" ", 2)
-        display_name = "#{first_name[0]}. #{last_name}"
+  def self.analyze(sorted_players)
+    start_time = Time.now
+    positions = POSITIONS[sorted_players[0].import.league]
+    players   = {}
+    combinations = {}
+    min_cost  = {}
+    max_avg   = {}
+
+    sorted_players.each do |player|
+      if (false == players.include?(player.position))
+        players[player.position] = {}
       end
-      pstr << "#{display_name} (#{cost})-"
+
+      if (false == players[player.position].include?(player.cost))
+        players[player.position][player.cost] = [player]
+      elsif (players[player.position][player.cost].size < positions.count(player.position))
+        players[player.position][player.cost] << player
+      end
     end
 
-    return pstr.chop
+    players.each_pair do |position, players_by_cost|
+      min_cost[position]     = (players_by_cost.keys.min * positions.count(position))
+      max_avg[position]      = (sorted_players[0].keys.min * positions.count(position))
+      combinations[position] = players_by_cost.values.flatten.combination(positions.count(position)).to_a
+      puts "#{combinations[position].size}"
+    end
+
+    #self.find_best([],combinations)
+
+    puts "Exec Time: #{Time.now - start_time}"
   end
 
-  def to_s
-    return "#{self.cost}:#{self.average}:#{self.players_str()}"
-  end
-
-  def self.analyze(params = {:debug => false, :k_d_ignore => false})
+  def self.analyze_old(params = {:debug => false, :k_d_ignore => false})
     start_time = Time.now
     week       = WeekDatum.get_week()
     max_avgs   = {}
