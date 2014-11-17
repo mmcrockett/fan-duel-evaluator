@@ -4,7 +4,7 @@ require 'open-uri'
 class FanDuelPlayer < ActiveRecord::Base
   belongs_to :import
   serialize :game_data, JSON
-  attr_accessor :team, :pavg, :pcost, :opp, :exp, :max, :min, :med, :mean, :rgms, :value, :rvalue, :pos, :avg, :opponent
+  attr_accessor :team, :pavg, :pcost, :opp, :exp, :max, :min, :med, :mean, :rgms, :value, :rvalue, :pos, :avg, :opponent, :comment
 
   PLAYER_DETAIL_URL     = "https://www.fanduel.com/eg/Player/"
   PLAYER_DETAIL_URL_EXT = "/Stats/showLB/"
@@ -16,6 +16,22 @@ class FanDuelPlayer < ActiveRecord::Base
 
   def pos
     return self.position
+  end
+
+  def comment
+    comment = ""
+
+    if ("breaking" == priority)
+      comment = "*"
+    elsif ("recent" == priority)
+      comment = "+"
+    elsif ("old" == priority)
+      comment = "o"
+    end
+
+    comment = "#{self.status}#{comment}#{self.note}"
+
+    return comment
   end
 
   def rvalue
@@ -129,17 +145,6 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def self.player(player_data)
-    added_note = ""
-    priority   = player_data[11]
-
-    if ("breaking" == priority)
-      added_note = "*"
-    elsif ("recent" == priority)
-      added_note = "+"
-    elsif ("old" == priority)
-      added_note = "-"
-    end
-
     return self.new({
       :name      => player_data[1],
       :team_id   => player_data[3].to_i,
@@ -147,7 +152,8 @@ class FanDuelPlayer < ActiveRecord::Base
       :position  => player_data[0],
       :average   => player_data[6].to_f,
       :cost      => player_data[5].to_i,
-      :status    => "#{player_data[12]}#{added_note}",
+      :status    => player_data[12],
+      :priority  => player_data[11],
       :note      => player_data[10],
       :game_data => [],
       :game_log_loaded => false

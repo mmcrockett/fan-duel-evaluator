@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114153735) do
+ActiveRecord::Schema.define(version: 20141117175812) do
 
   create_table "dvoas", force: true do |t|
     t.string   "team"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20141114153735) do
     t.datetime "updated_at"
     t.string   "game_data"
     t.boolean  "game_log_loaded",                         default: false
+    t.string   "priority",                                default: ""
   end
 
   create_table "imports", force: true do |t|
@@ -61,5 +62,15 @@ ActiveRecord::Schema.define(version: 20141114153735) do
   end
 
   add_index "over_unders", ["import_id"], name: "index_over_unders_on_import_id"
+
+  create_table "rosters", force: true do |t|
+    t.integer  "import_id"
+    t.string   "notes"
+    t.string   "player_ids"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rosters", ["import_id"], name: "index_rosters_on_import_id"
 
 end
