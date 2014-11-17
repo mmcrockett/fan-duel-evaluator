@@ -130,7 +130,6 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
     $scope.recalculate += 1;
   };
   $scope.calculate_value = function() {
-    var top_25 = 0;
     var cost   = 0;
     var points = 0;
     var i = 0;
@@ -144,21 +143,15 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
       i += 1;
     });
 
-    sorted_filtered_player_data = $filter('orderBy')($scope.filtered_player_data, column_name, true);
+    for (var i = 0; i < $scope.filtered_player_data.length; i += 1) {
+      var wdata = $scope.filtered_player_data[i];
+      var count_data = wdata[column_name];
+      cost   += wdata.cost;
 
-    top_25 = sorted_filtered_player_data.length * 0.25;
-
-    for (var i = 0; i < (top_25); i += 1) {
-      var wdata = sorted_filtered_player_data[i];
-      if (i < top_25) {
-        var count_data = wdata[column_name];
-        cost   += wdata.cost;
-
-        if (true == angular.isNumber(count_data)) {
-          points += count_data;
-        } else {
-          points += wdata.avg;
-        }
+      if (true == angular.isNumber(count_data)) {
+        points += count_data;
+      } else {
+        points += wdata.avg;
       }
     }
 
