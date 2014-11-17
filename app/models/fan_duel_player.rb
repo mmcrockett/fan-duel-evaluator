@@ -93,10 +93,14 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def value
-    if (0 != self.average)
-      return (self.cost/self.average).to_i
+    if (nil == @value)
+      if (0 != self.average)
+        return (self.cost/self.average).to_i
+      else
+        return 0
+      end
     else
-      return 0
+      return @value.to_i
     end
   end
 

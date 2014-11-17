@@ -4,7 +4,7 @@ class PlayerController < ApplicationController
   def index
     if ("NFL" == params[:league])
       @players = NflPlayer.player_data(params)
-    else
+    elsif (nil != params[:league])
       @players = FanDuelPlayer.player_data(params)
     end
   end
