@@ -54,9 +54,11 @@ class NhlPlayer < FanDuelPlayer
       elsif ("G" == self.position)
         if (false == @@starting_goalies.include?(last_name(self.name)))
           self.ignore = true
-        end
 
-        return (6500 <= self.cost)
+          return (6500 <= self.cost)
+        else
+          return true
+        end
       else
         return (1.2 < self.average)
       end
