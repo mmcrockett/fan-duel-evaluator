@@ -1,6 +1,12 @@
+require 'open-uri'
+
 class NhlPlayer < FanDuelPlayer
+  @@starting_goalies = []
+
   MAX_GAMES = 10
   MAX_DATES = (MAX_GAMES * 2.2).to_i
+
+  STARTING_GOALIE_URI = "http://www2.dailyfaceoff.com/starting-goalies/"
 
   TEAMS_BY_FD_ID = {
     649 => "ANH",
@@ -36,16 +42,42 @@ class NhlPlayer < FanDuelPlayer
   }
 
   def important?
+    if (0 == @@starting_goalies.size)
+      set_starting_goalies
+    end
+
     if (3800 > self.cost)
       return false
     else
       if ("D" == self.position)
         return (1 < self.average)
       elsif ("G" == self.position)
-        return (6500 < self.cost)
+        if (false == @@starting_goalies.include?(last_name(self.name)))
+          self.ignore = true
+        end
+
+        return (6500 <= self.cost)
       else
         return (1.2 < self.average)
       end
+    end
+  end
+
+  private
+  def set_starting_goalies
+    page = Nokogiri::HTML(open("#{STARTING_GOALIE_URI}"))
+    page.css('img.headshot').each do |img_tag|
+      @@starting_goalies << last_name(img_tag['alt'])
+    end
+  end
+
+  def last_name(name)
+    if (true == name.include?(','))
+      return name.split(',')[0]
+    elsif (true == name.include?(' '))
+      return name.split(' ')[1]
+    else
+      return name
     end
   end
 end
