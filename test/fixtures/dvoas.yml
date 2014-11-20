@@ -1,15 +1,4033 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  team: MyString
-  import_id: 
-  role: MyString
-  subrole: MyString
-  value: 9.99
-
-two:
-  team: MyString
-  import_id: 
-  role: MyString
-  subrole: MyString
-  value: 9.99
+---
+dvoas_001:
+  id: 1
+  team: DEN
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.5699999999999998
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_002:
+  id: 2
+  team: DEN
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.96
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_003:
+  id: 3
+  team: DEN
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.266
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_004:
+  id: 4
+  team: PIT
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.501
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_005:
+  id: 5
+  team: PIT
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.94
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_006:
+  id: 6
+  team: PIT
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.206
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_007:
+  id: 7
+  team: GB
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.357
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_008:
+  id: 8
+  team: GB
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.994
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_009:
+  id: 9
+  team: GB
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.169
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_010:
+  id: 10
+  team: 'NO'
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.232
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_011:
+  id: 11
+  team: 'NO'
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 1.12
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_012:
+  id: 12
+  team: 'NO'
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.155
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_013:
+  id: 13
+  team: IND
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.335
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_014:
+  id: 14
+  team: IND
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.837
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_015:
+  id: 15
+  team: IND
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.099
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_016:
+  id: 16
+  team: SD
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.434
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_017:
+  id: 17
+  team: SD
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.769
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_018:
+  id: 18
+  team: SD
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.095
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_019:
+  id: 19
+  team: ATL
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.239
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_020:
+  id: 20
+  team: ATL
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.999
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_021:
+  id: 21
+  team: ATL
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.095
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_022:
+  id: 22
+  team: DAL
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.199
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_023:
+  id: 23
+  team: DAL
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 1.056
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_024:
+  id: 24
+  team: DAL
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.092
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_025:
+  id: 25
+  team: NE
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.475
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_026:
+  id: 26
+  team: NE
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.732
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_027:
+  id: 27
+  team: NE
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.091
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_028:
+  id: 28
+  team: BAL
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.318
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_029:
+  id: 29
+  team: BAL
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.908
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_030:
+  id: 30
+  team: BAL
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.088
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_031:
+  id: 31
+  team: KC
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.215
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_032:
+  id: 32
+  team: KC
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 1.013
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_033:
+  id: 33
+  team: KC
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.084
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_034:
+  id: 34
+  team: SEA
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.04
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_035:
+  id: 35
+  team: SEA
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 1.291
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_036:
+  id: 36
+  team: SEA
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.081
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_037:
+  id: 37
+  team: MIA
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.196
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_038:
+  id: 38
+  team: MIA
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 1.028
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_039:
+  id: 39
+  team: MIA
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.067
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_040:
+  id: 40
+  team: CHI
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.191
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_041:
+  id: 41
+  team: CHI
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 1
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_042:
+  id: 42
+  team: CHI
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.057
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_043:
+  id: 43
+  team: CIN
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.151
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_044:
+  id: 44
+  team: CIN
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 1.016
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_045:
+  id: 45
+  team: CIN
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 1.036
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_046:
+  id: 46
+  team: CLE
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.245
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_047:
+  id: 47
+  team: CLE
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.8160000000000001
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_048:
+  id: 48
+  team: CLE
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.981
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_049:
+  id: 49
+  team: WAS
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.106
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_050:
+  id: 50
+  team: WAS
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.945
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_051:
+  id: 51
+  team: WAS
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.98
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_052:
+  id: 52
+  team: PHI
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.076
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_053:
+  id: 53
+  team: PHI
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.921
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_054:
+  id: 54
+  team: PHI
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.974
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_055:
+  id: 55
+  team: TEN
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.043
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_056:
+  id: 56
+  team: TEN
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.976
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_057:
+  id: 57
+  team: TEN
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.95
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_058:
+  id: 58
+  team: CAR
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.087
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_059:
+  id: 59
+  team: CAR
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.862
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_060:
+  id: 60
+  team: CAR
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.95
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_061:
+  id: 61
+  team: NYG
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.086
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_062:
+  id: 62
+  team: NYG
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.879
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_063:
+  id: 63
+  team: NYG
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.944
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_064:
+  id: 64
+  team: HOU
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.022
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_065:
+  id: 65
+  team: HOU
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.979
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_066:
+  id: 66
+  team: HOU
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.938
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_067:
+  id: 67
+  team: SF
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.045
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_068:
+  id: 68
+  team: SF
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.919
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_069:
+  id: 69
+  team: SF
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.925
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_070:
+  id: 70
+  team: ARI
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.127
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_071:
+  id: 71
+  team: ARI
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.784
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_072:
+  id: 72
+  team: ARI
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.905
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_073:
+  id: 73
+  team: DET
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 1.048
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_074:
+  id: 74
+  team: DET
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.763
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_075:
+  id: 75
+  team: DET
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.9
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_076:
+  id: 76
+  team: STL
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 0.95
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_077:
+  id: 77
+  team: STL
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.932
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_078:
+  id: 78
+  team: STL
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.895
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_079:
+  id: 79
+  team: BUF
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 0.96
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_080:
+  id: 80
+  team: BUF
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.788
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_081:
+  id: 81
+  team: BUF
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.846
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_082:
+  id: 82
+  team: NYJ
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 0.752
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_083:
+  id: 83
+  team: NYJ
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.993
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_084:
+  id: 84
+  team: NYJ
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.827
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_085:
+  id: 85
+  team: OAK
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 0.973
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_086:
+  id: 86
+  team: OAK
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.714
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_087:
+  id: 87
+  team: OAK
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.822
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_088:
+  id: 88
+  team: MIN
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 0.7230000000000001
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_089:
+  id: 89
+  team: MIN
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 1.053
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_090:
+  id: 90
+  team: MIN
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.808
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_091:
+  id: 91
+  team: JAC
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 0.719
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_092:
+  id: 92
+  team: JAC
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.929
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_093:
+  id: 93
+  team: JAC
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.787
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_094:
+  id: 94
+  team: TB
+  import_id: 1
+  role: offense
+  subrole: pass
+  value: 0.796
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_095:
+  id: 95
+  team: TB
+  import_id: 1
+  role: offense
+  subrole: rush
+  value: 0.851
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_096:
+  id: 96
+  team: TB
+  import_id: 1
+  role: offense
+  subrole: total
+  value: 0.773
+  created_at: '2014-11-07 00:09:55.656568'
+  updated_at: '2014-11-07 00:09:55.656751'
+dvoas_097:
+  id: 97
+  team: PHI
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.096
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_098:
+  id: 98
+  team: BAL
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.077
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_099:
+  id: 99
+  team: NE
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.073
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_100:
+  id: 100
+  team: BUF
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.061
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_101:
+  id: 101
+  team: IND
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.058
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_102:
+  id: 102
+  team: KC
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.043
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_103:
+  id: 103
+  team: ATL
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.038
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_104:
+  id: 104
+  team: CIN
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.035
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_105:
+  id: 105
+  team: OAK
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.032
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_106:
+  id: 106
+  team: NYJ
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.027
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_107:
+  id: 107
+  team: MIN
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.02
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_108:
+  id: 108
+  team: GB
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.019
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_109:
+  id: 109
+  team: 'NO'
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.019
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_110:
+  id: 110
+  team: CLE
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.018
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_111:
+  id: 111
+  team: ARI
+  import_id: 1
+  role: special
+  subrole: total
+  value: 1.006
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_112:
+  id: 112
+  team: SD
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.998
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_113:
+  id: 113
+  team: PIT
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.997
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_114:
+  id: 114
+  team: CAR
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.996
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_115:
+  id: 115
+  team: TEN
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.989
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_116:
+  id: 116
+  team: NYG
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.988
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_117:
+  id: 117
+  team: STL
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.988
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_118:
+  id: 118
+  team: DAL
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.985
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_119:
+  id: 119
+  team: SEA
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.972
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_120:
+  id: 120
+  team: JAC
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.962
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_121:
+  id: 121
+  team: WAS
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.958
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_122:
+  id: 122
+  team: DEN
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.947
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_123:
+  id: 123
+  team: HOU
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.944
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_124:
+  id: 124
+  team: TB
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.941
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_125:
+  id: 125
+  team: SF
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.941
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_126:
+  id: 126
+  team: CHI
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.938
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_127:
+  id: 127
+  team: MIA
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.938
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_128:
+  id: 128
+  team: DET
+  import_id: 1
+  role: special
+  subrole: total
+  value: 0.934
+  created_at: '2014-11-07 00:10:16.616807'
+  updated_at: '2014-11-07 00:10:16.629234'
+dvoas_129:
+  id: 129
+  team: DET
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 0.856
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_130:
+  id: 130
+  team: DET
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.652
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_131:
+  id: 131
+  team: DET
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 0.772
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_132:
+  id: 132
+  team: MIA
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 0.8049999999999999
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_133:
+  id: 133
+  team: MIA
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.81
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_134:
+  id: 134
+  team: MIA
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 0.8069999999999999
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_135:
+  id: 135
+  team: DEN
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 0.926
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_136:
+  id: 136
+  team: DEN
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.683
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_137:
+  id: 137
+  team: DEN
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 0.844
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_138:
+  id: 138
+  team: BUF
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 0.908
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_139:
+  id: 139
+  team: BUF
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.806
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_140:
+  id: 140
+  team: BUF
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 0.867
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_141:
+  id: 141
+  team: SEA
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.03
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_142:
+  id: 142
+  team: SEA
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.683
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_143:
+  id: 143
+  team: SEA
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 0.878
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_144:
+  id: 144
+  team: ARI
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 0.984
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_145:
+  id: 145
+  team: ARI
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.766
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_146:
+  id: 146
+  team: ARI
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 0.899
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_147:
+  id: 147
+  team: SF
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 0.96
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_148:
+  id: 148
+  team: SF
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.85
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_149:
+  id: 149
+  team: SF
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 0.916
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_150:
+  id: 150
+  team: PHI
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.046
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_151:
+  id: 151
+  team: PHI
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.786
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_152:
+  id: 152
+  team: PHI
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 0.929
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_153:
+  id: 153
+  team: BAL
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.02
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_154:
+  id: 154
+  team: BAL
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.819
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_155:
+  id: 155
+  team: BAL
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 0.935
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_156:
+  id: 156
+  team: JAC
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.039
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_157:
+  id: 157
+  team: JAC
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.906
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_158:
+  id: 158
+  team: JAC
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 0.98
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_159:
+  id: 159
+  team: MIN
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.003
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_160:
+  id: 160
+  team: MIN
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.975
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_161:
+  id: 161
+  team: MIN
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 0.99
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_162:
+  id: 162
+  team: KC
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.025
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_163:
+  id: 163
+  team: KC
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.964
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_164:
+  id: 164
+  team: KC
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 0.998
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_165:
+  id: 165
+  team: HOU
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.015
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_166:
+  id: 166
+  team: HOU
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.988
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_167:
+  id: 167
+  team: HOU
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.004
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_168:
+  id: 168
+  team: CIN
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 0.926
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_169:
+  id: 169
+  team: CIN
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 1.118
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_170:
+  id: 170
+  team: CIN
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.011
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_171:
+  id: 171
+  team: IND
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.06
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_172:
+  id: 172
+  team: IND
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.954
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_173:
+  id: 173
+  team: IND
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.019
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_174:
+  id: 174
+  team: GB
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.074
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_175:
+  id: 175
+  team: GB
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.966
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_176:
+  id: 176
+  team: GB
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.021
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_177:
+  id: 177
+  team: NE
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.051
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_178:
+  id: 178
+  team: NE
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.99
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_179:
+  id: 179
+  team: NE
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.023
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_180:
+  id: 180
+  team: NYG
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.101
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_181:
+  id: 181
+  team: NYG
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.929
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_182:
+  id: 182
+  team: NYG
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.025
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_183:
+  id: 183
+  team: WAS
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.195
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_184:
+  id: 184
+  team: WAS
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.827
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_185:
+  id: 185
+  team: WAS
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.031
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_186:
+  id: 186
+  team: NYJ
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.199
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_187:
+  id: 187
+  team: NYJ
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.815
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_188:
+  id: 188
+  team: NYJ
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.031
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_189:
+  id: 189
+  team: CLE
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.05
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_190:
+  id: 190
+  team: CLE
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 1.039
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_191:
+  id: 191
+  team: CLE
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.045
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_192:
+  id: 192
+  team: DAL
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.084
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_193:
+  id: 193
+  team: DAL
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.998
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_194:
+  id: 194
+  team: DAL
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.046
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_195:
+  id: 195
+  team: CHI
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.192
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_196:
+  id: 196
+  team: CHI
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.899
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_197:
+  id: 197
+  team: CHI
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.063
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_198:
+  id: 198
+  team: CAR
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.118
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_199:
+  id: 199
+  team: CAR
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.999
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_200:
+  id: 200
+  team: CAR
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.064
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_201:
+  id: 201
+  team: OAK
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.296
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_202:
+  id: 202
+  team: OAK
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.869
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_203:
+  id: 203
+  team: OAK
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.067
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_204:
+  id: 204
+  team: TEN
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.125
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_205:
+  id: 205
+  team: TEN
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 1.005
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_206:
+  id: 206
+  team: TEN
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.067
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_207:
+  id: 207
+  team: PIT
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.169
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_208:
+  id: 208
+  team: PIT
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.927
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_209:
+  id: 209
+  team: PIT
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.068
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_210:
+  id: 210
+  team: TB
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.327
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_211:
+  id: 211
+  team: TB
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.798
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_212:
+  id: 212
+  team: TB
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.077
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_213:
+  id: 213
+  team: 'NO'
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.188
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_214:
+  id: 214
+  team: 'NO'
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.971
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_215:
+  id: 215
+  team: 'NO'
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.094
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_216:
+  id: 216
+  team: STL
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.35
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_217:
+  id: 217
+  team: STL
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.85
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_218:
+  id: 218
+  team: STL
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.101
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_219:
+  id: 219
+  team: SD
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.273
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_220:
+  id: 220
+  team: SD
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.928
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_221:
+  id: 221
+  team: SD
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.115
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_222:
+  id: 222
+  team: ATL
+  import_id: 1
+  role: defense
+  subrole: pass
+  value: 1.325
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_223:
+  id: 223
+  team: ATL
+  import_id: 1
+  role: defense
+  subrole: rush
+  value: 0.996
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_224:
+  id: 224
+  team: ATL
+  import_id: 1
+  role: defense
+  subrole: total
+  value: 1.162
+  created_at: '2014-11-07 00:10:25.282135'
+  updated_at: '2014-11-07 00:10:25.282305'
+dvoas_225:
+  id: 225
+  team: DEN
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.527
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_226:
+  id: 226
+  team: DEN
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.961
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_227:
+  id: 227
+  team: DEN
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.234
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_228:
+  id: 228
+  team: GB
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.436
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_229:
+  id: 229
+  team: GB
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.975
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_230:
+  id: 230
+  team: GB
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.206
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_231:
+  id: 231
+  team: PIT
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.449
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_232:
+  id: 232
+  team: PIT
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.919
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_233:
+  id: 233
+  team: PIT
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.173
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_234:
+  id: 234
+  team: 'NO'
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.195
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_235:
+  id: 235
+  team: 'NO'
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 1.125
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_236:
+  id: 236
+  team: 'NO'
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.136
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_237:
+  id: 237
+  team: SEA
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.032
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_238:
+  id: 238
+  team: SEA
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 1.375
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_239:
+  id: 239
+  team: SEA
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.131
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_240:
+  id: 240
+  team: DAL
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.257
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_241:
+  id: 241
+  team: DAL
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 1.052
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_242:
+  id: 242
+  team: DAL
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.114
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_243:
+  id: 243
+  team: SD
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.458
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_244:
+  id: 244
+  team: SD
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.78
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_245:
+  id: 245
+  team: SD
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.113
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_246:
+  id: 246
+  team: IND
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.352
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_247:
+  id: 247
+  team: IND
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.84
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_248:
+  id: 248
+  team: IND
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.11
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_249:
+  id: 249
+  team: NE
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.491
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_250:
+  id: 250
+  team: NE
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.746
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_251:
+  id: 251
+  team: NE
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.105
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_252:
+  id: 252
+  team: ATL
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.25
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_253:
+  id: 253
+  team: ATL
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 1.017
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_254:
+  id: 254
+  team: ATL
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.1
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_255:
+  id: 255
+  team: KC
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.193
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_256:
+  id: 256
+  team: KC
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 1.037
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_257:
+  id: 257
+  team: KC
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.083
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_258:
+  id: 258
+  team: BAL
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.288
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_259:
+  id: 259
+  team: BAL
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.936
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_260:
+  id: 260
+  team: BAL
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.082
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_261:
+  id: 261
+  team: MIA
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.16
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_262:
+  id: 262
+  team: MIA
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.996
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_263:
+  id: 263
+  team: MIA
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 1.041
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_264:
+  id: 264
+  team: CHI
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.117
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_265:
+  id: 265
+  team: CHI
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.975
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_266:
+  id: 266
+  team: CHI
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.997
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_267:
+  id: 267
+  team: WAS
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.129
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_268:
+  id: 268
+  team: WAS
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.949
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_269:
+  id: 269
+  team: WAS
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.995
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_270:
+  id: 270
+  team: CLE
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.298
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_271:
+  id: 271
+  team: CLE
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.812
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_272:
+  id: 272
+  team: CLE
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.99
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_273:
+  id: 273
+  team: PHI
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.11
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_274:
+  id: 274
+  team: PHI
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.918
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_275:
+  id: 275
+  team: PHI
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.988
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_276:
+  id: 276
+  team: NYG
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.115
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_277:
+  id: 277
+  team: NYG
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.916
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_278:
+  id: 278
+  team: NYG
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.979
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_279:
+  id: 279
+  team: CIN
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.004
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_280:
+  id: 280
+  team: CIN
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.991
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_281:
+  id: 281
+  team: CIN
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.959
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_282:
+  id: 282
+  team: SF
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.03
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_283:
+  id: 283
+  team: SF
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.994
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_284:
+  id: 284
+  team: SF
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.957
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_285:
+  id: 285
+  team: HOU
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.042
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_286:
+  id: 286
+  team: HOU
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.986
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_287:
+  id: 287
+  team: HOU
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.951
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_288:
+  id: 288
+  team: DET
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.102
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_289:
+  id: 289
+  team: DET
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.769
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_290:
+  id: 290
+  team: DET
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.935
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_291:
+  id: 291
+  team: TEN
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.037
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_292:
+  id: 292
+  team: TEN
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.928
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_293:
+  id: 293
+  team: TEN
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.92
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_294:
+  id: 294
+  team: CAR
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 0.992
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_295:
+  id: 295
+  team: CAR
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.87
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_296:
+  id: 296
+  team: CAR
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.901
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_297:
+  id: 297
+  team: ARI
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 1.118
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_298:
+  id: 298
+  team: ARI
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.763
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_299:
+  id: 299
+  team: ARI
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.898
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_300:
+  id: 300
+  team: STL
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 0.915
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_301:
+  id: 301
+  team: STL
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.958
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_302:
+  id: 302
+  team: STL
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.888
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_303:
+  id: 303
+  team: BUF
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 0.974
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_304:
+  id: 304
+  team: BUF
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.794
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_305:
+  id: 305
+  team: BUF
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.855
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_306:
+  id: 306
+  team: NYJ
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 0.785
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_307:
+  id: 307
+  team: NYJ
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 1.015
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_308:
+  id: 308
+  team: NYJ
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.85
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_309:
+  id: 309
+  team: MIN
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 0.74
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_310:
+  id: 310
+  team: MIN
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 1.071
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_311:
+  id: 311
+  team: MIN
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.8260000000000001
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_312:
+  id: 312
+  team: OAK
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 0.947
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_313:
+  id: 313
+  team: OAK
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.685
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_314:
+  id: 314
+  team: OAK
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.806
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_315:
+  id: 315
+  team: TB
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 0.829
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_316:
+  id: 316
+  team: TB
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.841
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_317:
+  id: 317
+  team: TB
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.786
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_318:
+  id: 318
+  team: JAC
+  import_id: 11
+  role: offense
+  subrole: pass
+  value: 0.738
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_319:
+  id: 319
+  team: JAC
+  import_id: 11
+  role: offense
+  subrole: rush
+  value: 0.878
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_320:
+  id: 320
+  team: JAC
+  import_id: 11
+  role: offense
+  subrole: total
+  value: 0.779
+  created_at: '2014-11-12 16:01:47.377737'
+  updated_at: '2014-11-12 16:01:47.377901'
+dvoas_321:
+  id: 321
+  team: PHI
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.105
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_322:
+  id: 322
+  team: BAL
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.084
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_323:
+  id: 323
+  team: NE
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.071
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_324:
+  id: 324
+  team: BUF
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.062
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_325:
+  id: 325
+  team: IND
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.056
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_326:
+  id: 326
+  team: CIN
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.043
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_327:
+  id: 327
+  team: ATL
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.038
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_328:
+  id: 328
+  team: KC
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.035
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_329:
+  id: 329
+  team: NYJ
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.023
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_330:
+  id: 330
+  team: OAK
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.022
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_331:
+  id: 331
+  team: MIN
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.018
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_332:
+  id: 332
+  team: 'NO'
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.014
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_333:
+  id: 333
+  team: ARI
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.004
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_334:
+  id: 334
+  team: CLE
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1.002
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_335:
+  id: 335
+  team: GB
+  import_id: 11
+  role: special
+  subrole: total
+  value: 1
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_336:
+  id: 336
+  team: SD
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.997
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_337:
+  id: 337
+  team: TEN
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.993
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_338:
+  id: 338
+  team: STL
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.989
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_339:
+  id: 339
+  team: PIT
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.989
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_340:
+  id: 340
+  team: NYG
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.987
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_341:
+  id: 341
+  team: DAL
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.986
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_342:
+  id: 342
+  team: CAR
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.983
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_343:
+  id: 343
+  team: SEA
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.977
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_344:
+  id: 344
+  team: JAC
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.962
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_345:
+  id: 345
+  team: DEN
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.962
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_346:
+  id: 346
+  team: WAS
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.957
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_347:
+  id: 347
+  team: MIA
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.954
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_348:
+  id: 348
+  team: SF
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.95
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_349:
+  id: 349
+  team: CHI
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.949
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_350:
+  id: 350
+  team: TB
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.947
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_351:
+  id: 351
+  team: HOU
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.943
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_352:
+  id: 352
+  team: DET
+  import_id: 11
+  role: special
+  subrole: total
+  value: 0.925
+  created_at: '2014-11-12 16:02:40.292858'
+  updated_at: '2014-11-12 16:02:40.292967'
+dvoas_353:
+  id: 353
+  team: DET
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 0.851
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_354:
+  id: 354
+  team: DET
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.61
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_355:
+  id: 355
+  team: DET
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.754
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_356:
+  id: 356
+  team: DEN
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 0.907
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_357:
+  id: 357
+  team: DEN
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.651
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_358:
+  id: 358
+  team: DEN
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.823
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_359:
+  id: 359
+  team: MIA
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 0.849
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_360:
+  id: 360
+  team: MIA
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.8260000000000001
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_361:
+  id: 361
+  team: MIA
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.84
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_362:
+  id: 362
+  team: BUF
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 0.877
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_363:
+  id: 363
+  team: BUF
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.8200000000000001
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_364:
+  id: 364
+  team: BUF
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.854
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_365:
+  id: 365
+  team: ARI
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 0.928
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_366:
+  id: 366
+  team: ARI
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.777
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_367:
+  id: 367
+  team: ARI
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.868
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_368:
+  id: 368
+  team: PHI
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 0.983
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_369:
+  id: 369
+  team: PHI
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.786
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_370:
+  id: 370
+  team: PHI
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.894
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_371:
+  id: 371
+  team: SEA
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.043
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_372:
+  id: 372
+  team: SEA
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.7050000000000001
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_373:
+  id: 373
+  team: SEA
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.901
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_374:
+  id: 374
+  team: SF
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 0.939
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_375:
+  id: 375
+  team: SF
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.848
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_376:
+  id: 376
+  team: SF
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.903
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_377:
+  id: 377
+  team: BAL
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.031
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_378:
+  id: 378
+  team: BAL
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.8069999999999999
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_379:
+  id: 379
+  team: BAL
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.936
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_380:
+  id: 380
+  team: MIN
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.001
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_381:
+  id: 381
+  team: MIN
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.982
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_382:
+  id: 382
+  team: MIN
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.992
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_383:
+  id: 383
+  team: GB
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.03
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_384:
+  id: 384
+  team: GB
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.952
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_385:
+  id: 385
+  team: GB
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.993
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_386:
+  id: 386
+  team: CLE
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 0.962
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_387:
+  id: 387
+  team: CLE
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 1.028
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_388:
+  id: 388
+  team: CLE
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.993
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_389:
+  id: 389
+  team: NYJ
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.145
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_390:
+  id: 390
+  team: NYJ
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.8
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_391:
+  id: 391
+  team: NYJ
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 0.996
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_392:
+  id: 392
+  team: JAC
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.059
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_393:
+  id: 393
+  team: JAC
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.935
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_394:
+  id: 394
+  team: JAC
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.004
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_395:
+  id: 395
+  team: HOU
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.012
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_396:
+  id: 396
+  team: HOU
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 1.005
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_397:
+  id: 397
+  team: HOU
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.009
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_398:
+  id: 398
+  team: KC
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.057
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_399:
+  id: 399
+  team: KC
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.954
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_400:
+  id: 400
+  team: KC
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.014
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_401:
+  id: 401
+  team: WAS
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.195
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_402:
+  id: 402
+  team: WAS
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.829
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_403:
+  id: 403
+  team: WAS
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.031
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_404:
+  id: 404
+  team: IND
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.078
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_405:
+  id: 405
+  team: IND
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.969
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_406:
+  id: 406
+  team: IND
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.036
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_407:
+  id: 407
+  team: DAL
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.108
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_408:
+  id: 408
+  team: DAL
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.949
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_409:
+  id: 409
+  team: DAL
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.038
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_410:
+  id: 410
+  team: NYG
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.069
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_411:
+  id: 411
+  team: NYG
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 1.009
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_412:
+  id: 412
+  team: NYG
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.04
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_413:
+  id: 413
+  team: CIN
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 0.972
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_414:
+  id: 414
+  team: CIN
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 1.118
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_415:
+  id: 415
+  team: CIN
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.042
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_416:
+  id: 416
+  team: NE
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.085
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_417:
+  id: 417
+  team: NE
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 1.001
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_418:
+  id: 418
+  team: NE
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.047
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_419:
+  id: 419
+  team: OAK
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.226
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_420:
+  id: 420
+  team: OAK
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.878
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_421:
+  id: 421
+  team: OAK
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.047
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_422:
+  id: 422
+  team: STL
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.325
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_423:
+  id: 423
+  team: STL
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.808
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_424:
+  id: 424
+  team: STL
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.075
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_425:
+  id: 425
+  team: PIT
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.18
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_426:
+  id: 426
+  team: PIT
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.941
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_427:
+  id: 427
+  team: PIT
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.076
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_428:
+  id: 428
+  team: 'NO'
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.139
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_429:
+  id: 429
+  team: 'NO'
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 1.011
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_430:
+  id: 430
+  team: 'NO'
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.083
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_431:
+  id: 431
+  team: TEN
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.128
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_432:
+  id: 432
+  team: TEN
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 1.041
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_433:
+  id: 433
+  team: TEN
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.085
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_434:
+  id: 434
+  team: TB
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.348
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_435:
+  id: 435
+  team: TB
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.812
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_436:
+  id: 436
+  team: TB
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.092
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_437:
+  id: 437
+  team: CAR
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.173
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_438:
+  id: 438
+  team: CAR
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.997
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_439:
+  id: 439
+  team: CAR
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.095
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_440:
+  id: 440
+  team: CHI
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.26
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_441:
+  id: 441
+  team: CHI
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.903
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_442:
+  id: 442
+  team: CHI
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.1
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_443:
+  id: 443
+  team: SD
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.294
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_444:
+  id: 444
+  team: SD
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.951
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_445:
+  id: 445
+  team: SD
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.137
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_446:
+  id: 446
+  team: ATL
+  import_id: 11
+  role: defense
+  subrole: pass
+  value: 1.354
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_447:
+  id: 447
+  team: ATL
+  import_id: 11
+  role: defense
+  subrole: rush
+  value: 0.982
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'
+dvoas_448:
+  id: 448
+  team: ATL
+  import_id: 11
+  role: defense
+  subrole: total
+  value: 1.175
+  created_at: '2014-11-12 16:02:51.383418'
+  updated_at: '2014-11-12 16:02:51.383557'

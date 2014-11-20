@@ -1,13 +1,775 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  overunder: 1
-  home: MyString
-  visitor: MyString
-  import_id: 
-
-two:
-  overunder: 1
-  home: MyString
-  visitor: MyString
-  import_id: 
+---
+over_unders_001:
+  id: 1
+  overunder: 46
+  home_spread: -6
+  home: CIN
+  visitor: CLE
+  import_id: 1
+  created_at: '2014-11-07 00:10:42.461367'
+  updated_at: '2014-11-07 00:10:42.461367'
+over_unders_002:
+  id: 2
+  overunder: 0
+  home_spread: 0
+  home: JAC
+  visitor: DAL
+  import_id: 1
+  created_at: '2014-11-07 00:10:42.782544'
+  updated_at: '2014-11-07 00:10:42.782544'
+over_unders_003:
+  id: 3
+  overunder: 43.5
+  home_spread: -2.5
+  home: DET
+  visitor: MIA
+  import_id: 1
+  created_at: '2014-11-07 00:10:42.928475'
+  updated_at: '2014-11-07 00:10:42.928475'
+over_unders_004:
+  id: 4
+  overunder: 42
+  home_spread: 2
+  home: BUF
+  visitor: KC
+  import_id: 1
+  created_at: '2014-11-07 00:10:43.067214'
+  updated_at: '2014-11-07 00:10:43.067214'
+over_unders_005:
+  id: 5
+  overunder: 49
+  home_spread: -5
+  home: 'NO'
+  visitor: SF
+  import_id: 1
+  created_at: '2014-11-07 00:10:43.209539'
+  updated_at: '2014-11-07 00:10:43.209539'
+over_unders_006:
+  id: 6
+  overunder: 44
+  home_spread: -10
+  home: BAL
+  visitor: TEN
+  import_id: 1
+  created_at: '2014-11-07 00:10:43.336162'
+  updated_at: '2014-11-07 00:10:43.336162'
+over_unders_007:
+  id: 7
+  overunder: 45.5
+  home_spread: 4
+  home: NYJ
+  visitor: PIT
+  import_id: 1
+  created_at: '2014-11-07 00:10:43.465010'
+  updated_at: '2014-11-07 00:10:43.465010'
+over_unders_008:
+  id: 8
+  overunder: 46
+  home_spread: 2.5
+  home: TB
+  visitor: ATL
+  import_id: 1
+  created_at: '2014-11-07 00:10:43.566111'
+  updated_at: '2014-11-07 00:10:43.566111'
+over_unders_009:
+  id: 9
+  overunder: 49
+  home_spread: 11
+  home: OAK
+  visitor: DEN
+  import_id: 1
+  created_at: '2014-11-07 00:10:43.724932'
+  updated_at: '2014-11-07 00:10:43.724932'
+over_unders_010:
+  id: 10
+  overunder: 43
+  home_spread: -6.5
+  home: ARI
+  visitor: STL
+  import_id: 1
+  created_at: '2014-11-07 00:10:43.844694'
+  updated_at: '2014-11-07 00:10:43.844694'
+over_unders_011:
+  id: 11
+  overunder: 44.5
+  home_spread: -9
+  home: SEA
+  visitor: NYG
+  import_id: 1
+  created_at: '2014-11-07 00:10:43.966866'
+  updated_at: '2014-11-07 00:10:43.966866'
+over_unders_012:
+  id: 12
+  overunder: 53.5
+  home_spread: -7
+  home: GB
+  visitor: CHI
+  import_id: 1
+  created_at: '2014-11-07 00:10:44.100990'
+  updated_at: '2014-11-07 00:10:44.100990'
+over_unders_013:
+  id: 13
+  overunder: 48
+  home_spread: -6.5
+  home: PHI
+  visitor: CAR
+  import_id: 1
+  created_at: '2014-11-07 00:10:44.246481'
+  updated_at: '2014-11-07 00:10:44.246481'
+over_unders_014:
+  id: 14
+  overunder: 5
+  home_spread: -247
+  home: BOS
+  visitor: EDM
+  import_id: 2
+  created_at: '2014-11-07 00:31:28.070395'
+  updated_at: '2014-11-07 00:31:28.070395'
+over_unders_015:
+  id: 15
+  overunder: 5.5
+  home_spread: -160
+  home: PHI
+  visitor: FLA
+  import_id: 2
+  created_at: '2014-11-07 00:31:28.230531'
+  updated_at: '2014-11-07 00:31:28.230531'
+over_unders_016:
+  id: 16
+  overunder: 5
+  home_spread: 115
+  home: OTT
+  visitor: MIN
+  import_id: 2
+  created_at: '2014-11-07 00:31:28.370225'
+  updated_at: '2014-11-07 00:31:28.370225'
+over_unders_017:
+  id: 17
+  overunder: 5.5
+  home_spread: -190
+  home: TB
+  visitor: CGY
+  import_id: 2
+  created_at: '2014-11-07 00:31:28.498445'
+  updated_at: '2014-11-07 00:31:28.498445'
+over_unders_018:
+  id: 18
+  overunder: 5.5
+  home_spread: 160
+  home: WPG
+  visitor: PIT
+  import_id: 2
+  created_at: '2014-11-07 00:31:28.652950'
+  updated_at: '2014-11-07 00:31:28.652950'
+over_unders_019:
+  id: 19
+  overunder: 5
+  home_spread: -180
+  home: STL
+  visitor: NJ
+  import_id: 2
+  created_at: '2014-11-07 00:31:28.778497'
+  updated_at: '2014-11-07 00:31:28.778497'
+over_unders_020:
+  id: 20
+  overunder: 5
+  home_spread: -135
+  home: DAL
+  visitor: NSH
+  import_id: 2
+  created_at: '2014-11-07 00:31:29.042310'
+  updated_at: '2014-11-07 00:31:29.042310'
+over_unders_021:
+  id: 21
+  overunder: 5.5
+  home_spread: -125
+  home: COL
+  visitor: TOR
+  import_id: 2
+  created_at: '2014-11-07 00:31:29.181133'
+  updated_at: '2014-11-07 00:31:29.181133'
+over_unders_022:
+  id: 22
+  overunder: 5.5
+  home_spread: -140
+  home: SJ
+  visitor: VAN
+  import_id: 2
+  created_at: '2014-11-07 00:31:29.364668'
+  updated_at: '2014-11-07 00:31:29.364668'
+over_unders_023:
+  id: 23
+  overunder: 5.5
+  home_spread: -175
+  home: LA
+  visitor: NYI
+  import_id: 2
+  created_at: '2014-11-07 00:31:29.505820'
+  updated_at: '2014-11-07 00:31:29.505820'
+over_unders_024:
+  id: 24
+  overunder: 196.5
+  home_spread: -6.5
+  home: HOU
+  visitor: SA
+  import_id: 3
+  created_at: '2014-11-07 00:42:45.306092'
+  updated_at: '2014-11-07 00:42:45.306092'
+over_unders_025:
+  id: 25
+  overunder: 209
+  home_spread: -2.5
+  home: POR
+  visitor: DAL
+  import_id: 3
+  created_at: '2014-11-07 00:42:45.501364'
+  updated_at: '2014-11-07 00:42:45.501364'
+over_unders_026:
+  id: 26
+  overunder: 193.5
+  home_spread: -1.5
+  home: CHA
+  visitor: ATL
+  import_id: 4
+  created_at: '2014-11-07 16:20:53.361803'
+  updated_at: '2014-11-07 16:20:53.361803'
+over_unders_027:
+  id: 27
+  overunder: 202.5
+  home_spread: 3
+  home: ORL
+  visitor: MIN
+  import_id: 4
+  created_at: '2014-11-07 16:20:53.601022'
+  updated_at: '2014-11-07 16:20:53.601022'
+over_unders_028:
+  id: 28
+  overunder: 189.5
+  home_spread: 10.5
+  home: PHI
+  visitor: CHI
+  import_id: 4
+  created_at: '2014-11-07 16:20:53.782172'
+  updated_at: '2014-11-07 16:20:53.782172'
+over_unders_029:
+  id: 29
+  overunder: 194
+  home_spread: -4.5
+  home: BOS
+  visitor: IND
+  import_id: 4
+  created_at: '2014-11-07 16:20:54.026465'
+  updated_at: '2014-11-07 16:20:54.026465'
+over_unders_030:
+  id: 30
+  overunder: 191.5
+  home_spread: -5.5
+  home: BKN
+  visitor: NYN
+  import_id: 4
+  created_at: '2014-11-07 16:20:54.216533'
+  updated_at: '2014-11-07 16:20:54.216533'
+over_unders_031:
+  id: 31
+  overunder: 192
+  home_spread: -4.5
+  home: DET
+  visitor: MIL
+  import_id: 4
+  created_at: '2014-11-07 16:20:54.372350'
+  updated_at: '2014-11-07 16:20:54.372350'
+over_unders_032:
+  id: 32
+  overunder: 194.5
+  home_spread: -3.5
+  home: TOR
+  visitor: WAS
+  import_id: 4
+  created_at: '2014-11-07 16:20:54.531932'
+  updated_at: '2014-11-07 16:20:54.531932'
+over_unders_033:
+  id: 33
+  overunder: 183.5
+  home_spread: 7
+  home: OKC
+  visitor: MEM
+  import_id: 4
+  created_at: '2014-11-07 16:20:55.140355'
+  updated_at: '2014-11-07 16:20:55.140355'
+over_unders_034:
+  id: 34
+  overunder: 206.5
+  home_spread: -5
+  home: PHO
+  visitor: SAC
+  import_id: 4
+  created_at: '2014-11-07 16:20:55.295382'
+  updated_at: '2014-11-07 16:20:55.295382'
+over_unders_035:
+  id: 35
+  overunder: 206
+  home_spread: 3.5
+  home: UTA
+  visitor: DAL
+  import_id: 4
+  created_at: '2014-11-07 16:20:55.593945'
+  updated_at: '2014-11-07 16:20:55.593945'
+over_unders_036:
+  id: 36
+  overunder: 209
+  home_spread: 4.5
+  home: DEN
+  visitor: CLE
+  import_id: 4
+  created_at: '2014-11-07 16:20:55.788290'
+  updated_at: '2014-11-07 16:20:55.788290'
+over_unders_037:
+  id: 37
+  overunder: 5
+  home_spread: 130
+  home: BUF
+  visitor: EDM
+  import_id: 5
+  created_at: '2014-11-07 16:23:58.193674'
+  updated_at: '2014-11-07 16:23:58.193674'
+over_unders_038:
+  id: 38
+  overunder: 5.5
+  home_spread: -140
+  home: CAR
+  visitor: CLB
+  import_id: 5
+  created_at: '2014-11-07 16:23:58.717593'
+  updated_at: '2014-11-07 16:23:58.717593'
+over_unders_039:
+  id: 39
+  overunder: 5
+  home_spread: -160
+  home: DET
+  visitor: NJ
+  import_id: 5
+  created_at: '2014-11-07 16:23:58.919281'
+  updated_at: '2014-11-07 16:23:58.919281'
+over_unders_040:
+  id: 40
+  overunder: 5.5
+  home_spread: -195
+  home: CHI
+  visitor: WAS
+  import_id: 5
+  created_at: '2014-11-07 16:23:59.068070'
+  updated_at: '2014-11-07 16:23:59.068070'
+over_unders_041:
+  id: 41
+  overunder: 5.5
+  home_spread: -190
+  home: ANA
+  visitor: Arizona
+  import_id: 5
+  created_at: '2014-11-07 16:23:59.218314'
+  updated_at: '2014-11-07 16:23:59.218314'
+over_unders_042:
+  id: 42
+  overunder: 202.5
+  home_spread: -5.5
+  home: CLE
+  visitor: NOP
+  import_id: 6
+  created_at: '2014-11-10 23:44:37.098892'
+  updated_at: '2014-11-10 23:44:37.098892'
+over_unders_043:
+  id: 43
+  overunder: 187
+  home_spread: -3
+  home: IND
+  visitor: UTA
+  import_id: 6
+  created_at: '2014-11-10 23:44:37.254936'
+  updated_at: '2014-11-10 23:44:37.254936'
+over_unders_044:
+  id: 44
+  overunder: 197
+  home_spread: 2
+  home: NY
+  visitor: ATL
+  import_id: 6
+  created_at: '2014-11-10 23:44:37.379109'
+  updated_at: '2014-11-10 23:44:37.379109'
+over_unders_045:
+  id: 45
+  overunder: 190
+  home_spread: -9.5
+  home: CHI
+  visitor: DET
+  import_id: 6
+  created_at: '2014-11-10 23:44:37.500429'
+  updated_at: '2014-11-10 23:44:37.500429'
+over_unders_046:
+  id: 46
+  overunder: 203
+  home_spread: -1.5
+  home: LAC
+  visitor: SA
+  import_id: 6
+  created_at: '2014-11-10 23:44:37.600465'
+  updated_at: '2014-11-10 23:44:37.600465'
+over_unders_047:
+  id: 47
+  overunder: 199
+  home_spread: -10.5
+  home: TOR
+  visitor: ORL
+  import_id: 7
+  created_at: '2014-11-11 23:10:05.622780'
+  updated_at: '2014-11-11 23:10:05.622780'
+over_unders_048:
+  id: 48
+  overunder: 197.5
+  home_spread: -9.5
+  home: MEM
+  visitor: LAK
+  import_id: 7
+  created_at: '2014-11-11 23:10:05.770932'
+  updated_at: '2014-11-11 23:10:05.770932'
+over_unders_049:
+  id: 49
+  overunder: 190.5
+  home_spread: -2.5
+  home: MIL
+  visitor: OKC
+  import_id: 7
+  created_at: '2014-11-11 23:10:05.914499'
+  updated_at: '2014-11-11 23:10:05.914499'
+over_unders_050:
+  id: 50
+  overunder: 206
+  home_spread: -8
+  home: DAL
+  visitor: SAC
+  import_id: 7
+  created_at: '2014-11-11 23:10:06.005375'
+  updated_at: '2014-11-11 23:10:06.005375'
+over_unders_051:
+  id: 51
+  overunder: 191.5
+  home_spread: -7
+  home: POR
+  visitor: CHA
+  import_id: 7
+  created_at: '2014-11-11 23:10:06.108287'
+  updated_at: '2014-11-11 23:10:06.108287'
+over_unders_052:
+  id: 52
+  overunder: 197
+  home_spread: -8.5
+  home: GOL
+  visitor: SA
+  import_id: 7
+  created_at: '2014-11-11 23:10:06.207168'
+  updated_at: '2014-11-11 23:10:06.207168'
+over_unders_053:
+  id: 53
+  overunder: 5
+  home_spread: 130
+  home: NJ
+  visitor: MIN
+  import_id: 8
+  created_at: '2014-11-11 23:14:02.345147'
+  updated_at: '2014-11-11 23:14:02.345147'
+over_unders_054:
+  id: 54
+  overunder: 5.5
+  home_spread: -135
+  home: NYI
+  visitor: COL
+  import_id: 8
+  created_at: '2014-11-11 23:14:02.629237'
+  updated_at: '2014-11-11 23:14:02.629237'
+over_unders_055:
+  id: 55
+  overunder: 5.5
+  home_spread: 150
+  home: NYR
+  visitor: PIT
+  import_id: 8
+  created_at: '2014-11-11 23:14:02.838149'
+  updated_at: '2014-11-11 23:14:02.838149'
+over_unders_056:
+  id: 56
+  overunder: 5.5
+  home_spread: -205
+  home: WAS
+  visitor: CLS
+  import_id: 8
+  created_at: '2014-11-11 23:14:02.979783'
+  updated_at: '2014-11-11 23:14:02.979783'
+over_unders_057:
+  id: 57
+  overunder: 5
+  home_spread: -145
+  home: MON
+  visitor: WPG
+  import_id: 8
+  created_at: '2014-11-11 23:14:03.131719'
+  updated_at: '2014-11-11 23:14:03.131719'
+over_unders_058:
+  id: 58
+  overunder: 5
+  home_spread: 160
+  home: FLA
+  visitor: SJ
+  import_id: 8
+  created_at: '2014-11-11 23:14:03.292495'
+  updated_at: '2014-11-11 23:14:03.292495'
+over_unders_059:
+  id: 59
+  overunder: 4.5
+  home_spread: -400
+  home: STL
+  visitor: BUF
+  import_id: 8
+  created_at: '2014-11-11 23:14:04.265198'
+  updated_at: '2014-11-11 23:14:04.265198'
+over_unders_060:
+  id: 60
+  overunder: 5
+  home_spread: -200
+  home: NSH
+  visitor: EDM
+  import_id: 8
+  created_at: '2014-11-11 23:14:04.468209'
+  updated_at: '2014-11-11 23:14:04.468209'
+over_unders_061:
+  id: 61
+  overunder: 5.5
+  home_spread: -150
+  home: CHI
+  visitor: TB
+  import_id: 8
+  created_at: '2014-11-11 23:14:04.758621'
+  updated_at: '2014-11-11 23:14:04.758621'
+over_unders_062:
+  id: 62
+  overunder: 5.5
+  home_spread: 105
+  home: ARI
+  visitor: DAL
+  import_id: 8
+  created_at: '2014-11-11 23:14:04.897455'
+  updated_at: '2014-11-11 23:14:04.897455'
+over_unders_063:
+  id: 63
+  overunder: 5
+  home_spread: -150
+  home: VAN
+  visitor: OTT
+  import_id: 8
+  created_at: '2014-11-11 23:14:05.070541'
+  updated_at: '2014-11-11 23:14:05.070541'
+over_unders_064:
+  id: 64
+  overunder: 191
+  home_spread: -6
+  home: WAS
+  visitor: DET
+  import_id: 10
+  created_at: '2014-11-12 15:58:27.145074'
+  updated_at: '2014-11-12 15:58:27.145074'
+over_unders_065:
+  id: 65
+  overunder: 198
+  home_spread: -7
+  home: ATL
+  visitor: UTA
+  import_id: 10
+  created_at: '2014-11-12 15:58:27.352911'
+  updated_at: '2014-11-12 15:58:27.352911'
+over_unders_066:
+  id: 66
+  overunder: 197
+  home_spread: -5.5
+  home: BOS
+  visitor: OKC
+  import_id: 10
+  created_at: '2014-11-12 15:58:27.541010'
+  updated_at: '2014-11-12 15:58:27.541010'
+over_unders_067:
+  id: 67
+  overunder: 188.5
+  home_spread: -8
+  home: MIA
+  visitor: IND
+  import_id: 10
+  created_at: '2014-11-12 15:58:27.731823'
+  updated_at: '2014-11-12 15:58:27.731823'
+over_unders_068:
+  id: 68
+  overunder: 192
+  home_spread: -6
+  home: NY
+  visitor: ORL
+  import_id: 10
+  created_at: '2014-11-12 15:58:27.876261'
+  updated_at: '2014-11-12 15:58:27.876261'
+over_unders_069:
+  id: 69
+  overunder: 210
+  home_spread: -10.5
+  home: 'NO'
+  visitor: LAL
+  import_id: 10
+  created_at: '2014-11-12 15:58:28.126795'
+  updated_at: '2014-11-12 15:58:28.126795'
+over_unders_070:
+  id: 70
+  overunder: 208.5
+  home_spread: -1.5
+  home: DEN
+  visitor: POR
+  import_id: 10
+  created_at: '2014-11-12 15:58:28.260250'
+  updated_at: '2014-11-12 15:58:28.260250'
+over_unders_071:
+  id: 71
+  overunder: 206
+  home_spread: -5.5
+  home: PHO
+  visitor: BKN
+  import_id: 10
+  created_at: '2014-11-12 15:58:28.413352'
+  updated_at: '2014-11-12 15:58:28.413352'
+over_unders_072:
+  id: 72
+  overunder: 201
+  home_spread: 7
+  home: MIN
+  visitor: HOU
+  import_id: 10
+  created_at: '2014-11-12 15:58:28.553148'
+  updated_at: '2014-11-12 15:58:28.553148'
+over_unders_073:
+  id: 73
+  overunder: 42
+  home_spread: -5
+  home: MIA
+  visitor: BUF
+  import_id: 11
+  created_at: '2014-11-12 16:03:43.519736'
+  updated_at: '2014-11-12 16:03:43.519736'
+over_unders_074:
+  id: 74
+  overunder: 42
+  home_spread: -3
+  home: CLE
+  visitor: HOU
+  import_id: 11
+  created_at: '2014-11-12 16:03:44.312396'
+  updated_at: '2014-11-12 16:03:44.312396'
+over_unders_075:
+  id: 75
+  overunder: 46
+  home_spread: -3
+  home: CHI
+  visitor: MIN
+  import_id: 11
+  created_at: '2014-11-12 16:03:44.801703'
+  updated_at: '2014-11-12 16:03:44.801703'
+over_unders_076:
+  id: 76
+  overunder: 54.5
+  home_spread: -5.5
+  home: GB
+  visitor: PHI
+  import_id: 11
+  created_at: '2014-11-12 16:03:45.091375'
+  updated_at: '2014-11-12 16:03:45.091375'
+over_unders_077:
+  id: 77
+  overunder: 42
+  home_spread: -2
+  home: KC
+  visitor: SEA
+  import_id: 11
+  created_at: '2014-11-12 16:03:45.312988'
+  updated_at: '2014-11-12 16:03:45.312988'
+over_unders_078:
+  id: 78
+  overunder: 46.5
+  home_spread: -2
+  home: CAR
+  visitor: ATL
+  import_id: 11
+  created_at: '2014-11-12 16:03:45.634985'
+  updated_at: '2014-11-12 16:03:45.634985'
+over_unders_079:
+  id: 79
+  overunder: 50.5
+  home_spread: -7
+  home: 'NO'
+  visitor: CIN
+  import_id: 11
+  created_at: '2014-11-12 16:03:45.992159'
+  updated_at: '2014-11-12 16:03:45.992159'
+over_unders_080:
+  id: 80
+  overunder: 45.5
+  home_spread: -7
+  home: WAS
+  visitor: TB
+  import_id: 11
+  created_at: '2014-11-12 16:03:46.177698'
+  updated_at: '2014-11-12 16:03:46.177698'
+over_unders_081:
+  id: 81
+  overunder: 51
+  home_spread: 9.5
+  home: STL
+  visitor: DEN
+  import_id: 11
+  created_at: '2014-11-12 16:03:46.357058'
+  updated_at: '2014-11-12 16:03:46.357058'
+over_unders_082:
+  id: 82
+  overunder: 44
+  home_spread: 4
+  home: NYG
+  visitor: SF
+  import_id: 11
+  created_at: '2014-11-12 16:03:46.526608'
+  updated_at: '2014-11-12 16:03:46.526608'
+over_unders_083:
+  id: 83
+  overunder: 44.5
+  home_spread: -10.5
+  home: SDC
+  visitor: OAK
+  import_id: 11
+  created_at: '2014-11-12 16:03:46.990390'
+  updated_at: '2014-11-12 16:03:46.990390'
+over_unders_084:
+  id: 84
+  overunder: 41
+  home_spread: -2
+  home: ARI
+  visitor: DET
+  import_id: 11
+  created_at: '2014-11-12 16:03:47.221027'
+  updated_at: '2014-11-12 16:03:47.221027'
+over_unders_085:
+  id: 85
+  overunder: 57.5
+  home_spread: -3
+  home: IND
+  visitor: NEP
+  import_id: 11
+  created_at: '2014-11-12 16:03:47.380793'
+  updated_at: '2014-11-12 16:03:47.380793'
+over_unders_086:
+  id: 86
+  overunder: 47
+  home_spread: 6
+  home: TEN
+  visitor: PIT
+  import_id: 11
+  created_at: '2014-11-12 16:03:47.556330'
+  updated_at: '2014-11-12 16:03:47.556330'

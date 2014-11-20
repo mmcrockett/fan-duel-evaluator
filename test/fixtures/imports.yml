@@ -1,7 +1,67 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  type: 
-
-two:
-  type: 
+---
+imports_001:
+  id: 1
+  league: NFL
+  created_at: '2014-11-07 00:08:11.972859'
+  updated_at: '2014-11-07 00:08:11.972859'
+  fd_game_id: 
+imports_002:
+  id: 2
+  league: NHL
+  created_at: '2014-11-07 00:30:38.667618'
+  updated_at: '2014-11-07 00:30:38.667618'
+  fd_game_id: 
+imports_003:
+  id: 3
+  league: NBA
+  created_at: '2014-11-07 00:42:27.812699'
+  updated_at: '2014-11-07 00:42:27.812699'
+  fd_game_id: 
+imports_004:
+  id: 4
+  league: NBA
+  created_at: '2014-11-07 16:19:40.443150'
+  updated_at: '2014-11-07 16:19:40.443150'
+  fd_game_id: 
+imports_005:
+  id: 5
+  league: NHL
+  created_at: '2014-11-07 16:21:46.495543'
+  updated_at: '2014-11-07 16:21:46.495543'
+  fd_game_id: 
+imports_006:
+  id: 6
+  league: NBA
+  created_at: '2014-11-10 23:44:15.836549'
+  updated_at: '2014-11-10 23:44:15.836549'
+  fd_game_id: 10928
+imports_007:
+  id: 7
+  league: NBA
+  created_at: '2014-11-11 23:09:41.354421'
+  updated_at: '2014-11-11 23:09:41.354421'
+  fd_game_id: 10948
+imports_008:
+  id: 8
+  league: NHL
+  created_at: '2014-11-11 23:11:14.910312'
+  updated_at: '2014-11-11 23:11:14.910312'
+  fd_game_id: 10931
+imports_009:
+  id: 9
+  league: NBA
+  created_at: '2014-11-12 15:43:45.122058'
+  updated_at: '2014-11-12 15:43:45.122058'
+  fd_game_id: 10964
+imports_010:
+  id: 10
+  league: NBA
+  created_at: '2014-11-12 15:57:49.592868'
+  updated_at: '2014-11-12 15:57:49.592868'
+  fd_game_id: 10964
+imports_011:
+  id: 11
+  league: NFL
+  created_at: '2014-11-12 15:58:49.204712'
+  updated_at: '2014-11-12 15:58:49.204712'
+  fd_game_id: 10935
