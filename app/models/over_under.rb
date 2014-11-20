@@ -37,7 +37,7 @@ class OverUnder < ActiveRecord::Base
   URLS = {
     "NFL" => "http://m.vegasinsider.com/thisweek/3/NFL",
     "NBA" => "http://m.vegasinsider.com/today/3/NBA",
-    "NHL" => "http://m.vegasinsider.com/today/3/NHL"
+    "NHL" => "http://m.vegasinsider.com/tomorrow/3/NHL"
   }
 
   def self.translate(league, name)
@@ -45,6 +45,34 @@ class OverUnder < ActiveRecord::Base
       return TRANSLATIONS[league][name]
     else
       return name
+    end
+  end
+
+  def self.parse_spread(spread_text)
+    spread = nil
+
+    if (nil == spread_text)
+      spread = 0.0
+    else
+      if (true == spread_text.include?('o'))
+        (spread,moneyline) = spread_text.split('o')
+        spread = spread.to_f * 2 * OverUnder.moneyline_to_decimal(-(100+moneyline.to_i))
+      elsif (true == spread_text.include?('u'))
+        (spread,moneyline) = spread_text.split('u')
+        spread = spread.to_f * 2 * (1 - OverUnder.moneyline_to_decimal(-(100+moneyline.to_i)))
+      else
+        spread = spread_text.to_f
+      end
+    end
+
+    return spread
+  end
+
+  def self.moneyline_to_decimal(moneyline)
+    if (0 < moneyline)
+      return (100.to_f/(100+moneyline))
+    else
+      return (-moneyline.to_f/(100-moneyline))
     end
   end
 
@@ -62,7 +90,7 @@ class OverUnder < ActiveRecord::Base
 
       team = OverUnder.translate(import.league, team)
 
-      spread  = game.css('span.column-current').text().split(" ")[0].to_f
+      spread = OverUnder.parse_spread(game.css('span.column-current').text().split(" ")[0])
 
       games[game_id] ||= {:overunder => 0, :home_spread => 0}
 

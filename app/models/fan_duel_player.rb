@@ -9,6 +9,7 @@ class FanDuelPlayer < ActiveRecord::Base
   PLAYER_DETAIL_URL     = "https://www.fanduel.com/eg/Player/"
   PLAYER_DETAIL_URL_EXT = "/Stats/showLB/"
   DATE_FORMAT = "%m/%d/%Y"
+  INF_VALUE   = 9999
 
   def avg
     return self.average
@@ -97,7 +98,7 @@ class FanDuelPlayer < ActiveRecord::Base
       if (0 != self.average)
         return (self.cost/self.average).to_i
       else
-        return 0
+        return INF_VALUE
       end
     else
       return @value.to_i
@@ -220,6 +221,20 @@ class FanDuelPlayer < ActiveRecord::Base
     end
   end
 
+  def self.sort(players, sort_column)
+    sorted_players = players.sort_by do |p|
+      if (0 != p.send(sort_column))
+        p.value = p.cost/p.send(sort_column)
+      else
+        p.value = INF_VALUE
+      end
+
+      -p.send(sort_column)
+    end
+
+    return sorted_players
+  end
+
   def self.player_data(params = {})
     import = Import.where({:league => params[:league]}).last
 
@@ -240,11 +255,7 @@ class FanDuelPlayer < ActiveRecord::Base
       if (overunder[:overunder] > overunder[:home_spread].abs)
         h_score = (overunder[:overunder] - overunder[:home_spread])/2
       else
-        if (overunder[:home_spread] > 0)
-          p_win = 100/(100+overunder[:home_spread])
-        else
-          p_win = -(overunder[:home_spread])/(100-overunder[:home_spread])
-        end
+        p_win   = OverUnder.moneyline_to_decimal(overunder[:home_spread])
         h_score = (overunder[:overunder]*p_win).round(2)
       end
 
