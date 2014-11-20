@@ -37,7 +37,7 @@ class OverUnder < ActiveRecord::Base
   URLS = {
     "NFL" => "http://m.vegasinsider.com/thisweek/3/NFL",
     "NBA" => "http://m.vegasinsider.com/today/3/NBA",
-    "NHL" => "http://m.vegasinsider.com/tomorrow/3/NHL"
+    "NHL" => "http://m.vegasinsider.com/today/3/NHL"
   }
 
   def self.translate(league, name)
@@ -65,7 +65,7 @@ class OverUnder < ActiveRecord::Base
       end
     end
 
-    return spread
+    return spread.round(1)
   end
 
   def self.moneyline_to_decimal(moneyline)
