@@ -1,3 +1,7 @@
 json.array!(@rosters) do |roster|
-  json.extract! roster, :id, :players, :notes
+  json.extract! roster, :notes
+
+  json.players do |x|
+    json.partial! 'players', players: roster.players
+  end
 end

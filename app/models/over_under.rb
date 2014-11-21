@@ -114,6 +114,14 @@ class OverUnder < ActiveRecord::Base
     end
   end
 
+  def self.calculate_boost_multiplier(expected_team_score, scores)
+    if (0 == expected_team_score)
+      return 0
+    else
+      return 1 + ((expected_team_score - scores.mean)/scores.mean).round(2)
+    end
+  end
+
   def self.calculate_boost(expected_team_score, scores)
     if (0 == expected_team_score)
       return 0

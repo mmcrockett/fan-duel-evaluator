@@ -2,7 +2,7 @@ class NbaPlayer < FanDuelPlayer
   MAX_GAMES = 10
   MAX_DATES = (MAX_GAMES * 2.2).to_i
 
-  POSITIONS  = ["PG","PG","SG","SG","SF","SF","PF","PF","C"],
+  POSITIONS  = ["PG","PG","SG","SG","SF","SF","PF","PF","C"]
   BUDGET     = 60000
 
   TEAMS_BY_FD_ID = {

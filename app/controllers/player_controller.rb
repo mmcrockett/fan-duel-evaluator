@@ -2,23 +2,21 @@ require 'open-uri'
 
 class PlayerController < ApplicationController
   def index
-    if ("NFL" == params[:league])
-      @players = NflPlayer.player_data(params)
-    elsif (nil != params[:league])
-      @players = FanDuelPlayer.player_data(params)
-    end
+    @players = FanDuelPlayer.player_data(params)
   end
 
   def analysis
     if (nil != params[:league])
       @rosters = Roster.where({:import => Import.latest_by_league(params)})
 
-      @rosters.each do |roster|
-        roster.players = FanDuelPlayer.find(roster.player_ids)
+      if (nil != @rosters)
+        players = FanDuelPlayer.player_data(params)
+      
+        @rosters.each do |roster|
+          roster.players = players.select {|p| roster.player_ids.include?(p.id) }
+        end
       end
     end
-
-    puts "#{@rosters}"
   end
 
   def import

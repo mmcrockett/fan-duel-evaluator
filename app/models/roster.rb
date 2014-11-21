@@ -5,7 +5,8 @@ class Roster < ActiveRecord::Base
   serialize :player_ids, JSON
   attr_accessor :players
 
-  COLUMNS = [:avg, :max, :min, :mean, :med]
+  #COLUMNS = [:avg, :max, :min, :mean, :med]
+  COLUMNS = [:max, :min, :med, :expp]
 
   def self.analyze(league)
     start_time = Time.now

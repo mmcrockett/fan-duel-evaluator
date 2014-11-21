@@ -54,8 +54,8 @@ class NflPlayer < FanDuelPlayer
     end
   end
 
-  def self.player_data(params)
-    players = FanDuelPlayer.player_data(params)
+  def self.get_players(params)
+    players = FanDuelPlayer.get_players(params)
 
     players.each do |player|
       player.dvoa = (Dvoa.adjustment(player.import_id, player.position, player.opponent)).round(2)

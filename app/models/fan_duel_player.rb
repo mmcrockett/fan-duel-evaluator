@@ -4,7 +4,7 @@ require 'open-uri'
 class FanDuelPlayer < ActiveRecord::Base
   belongs_to :import
   serialize :game_data, JSON
-  attr_accessor :team, :pavg, :pcost, :opp, :exp, :max, :min, :med, :mean, :rgms, :value, :rvalue, :pos, :avg, :opponent, :comment
+  attr_accessor :team, :pavg, :pcost, :opp, :exp, :expp, :max, :min, :med, :mean, :rgms, :value, :rvalue, :pos, :avg, :opponent, :comment
 
   PLAYER_DETAIL_URL     = "https://www.fanduel.com/eg/Player/"
   PLAYER_DETAIL_URL_EXT = "/Stats/showLB/"
@@ -22,15 +22,17 @@ class FanDuelPlayer < ActiveRecord::Base
   def comment
     comment = ""
 
-    if ("breaking" == priority)
-      comment = "*"
-    elsif ("recent" == priority)
-      comment = "+"
-    elsif ("old" == priority)
-      comment = "o"
-    end
+    if ("" != self.note)
+      if ("breaking" == priority)
+        comment = "*"
+      elsif ("recent" == priority)
+        comment = "+"
+      elsif ("old" == priority)
+        comment = "o"
+      end
 
-    comment = "#{self.status}#{comment}#{self.note}"
+      comment = "#{self.status}#{comment}#{self.note}"
+    end
 
     return comment
   end
@@ -91,6 +93,10 @@ class FanDuelPlayer < ActiveRecord::Base
 
   def exp
     return @exp || 0
+  end
+
+  def expp
+    return @expp || 0
   end
 
   def value
@@ -240,6 +246,14 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def self.player_data(params = {})
+    if ("NFL" == params[:league])
+      return NflPlayer.get_players(params)
+    elsif (nil != params[:league])
+      return FanDuelPlayer.get_players(params)
+    end
+  end
+
+  def self.get_players(params = {})
     import = Import.latest_by_league(params)
 
     if (nil == import)
@@ -291,16 +305,20 @@ class FanDuelPlayer < ActiveRecord::Base
 
       if (false == overunders[fd_player.team_name].include?(:boost))
         overunders[fd_player.team_name][:boost] = OverUnder.calculate_boost(overunders[fd_player.team_name][:score], scores)
+        overunders[fd_player.team_name][:mult]  = OverUnder.calculate_boost_multiplier(overunders[fd_player.team_name][:score], scores)
       end
 
       if (false == overunders[fd_player.opp].include?(:boost))
         overunders[fd_player.opp][:boost] = OverUnder.calculate_boost(overunders[fd_player.opp][:score], scores)
+        overunders[fd_player.opp][:mult]  = OverUnder.calculate_boost_multiplier(overunders[fd_player.opp][:score], scores)
       end
 
       if ((("D" == fd_player.position) && ("NFL" == import.league)) || (("G" == fd_player.position) && ("NHL" == import.league)))
         fd_player.exp  = -overunders[fd_player.opp][:boost]
+        fd_player.expp = (fd_player.avg * overunders[fd_player.opp][:mult]).round(1)
       else
         fd_player.exp  = overunders[fd_player.team_name][:boost]
+        fd_player.expp = (fd_player.avg * overunders[fd_player.team_name][:mult]).round(1)
       end
 
       players << fd_player

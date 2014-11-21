@@ -1,13 +1,10 @@
 <%= render :partial => "common/nav_bar" %>
 <div ng-controller="AnalysisController">
-  <div ng-init="get_analysis_data()">
-    <div google-chart chart="chart"></div>
+  <%= render :partial => "common/league_selector" %>
+  <div>
+    <div ng-repeat="roster in rosters">
+      <div google-chart chart="roster"></div>
+    </div>
+    <hr>
   </div>
-  <% @rosters.each do |roster| %>
-  <hr>
-    <div><%= roster.notes %></div>
-    <% FanDuelPlayer.sort(roster.players, :pos).each do |player| %>
-    <div><%= player.name %></div>
-    <% end %>
-  <% end %>
 </div>
