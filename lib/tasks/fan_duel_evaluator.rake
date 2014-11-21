@@ -1,7 +1,12 @@
 namespace :fan_duel_evaluator do
   desc "Evaluate the best lineups."
   task(:analyze => :environment) do
-    Roster.analyze("NFL")
+    league = ENV['league']
+    if (nil == league)
+      raise "!ERROR: Usage 'rake fan_duel_evaluator:analys league=NFL."
+    end
+
+    Roster.analyze(league)
   end
 
   desc "Evaluate the best lineups."
