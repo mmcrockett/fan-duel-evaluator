@@ -1,9 +1,9 @@
+class PlayerFinderValidPlayerNotFoundException < Exception
+end
+
 class PlayerFinder
   attr_reader :cost, :average, :players, :budget
   attr_writer :cost, :average, :players
-
-  MAX_COST = 20000
-  MIN_COST = 0
 
   def initialize(sorted_players)
     @by_cost  = {}
@@ -30,7 +30,7 @@ class PlayerFinder
       end
     end
 
-    raise "!ERROR: Unable to find player with parameters."
+    raise PlayerFinderValidPlayerNotFoundException.new("!ERROR: Unable to find player with parameters '#{options}'.")
   end
 
   def find_value(position, options = {})
@@ -51,7 +51,7 @@ class PlayerFinder
       end
     end
 
-    raise "!ERROR: Unable to find player with parameters."
+    raise PlayerFinderValidPlayerNotFoundException.new("!ERROR: Unable to find player with parameters '#{options}'.")
   end
 
   private
@@ -72,7 +72,7 @@ class PlayerFinder
 
   def valid?(player, options)
     if (false == options.include?(:max_cost))
-      options[:max_cost] = MAX_COST
+      options[:max_cost] = @players.values.first.first.class::BUDGET
     end
 
     if (false == options.include?(:exclude))

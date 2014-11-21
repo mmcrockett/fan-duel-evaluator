@@ -6,6 +6,9 @@ class NhlPlayer < FanDuelPlayer
   MAX_GAMES = 10
   MAX_DATES = (MAX_GAMES * 2.2).to_i
 
+  POSITIONS  = ["LW","LW","RW","RW","C","C","D","D","G"]
+  BUDGET     = 55000
+
   STARTING_GOALIE_URI = "http://www2.dailyfaceoff.com/starting-goalies/"
 
   TEAMS_BY_FD_ID = {

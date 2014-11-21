@@ -4,6 +4,9 @@ class NflPlayer < FanDuelPlayer
   MAX_GAMES = 4
   MAX_DATES = MAX_GAMES * 10
 
+  POSITIONS  = ["QB","WR","WR","WR","RB","RB","TE","K","D"]
+  BUDGET     = 60000
+
   TEAMS_BY_FD_ID = {
     1 => "NYJ",
     2 => "MIA",

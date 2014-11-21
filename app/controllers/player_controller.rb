@@ -10,6 +10,15 @@ class PlayerController < ApplicationController
   end
 
   def analysis
+    if (nil != params[:league])
+      @rosters = Roster.where({:import => Import.latest_by_league(params)})
+
+      @rosters.each do |roster|
+        roster.players = FanDuelPlayer.find(roster.player_ids)
+      end
+    end
+
+    puts "#{@rosters}"
   end
 
   def import

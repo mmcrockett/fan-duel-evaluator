@@ -166,7 +166,7 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def self.load_player_details(params = {})
-    import = Import.where({:league => params[:league]}).last
+    import = Import.latest_by_league(params)
     altered_players = []
 
     if ((nil != import) && (nil != import.fd_game_id))
@@ -224,19 +224,23 @@ class FanDuelPlayer < ActiveRecord::Base
   def self.sort(players, sort_column)
     sorted_players = players.sort_by do |p|
       if (0 != p.send(sort_column))
-        p.value = p.cost/p.send(sort_column)
+        if (true == p.send(sort_column).is_a?(Fixnum))
+          p.value = p.cost/p.send(sort_column)
+        else
+          p.value = p.cost/p.avg
+        end
       else
         p.value = INF_VALUE
       end
 
-      -p.send(sort_column)
+      p.send(sort_column)
     end
 
-    return sorted_players
+    return sorted_players.reverse
   end
 
   def self.player_data(params = {})
-    import = Import.where({:league => params[:league]}).last
+    import = Import.latest_by_league(params)
 
     if (nil == import)
       return []
@@ -303,5 +307,9 @@ class FanDuelPlayer < ActiveRecord::Base
     end
 
     return players
+  end
+
+  def to_s
+    return "#{self.name}"
   end
 end

@@ -3,4 +3,11 @@
   <div ng-init="get_analysis_data()">
     <div google-chart chart="chart"></div>
   </div>
+  <% @rosters.each do |roster| %>
+  <hr>
+    <div><%= roster.notes %></div>
+    <% FanDuelPlayer.sort(roster.players, :pos).each do |player| %>
+    <div><%= player.name %></div>
+    <% end %>
+  <% end %>
 </div>
