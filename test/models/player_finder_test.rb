@@ -30,4 +30,14 @@ class PlayerFinderTest < ActiveSupport::TestCase
     assert_equal(2682,n1_wr.id)
     assert_equal(2649,max_cost_wr.id)
   end
+
+  test "no valid player exception" do
+    assert_raise PlayerFinderValidPlayerNotFoundException do |x|
+      @player_finder.find_best("WR", {:max_cost => 0})
+    end
+
+    assert_raise PlayerFinderValidPlayerNotFoundException do |x|
+      @player_finder.find_value("WR", {:max_cost => 0})
+    end
+  end
 end
