@@ -1,7 +1,8 @@
 require 'open-uri'
 
 class NhlPlayer < FanDuelPlayer
-  @@starting_goalies = []
+  @@starting_goalies     = []
+  @@unconfirmed_goalies  = []
 
   MAX_GAMES = 10
   MAX_DATES = (MAX_GAMES * 2.2).to_i
@@ -55,11 +56,15 @@ class NhlPlayer < FanDuelPlayer
       if ("D" == self.position)
         return (1 < self.average)
       elsif ("G" == self.position)
-        if (false == @@starting_goalies.include?(last_name(self.name)))
+        lname = unified_name(self.name)
+        if (false == @@starting_goalies.include?(unified_name(self.name)))
           self.ignore = true
 
           return (6500 <= self.cost)
         else
+          if (true == @@unconfirmed_goalies.include?(unified_name(self.name)))
+            self.note = "?#{self.note}"
+          end
           return true
         end
       else
@@ -68,21 +73,40 @@ class NhlPlayer < FanDuelPlayer
     end
   end
 
+  def unified_name(name)
+    first_name = ""
+    last_name  = ""
+
+    if (true == name.include?(','))
+      first_name = name.split(',')[1].strip
+      last_name  = name.split(',')[0].strip
+    elsif (true == name.include?(' '))
+      first_name = name.split(' ')[0].strip
+      last_name  = name.split(' ')[1].strip
+    else
+      last_name  = name
+    end
+
+    return "#{first_name[0]}#{last_name}"
+  end
+
   private
   def set_starting_goalies
     page = Nokogiri::HTML(open("#{STARTING_GOALIE_URI}"))
     page.css('img.headshot').each do |img_tag|
-      @@starting_goalies << last_name(img_tag['alt'])
+      @@starting_goalies << unified_name(img_tag['alt'])
     end
-  end
+    page.css('script').each do |script_tag|
+      script_text = script_tag.text()
+      if (true == script_text.include?("alt"))
+        end_part  = script_text[script_text.index(" alt=")..-1]
+        name_part = end_part.split('\"', 3)[1]
 
-  def last_name(name)
-    if (true == name.include?(','))
-      return name.split(',')[0]
-    elsif (true == name.include?(' '))
-      return name.split(' ')[1]
-    else
-      return name
+        if (false == @@starting_goalies.include?(unified_name(name_part)))
+          @@starting_goalies    << unified_name(name_part)
+          @@unconfirmed_goalies << unified_name(name_part)
+        end
+      end
     end
   end
 end
