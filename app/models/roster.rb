@@ -72,6 +72,8 @@ class Roster < ActiveRecord::Base
     elsif ((:heavy == strategy) && (i < 2))
       return true
     end
+
+    return false
   end
 
   def players
