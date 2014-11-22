@@ -288,13 +288,6 @@ class FanDuelPlayer < ActiveRecord::Base
     end
 
     klazz.where({:ignore => false, :import => import}).each do |fd_player|
-      #fd_player_previous = FanDuelPlayer.where("import_id != ? AND player_id = ?", import.id, fd_player.player_id).last
-
-      #if (nil != fd_player_previous)
-        #fd_player.pcost = fd_player_previous.cost
-        #fd_player.pavg  = fd_player_previous.average
-      #end
-
       fd_player.team     = fd_player.team_name
 
       if (false == overunders.include?(fd_player.team_name))
@@ -315,10 +308,10 @@ class FanDuelPlayer < ActiveRecord::Base
 
       if ((("D" == fd_player.position) && ("NFL" == import.league)) || (("G" == fd_player.position) && ("NHL" == import.league)))
         fd_player.exp  = -overunders[fd_player.opp][:boost]
-        fd_player.expp = (fd_player.avg * overunders[fd_player.opp][:mult]).round(1)
+        fd_player.expp = (fd_player.med * overunders[fd_player.opp][:mult]).round(1)
       else
         fd_player.exp  = overunders[fd_player.team_name][:boost]
-        fd_player.expp = (fd_player.avg * overunders[fd_player.team_name][:mult]).round(1)
+        fd_player.expp = (fd_player.med * overunders[fd_player.team_name][:mult]).round(1)
       end
 
       players << fd_player
