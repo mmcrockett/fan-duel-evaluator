@@ -63,7 +63,11 @@ app.controller('AnalysisController', ['$scope', 'Leagues', '$window', 'AnalysisD
 
     angular.forEach(total_row, function(v, k) {
       if (true == angular.isNumber(v)) {
-        total_row[k] = +v.toFixed(1);
+        if (-1 != k.indexOf('value')) {
+          total_row[k] = Math.round(v.toFixed(1)/roster.length);
+        } else {
+          total_row[k] = +v.toFixed(1);
+        }
       }
     });
 

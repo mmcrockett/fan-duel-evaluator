@@ -1,3 +1,6 @@
+class SimpleRosterNotFoundException < Exception
+end
+
 class SimpleRosterBudgetException < Exception
 end
 
@@ -64,6 +67,18 @@ class SimpleRoster
       @points  += player.send(@pcolumn)
       @players << player
     end
+
+    return self
+  end
+
+  def delete(player)
+    if (false == @players.include?(player))
+      raise SimpleRosterNotFoundException.new()
+    end
+
+    @players.delete(player)
+    @cost    -= player.cost
+    @points  -= player.send(@pcolumn)
 
     return self
   end

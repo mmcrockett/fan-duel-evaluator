@@ -9,6 +9,7 @@ class Roster < ActiveRecord::Base
   COLUMNS = [:max, :min, :med, :expp]
 
   def self.analyze(league)
+    puts "Start Time: #{Time.now}"
     start_time = Time.now
     strategies = [:xheavy, :heavy, :balanced]
 
@@ -23,6 +24,7 @@ class Roster < ActiveRecord::Base
       best_rosters[sort_column] = nil
       sorted_players = FanDuelPlayer.sort(players, sort_column)
       player_finder  = PlayerFinder.new(sorted_players)
+      post_optimize  = true
 
       position_permutations.each do |position_order|
         rosters = {}
@@ -54,6 +56,29 @@ class Roster < ActiveRecord::Base
             if ((nil == best_rosters[sort_column]) || (roster.points > best_rosters[sort_column].points))
               best_rosters[sort_column] = roster
             end
+          end
+        end
+      end
+
+      while (true == post_optimize)
+        rbudget = best_rosters[sort_column].remaining_budget
+        players = best_rosters[sort_column].players
+
+        players.each_with_index do |best_player, i|
+          begin
+            possible_better_player = player_finder.find_best(best_player.position, {:max_cost => rbudget + best_player.cost, :exclude => players})
+
+            if (possible_better_player.send(sort_column) > best_player.send(sort_column))
+              best_rosters[sort_column].delete(best_player)
+              best_rosters[sort_column] << possible_better_player
+
+              break
+            end
+          rescue PlayerFinderValidPlayerNotFoundException
+          end
+
+          if (i == (players.size - 1))
+            post_optimize = false
           end
         end
       end
