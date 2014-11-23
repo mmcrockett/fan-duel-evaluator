@@ -30,6 +30,30 @@ class SimpleRosterTest < ActiveSupport::TestCase
     assert_equal([@sorted_players.first],sroster.players)
   end
 
+  test "delete_player" do
+    sroster = SimpleRoster.new(@sorted_players.first.class::BUDGET,@max_roster_size)
+    sroster << @sorted_players.first
+    points = sroster.points
+    cost   = sroster.cost
+    rbud   = sroster.remaining_budget
+    rabud  = sroster.remaining_avg_budget
+    sroster << @sorted_players[1]
+
+    assert_not_equal(cost,sroster.cost)
+    assert_not_equal(rbud,sroster.remaining_budget)
+    assert_not_equal(rabud,sroster.remaining_avg_budget)
+    assert_not_equal(points,sroster.points)
+    assert_not_equal([@sorted_players.first],sroster.players)
+    assert_not_equal([@sorted_players.first.id],sroster.player_ids)
+    sroster.delete(@sorted_players[1])
+    assert_equal(cost,sroster.cost)
+    assert_equal(rbud,sroster.remaining_budget)
+    assert_equal(rabud,sroster.remaining_avg_budget)
+    assert_equal(points,sroster.points)
+    assert_equal([@sorted_players.first],sroster.players)
+    assert_equal([@sorted_players.first.id],sroster.player_ids)
+  end
+
   test "player ids" do
     sroster = SimpleRoster.new(@sorted_players.first.class::BUDGET,@max_roster_size)
     player_ids = []
@@ -79,6 +103,16 @@ class SimpleRosterTest < ActiveSupport::TestCase
     assert_raise SimpleRosterDuplicateException do |x|
       sroster << @sorted_players.first
       sroster << @sorted_players.first
+    end
+  end
+
+  test "fail_delete_player" do
+    sroster = SimpleRoster.new(@sorted_players.first.class::BUDGET,@max_roster_size)
+
+    assert_raise SimpleRosterNotFoundException do |x|
+      sroster << @sorted_players[0]
+      sroster << @sorted_players[1]
+      sroster.delete(@sorted_players[2])
     end
   end
 end
