@@ -227,22 +227,28 @@ class FanDuelPlayer < ActiveRecord::Base
     end
   end
 
-  def self.sort(players, sort_column)
+  def self.sort(players, sort_column, ascending = nil)
     sorted_players = players.sort_by do |p|
-      if (0 != p.send(sort_column))
-        if (true == p.send(sort_column).is_a?(Fixnum))
-          p.value = p.cost/p.send(sort_column)
-        else
-          p.value = p.cost/p.avg
-        end
+      if ((0 != p.send(sort_column)) && (true == p.send(sort_column).is_a?(Numeric)))
+        p.value = p.cost/p.send(sort_column)
+      elsif ((0 != p.avg) && (false == p.send(sort_column).is_a?(Numeric)))
+        p.value = p.cost/p.avg
       else
         p.value = INF_VALUE
+      end
+
+      if ((nil == ascending) && (true == p.send(sort_column).is_a?(Numeric)))
+        ascending = false
       end
 
       p.send(sort_column)
     end
 
-    return sorted_players.reverse
+    if (false == ascending)
+      return sorted_players.reverse
+    else
+      return sorted_players
+    end
   end
 
   def self.player_data(params = {})
@@ -261,31 +267,9 @@ class FanDuelPlayer < ActiveRecord::Base
     end
 
     klazz = FanDuelPlayer.factory(import)
+    overunders = OverUnder.get_expected_scores(import)
 
     players = []
-    scores  = []
-    overunders = {}
-
-    OverUnder.where({:import => import}).each do |overunder|
-      home    = OverUnder.translate(import.league, overunder[:home])
-      visitor = OverUnder.translate(import.league, overunder[:visitor])
-
-      if (overunder[:overunder] > overunder[:home_spread].abs)
-        h_score = (overunder[:overunder] - overunder[:home_spread])/2
-      else
-        p_win   = OverUnder.moneyline_to_decimal(overunder[:home_spread])
-        h_score = (overunder[:overunder]*p_win).round(2)
-      end
-
-      v_score = (overunder[:overunder] - h_score)
-      overunders[home] = {:opp => visitor, :score => h_score}
-      overunders[visitor] = {:opp => home, :score => v_score}
-
-      if (0 != overunder[:overunder])
-        scores << h_score
-        scores << v_score
-      end
-    end
 
     klazz.where({:ignore => false, :import => import}).each do |fd_player|
       fd_player.team     = fd_player.team_name
@@ -297,13 +281,13 @@ class FanDuelPlayer < ActiveRecord::Base
       end
 
       if (false == overunders[fd_player.team_name].include?(:boost))
-        overunders[fd_player.team_name][:boost] = OverUnder.calculate_boost(overunders[fd_player.team_name][:score], scores)
-        overunders[fd_player.team_name][:mult]  = OverUnder.calculate_boost_multiplier(overunders[fd_player.team_name][:score], scores)
+        overunders[fd_player.team_name][:boost] = OverUnder.calculate_boost(overunders[fd_player.team_name][:score], overunders[:scores])
+        overunders[fd_player.team_name][:mult]  = OverUnder.calculate_boost_multiplier(overunders[fd_player.team_name][:score], overunders[:scores])
       end
 
       if (false == overunders[fd_player.opp].include?(:boost))
-        overunders[fd_player.opp][:boost] = OverUnder.calculate_boost(overunders[fd_player.opp][:score], scores)
-        overunders[fd_player.opp][:mult]  = OverUnder.calculate_boost_multiplier(overunders[fd_player.opp][:score], scores)
+        overunders[fd_player.opp][:boost] = OverUnder.calculate_boost(overunders[fd_player.opp][:score], overunders[:scores])
+        overunders[fd_player.opp][:mult]  = OverUnder.calculate_boost_multiplier(overunders[fd_player.opp][:score], overunders[:scores])
       end
 
       if ((("D" == fd_player.position) && ("NFL" == import.league)) || (("G" == fd_player.position) && ("NHL" == import.league)))
