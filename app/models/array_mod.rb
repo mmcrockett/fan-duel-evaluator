@@ -46,9 +46,16 @@ class Array
   end
 
   def median
-    if (0 != self.size)
-      i = (self.size/2).to_i
-      return self.sort[i]
+    if ((0 != self.size) && (true == self.first.is_a?(Numeric)))
+      sorted = self.sort
+
+      if (true == sorted.size.even?())
+        i = sorted.size/2
+        j = i - 1
+        return (sorted[i] + sorted[j])/2
+      else
+        return sorted[(sorted.size-1)/2]
+      end
     else
       return 0
     end
