@@ -115,18 +115,45 @@ class OverUnder < ActiveRecord::Base
   end
 
   def self.calculate_boost_multiplier(expected_team_score, scores)
-    if (0 == expected_team_score)
-      return 0
-    else
-      return 1 + ((expected_team_score - scores.mean)/scores.mean).round(2)
-    end
+    return (1 + self.multiplier(expected_team_score, scores)).round(3)
   end
 
   def self.calculate_boost(expected_team_score, scores)
-    if (0 == expected_team_score)
+    return (self.multiplier(expected_team_score, scores)*100).round()
+  end
+
+  def self.multiplier(score, scores)
+    if (0 == score)
       return 0
     else
-      return (((expected_team_score - scores.mean)/scores.mean)*100).round()
+      return ((score - scores.mean)/scores.mean)
     end
+  end
+
+  def self.get_expected_scores(import)
+    overunders = {:scores => []}
+
+    OverUnder.where({:import => import}).each do |overunder|
+      home    = OverUnder.translate(import.league, overunder.home)
+      visitor = OverUnder.translate(import.league, overunder.visitor)
+
+      if (overunder.overunder > overunder.home_spread.abs)
+        h_score = (overunder.overunder - overunder.home_spread)/2
+      else
+        p_win   = OverUnder.moneyline_to_decimal(overunder.home_spread)
+        h_score = (overunder.overunder*p_win).round(2)
+      end
+
+      v_score = (overunder.overunder - h_score)
+      overunders[home]    = {:opp => visitor, :score => h_score}
+      overunders[visitor] = {:opp => home,    :score => v_score}
+
+      if (0 != overunder.overunder)
+        overunders[:scores] << h_score
+        overunders[:scores] << v_score
+      end
+    end
+
+    return overunders
   end
 end
