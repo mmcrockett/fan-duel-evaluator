@@ -3,7 +3,7 @@ require 'test_helper'
 class SimpleRosterTest < ActiveSupport::TestCase
   def setup
     players = FanDuelPlayer.player_data({:league => "NFL"})
-    @sorted_players = FanDuelPlayer.sort(players, :avg)
+    @sorted_players  = FanDuelPlayer.sort(players, :avg)
     @max_roster_size = @sorted_players.first.class::POSITIONS.size
   end
 
