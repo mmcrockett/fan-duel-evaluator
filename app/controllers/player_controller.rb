@@ -7,7 +7,7 @@ class PlayerController < ApplicationController
 
   def analysis
     if (nil != params[:league])
-      @rosters = Roster.where({:import => Import.latest_by_league(params)})
+      @rosters = Roster.where({:import => Import.latest_by_league(params), :ignore => false})
 
       if (nil != @rosters)
         players = FanDuelPlayer.player_data(params)
