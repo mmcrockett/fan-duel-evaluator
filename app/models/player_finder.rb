@@ -30,7 +30,7 @@ class PlayerFinder
       end
     end
 
-    raise PlayerFinderValidPlayerNotFoundException.new("!ERROR: Unable to find player with parameters '#{options}'.")
+    raise_exception(position, options)
   end
 
   def find_value(position, options = {})
@@ -51,7 +51,7 @@ class PlayerFinder
       end
     end
 
-    raise PlayerFinderValidPlayerNotFoundException.new("!ERROR: Unable to find player with parameters '#{options}'.")
+    raise_exception(position, options)
   end
 
   private
@@ -80,5 +80,14 @@ class PlayerFinder
     end
 
     return ((options[:max_cost] >= player.cost) && (false == options[:exclude].include?(player)))
+  end
+
+  def raise_exception(position, options)
+    err_str  = "!ERROR: Unable to find player for '#{position}' with params "
+    err_str += "'#{options[:max_cost]}'"
+    options[:exclude].each do |p|
+      err_str += " '#{p.position}:#{p.name}:#{p.cost}' "
+    end
+    raise PlayerFinderValidPlayerNotFoundException.new(err_str)
   end
 end

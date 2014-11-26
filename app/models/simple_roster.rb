@@ -36,7 +36,7 @@ class SimpleRoster
   end
 
   def dup
-    my_clone = SimpleRoster.new(self.budget) 
+    my_clone = SimpleRoster.new(@budget, @max_roster_size, @pcolumn)
 
     my_clone.cost    = self.cost
     my_clone.points  = self.points
@@ -73,7 +73,7 @@ class SimpleRoster
 
   def delete(player)
     if (false == @players.include?(player))
-      raise SimpleRosterNotFoundException.new()
+      raise SimpleRosterNotFoundException.new("Unable to delete '#{player.name}' in '#{@players}'.")
     end
 
     @players.delete(player)
