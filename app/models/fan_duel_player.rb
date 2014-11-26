@@ -64,7 +64,7 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def med
-    return self.game_data.median || 0
+    return self.game_data.median.round(1) || 0
   end
 
   def mean
@@ -292,7 +292,7 @@ class FanDuelPlayer < ActiveRecord::Base
 
       if ((("D" == fd_player.position) && ("NFL" == import.league)) || (("G" == fd_player.position) && ("NHL" == import.league)))
         fd_player.exp  = -overunders[fd_player.opp][:boost]
-        fd_player.expp = (fd_player.med * overunders[fd_player.opp][:mult]).round(1)
+        fd_player.expp = (fd_player.med * (1/overunders[fd_player.opp][:mult])).round(1)
       else
         fd_player.exp  = overunders[fd_player.team_name][:boost]
         fd_player.expp = (fd_player.med * overunders[fd_player.team_name][:mult]).round(1)

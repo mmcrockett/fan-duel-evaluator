@@ -105,7 +105,7 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
   test "expp" do
     players = FanDuelPlayer.player_data({:league => "NFL"})
 
-    pmanning_exp_median = (23.82 + 28.62)/2
+    pmanning_exp_median = ((23.82 + 28.62)/2).round(1)
 
     pmanning = (players.select {|p| p.id == 2625}).first
     ajgreen  = (players.select {|p| p.id == 2650}).first
