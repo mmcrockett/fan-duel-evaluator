@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117175812) do
+ActiveRecord::Schema.define(version: 20141126170207) do
 
   create_table "dvoas", force: true do |t|
     t.string   "team"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20141117175812) do
     t.string   "player_ids"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "ignore",     default: false
   end
 
   add_index "rosters", ["import_id"], name: "index_rosters_on_import_id"
