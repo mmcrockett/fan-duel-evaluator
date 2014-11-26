@@ -66,6 +66,40 @@ class SimpleRosterTest < ActiveSupport::TestCase
     assert_equal(player_ids, sroster.player_ids)
   end
 
+  test "dup" do
+    sroster = SimpleRoster.new(@sorted_players.first.class::BUDGET,@max_roster_size)
+
+    @max_roster_size.times do |i|
+      sroster << @sorted_players[-i]
+    end
+
+    droster = sroster.dup
+
+    assert_equal(sroster.cost, droster.cost)
+    assert_equal(sroster.points, droster.points)
+    assert_equal(sroster.player_ids, droster.player_ids)
+    assert_equal(sroster.pcolumn, droster.pcolumn)
+    assert_equal(sroster.budget, droster.budget)
+
+    players = droster.players.dup
+
+    players.each do |p|
+      droster.delete(p)
+    end
+
+    assert_equal(0, droster.cost)
+    assert_equal(0, droster.points)
+    assert_equal([], droster.player_ids)
+    assert_equal(sroster.pcolumn, droster.pcolumn)
+    assert_equal(sroster.budget, droster.budget)
+
+    assert_not_equal(0, sroster.cost)
+    assert_not_equal(0, sroster.points)
+    assert_not_equal([], sroster.player_ids)
+    assert_equal(sroster.pcolumn, droster.pcolumn)
+    assert_equal(sroster.budget, droster.budget)
+  end
+
   test "complete?" do
     sroster = SimpleRoster.new(@sorted_players.first.class::BUDGET,@max_roster_size)
 
