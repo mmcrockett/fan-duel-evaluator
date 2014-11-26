@@ -1,4 +1,4 @@
-app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData', 'JsLiteral', '$filter', function($scope, Leagues, $window, PlayerData, JsLiteral, $filter) {
+app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData', 'Roster', 'JsLiteral', '$filter', function($scope, Leagues, $window, PlayerData, Roster, JsLiteral, $filter) {
   $scope.league_changed = false;
   $scope.leagues = Leagues.options;
   $scope.selectedLeague = "NONE";
@@ -191,38 +191,7 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
     }
   };
   $scope.calculate_roster = function() {
-    var total_row = {};
-    var ignore_columns = ["id"];
-    $scope.roster = $filter('filter')($scope.roster, {name: "!Totals"}, true);
-    $scope.roster = $filter('orderBy')($scope.roster, 'pos', true);
-
-    angular.forEach($scope.roster, function(player, i) {
-      angular.forEach(player, function(v, k) {
-        if (0 == i) {
-          if ("name" == k) {
-            total_row[k] = "Totals";
-          } else if ("id" == k) {
-            total_row[k] = 0;
-          } else if (true == angular.isNumber(v)) {
-            total_row[k] = 0;
-          } else if (true == angular.isString(v)) {
-            total_row[k] = "";
-          }
-        }
-
-        if ((true == angular.isNumber(v)) && (-1 == ignore_columns.indexOf(k))) {
-          total_row[k] += v;
-        }
-      });
-    });
-
-    angular.forEach(total_row, function(v, k) {
-      if (true == angular.isNumber(v)) {
-        total_row[k] = +v.toFixed(1);
-      }
-    });
-
-    $scope.roster.push(total_row);
+    $scope.roster = Roster.create_roster($scope.selectedLeague, $scope.roster, "");
     $scope.create_roster_chart();
     $scope.update_chart_columns($scope.roster, $scope.roster_chart);
   };
@@ -238,6 +207,7 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
             $scope.select_player_data();
             if (true == $scope.league_changed) {
               $scope.build_positions();
+              $scope.calculate_roster();
               $scope.league_changed = false;
             }
           },

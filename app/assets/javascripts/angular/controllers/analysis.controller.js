@@ -1,4 +1,4 @@
-app.controller('AnalysisController', ['$scope', 'Leagues', '$window', 'AnalysisData', 'JsLiteral', '$filter', function($scope, Leagues, $window, AnalysisData, JsLiteral, $filter) {
+app.controller('AnalysisController', ['$scope', 'Leagues', '$window', 'AnalysisData', 'Roster', 'JsLiteral', '$filter', function($scope, Leagues, $window, AnalysisData, Roster, JsLiteral, $filter) {
   $scope.leagues = Leagues.options;
   $scope.selectedLeague = "NONE";
   $scope.rosters = [];
@@ -19,7 +19,7 @@ app.controller('AnalysisController', ['$scope', 'Leagues', '$window', 'AnalysisD
                   sortAscending: false
                 }
               };
-              var data = $scope.calculate_roster(v[i].players, v[i].notes);
+              var data = Roster.create_roster($scope.selectedLeague, v[i].players, v[i].notes);
               chart.data = JsLiteral.get_chart_data(data);
               $scope.update_chart_columns(data, chart);
               $scope.rosters.push(chart);
@@ -35,45 +35,6 @@ app.controller('AnalysisController', ['$scope', 'Leagues', '$window', 'AnalysisD
   };
   $scope.select_league = function() {
     $scope.get_rosters();
-  };
-  $scope.calculate_roster = function(roster, name) {
-    var total_row = {};
-    var ignore_columns = ["id"];
-    roster = $filter('orderBy')(roster, 'pos', true);
-
-    angular.forEach(roster, function(player, i) {
-      angular.forEach(player, function(v, k) {
-        if (0 == i) {
-          if ("name" == k) {
-            total_row[k] = "Totals (" + name + ")";
-          } else if ("id" == k) {
-            total_row[k] = 0;
-          } else if (true == angular.isNumber(v)) {
-            total_row[k] = 0;
-          } else if (true == angular.isString(v)) {
-            total_row[k] = "";
-          }
-        }
-
-        if ((true == angular.isNumber(v)) && (-1 == ignore_columns.indexOf(k))) {
-          total_row[k] += v;
-        }
-      });
-    });
-
-    angular.forEach(total_row, function(v, k) {
-      if (true == angular.isNumber(v)) {
-        if (-1 != k.indexOf('value')) {
-          total_row[k] = Math.round(v.toFixed(1)/roster.length);
-        } else {
-          total_row[k] = +v.toFixed(1);
-        }
-      }
-    });
-
-    roster.push(total_row);
-
-    return roster;
   };
   $scope.update_chart_columns = function(data, chart) {
     var i = 0;
