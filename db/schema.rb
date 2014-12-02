@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126170207) do
+ActiveRecord::Schema.define(version: 20141201214828) do
 
   create_table "dvoas", force: true do |t|
     t.string   "team"
@@ -50,6 +50,18 @@ ActiveRecord::Schema.define(version: 20141126170207) do
     t.datetime "updated_at"
     t.integer  "fd_game_id"
   end
+
+  create_table "nhl_standings", force: true do |t|
+    t.string   "team"
+    t.integer  "import_id"
+    t.integer  "games"
+    t.integer  "goals_scored"
+    t.integer  "goals_allowed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "nhl_standings", ["import_id"], name: "index_nhl_standings_on_import_id"
 
   create_table "over_unders", force: true do |t|
     t.decimal  "overunder",   precision: 4, scale: 1, null: false

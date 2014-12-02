@@ -1,0 +1,270 @@
+nhl_standings_035:
+  id: 35
+  team: Tampa Bay
+  import_id: -1
+  games: 24
+  goals_scored: 85
+  goals_allowed: 64
+  created_at: '2014-12-01 22:32:57.316897'
+  updated_at: '2014-12-01 22:32:57.316897'
+nhl_standings_036:
+  id: 36
+  team: Montreal
+  import_id: -1
+  games: 25
+  goals_scored: 65
+  goals_allowed: 63
+  created_at: '2014-12-01 22:32:57.320480'
+  updated_at: '2014-12-01 22:32:57.320480'
+nhl_standings_037:
+  id: 37
+  team: Detroit
+  import_id: -1
+  games: 24
+  goals_scored: 74
+  goals_allowed: 61
+  created_at: '2014-12-01 22:32:57.322711'
+  updated_at: '2014-12-01 22:32:57.322711'
+nhl_standings_038:
+  id: 38
+  team: Boston
+  import_id: -1
+  games: 24
+  goals_scored: 61
+  goals_allowed: 58
+  created_at: '2014-12-01 22:32:57.324868'
+  updated_at: '2014-12-01 22:32:57.324868'
+nhl_standings_039:
+  id: 39
+  team: Toronto
+  import_id: -1
+  games: 23
+  goals_scored: 76
+  goals_allowed: 69
+  created_at: '2014-12-01 22:32:57.327115'
+  updated_at: '2014-12-01 22:32:57.327115'
+nhl_standings_040:
+  id: 40
+  team: Florida
+  import_id: -1
+  games: 21
+  goals_scored: 45
+  goals_allowed: 53
+  created_at: '2014-12-01 22:32:57.329170'
+  updated_at: '2014-12-01 22:32:57.329170'
+nhl_standings_041:
+  id: 41
+  team: Ottawa
+  import_id: -1
+  games: 23
+  goals_scored: 61
+  goals_allowed: 63
+  created_at: '2014-12-01 22:32:57.331328'
+  updated_at: '2014-12-01 22:32:57.331328'
+nhl_standings_042:
+  id: 42
+  team: Buffalo
+  import_id: -1
+  games: 24
+  goals_scored: 43
+  goals_allowed: 76
+  created_at: '2014-12-01 22:32:57.333476'
+  updated_at: '2014-12-01 22:32:57.333476'
+nhl_standings_043:
+  id: 43
+  team: Pittsburgh
+  import_id: -1
+  games: 23
+  goals_scored: 81
+  goals_allowed: 55
+  created_at: '2014-12-01 22:32:57.335714'
+  updated_at: '2014-12-01 22:32:57.335714'
+nhl_standings_044:
+  id: 44
+  team: NY Islanders
+  import_id: -1
+  games: 24
+  goals_scored: 77
+  goals_allowed: 65
+  created_at: '2014-12-01 22:32:57.337767'
+  updated_at: '2014-12-01 22:32:57.337767'
+nhl_standings_045:
+  id: 45
+  team: NY Rangers
+  import_id: -1
+  games: 23
+  goals_scored: 68
+  goals_allowed: 64
+  created_at: '2014-12-01 22:32:57.339576'
+  updated_at: '2014-12-01 22:32:57.339576'
+nhl_standings_046:
+  id: 46
+  team: Washington
+  import_id: -1
+  games: 23
+  goals_scored: 65
+  goals_allowed: 65
+  created_at: '2014-12-01 22:32:57.341501'
+  updated_at: '2014-12-01 22:32:57.341501'
+nhl_standings_047:
+  id: 47
+  team: New Jersey
+  import_id: -1
+  games: 24
+  goals_scored: 58
+  goals_allowed: 71
+  created_at: '2014-12-01 22:32:57.343494'
+  updated_at: '2014-12-01 22:32:57.343494'
+nhl_standings_048:
+  id: 48
+  team: Philadelphia
+  import_id: -1
+  games: 23
+  goals_scored: 61
+  goals_allowed: 74
+  created_at: '2014-12-01 22:32:57.345376'
+  updated_at: '2014-12-01 22:32:57.345376'
+nhl_standings_049:
+  id: 49
+  team: Carolina
+  import_id: -1
+  games: 23
+  goals_scored: 54
+  goals_allowed: 68
+  created_at: '2014-12-01 22:32:57.347333'
+  updated_at: '2014-12-01 22:32:57.347333'
+nhl_standings_050:
+  id: 50
+  team: Columbus
+  import_id: -1
+  games: 23
+  goals_scored: 52
+  goals_allowed: 83
+  created_at: '2014-12-01 22:32:57.349138'
+  updated_at: '2014-12-01 22:32:57.349138'
+nhl_standings_051:
+  id: 51
+  team: Nashville
+  import_id: -1
+  games: 23
+  goals_scored: 64
+  goals_allowed: 46
+  created_at: '2014-12-01 22:32:57.351156'
+  updated_at: '2014-12-01 22:32:57.351156'
+nhl_standings_052:
+  id: 52
+  team: St. Louis
+  import_id: -1
+  games: 24
+  goals_scored: 66
+  goals_allowed: 51
+  created_at: '2014-12-01 22:32:57.353029'
+  updated_at: '2014-12-01 22:32:57.353029'
+nhl_standings_053:
+  id: 53
+  team: Chicago
+  import_id: -1
+  games: 24
+  goals_scored: 74
+  goals_allowed: 48
+  created_at: '2014-12-01 22:32:57.354842'
+  updated_at: '2014-12-01 22:32:57.354842'
+nhl_standings_054:
+  id: 54
+  team: Winnipeg
+  import_id: -1
+  games: 25
+  goals_scored: 52
+  goals_allowed: 56
+  created_at: '2014-12-01 22:32:57.356731'
+  updated_at: '2014-12-01 22:32:57.356731'
+nhl_standings_055:
+  id: 55
+  team: Minnesota
+  import_id: -1
+  games: 23
+  goals_scored: 65
+  goals_allowed: 55
+  created_at: '2014-12-01 22:32:57.358600'
+  updated_at: '2014-12-01 22:32:57.358600'
+nhl_standings_056:
+  id: 56
+  team: Dallas
+  import_id: -1
+  games: 24
+  goals_scored: 70
+  goals_allowed: 84
+  created_at: '2014-12-01 22:32:57.360400'
+  updated_at: '2014-12-01 22:32:57.360400'
+nhl_standings_057:
+  id: 57
+  team: Colorado
+  import_id: -1
+  games: 24
+  goals_scored: 64
+  goals_allowed: 75
+  created_at: '2014-12-01 22:32:57.362217'
+  updated_at: '2014-12-01 22:32:57.362217'
+nhl_standings_058:
+  id: 58
+  team: Vancouver
+  import_id: -1
+  games: 24
+  goals_scored: 75
+  goals_allowed: 66
+  created_at: '2014-12-01 22:32:57.364153'
+  updated_at: '2014-12-01 22:32:57.364153'
+nhl_standings_059:
+  id: 59
+  team: Anaheim
+  import_id: -1
+  games: 25
+  goals_scored: 68
+  goals_allowed: 66
+  created_at: '2014-12-01 22:32:57.366021'
+  updated_at: '2014-12-01 22:32:57.366021'
+nhl_standings_060:
+  id: 60
+  team: Calgary
+  import_id: -1
+  games: 25
+  goals_scored: 78
+  goals_allowed: 64
+  created_at: '2014-12-01 22:32:57.367858'
+  updated_at: '2014-12-01 22:32:57.367858'
+nhl_standings_061:
+  id: 61
+  team: Los Angeles
+  import_id: -1
+  games: 24
+  goals_scored: 65
+  goals_allowed: 57
+  created_at: '2014-12-01 22:32:57.369802'
+  updated_at: '2014-12-01 22:32:57.369802'
+nhl_standings_062:
+  id: 62
+  team: San Jose
+  import_id: -1
+  games: 25
+  goals_scored: 68
+  goals_allowed: 70
+  created_at: '2014-12-01 22:32:57.371806'
+  updated_at: '2014-12-01 22:32:57.371806'
+nhl_standings_063:
+  id: 63
+  team: Arizona
+  import_id: -1
+  games: 24
+  goals_scored: 57
+  goals_allowed: 74
+  created_at: '2014-12-01 22:32:57.373744'
+  updated_at: '2014-12-01 22:32:57.373744'
+nhl_standings_064:
+  id: 64
+  team: Edmonton
+  import_id: -1
+  games: 24
+  goals_scored: 54
+  goals_allowed: 82
+  created_at: '2014-12-01 22:32:57.375771'
+  updated_at: '2014-12-01 22:32:57.375771'

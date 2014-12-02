@@ -30,6 +30,8 @@ class PlayerController < ApplicationController
     if ("NFL" == @import.league)
       Yahoo.load(@import.id)
       Dvoa.load(@import.id)
+    elsif ("NHL" == @import.league)
+      NhlStandings.load(@import.id)
     end
 
     OverUnder.load(@import)

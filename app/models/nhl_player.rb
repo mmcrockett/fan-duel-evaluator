@@ -57,12 +57,12 @@ class NhlPlayer < FanDuelPlayer
         return (1 < self.average)
       elsif ("G" == self.position)
         lname = unified_name(self.name)
-        if (false == @@starting_goalies.include?(unified_name(self.name)))
+        if (false == @@starting_goalies.include?(lname))
           self.ignore = true
 
           return (6500 <= self.cost)
         else
-          if (true == @@unconfirmed_goalies.include?(unified_name(self.name)))
+          if (true == @@unconfirmed_goalies.include?(lname))
             self.note = "?#{self.note}"
           end
           return true
@@ -88,6 +88,26 @@ class NhlPlayer < FanDuelPlayer
     end
 
     return "#{first_name[0]}#{last_name}"
+  end
+
+  def exp
+    if (true == self.goalie?())
+      return -(NhlStandings.goals_scored_exp(self.opp) * 10).round
+    else
+      return (NhlStandings.goals_allowed_exp(self.opp) * 10).round
+    end
+  end
+
+  def expp
+    if (true == self.goalie?())
+      return (self.med * (1 + -NhlStandings.goals_scored_exp(self.opp)/10)).round(1)
+    else
+      return (self.med * (1 + NhlStandings.goals_allowed_exp(self.opp)/10)).round(1)
+    end
+  end
+
+  def goalie?
+    return ("G" == self.position)
   end
 
   private
