@@ -2,11 +2,21 @@ namespace :fan_duel_evaluator do
   desc "Evaluate the best lineups."
   task(:analyze => :environment) do
     league = ENV['league']
+    unique = ENV['unique']
+
     if (nil == league)
       raise "!ERROR: Usage 'rake fan_duel_evaluator:analys league=NFL."
     end
 
-    Roster.analyze(league)
+    if (nil != unique)
+      unique = true
+    else
+      unique = false
+    end
+
+    puts "Unique setting is '#{unique}'."
+
+    Roster.analyze(league, unique)
   end
 
   desc "Evaluate the best lineups."
