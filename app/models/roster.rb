@@ -7,9 +7,9 @@ class Roster < ActiveRecord::Base
 
   #COLUMNS = [:avg, :max, :min, :mean, :med]
   #COLUMNS = [:max, :min, :med, :expp]
-  COLUMNS = [:med, :expp]
+  COLUMNS = [:med, :mean, :expp]
 
-  def self.analyze(league)
+  def self.analyze(league, unique = false)
     puts "Start Time: #{Time.now}"
     start_time = Time.now
     players    = FanDuelPlayer.player_data({:league => league})
@@ -17,7 +17,7 @@ class Roster < ActiveRecord::Base
     positions  = players.first.class::POSITIONS
     budget     = players.first.class::BUDGET
 
-    best_rosters = Roster.get_best_rosters(players, positions, budget, COLUMNS)
+    best_rosters = Roster.get_best_rosters(players, positions, budget, COLUMNS, unique)
 
     best_rosters.each_pair do |name, roster|
       if (true == roster.is_a?(SimpleRoster))
@@ -30,7 +30,7 @@ class Roster < ActiveRecord::Base
     puts "Exec Time: #{Time.now - start_time}"
   end
 
-  def self.get_best_rosters(players, positions, budget, columns)
+  def self.get_best_rosters(players, positions, budget, columns, unique = false)
     strategies = [:xheavy, :heavy, :valuebalanced, :bestbalanced, :balanced]
     position_permutations = positions.permutation(positions.size).to_a
 
@@ -98,11 +98,15 @@ class Roster < ActiveRecord::Base
           end
         end
       end
-    end
 
-    best_rosters.each_pair do |scolumn, rosters|
-      rosters.each_pair do |strategy, roster|
-        return_rosters[scolumn] = Roster.best(return_rosters[scolumn], roster)
+      best_rosters.each_pair do |scolumn, rosters|
+        rosters.each_pair do |strategy, roster|
+          return_rosters[scolumn] = Roster.best(return_rosters[scolumn], roster)
+        end
+      end
+
+      if (true == unique)
+        players = players - return_rosters[sort_column].players
       end
     end
 

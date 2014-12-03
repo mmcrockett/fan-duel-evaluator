@@ -3,13 +3,13 @@ require 'open-uri'
 class NhlStandingsException < Exception
 end
 
+class NhlStandingsNotInitializedException < Exception
+end
+
 class NhlStandings < ActiveRecord::Base
   belongs_to :import
 
-  @@gf    = []
-  @@ga    = []
-  @@games = 0
-  @@data  = {}
+  @@import_id = nil
   @@gfa   = {}
   @@gaa   = {}
 
@@ -64,13 +64,13 @@ class NhlStandings < ActiveRecord::Base
   end
 
   def self.data(import_id)
-    NhlStandings.where("import_id = ?", import_id).each do |standing|
-      @@gf << standing.goals_scored
-      @@ga << standing.goals_allowed
-      @@games += standing.games
-      @@data[NhlStandings.team_conversion(standing.team)] = standing
-      @@gfa[NhlStandings.team_conversion(standing.team)] = standing.goals_scored.to_f/standing.games
-      @@gaa[NhlStandings.team_conversion(standing.team)] = standing.goals_allowed.to_f/standing.games
+    if (@@import_id != import_id)
+      NhlStandings.where("import_id = ?", import_id).each do |standing|
+        @@gfa[NhlStandings.team_conversion(standing.team)] = standing.goals_scored.to_f/standing.games
+        @@gaa[NhlStandings.team_conversion(standing.team)] = standing.goals_allowed.to_f/standing.games
+      end
+
+      @@import_id = import_id
     end
   end
 
@@ -83,14 +83,26 @@ class NhlStandings < ActiveRecord::Base
   end
 
   def self.goals_scored_exp(team)
+    if (nil == @@import_id)
+      raise NhlStandingsNotInitializedException.new("!ERROR: Not initialized.")
+    end
+
     return (NhlStandings.goals_scored_avg(team) - NhlStandings.goals_scored_avg)/Math.sqrt(@@gfa.values.variance)
   end
 
   def self.goals_allowed_exp(team)
+    if (nil == @@import_id)
+      raise NhlStandingsNotInitializedException.new("!ERROR: Not initialized.")
+    end
+
     return (NhlStandings.goals_allowed_avg(team) - NhlStandings.goals_allowed_avg)/Math.sqrt(@@gaa.values.variance)
   end
 
   def self.goals_allowed_avg(team = nil)
+    if (nil == @@import_id)
+      raise NhlStandingsNotInitializedException.new("!ERROR: Not initialized.")
+    end
+
     if (nil == team)
       return @@gaa.values.mean
     else
@@ -103,6 +115,10 @@ class NhlStandings < ActiveRecord::Base
   end
 
   def self.goals_scored_avg(team = nil)
+    if (nil == @@import_id)
+      raise NhlStandingsNotInitializedException.new("!ERROR: Not initialized.")
+    end
+
     if (nil == team)
       return @@gfa.values.mean
     else
@@ -110,18 +126,6 @@ class NhlStandings < ActiveRecord::Base
         raise NhlStandingsException.new("!ERROR: Couldn't find '#{team}' in '#{@@gfa.keys}'.")
       else
         return @@gfa[team]
-      end
-    end
-  end
-
-  def self.games(team = nil)
-    if (nil == team)
-      return @@games
-    else
-      if (false == @@data.include?(team))
-        raise NhlStandingsException.new("!ERROR: Couldn't find '#{team}' in '#{@@data.keys}'.")
-      else
-        return @@data[team].games
       end
     end
   end

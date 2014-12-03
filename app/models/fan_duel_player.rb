@@ -130,6 +130,8 @@ class FanDuelPlayer < ActiveRecord::Base
       klazz = NhlPlayer
     elsif ("NBA" == import.league)
       klazz = NbaPlayer
+    elsif ("CBB" == import.league)
+      klazz = CollegeBasketballPlayer
     else
       raise "!ERROR: league type is unknown '#{import}'."
     end
@@ -274,11 +276,21 @@ class FanDuelPlayer < ActiveRecord::Base
     klazz.where({:ignore => false, :import => import}).each do |fd_player|
       fd_player.team     = fd_player.team_name
 
-      if (false == overunders.include?(fd_player.team_name))
-        raise "!ERROR: OverUnder not defined for '#{fd_player.team_name}'."
-      else
-        fd_player.opp = overunders[fd_player.team_name][:opp]
+      if ("CBB" != import.league)
+        FanDuelPlayer.process_overunder(fd_player, overunders, import)
       end
+
+      players << fd_player
+    end
+
+    return players
+  end
+
+  def self.process_overunder(fd_player, overunders, import)
+    if (false == overunders.include?(fd_player.team_name))
+      raise "!ERROR: OverUnder not defined for '#{fd_player.team_name}'."
+    else
+      fd_player.opp = overunders[fd_player.team_name][:opp]
 
       if (false == overunders[fd_player.team_name].include?(:boost))
         overunders[fd_player.team_name][:boost] = OverUnder.calculate_boost(overunders[fd_player.team_name][:score], overunders[:scores])
@@ -297,11 +309,7 @@ class FanDuelPlayer < ActiveRecord::Base
         fd_player.exp  = overunders[fd_player.team_name][:boost]
         fd_player.expp = (fd_player.med * overunders[fd_player.team_name][:mult]).round(1)
       end
-
-      players << fd_player
     end
-
-    return players
   end
 
   def to_s

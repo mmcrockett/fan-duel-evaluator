@@ -77,6 +77,9 @@ class OverUnder < ActiveRecord::Base
   end
 
   def self.load(import)
+    if (false == URLS.include?(import.league))
+      return
+    end
     page = Nokogiri::HTML(open(URLS[import.league]))
     games = {}
     page.css('[data-game-id]').each do |game|
