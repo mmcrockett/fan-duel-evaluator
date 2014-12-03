@@ -5,6 +5,8 @@ class CollegeBasketballPlayer < FanDuelPlayer
   POSITIONS  = ["F","F","F","F","F","G","G","G","G"]
   BUDGET     = 60000
 
+  ANALYZE_COLUMNS = [:med]
+
   TEAMS_BY_FD_ID = {
     716 => "AUBRN",
     725 => "DUKE",

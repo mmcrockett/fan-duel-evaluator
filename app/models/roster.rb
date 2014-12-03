@@ -5,10 +5,6 @@ class Roster < ActiveRecord::Base
   serialize :player_ids, JSON
   attr_accessor :players
 
-  #COLUMNS = [:avg, :max, :min, :mean, :med]
-  #COLUMNS = [:max, :min, :med, :expp]
-  COLUMNS = [:med, :mean, :expp]
-
   def self.analyze(league, unique = false)
     puts "Start Time: #{Time.now}"
     start_time = Time.now
@@ -17,7 +13,7 @@ class Roster < ActiveRecord::Base
     positions  = players.first.class::POSITIONS
     budget     = players.first.class::BUDGET
 
-    best_rosters = Roster.get_best_rosters(players, positions, budget, COLUMNS, unique)
+    best_rosters = Roster.get_best_rosters(players, positions, budget, players.first.class::ANALYZE_COLUMNS, unique)
 
     best_rosters.each_pair do |name, roster|
       if (true == roster.is_a?(SimpleRoster))

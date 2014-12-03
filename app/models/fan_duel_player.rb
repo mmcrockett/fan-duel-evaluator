@@ -11,6 +11,8 @@ class FanDuelPlayer < ActiveRecord::Base
   DATE_FORMAT = "%m/%d/%Y"
   INF_VALUE   = 9999
 
+  ANALYZE_COLUMNS = [:med, :mean, :expp]
+
   def avg
     return self.average
   end
