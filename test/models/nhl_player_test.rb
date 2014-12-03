@@ -10,10 +10,10 @@ class NhlPlayerTest < ActiveSupport::TestCase
   end
 
   test "expectation" do
-    pos_player = NhlPlayer.new({:opp => "EDM", :game_data => [10]})
-    neg_player = NhlPlayer.new({:opp => "CHI", :game_data => [10]})
-    pos_goalie = NhlPlayer.new({:opp => "BUF", :position => "G", :game_data => [10]})
-    neg_goalie = NhlPlayer.new({:opp => "TB", :position => "G", :game_data => [10]})
+    pos_player = NhlPlayer.new({:import_id => -1, :opp => "EDM", :game_data => [10]})
+    neg_player = NhlPlayer.new({:import_id => -1, :opp => "CHI", :game_data => [10]})
+    pos_goalie = NhlPlayer.new({:import_id => -1, :opp => "BUF", :position => "G", :game_data => [10]})
+    neg_goalie = NhlPlayer.new({:import_id => -1, :opp => "TB", :position => "G", :game_data => [10]})
 
     assert_equal(17,  pos_player.exp)
     assert_equal((10 * 1.17),  pos_player.expp)

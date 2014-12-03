@@ -34,6 +34,18 @@ class RosterTest < ActiveSupport::TestCase
     })
   end
 
+  test "unique" do
+    best_rosters = Roster.get_best_rosters(@players, TestPlayer::POSITIONS, TestPlayer::BUDGET, [:med, :min])
+
+    assert_equal([2,3], best_rosters[:med].player_ids.sort)
+    assert_equal([1,3], best_rosters[:min].player_ids.sort)
+
+    best_rosters = Roster.get_best_rosters(@players, TestPlayer::POSITIONS, TestPlayer::BUDGET, [:med, :min], true)
+
+    assert_equal([2,3], best_rosters[:med].player_ids.sort)
+    assert_equal([0,1], best_rosters[:min].player_ids.sort)
+  end
+
   test "best rosters" do
     @players[0].cost = 70
     @players[1].cost = 50
