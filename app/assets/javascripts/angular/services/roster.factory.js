@@ -7,9 +7,15 @@ app.factory('Roster', ['$filter', function($filter) {
       var league_ordered_columns = {
         NHL: ["LW", "RW", "C", "D", "G"],
         NBA: ["PG", "SG", "SF", "PF", "C"],
-        NFL: ["QB", "RB", "WR", "TE", "K", "D"]
+        NFL: ["QB", "RB", "WR", "TE", "K", "D"],
+        CBB: ["F", "G"]
       }
       var ordered_columns = league_ordered_columns[league];
+
+      if (false == angular.isArray(ordered_columns)) {
+        console.error("!ERROR: Missing sort for '" + league + "'.");
+        return roster
+      }
 
       for (var i = 0; i < ordered_columns.length; i += 1) {
         angular.forEach($filter('filter')(roster, {pos:ordered_columns[i]}, true), function(player, i) {
