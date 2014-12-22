@@ -55,7 +55,15 @@ class CollegeBasketballPlayer < FanDuelPlayer
     782 => "WASH",
     755 => "OKLA",
     784 => "WSTVA",
-    751 => "NCSTA"
+    751 => "NCSTA",
+    1104 => "TEMPL",
+    735 => "KANS",
+    742 => "MIAMI",
+    761 => "PROV",
+    719 => "CAL",
+    785 => "WISCN",
+    782 => "WASH",
+    956 => "TLANE",
   }
 
   def important?
