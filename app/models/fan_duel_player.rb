@@ -11,7 +11,7 @@ class FanDuelPlayer < ActiveRecord::Base
   DATE_FORMAT = "%m/%d/%Y"
   INF_VALUE   = 9999
 
-  ANALYZE_COLUMNS = [:med, :mean, :expp]
+  ANALYZE_COLUMNS = [:med, :expp]
 
   def avg
     return self.average
@@ -54,23 +54,23 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def max
-    return self.game_data.max || 0
+    return self.fpoints.max || 0
   end
 
   def rgms
-    return self.game_data.size || 0
+    return self.fpoints.size || 0
   end
 
   def min
-    return self.game_data.min || 0
+    return self.fpoints.min || 0
   end
 
   def med
-    return self.game_data.median.round(1) || 0
+    return self.fpoints.median.round(1) || 0
   end
 
   def mean
-    return self.game_data.mean.round(1)
+    return self.fpoints.mean.round(1)
   end
 
   def team
@@ -111,6 +111,20 @@ class FanDuelPlayer < ActiveRecord::Base
     else
       return @value.to_i
     end
+  end
+
+  def fpoints
+    fpoints = []
+
+    self.game_data.each do |gdata|
+      if (true == gdata.is_a?(Hash))
+        fpoints << gdata["fpoints"]
+      else
+        fpoints << gdata
+      end
+    end
+
+    return fpoints
   end
 
   def self.team_id(team_name)
@@ -188,29 +202,9 @@ class FanDuelPlayer < ActiveRecord::Base
           uri  = "#{PLAYER_DETAIL_URL}#{fd_player.player_id}#{PLAYER_DETAIL_URL_EXT}#{import.fd_game_id}"
           cutoff_date = Date.today() - klazz::MAX_DATES
           begin
-            page = Nokogiri::HTML(open("#{uri}"))
-            page.css('table.game-log')[0].css('tbody')[0].css('tr').each_with_index do |tr,i|
-              if (i < klazz::MAX_GAMES)
-                tds = tr.css('td')
-                date = Date.strptime("#{tds[0].text()}/#{Date.today.year}", DATE_FORMAT)
-
-                if (date > Date.today)
-                  date = date - 365
-                end
-
-                if (date > cutoff_date)
-                  fantasy_points = tds[-1].text().to_f.round(2)
-                  minutes        = tds[2].text().to_i
-
-                  if ((0 != fantasy_points) || (minutes != 0))
-                    points << tds[-1].text().to_f.round(2)
-                  end
-                end
-              else
-                break
-              end
-            end
-            fd_player.game_data = points
+            page  = Nokogiri::HTML(open("#{uri}"))
+            table = page.css('table.game-log')[0].css('tbody')[0]
+            fd_player.game_data = FanDuelPlayer.parse_player_details(table, klazz::MAX_GAMES, cutoff_date, Date.today)
             fd_player.game_log_loaded = true
             altered_players << fd_player
           rescue
@@ -228,6 +222,47 @@ class FanDuelPlayer < ActiveRecord::Base
           p.save
         end
       end
+    end
+  end
+
+  def self.parse_player_details(table, max, cutoff_date, today)
+    game_data = []
+
+    table.css('tr').each_with_index do |tr, i|
+      if (i < max)
+        tds = tr.css('td')
+        data = FanDuelPlayer.parse_player_detail(tds, cutoff_date, today)
+
+        if (nil != data)
+          game_data << data
+        end
+      else
+        break
+      end
+    end
+
+    return game_data
+  end
+
+  def self.parse_player_detail(tds, cutoff_date, today)
+    single_game_data = {}
+
+    date = Date.strptime("#{tds[0].text()}/#{today.year}", DATE_FORMAT)
+
+    if (date > today)
+      date = date - 365
+    end
+
+    if (date > cutoff_date)
+      single_game_data[:date]    = date
+      single_game_data[:fpoints] = tds[-1].text().to_f.round(2)
+      single_game_data[:minutes] = tds[2].text().to_i
+    end
+
+    if ((false == single_game_data.empty?()) && ((0 != single_game_data[:fpoints]) || (0 != single_game_data[:minutes])))
+      return single_game_data
+    else
+      return nil
     end
   end
 
