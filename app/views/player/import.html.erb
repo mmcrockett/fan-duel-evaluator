@@ -1,12 +1,8 @@
 <%= render :partial => "common/nav_bar" %>
 <div ng-controller="ImportController">
-  <%= render :partial => "common/league_selector" %>
-  Game Id <input class="ui-widget ui-state-default ui-corner-all ui-button-text-only" size="10" type="text" ng-model="fan_duel_game_id">
-  <hr>
-  <div class="bulk-import" ng-show="('NONE' != selectedLeague)">
-    <textarea style="height:200px;width:800px;" id="bulk-import-field" ng-model="fan_duel_data">
-    </textarea>
-    <br>
-    <button id="bulk-add-button" ng-click="add_fan_duel_json()">Parse FanDuel JSON</button>
-  </div>
+  <%= render :partial => "common/message_bar" %>
+  <input class="ui-widget ui-state-default ui-corner-all ui-button-text-only" size="120" type="text" ng-model="fan_duel_uri">
+  <br>
+  <br>
+  <button id="bulk-add-button" ng-click="parse_fan_duel_uri()">Parse FanDuel Game</button>
 </div>

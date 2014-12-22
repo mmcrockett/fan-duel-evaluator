@@ -1,5 +1,4 @@
-  <input class="ui-widget ui-state-default ui-corner-all ui-button-text-only" ng-model="message" name="name" size="100" type="text" ng-disabled="true">
-  <hr>
+  <%= render :partial => "common/message_bar" %>
   <div>
     <select ng-model="selectedLeague" ng-options="item.id as item.id for item in leagues"></select>
   </div>

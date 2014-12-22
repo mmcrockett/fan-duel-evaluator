@@ -23,6 +23,12 @@ class PlayerController < ApplicationController
   end
 
   def create
+    params.merge!(Import.parse(params[:uri]))
+
+    params[:teams].each_pair do |k,v|
+      puts "#{k} => \"#{v}\","
+    end
+
     @import = Import.create({:league => params[:league], :fd_game_id => params[:fd_game_id]})
 
     FanDuelPlayer.parse(params[:data], @import)
