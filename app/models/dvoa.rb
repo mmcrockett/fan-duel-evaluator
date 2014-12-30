@@ -33,7 +33,8 @@ class Dvoa < ActiveRecord::Base
       uri  = "#{URL}/#{role_url}" 
       page = Nokogiri::HTML(open(uri))
       page.css('table.stats')[0].css('tr').each_with_index do |tr, i|
-        if ((0 != i) && (1 != i) && (18 != i) && (19 != i))
+        puts "DVOA: #{i}:#{tr}"
+        if ((0 < tr.css('td').size) && (0 != tr.css('td')[0].text().to_i))
           team = tr.css('td')[1].text()
           params[:team] = team
           params[:role] = role
