@@ -34,6 +34,8 @@ app.factory('Roster', ['$filter', function($filter) {
               total_row[k] = 0;
             } else if (true == angular.isString(v)) {
               total_row[k] = "";
+            } else {
+              total_row[k] = "";
             }
           }
 
