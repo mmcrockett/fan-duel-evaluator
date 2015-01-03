@@ -31,13 +31,33 @@ class OverUnder < ActiveRecord::Base
       "NOP" => "NO",
       "GOL" => "GS",
       "LAK" => "LAL",
+    },
+    "CBB" => {
+      "MISSISSIPPI ST" => "MISST",
+      "FLORIDA STATE" => "FLAST",
+      "CALIFORNIA" => "CAL" ,
+      "WASHINGTON" => "WASH",
+      "COLORADO" => "CLRDO",
+      "IOWA STATE" => "IOWST",
+      "SOUTH CAROLINA" => "SOCAR",
+      "MEMPHIS" => "MEMPH",
+      "TULANE" => "TLANE",
+      "SOUTH FLORIDA" => "SOFLA",
+      "EAST CAROLINA" => "ECAR",
+      "RUTGERS" => "RUTG",
+      "PENN STATE" => "PENST",
+      "OREGON" => "ORGN",
+      "OREGON STATE" => "ORGST",
+      "CLEMSON" => "CLEMS",
+      "NORTH CAROLINA" => "UNC",
     }
   }
 
   URLS = {
     "NFL" => "http://m.vegasinsider.com/thisweek/3/NFL",
     "NBA" => "http://m.vegasinsider.com/today/3/NBA",
-    "NHL" => "http://m.vegasinsider.com/today/3/NHL"
+    "NHL" => "http://m.vegasinsider.com/today/3/NHL",
+    "CBB" => "http://m.vegasinsider.com/today/3/BKC"
   }
 
   def self.translate(league, name)
@@ -88,7 +108,13 @@ class OverUnder < ActiveRecord::Base
       if ("NFL" == import.league)
         team = game.css('span.team-abbr').text()
       else
-        team = game.css('span.column-team').text().split(" ")[1]
+        game.css('span.column-team').text().split(" ").each_with_index do |name, i|
+          if (1 == i)
+            team = "#{name}"
+          elsif (0 != i)
+            team += " #{name}"
+          end
+        end
       end
 
       team = OverUnder.translate(import.league, team)

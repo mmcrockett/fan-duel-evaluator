@@ -5,7 +5,7 @@ class CollegeBasketballPlayer < FanDuelPlayer
   POSITIONS  = ["F","F","F","F","F","G","G","G","G"]
   BUDGET     = 60000
 
-  ANALYZE_COLUMNS = [:med]
+  ANALYZE_COLUMNS = [:avg, :expp]
 
   TEAMS_BY_FD_ID = {
     716 => "AUBRN",
@@ -64,6 +64,26 @@ class CollegeBasketballPlayer < FanDuelPlayer
     785 => "WISCN",
     782 => "WASH",
     956 => "TLANE",
+    747 => "MISST",
+    727 => "FLAST",
+    776 => "UTAH",
+    775 => "USC",
+    719 => "CAL",
+    782 => "WASH",
+    722 => "CLRDO",
+    774 => "UCLA",
+    734 => "IOWST",
+    765 => "SOCAR",
+    1125 => "MEMPH",
+    956 => "TLANE",
+    766 => "SOFLA",
+    821 => "ECAR",
+    763 => "RUTG",
+    759 => "PENST",
+    757 => "ORGN",
+    758 => "ORGST",
+    721 => "CLEMS",
+    750 => "UNC",
   }
 
   def important?
