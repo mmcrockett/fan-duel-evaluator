@@ -39,7 +39,7 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
       :game_log_loaded => true})
   end
 
-  test "median" do
+  test "points median" do
     player = FanDuelPlayer.new({
       :game_data => [{"fpoints" => 0}, {"fpoints" => 0}, {"fpoints" => 0}, {"fpoints" => 40}],
       :game_log_loaded => true})
