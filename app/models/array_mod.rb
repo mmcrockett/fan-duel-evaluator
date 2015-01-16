@@ -1,6 +1,7 @@
 class Array
   def tolerance(tolerance = 80)
     tolerance_to_n = {
+      68 => 1.00000,
       80 => 1.28155,
       90 => 1.64485,
       95 => 1.95996,
