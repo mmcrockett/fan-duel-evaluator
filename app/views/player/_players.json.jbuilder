@@ -6,5 +6,6 @@ json.array!(players) do |player|
   end
 
   #json.extract! player, :exp, :avg, :mean, :max, :med, :min, :rgms, :cost, :value, :rvalue, :comment
-  json.extract! player, :exp, :avg, :max, :med, :min, :rgms, :cost, :rvalue, :comment
+  #json.extract! player, :exp, :avg, :mean, :max, :med, :min, :rgms, :last, :cost, :rvalue, :comment
+  json.extract! player, :exp, :avg, :med, :p80, :rgms, :last, :cost, :rvalue, :comment
 end

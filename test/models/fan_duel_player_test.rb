@@ -39,7 +39,7 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
       :game_log_loaded => true})
   end
 
-  test "points median" do
+  test "player median" do
     player = FanDuelPlayer.new({
       :game_data => [{"fpoints" => 0}, {"fpoints" => 0}, {"fpoints" => 0}, {"fpoints" => 40}],
       :game_log_loaded => true})
@@ -179,5 +179,49 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
     assert_equal(Date.strptime("12/25/2009", "%m/%d/%Y"), data[1][:date])
     assert_equal(17, data[1][:minutes])
     assert_equal(7.2, data[1][:fpoints])
+  end
+
+  test "extract latest game" do
+    dec24 = Date.strptime("2014-12-24", "%Y-%m-%d")
+    dec25 = Date.strptime("2014-12-25", "%Y-%m-%d")
+    dec26 = Date.strptime("2014-12-26", "%Y-%m-%d")
+
+    playerA= FanDuelPlayer.new({
+      :team      => "TeamName",
+      :game_data => [{"date" => dec26}],
+      :game_log_loaded => false})
+    playerB= FanDuelPlayer.new({
+      :team      => "TeamName",
+      :game_data => [],
+      :game_log_loaded => true})
+    playerC= FanDuelPlayer.new({
+      :team      => "TeamName",
+      :game_data => [{"date" => dec24}],
+      :game_log_loaded => true})
+    playerD= FanDuelPlayer.new({
+      :team      => "TeamName",
+      :game_data => [{"date" => dec25}],
+      :game_log_loaded => true})
+    playerE= FanDuelPlayer.new({
+      :team      => "TeamName",
+      :game_data => [{"date" => dec24}],
+      :game_log_loaded => true})
+    playerF= FanDuelPlayer.new({
+      :team      => "TeamName",
+      :game_data => [{"date" => dec26}],
+      :game_log_loaded => true})
+    playerG= FanDuelPlayer.new({
+      :team      => "OtherTeamName",
+      :game_data => [{"date" => dec24}],
+      :game_log_loaded => true})
+
+    assert_equal(nil, FanDuelPlayer.extract_latest_game(playerA)["TeamName"])
+    assert_equal(nil, FanDuelPlayer.extract_latest_game(playerB)["TeamName"])
+    assert_equal(dec24, FanDuelPlayer.extract_latest_game(playerC)["TeamName"])
+    assert_equal(dec25, FanDuelPlayer.extract_latest_game(playerD)["TeamName"])
+    assert_equal(dec25, FanDuelPlayer.extract_latest_game(playerE)["TeamName"])
+    assert_equal(dec26, FanDuelPlayer.extract_latest_game(playerF)["TeamName"])
+    assert_equal(dec26, FanDuelPlayer.extract_latest_game(playerG)["TeamName"])
+    assert_equal(dec24, FanDuelPlayer.extract_latest_game(playerG)["OtherTeamName"])
   end
 end

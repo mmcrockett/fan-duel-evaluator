@@ -4,14 +4,37 @@ require 'open-uri'
 class FanDuelPlayer < ActiveRecord::Base
   belongs_to :import
   serialize :game_data, JSON
-  attr_accessor :team, :pavg, :pcost, :opp, :exp, :expp, :max, :min, :med, :mean, :rgms, :value, :rvalue, :pos, :avg, :opponent, :comment
+  attr_accessor :team, :opp, :exp, :expp, :max, :min, :med, :mean, :rgms, :value, :rvalue, :pos, :avg, :opponent, :comment, :last, :p80
+
+  @@overunders = nil
+  @@most_recent_game = {}
 
   PLAYER_DETAIL_URL     = "https://www.fanduel.com/eg/Player/"
   PLAYER_DETAIL_URL_EXT = "/Stats/showLB/"
   DATE_FORMAT = "%m/%d/%Y"
   INF_VALUE   = 9999
 
-  ANALYZE_COLUMNS = [:med, :expp]
+  ANALYZE_COLUMNS = [:med, :p80]
+
+  def p80
+    self.fpoints.tolerance().round(1)
+  end
+
+  def last
+    if ((nil != self.last_game_date) && (true == @@most_recent_game.include?(self.team)))
+      return (@@most_recent_game[self.team] == self.last_game_date)
+    else
+      return false
+    end
+  end
+
+  def last_game_date
+    if ((true == self.game_log_loaded) && (0 < self.game_data.size))
+      return self.game_data[0]["date"]
+    else
+      return nil
+    end
+  end
 
   def avg
     return self.average
@@ -70,7 +93,8 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def mean
-    return self.fpoints.mean.round(1)
+    return self.avg
+    #return self.fpoints.mean.round(1)
   end
 
   def team
@@ -83,14 +107,6 @@ class FanDuelPlayer < ActiveRecord::Base
 
   def opp
     return @opp || "?"
-  end
-
-  def pcost
-    return @pcost || 0
-  end
-
-  def pavg
-    return @pavg || 0
   end
 
   def exp
@@ -145,7 +161,7 @@ class FanDuelPlayer < ActiveRecord::Base
     elsif ("NHL" == import.league)
       klazz = NhlPlayer
     elsif ("NBA" == import.league)
-      klazz = NbaPlayer
+      klazz = FanDuelNbaPlayer
     elsif ("CBB" == import.league)
       klazz = CollegeBasketballPlayer
     else
@@ -306,16 +322,15 @@ class FanDuelPlayer < ActiveRecord::Base
     end
 
     klazz = FanDuelPlayer.factory(import)
-    overunders = OverUnder.get_expected_scores(import)
+    @@overunders = OverUnder.get_expected_scores(import)
 
     players = []
 
     klazz.where({:ignore => false, :import => import}).each do |fd_player|
       fd_player.team     = fd_player.team_name
 
-      if ("CBB" != import.league)
-        FanDuelPlayer.process_overunder(fd_player, overunders, import)
-      end
+      FanDuelPlayer.process_overunder(fd_player, import)
+      FanDuelPlayer.extract_latest_game(fd_player)
 
       players << fd_player
     end
@@ -323,30 +338,44 @@ class FanDuelPlayer < ActiveRecord::Base
     return players
   end
 
-  def self.process_overunder(fd_player, overunders, import)
-    if (false == overunders.include?(fd_player.team_name))
+  def self.process_overunder(fd_player, import)
+    if (false == OverUnder::URLS.include?(import.league))
+      return
+    end
+
+    if (false == @@overunders.include?(fd_player.team_name))
       raise "!ERROR: OverUnder not defined for '#{fd_player.team_name}'."
     else
-      fd_player.opp = overunders[fd_player.team_name][:opp]
+      fd_player.opp = @@overunders[fd_player.team_name][:opp]
 
-      if (false == overunders[fd_player.team_name].include?(:boost))
-        overunders[fd_player.team_name][:boost] = OverUnder.calculate_boost(overunders[fd_player.team_name][:score], overunders[:scores])
-        overunders[fd_player.team_name][:mult]  = OverUnder.calculate_boost_multiplier(overunders[fd_player.team_name][:score], overunders[:scores])
+      if (false == @@overunders[fd_player.team_name].include?(:boost))
+        @@overunders[fd_player.team_name][:boost] = OverUnder.calculate_boost(@@overunders[fd_player.team_name][:score], @@overunders[:scores])
+        @@overunders[fd_player.team_name][:mult]  = OverUnder.calculate_boost_multiplier(@@overunders[fd_player.team_name][:score], @@overunders[:scores])
       end
 
-      if (false == overunders[fd_player.opp].include?(:boost))
-        overunders[fd_player.opp][:boost] = OverUnder.calculate_boost(overunders[fd_player.opp][:score], overunders[:scores])
-        overunders[fd_player.opp][:mult]  = OverUnder.calculate_boost_multiplier(overunders[fd_player.opp][:score], overunders[:scores])
+      if (false == @@overunders[fd_player.opp].include?(:boost))
+        @@overunders[fd_player.opp][:boost] = OverUnder.calculate_boost(@@overunders[fd_player.opp][:score], @@overunders[:scores])
+        @@overunders[fd_player.opp][:mult]  = OverUnder.calculate_boost_multiplier(@@overunders[fd_player.opp][:score], @@overunders[:scores])
       end
 
       if ((("D" == fd_player.position) && ("NFL" == import.league)) || (("G" == fd_player.position) && ("NHL" == import.league)))
-        fd_player.exp  = -overunders[fd_player.opp][:boost]
-        fd_player.expp = (fd_player.med * (1/overunders[fd_player.opp][:mult])).round(1)
+        fd_player.exp  = -@@overunders[fd_player.opp][:boost]
+        fd_player.expp = (fd_player.med * (1/@@overunders[fd_player.opp][:mult])).round(1)
       else
-        fd_player.exp  = overunders[fd_player.team_name][:boost]
-        fd_player.expp = (fd_player.med * overunders[fd_player.team_name][:mult]).round(1)
+        fd_player.exp  = @@overunders[fd_player.team_name][:boost]
+        fd_player.expp = (fd_player.med * @@overunders[fd_player.team_name][:mult]).round(1)
       end
     end
+  end
+
+  def self.extract_latest_game(fd_player)
+    if (nil != fd_player.last_game_date)
+      if ((false == @@most_recent_game.include?(fd_player.team)) ||  (@@most_recent_game[fd_player.team] < fd_player.last_game_date))
+        @@most_recent_game[fd_player.team] = fd_player.last_game_date
+      end 
+    end
+
+    return @@most_recent_game
   end
 
   def to_s

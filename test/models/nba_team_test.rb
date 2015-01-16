@@ -4,7 +4,7 @@ class NbaTeamTest < ActiveSupport::TestCase
   def setup
     json_string = <<-EOF
        {"resource":"leaguedashteamstats",
-        "parameters": {"StarterBench":null},
+        "parameters":{"StarterBench":null},
         "resultSets":[
           {
            "name":"LeagueDashTeamStats",
@@ -31,5 +31,6 @@ class NbaTeamTest < ActiveSupport::TestCase
     assert_equal(106.2, hawks["off_rating"])
     assert_equal(100.1, hawks["def_rating"])
     assert_equal(96.45, hawks["pace"])
+    assert_equal(6, hawks.keys.size)
   end
 end

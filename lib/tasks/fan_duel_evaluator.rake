@@ -19,7 +19,7 @@ namespace :fan_duel_evaluator do
     Roster.analyze(league, unique)
   end
 
-  desc "Evaluate the best lineups."
+  desc "Dump tables in yml."
   task(:dump => :environment) do
     yaml = Import.where({:league => "NFL"}).first.attributes
     id   = nil
@@ -82,5 +82,9 @@ namespace :fan_duel_evaluator do
       non_starter.ignore = true
       non_starter.save
     end
+  end
+
+  task :nba_data_load => :environment do
+    NbaStat.load
   end
 end

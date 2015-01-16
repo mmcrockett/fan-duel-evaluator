@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201214828) do
+ActiveRecord::Schema.define(version: 20150114228637) do
 
   create_table "dvoas", force: true do |t|
     t.string   "team"
@@ -49,6 +49,45 @@ ActiveRecord::Schema.define(version: 20141201214828) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "fd_game_id"
+  end
+
+  create_table "nba_games", force: true do |t|
+    t.string   "season_id",     null: false
+    t.string   "game_id",       null: false
+    t.date     "game_date",     null: false
+    t.string   "visitor",       null: false
+    t.string   "home",          null: false
+    t.integer  "minutes",       null: false
+    t.integer  "points",        null: false
+    t.integer  "rebounds",      null: false
+    t.integer  "assists",       null: false
+    t.integer  "steals",        null: false
+    t.integer  "blocks",        null: false
+    t.integer  "turnovers",     null: false
+    t.integer  "nba_player_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "nba_games", ["nba_player_id"], name: "index_nba_games_on_nba_player_id"
+
+  create_table "nba_players", force: true do |t|
+    t.string   "name",        null: false
+    t.integer  "nba_team_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "nba_players", ["nba_team_id"], name: "index_nba_players_on_nba_team_id"
+
+  create_table "nba_teams", force: true do |t|
+    t.string   "name",                               null: false
+    t.integer  "gp",                                 null: false
+    t.decimal  "off_rating", precision: 4, scale: 1, null: false
+    t.decimal  "def_rating", precision: 4, scale: 1, null: false
+    t.decimal  "pace",       precision: 4, scale: 1, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "nhl_standings", force: true do |t|

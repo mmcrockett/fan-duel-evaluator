@@ -16,13 +16,13 @@ class OverUnder < ActiveRecord::Base
     "NHL" => {
       "LAK" => "LA",
       "TBL" => "TB",
-      "Winnipeg" => "WPG",
+      "WINNIPEG" => "WPG",
       "SJS" => "SJ",
       "NAS" => "NSH",
       "NJD" => "NJ",
       "CAL" => "CGY",
       "ANA" => "ANH",
-      "Arizona" => "ARI",
+      "ARIZONA" => "ARI",
       "CLB" => "CLS",
     },
     "NBA" => {
@@ -50,6 +50,14 @@ class OverUnder < ActiveRecord::Base
       "OREGON STATE" => "ORGST",
       "CLEMSON" => "CLEMS",
       "NORTH CAROLINA" => "UNC",
+      "NOTRE DAME" => "NDAME",
+      "TEXAS TECH" => "TXTCH",
+      "WEST VIRGINIA" => "WSTVA",
+      "MICHIGAN STATE" => "MCHST",
+      "INDIANA U" => "INDNA",
+      "TEXAS" => "TEX",
+      "OKLAHOMA" => "OKLA",
+      "NEBRASKA" => "NEB",
     }
   }
 
@@ -61,6 +69,7 @@ class OverUnder < ActiveRecord::Base
   }
 
   def self.translate(league, name)
+    name.upcase!
     if ((true == TRANSLATIONS.include?(league)) && (true == TRANSLATIONS[league].include?(name)))
       return TRANSLATIONS[league][name]
     else

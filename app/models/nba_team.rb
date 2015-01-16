@@ -1,4 +1,6 @@
-class NbaTeam < NbaStat
+class NbaTeam < ActiveRecord::Base
+  extend NbaStat
+
   URI = "http://stats.nba.com/stats/leaguedashteamstats"
   RESULT_SET_IDENTIFIER = "LeagueDashTeamStats"
   COLUMN_MAP = {
@@ -30,7 +32,7 @@ class NbaTeam < NbaStat
     "Rank"             => "N",
     "Season"           => "2014-15",
     "SeasonSegment"    => nil,
-    "SeasonType"       => "Regular+Season",
+    "SeasonType"       => "Regular Season",
     "StarterBench"     => nil,
     "VsConference"     => nil,
     "VsDivision"       => nil
