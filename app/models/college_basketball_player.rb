@@ -1,6 +1,6 @@
 class CollegeBasketballPlayer < FanDuelPlayer
   MAX_GAMES = 10
-  MAX_DATES = (MAX_GAMES * 2.2).to_i
+  MAX_DATES = (MAX_GAMES * 4).to_i
 
   POSITIONS  = ["F","F","F","F","F","G","G","G","G"]
   BUDGET     = 60000
@@ -84,6 +84,9 @@ class CollegeBasketballPlayer < FanDuelPlayer
     758 => "ORGST",
     721 => "CLEMS",
     750 => "UNC",
+    750 => "UNC",
+    732 => "INDNA",
+    749 => "NEB",
   }
 
   def important?
