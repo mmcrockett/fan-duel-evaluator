@@ -1,16 +1,15 @@
-class NbaGame < ActiveRecord::Base
+class NbaPlayerGame < ActiveRecord::Base
   extend NbaStat
 
   belongs_to :nba_player
+  belongs_to :nba_team_game
 
   URI = "http://stats.nba.com/stats/playergamelog"
   RESULT_SET_IDENTIFIER = "PlayerGameLog"
   COLUMN_MAP = {
     "SEASON_ID"   => "season_id",
     "Player_ID"   => "nba_player_id",
-    "Game_ID"     => "game_id",
-    "GAME_DATE"   => "game_date",
-    "MATCHUP"     => "matchup",
+    "Game_ID"     => "nba_team_game_id",
     "MIN"         => "minutes",
     "REB"         => "rebounds",
     "AST"         => "assists",
@@ -32,20 +31,6 @@ class NbaGame < ActiveRecord::Base
     "points"    => 1,
   }
 
-  def matchup=(matchup)
-    if (true == matchup.include?("@"))
-      teams = matchup.split("@")
-      self.visitor = teams[0].strip
-      self.home    = teams[1].strip
-    elsif (true == matchup.include?("vs."))
-      teams = matchup.split("vs.")
-      self.visitor = teams[1].strip
-      self.home    = teams[0].strip
-    else
-      raise "!ERROR: Unexpected matchup to parse '#{matchup}'."
-    end
-  end
-
   def fan_duel_points
     points = 0.0
 
@@ -63,17 +48,17 @@ class NbaGame < ActiveRecord::Base
     today = Date.today
 
     NbaPlayer.all.each do |player|
-      NbaGame.get_data({"PlayerID" => player.id}).each do |game|
-        if (false == NbaGame.exists?({:nba_player_id => player.id, :game_id => game["game_id"]}))
-          ar_game = NbaGame.new(game)
+      NbaPlayerGame.get_data({"PlayerID" => player.id}).each do |game|
+        if (false == NbaPlayerGame.exists?({:nba_player_id => player.id, :game_id => game["game_id"]}))
+          ar_game = NbaPlayerGame.new(game)
 
           if (today != ar_game.game_date)
-            games <<  NbaGame.new(game)
+            games <<  NbaPlayerGame.new(game)
           end
         end
       end
     end
 
-    NbaGame.import(games)
+    NbaPlayerGame.import(games)
   end
 end

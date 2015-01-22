@@ -37,4 +37,30 @@ class NbaTeam < ActiveRecord::Base
     "VsConference"     => nil,
     "VsDivision"       => nil
   }
+
+  def self.load
+    teams  = []
+    ateams = []
+
+    NbaTeam.get_data.each do |team|
+      ar_team = NbaTeam.where({:id => team['id']}).first_or_create(team)
+
+      if (false == ar_team.new_record?())
+        ar_team.update(team)
+        ateams << ar_team
+      else
+        teams << ar_team
+      end
+    end
+
+    NbaTeam.import(teams)
+
+    if (0 != ateams)
+      NbaTeam.transaction do
+        ateams.each do |ateam|
+          ateam.save
+        end
+      end
+    end
+  end
 end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class NbaGameTest < ActiveSupport::TestCase
+class NbaPlayerGameTest < ActiveSupport::TestCase
   def setup
     json_string = <<-EOF
        {
@@ -29,7 +29,6 @@ class NbaGameTest < ActiveSupport::TestCase
     assert_equal("22014",  @gamelogs[0]["season_id"])
     assert_equal("0021400568", @gamelogs[0]["game_id"])
     assert_equal(201143, @gamelogs[0]["nba_player_id"])
-    assert_equal("JAN 13, 2015", @gamelogs[0]["game_date"])
     assert_equal(29, @gamelogs[0]["minutes"])
     assert_equal(10, @gamelogs[0]["rebounds"])
     assert_equal(21, @gamelogs[0]["points"])
@@ -37,20 +36,7 @@ class NbaGameTest < ActiveSupport::TestCase
     assert_equal(2, @gamelogs[0]["turnovers"])
     assert_equal(1, @gamelogs[0]["blocks"])
     assert_equal(0, @gamelogs[0]["steals"])
-    assert_equal("ATL @ PHI", @gamelogs[0]["matchup"])
     assert_equal(12, @gamelogs[0].keys.size)
-  end
-
-  test "matchup parsing" do
-    assert_equal("ATL", @nbagame0.visitor)
-    assert_equal("PHI", @nbagame0.home)
-    assert_equal("WAS", @nbagame1.visitor)
-    assert_equal("ATL", @nbagame1.home)
-  end
-
-  test "date parsing" do
-    assert(Date.today > @nbagame0.game_date)
-    assert(@nbagame0.game_date > @nbagame1.game_date)
   end
 
   test "fan duel points" do

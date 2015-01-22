@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114228637) do
+ActiveRecord::Schema.define(version: 20150121183449) do
 
   create_table "dvoas", force: true do |t|
     t.string   "team"
@@ -71,6 +71,23 @@ ActiveRecord::Schema.define(version: 20150114228637) do
 
   add_index "nba_games", ["nba_player_id"], name: "index_nba_games_on_nba_player_id"
 
+  create_table "nba_player_games", force: true do |t|
+    t.string   "season_id"
+    t.integer  "minutes"
+    t.integer  "rebounds"
+    t.integer  "assists"
+    t.integer  "steals"
+    t.integer  "blocks"
+    t.integer  "turnovers"
+    t.integer  "nba_player_id"
+    t.integer  "nba_team_game_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "nba_player_games", ["nba_player_id"], name: "index_nba_player_games_on_nba_player_id"
+  add_index "nba_player_games", ["nba_team_game_id"], name: "index_nba_player_games_on_nba_team_game_id"
+
   create_table "nba_players", force: true do |t|
     t.string   "name",        null: false
     t.integer  "nba_team_id", null: false
@@ -79,6 +96,20 @@ ActiveRecord::Schema.define(version: 20150114228637) do
   end
 
   add_index "nba_players", ["nba_team_id"], name: "index_nba_players_on_nba_team_id"
+
+  create_table "nba_team_games", force: true do |t|
+    t.string   "game_id"
+    t.date     "game_date"
+    t.string   "visitor"
+    t.string   "home"
+    t.integer  "minutes"
+    t.boolean  "win"
+    t.integer  "nba_team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "nba_team_games", ["nba_team_id"], name: "index_nba_team_games_on_nba_team_id"
 
   create_table "nba_teams", force: true do |t|
     t.string   "name",                               null: false

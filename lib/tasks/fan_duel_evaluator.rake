@@ -87,4 +87,10 @@ namespace :fan_duel_evaluator do
   task :nba_data_load => :environment do
     NbaStat.load
   end
+
+  task :nba_sample_urls => :environment do
+    puts "#{NbaTeam.create_uri()}"
+    puts "#{NbaPlayer.create_uri({"TeamID" => 1610612737})}"
+    puts "#{NbaGame.create_uri({"PlayerID" => 201143})}"
+  end
 end
