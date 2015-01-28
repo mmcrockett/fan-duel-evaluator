@@ -51,46 +51,30 @@ ActiveRecord::Schema.define(version: 20150121183449) do
     t.integer  "fd_game_id"
   end
 
-  create_table "nba_games", force: true do |t|
-    t.string   "season_id",     null: false
-    t.string   "game_id",       null: false
-    t.date     "game_date",     null: false
-    t.string   "visitor",       null: false
-    t.string   "home",          null: false
-    t.integer  "minutes",       null: false
-    t.integer  "points",        null: false
-    t.integer  "rebounds",      null: false
-    t.integer  "assists",       null: false
-    t.integer  "steals",        null: false
-    t.integer  "blocks",        null: false
-    t.integer  "turnovers",     null: false
-    t.integer  "nba_player_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "nba_games", ["nba_player_id"], name: "index_nba_games_on_nba_player_id"
-
   create_table "nba_player_games", force: true do |t|
-    t.string   "season_id"
-    t.integer  "minutes"
-    t.integer  "rebounds"
-    t.integer  "assists"
-    t.integer  "steals"
-    t.integer  "blocks"
-    t.integer  "turnovers"
-    t.integer  "nba_player_id"
-    t.integer  "nba_team_game_id"
+    t.string   "assigned_season_id", null: false
+    t.string   "assigned_game_id",   null: false
+    t.date     "game_date",          null: false
+    t.string   "visitor",            null: false
+    t.string   "home",               null: false
+    t.integer  "minutes",            null: false
+    t.integer  "points",             null: false
+    t.integer  "rebounds",           null: false
+    t.integer  "assists",            null: false
+    t.integer  "steals",             null: false
+    t.integer  "blocks",             null: false
+    t.integer  "turnovers",          null: false
+    t.integer  "nba_player_id",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "nba_player_games", ["nba_player_id"], name: "index_nba_player_games_on_nba_player_id"
-  add_index "nba_player_games", ["nba_team_game_id"], name: "index_nba_player_games_on_nba_team_game_id"
 
   create_table "nba_players", force: true do |t|
-    t.string   "name",        null: false
-    t.integer  "nba_team_id", null: false
+    t.string   "name",               null: false
+    t.integer  "assigned_player_id", null: false
+    t.integer  "nba_team_id",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -98,13 +82,13 @@ ActiveRecord::Schema.define(version: 20150121183449) do
   add_index "nba_players", ["nba_team_id"], name: "index_nba_players_on_nba_team_id"
 
   create_table "nba_team_games", force: true do |t|
-    t.string   "game_id"
-    t.date     "game_date"
-    t.string   "visitor"
-    t.string   "home"
-    t.integer  "minutes"
-    t.boolean  "win"
-    t.integer  "nba_team_id"
+    t.string   "assigned_game_id", null: false
+    t.date     "game_date",        null: false
+    t.string   "visitor",          null: false
+    t.string   "home",             null: false
+    t.integer  "minutes",          null: false
+    t.boolean  "win",              null: false
+    t.integer  "nba_team_id",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -112,13 +96,16 @@ ActiveRecord::Schema.define(version: 20150121183449) do
   add_index "nba_team_games", ["nba_team_id"], name: "index_nba_team_games_on_nba_team_id"
 
   create_table "nba_teams", force: true do |t|
-    t.string   "name",                               null: false
-    t.integer  "gp",                                 null: false
-    t.decimal  "off_rating", precision: 4, scale: 1, null: false
-    t.decimal  "def_rating", precision: 4, scale: 1, null: false
-    t.decimal  "pace",       precision: 4, scale: 1, null: false
+    t.string   "name",                                     null: false
+    t.integer  "gp",                                       null: false
+    t.integer  "assigned_team_id",                         null: false
+    t.decimal  "off_rating",       precision: 4, scale: 1, null: false
+    t.decimal  "def_rating",       precision: 4, scale: 1, null: false
+    t.decimal  "pace",             precision: 4, scale: 1, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "abc"
+    t.integer  "niner"
   end
 
   create_table "nhl_standings", force: true do |t|

@@ -1,7 +1,7 @@
 class CreateNbaTeamGames < ActiveRecord::Migration
   def change
     create_table :nba_team_games do |t|
-      t.string :game_id, :null => false
+      t.string :assigned_game_id, :null => false
       t.date :game_date, :null => false
       t.string :visitor, :null => false
       t.string :home, :null => false
