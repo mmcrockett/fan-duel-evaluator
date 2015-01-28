@@ -2,21 +2,21 @@ class NbaPlayerGame < ActiveRecord::Base
   extend NbaStat
 
   belongs_to :nba_player
-  belongs_to :nba_team_game
 
   URI = "http://stats.nba.com/stats/playergamelog"
   RESULT_SET_IDENTIFIER = "PlayerGameLog"
   COLUMN_MAP = {
-    "SEASON_ID"   => "season_id",
-    "Player_ID"   => "nba_player_id",
-    "Game_ID"     => "nba_team_game_id",
-    "MIN"         => "minutes",
-    "REB"         => "rebounds",
-    "AST"         => "assists",
-    "STL"         => "steals",
-    "BLK"         => "blocks",
-    "TOV"         => "turnovers",
-    "PTS"         => "points",
+    "GAME_DATE" => "game_date_str",
+    "MATCHUP"   => "matchup",
+    "SEASON_ID" => "assigned_season_id",
+    "Game_ID"   => "assigned_game_id",
+    "MIN"       => "minutes",
+    "REB"       => "rebounds",
+    "AST"       => "assists",
+    "STL"       => "steals",
+    "BLK"       => "blocks",
+    "TOV"       => "turnovers",
+    "PTS"       => "points",
   }
   URI_PARAMS = {
     "Season"           => "2014-15",
@@ -43,22 +43,56 @@ class NbaPlayerGame < ActiveRecord::Base
     return points
   end
 
-  def self.load
-    games = []
+  def matchup=(matchup_str)
+    matchups = NbaTeamGame.matchup_parse(matchup_str)
+
+    self.visitor = matchups[:visitor]
+    self.home    = matchups[:home]
+  end
+
+  def game_date_str=(game_date_str)
+    self.game_date = Date.parse(game_date_str)
+  end
+
+  def self.remote_load
+    player_games = []
     today = Date.today
 
     NbaPlayer.all.each do |player|
-      NbaPlayerGame.get_data({"PlayerID" => player.id}).each do |game|
-        if (false == NbaPlayerGame.exists?({:nba_player_id => player.id, :game_id => game["game_id"]}))
-          ar_game = NbaPlayerGame.new(game)
+      most_recent_game_date = NbaPlayerGame.where({:nba_player_id => player.id}).maximum(:game_date)
 
-          if (today != ar_game.game_date)
-            games <<  NbaPlayerGame.new(game)
-          end
+      NbaPlayerGame.get_data({"PlayerID" => player.assigned_player_id}).each do |game|
+        ar_game = NbaPlayerGame.new(game)
+        ar_game.nba_player_id = player.id
+
+        if ((today != ar_game.game_date) && ((nil == most_recent_game_date) || (most_recent_game_date < ar_game.game_date)))
+          player_games << ar_game
         end
       end
     end
 
-    NbaPlayerGame.import(games)
+    NbaPlayerGame.import(player_games)
+  end
+
+  def self.actual_points(fd_players)
+    points = 0
+
+    fd_players.each do |fd_player|
+      nba_player = NbaPlayer.lookup_by_fd_player(fd_player)
+
+      if (nil == nba_player)
+        puts "Couldn't find player for '#{fd_player.id}' '#{fd_player.name}' on '#{fd_player.created_at.to_date}'."
+      else
+        nba_player_game = NbaPlayerGame.where("nba_player_id = ? AND game_date = ?", nba_player.id, fd_player.created_at.to_date).first
+
+        if (nil == nba_player_game)
+          puts "Couldn't find game for '#{nba_player.id}' '#{fd_player.name}' on '#{fd_player.created_at.to_date}'."
+        else
+          points += nba_player_game.fan_duel_points
+        end
+      end
+    end
+
+    return points
   end
 end

@@ -6,9 +6,8 @@ class NbaTeamGame < ActiveRecord::Base
   URI = "http://stats.nba.com/stats/teamgamelog"
   RESULT_SET_IDENTIFIER = "TeamGameLog"
   COLUMN_MAP = {
-    "Team_ID"   => "nba_team_id",
-    "Game_ID"   => "game_id",
-    "GAME_DATE" => "game_date",
+    "Game_ID"   => "assigned_game_id",
+    "GAME_DATE" => "game_date_str",
     "MATCHUP"   => "matchup",
     "WL"        => "winloss",
     "MIN"       => "minutes",
@@ -19,18 +18,15 @@ class NbaTeamGame < ActiveRecord::Base
     "LeagueID"   => "00"
   }
 
-  def matchup=(matchup)
-    if (true == matchup.include?("@"))
-      teams = matchup.split("@")
-      self.visitor = teams[0].strip
-      self.home    = teams[1].strip
-    elsif (true == matchup.include?("vs."))
-      teams = matchup.split("vs.")
-      self.visitor = teams[1].strip
-      self.home    = teams[0].strip
-    else
-      raise "!ERROR: Unexpected matchup to parse '#{matchup}'."
-    end
+  def matchup=(matchup_str)
+    matchups = NbaTeamGame.matchup_parse(matchup_str)
+
+    self.visitor = matchups[:visitor]
+    self.home    = matchups[:home]
+  end
+
+  def game_date_str=(game_date_str)
+    self.game_date = Date.parse(game_date_str)
   end
 
   def winloss=(v)
@@ -45,18 +41,19 @@ class NbaTeamGame < ActiveRecord::Base
     end
   end
 
-  def self.load
+  def self.remote_load
     team_games = []
     today = Date.today
 
     NbaTeam.all.each do |team|
-      NbaTeamGame.get_data({"TeamID" => player.id}).each do |team_game|
-        if (false == NbaTeamGame.exists?({:nba_team_id => team.id, :game_id => team_game["game_id"]}))
-          ar_game = NbaTeamGame.new(team_game)
+      most_recent_game_date = NbaTeamGame.where({:nba_team_id => team.id}).maximum(:game_date)
 
-          if (today != ar_game.game_date)
-            team_games <<  ar_game
-          end
+      NbaTeamGame.get_data({"TeamID" => team.assigned_team_id}).each do |team_game|
+        ar_game = NbaTeamGame.new(team_game)
+        ar_game.nba_team_id = team.id
+
+        if ((today != ar_game.game_date) && ((nil == most_recent_game_date) || (most_recent_game_date < ar_game.game_date)))
+          team_games <<  ar_game
         end
       end
     end

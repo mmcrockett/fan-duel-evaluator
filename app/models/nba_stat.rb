@@ -2,10 +2,11 @@ require 'uri'
 require 'open-uri'
 
 module NbaStat
-  def self.load()
-    NbaTeam.load
-    NbaPlayer.load
-    NbaGame.load
+  def self.remote_load()
+    NbaTeam.remote_load
+    NbaPlayer.remote_load
+    NbaTeamGame.remote_load
+    NbaPlayerGame.remote_load
   end
 
   def create_uri(params = {})
@@ -58,5 +59,23 @@ module NbaStat
     end
 
     return rows
+  end
+
+  def matchup_parse(matchup_str)
+    matchups = {}
+
+    if (true == matchup_str.include?("@"))
+      teams = matchup_str.split("@")
+      matchups[:visitor] = teams[0].strip
+      matchups[:home]    = teams[1].strip
+    elsif (true == matchup_str.include?("vs."))
+      teams = matchup_str.split("vs.")
+      matchups[:visitor] = teams[1].strip
+      matchups[:home]    = teams[0].strip
+    else
+      raise "!ERROR: Unexpected matchup to parse '#{matchup}'."
+    end
+
+    return matchups
   end
 end

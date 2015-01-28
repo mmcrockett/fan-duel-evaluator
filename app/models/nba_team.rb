@@ -4,7 +4,7 @@ class NbaTeam < ActiveRecord::Base
   URI = "http://stats.nba.com/stats/leaguedashteamstats"
   RESULT_SET_IDENTIFIER = "LeagueDashTeamStats"
   COLUMN_MAP = {
-    "TEAM_ID"    => "id",
+    "TEAM_ID"    => "assigned_team_id",
     "TEAM_NAME"  => "name",
     "GP"         => "gp",
     "OFF_RATING" => "off_rating",
@@ -37,13 +37,53 @@ class NbaTeam < ActiveRecord::Base
     "VsConference"     => nil,
     "VsDivision"       => nil
   }
+  NICKNAMES = {
+    "Atlanta Hawks"          => "ATL",
+    "Boston Celtics"         => "BOS",
+    "Brooklyn Nets"          => "BKN",
+    "Charlotte Hornets"      => "CHA",
+    "Chicago Bulls"          => "CHI",
+    "Cleveland Cavaliers"    => "CLE",
+    "Dallas Mavericks"       => "DAL",
+    "Denver Nuggets"         => "DEN",
+    "Detroit Pistons"        => "DET",
+    "Golden State Warriors"  => "GSW",
+    "Houston Rockets"        => "HOU",
+    "Indiana Pacers"         => "IND",
+    "Los Angeles Clippers"   => "LAC",
+    "Los Angeles Lakers"     => "LAL",
+    "Memphis Grizzlies"      => "MEM",
+    "Miami Heat"             => "MIA",
+    "Milwaukee Bucks"        => "MIL",
+    "Minnesota Timberwolves" => "MIN",
+    "New Orleans Pelicans"   => "NOP",
+    "New York Knicks"        => "NYK",
+    "Oklahoma City Thunder"  => "OKC",
+    "Orlando Magic"          => "ORL",
+    "Philadelphia 76ers"     => "PHI",
+    "Phoenix Suns"           => "PHX",
+    "Portland Trail Blazers" => "POR",
+    "Sacramento Kings"       => "SAC",
+    "San Antonio Spurs"      => "SAS",
+    "Toronto Raptors"        => "TOR",
+    "Utah Jazz"              => "UTA",
+    "Washington Wizards"     => "WAS",
+  }
 
-  def self.load
+  def nickname
+    if (true == NICKNAMES.include?(self.name))
+      return NICKNAMES[self.name]
+    else
+      raise "!ERROR: No nickname defined for '#{self.name}'."
+    end
+  end
+
+  def self.remote_load
     teams  = []
     ateams = []
 
     NbaTeam.get_data.each do |team|
-      ar_team = NbaTeam.where({:id => team['id']}).first_or_create(team)
+      ar_team = NbaTeam.where({:assigned_team_id => team['assigned_team_id']}).first_or_create(team)
 
       if (false == ar_team.new_record?())
         ar_team.update(team)
