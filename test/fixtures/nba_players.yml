@@ -1,0 +1,22 @@
+---
+nba_players_177:
+  id: 1945
+  name: JJ Redick
+  assigned_player_id: 200755
+  nba_team_id: 43
+  created_at: '2015-01-27 23:30:13.639974'
+  updated_at: '2015-01-27 23:30:13.640049'
+nba_players_327:
+  id: 2095
+  name: Luc Mbah a Moute
+  assigned_player_id: 201601
+  nba_team_id: 53
+  created_at: '2015-01-27 23:30:13.639974'
+  updated_at: '2015-01-27 23:30:13.640049'
+nba_players_369:
+  id: 2137
+  name: Darren Collison
+  assigned_player_id: 201954
+  nba_team_id: 56
+  created_at: '2015-01-27 23:30:13.639974'
+  updated_at: '2015-01-27 23:30:13.640049'
