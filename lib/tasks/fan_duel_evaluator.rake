@@ -85,12 +85,26 @@ namespace :fan_duel_evaluator do
   end
 
   task :nba_data_load => :environment do
-    NbaStat.load
+    NbaStat.remote_load
   end
 
   task :nba_sample_urls => :environment do
     puts "#{NbaTeam.create_uri()}"
     puts "#{NbaPlayer.create_uri({"TeamID" => 1610612737})}"
-    puts "#{NbaGame.create_uri({"PlayerID" => 201143})}"
+    puts "#{NbaTeamGame.create_uri({"TeamID" => 1610612737})}"
+    puts "#{NbaPlayerGame.create_uri({"PlayerID" => 201143})}"
+  end
+
+  task :nba_evaluate_strategies => :environment do
+    puts "import,strategy,expected,actual"
+
+    Import.select("max(id) as id").where("league = ? and fd_game_id not null", "NBA").group("fd_game_id").pluck(:id).each do |import_id|
+      fd_players = FanDuelNbaPlayer.where({:ignore => false, :import_id => import_id})
+      srosters   = Roster.get_best_rosters(fd_players, FanDuelNbaPlayer::POSITIONS, FanDuelNbaPlayer::BUDGET, [:med,:avg,:p80], false)
+
+      srosters.each_pair do |name, sroster|
+        puts "#{import_id},#{name},#{sroster.points.round(1)},#{NbaPlayerGame.actual_points(sroster.players)}"
+      end
+    end
   end
 end
