@@ -88,6 +88,9 @@ class NbaPlayerTest < ActiveSupport::TestCase
     assert_not_nil(NbaPlayer.lookup_by_fd_player(FanDuelNbaPlayer.new({:name => "Darren Collison"})))
     assert_not_nil(NbaPlayer.lookup_by_fd_player(FanDuelNbaPlayer.new({:name => "J.J. Redick"})))
     assert_not_nil(NbaPlayer.lookup_by_fd_player(FanDuelNbaPlayer.new({:name => "Luc Richard Mbah a Moute"})))
+    assert_not_nil(NbaPlayer.lookup_by_fd_player(FanDuelNbaPlayer.new({:name => "Luc Richard Mbah a Moute"})))
+    assert_not_nil(NbaPlayer.lookup_by_fd_player(FanDuelNbaPlayer.new({:name => "Perry Jones III"})))
+    assert_not_nil(NbaPlayer.lookup_by_fd_player(FanDuelNbaPlayer.new({:name => "Ishmael Smith"})))
     assert_nil(NbaPlayer.lookup_by_fd_player(FanDuelNbaPlayer.new({:name => "Michael Crockett"})))
   end
 

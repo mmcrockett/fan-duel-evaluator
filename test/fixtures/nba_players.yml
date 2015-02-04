@@ -34,3 +34,17 @@ nba_players_001:
   nba_team_id: 37
   created_at: '2015-01-27 23:30:13.639974'
   updated_at: '2015-01-27 23:30:13.640049'
+nba_players_002:
+  id: 9999
+  name: Perry Jones
+  assigned_player_id: 9999
+  nba_team_id: 99
+  created_at: '2015-01-27 23:30:13.639974'
+  updated_at: '2015-01-27 23:30:13.640049'
+nba_players_003:
+  id: 9998
+  name: Ish Smith
+  assigned_player_id: 9998
+  nba_team_id: 99
+  created_at: '2015-01-27 23:30:13.639974'
+  updated_at: '2015-01-27 23:30:13.640049'

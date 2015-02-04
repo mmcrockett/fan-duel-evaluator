@@ -105,7 +105,13 @@ class NbaPlayer < ActiveRecord::Base
       players = NbaPlayer.where("name = ?", fd_player.name.delete("."))
 
       if (0 == players.size)
-        players = NbaPlayer.where("name LIKE ?", "%#{fd_player.name.split(" ")[-1]}")
+        name_parts = fd_player.name.split(" ")
+
+        players = NbaPlayer.where("name LIKE ?", "#{name_parts[0][0]}% #{name_parts[1]}")
+
+        if (0 == players.size)
+          players = NbaPlayer.where("name LIKE ?", "%#{name_parts[-1]}")
+        end
       end
     end
 
