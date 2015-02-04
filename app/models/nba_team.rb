@@ -1,6 +1,9 @@
 class NbaTeam < ActiveRecord::Base
   extend NbaStat
 
+  has_many :nba_player
+  has_many :nba_team_game
+
   URI = "http://stats.nba.com/stats/leaguedashteamstats"
   RESULT_SET_IDENTIFIER = "LeagueDashTeamStats"
   COLUMN_MAP = {
@@ -76,6 +79,10 @@ class NbaTeam < ActiveRecord::Base
     else
       raise "!ERROR: No nickname defined for '#{self.name}'."
     end
+  end
+
+  def self.team_name(nickname)
+    return self::NICKNAMES.key(nickname)
   end
 
   def self.remote_load
