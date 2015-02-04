@@ -79,8 +79,8 @@ class NbaTeamGameTest < ActiveSupport::TestCase
   test "date parsing" do
     tg0 = NbaTeamGame.new(@rows[0])
     tg1 = NbaTeamGame.new(@rows[0])
-    tg0.game_date = "OCT 31, 2014"
-    tg1.game_date = "DEC 01, 2014"
+    tg0.game_date_str = "OCT 31, 2014"
+    tg1.game_date_str = "DEC 15, 2014"
     team_games = [@teamgame0, @teamgame1, tg0, tg1]
 
     assert(Date.today > @teamgame0.game_date)
@@ -91,8 +91,8 @@ class NbaTeamGameTest < ActiveSupport::TestCase
     end
 
     NbaTeamGame.import(team_games)
-    assert_equal("2014-10-31", "#{NbaTeamGame.maximum(:game_date)}")
-    assert_equal("2015-01-16", "#{NbaTeamGame.minimum(:game_date)}")
+    assert_equal("2014-10-31", "#{NbaTeamGame.minimum(:game_date)}")
+    assert_equal("2015-01-19", "#{NbaTeamGame.maximum(:game_date)}")
   end
 
   test "win parsing" do
@@ -110,12 +110,12 @@ class NbaTeamGameTest < ActiveSupport::TestCase
 
     NbaTeamGame.stubs(:get_data).returns([gamenewest,gametoday])
     NbaTeamGame.remote_load
-    assert_equal(1, NbaTeamGame.all.size)
+    assert_equal(1, NbaTeamGame.where({:nba_team_id => -1}).size)
     assert_equal(false, NbaTeamGame.where({:assigned_game_id => "0021400622"}).first.win)
 
     NbaTeamGame.stubs(:get_data).returns([gameoldest,gamenewest,gametoday])
     NbaTeamGame.remote_load
-    assert_equal(1, NbaTeamGame.all.size)
+    assert_equal(1, NbaTeamGame.where({:nba_team_id => -1}).size)
     assert_equal(false, NbaTeamGame.where({:assigned_game_id => "0021400622"}).first.win)
   end
 
@@ -124,7 +124,7 @@ class NbaTeamGameTest < ActiveSupport::TestCase
 
     NbaTeamGame.stubs(:get_data).returns(@rows)
     NbaTeamGame.remote_load
-    assert_equal(2, NbaTeamGame.all.size)
+    assert_equal(2, NbaTeamGame.where({:nba_team_id => -2}).size)
     assert_equal(false, NbaTeamGame.where({:assigned_game_id => "0021400622"}).first.win)
     assert_equal(true, NbaTeamGame.where({:assigned_game_id => "0021400597"}).first.win)
   end

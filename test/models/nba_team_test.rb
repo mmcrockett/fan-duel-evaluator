@@ -11,7 +11,7 @@ class NbaTeamTest < ActiveSupport::TestCase
            "headers":["TEAM_ID","TEAM_NAME","GP","W","OFF_RATING","DEF_RATING","PACE","CFPARAMS"],
            "rowSet":[
               [1610612737,"Atlanta Hawks",37,29,106.2,100.1,96.45,"Atlanta Hawks"],
-              [1610612738,"Boston Celtics",36,13,101.3,102.9,99.61,"Boston Celtics"]
+              [1610612738,"Los Angeles Lakers",36,13,101.3,102.9,99.61,"Los Angeles Lakers"]
            ]
           }
         ]
@@ -47,21 +47,21 @@ class NbaTeamTest < ActiveSupport::TestCase
 
   test "nickname" do
     assert_equal("ATL", NbaTeam.new(@rows[0]).nickname)
-    assert_equal("BOS", NbaTeam.new(@rows[1]).nickname)
+    assert_equal("LAL", NbaTeam.new(@rows[1]).nickname)
   end
 
   test "remote load" do
     hawks_original = @rows[0]
     hawks_modified = @rows[0].clone
     hawks_modified["gp"] = 50
-    celtics_original = @rows[1]
+    lakers_original = @rows[1]
     NbaTeam.stubs(:get_data).returns([hawks_original])
     NbaTeam.remote_load
-    assert_equal(1, NbaTeam.all.size)
+    assert_equal(1, NbaTeam.where({:name => hawks_original["name"]}).size)
     assert_equal(37, NbaTeam.where({:assigned_team_id => 1610612737}).first.gp)
-    NbaTeam.stubs(:get_data).returns([hawks_modified, celtics_original])
+    NbaTeam.stubs(:get_data).returns([hawks_modified, lakers_original])
     NbaTeam.remote_load
-    assert_equal(2, NbaTeam.all.size)
+    assert_equal(2, NbaTeam.where({:name => [hawks_original["name"], lakers_original["name"]]}).size)
     assert_equal(50, NbaTeam.where({:assigned_team_id => 1610612737}).first.gp)
     assert_equal(36, NbaTeam.where({:assigned_team_id => 1610612738}).first.gp)
   end

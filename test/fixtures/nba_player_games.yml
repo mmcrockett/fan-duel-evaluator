@@ -1,0 +1,273 @@
+---
+nba_player_games_3056:
+  id: 59040
+  assigned_season_id: '22014'
+  assigned_game_id: 0021400397
+  game_date: '2014-12-20'
+  visitor: SAS
+  home: DAL
+  minutes: 34
+  points: 6
+  rebounds: 7
+  assists: 9
+  steals: 2
+  blocks: 0
+  turnovers: 4
+  nba_player_id: 1864
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_3057:
+  id: 59041
+  assigned_season_id: '22014'
+  assigned_game_id: '0021400371'
+  game_date: '2014-12-17'
+  visitor: ORL
+  home: BOS
+  minutes: 33
+  points: 13
+  rebounds: 7
+  assists: 15
+  steals: 2
+  blocks: 0
+  turnovers: 6
+  nba_player_id: 1864
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_102:
+  id: 59044
+  assigned_season_id: '22014'
+  assigned_game_id: '0021400316'
+  game_date: '2014-12-10'
+  visitor: BOS
+  home: CHA
+  minutes: 32
+  points: 12
+  rebounds: 10
+  assists: 10
+  steals: 1
+  blocks: 0
+  turnovers: 4
+  nba_player_id: 1864
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_103:
+  id: 59045
+  assigned_season_id: '22014'
+  assigned_game_id: '0021400302'
+  game_date: '2014-12-08'
+  visitor: BOS
+  home: WAS
+  minutes: 21
+  points: 0
+  rebounds: 2
+  assists: 4
+  steals: 1
+  blocks: 0
+  turnovers: 3
+  nba_player_id: 1864
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_104:
+  id: 59046
+  assigned_season_id: '22014'
+  assigned_game_id: 0021400294
+  game_date: '2014-12-07'
+  visitor: WAS
+  home: BOS
+  minutes: 34
+  points: 13
+  rebounds: 13
+  assists: 11
+  steals: 3
+  blocks: 0
+  turnovers: 4
+  nba_player_id: 1864
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_109:
+  id: 59051
+  assigned_season_id: '22014'
+  assigned_game_id: '0021400223'
+  game_date: '2014-11-28'
+  visitor: CHI
+  home: BOS
+  minutes: 33
+  points: 8
+  rebounds: 7
+  assists: 9
+  steals: 1
+  blocks: 0
+  turnovers: 2
+  nba_player_id: 1864
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_010:
+  id: 59052
+  assigned_season_id: '22014'
+  assigned_game_id: 0021400194
+  game_date: '2014-11-23'
+  visitor: POR
+  home: BOS
+  minutes: 35
+  points: 13
+  rebounds: 6
+  assists: 8
+  steals: 2
+  blocks: 0
+  turnovers: 2
+  nba_player_id: 1864
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_001:
+  id: 59268
+  assigned_season_id: '22014'
+  assigned_game_id: '0021400120'
+  game_date: '2014-11-13'
+  visitor: PHI
+  home: DAL
+  minutes: 20
+  points: 21
+  rebounds: 3
+  assists: 4
+  steals: 0
+  blocks: 0
+  turnovers: 1
+  nba_player_id: 1869
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_002:
+  id: 59269
+  assigned_season_id: '22014'
+  assigned_game_id: '0021400106'
+  game_date: '2014-11-11'
+  visitor: SAC
+  home: DAL
+  minutes: 34
+  points: 23
+  rebounds: 7
+  assists: 3
+  steals: 0
+  blocks: 1
+  turnovers: 2
+  nba_player_id: 1869
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_003:
+  id: 59270
+  assigned_season_id: '22014'
+  assigned_game_id: 0021400094
+  game_date: '2014-11-09'
+  visitor: MIA
+  home: DAL
+  minutes: 30
+  points: 17
+  rebounds: 6
+  assists: 3
+  steals: 1
+  blocks: 1
+  turnovers: 1
+  nba_player_id: 1869
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_004:
+  id: 59271
+  assigned_season_id: '22014'
+  assigned_game_id: 0021400080
+  game_date: '2014-11-07'
+  visitor: DAL
+  home: UTA
+  minutes: 28
+  points: 27
+  rebounds: 10
+  assists: 2
+  steals: 1
+  blocks: 0
+  turnovers: 0
+  nba_player_id: 1869
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_005:
+  id: 59272
+  assigned_season_id: '22014'
+  assigned_game_id: '0021400070'
+  game_date: '2014-11-06'
+  visitor: DAL
+  home: POR
+  minutes: 27
+  points: 17
+  rebounds: 3
+  assists: 1
+  steals: 0
+  blocks: 0
+  turnovers: 2
+  nba_player_id: 1869
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_006:
+  id: 59273
+  assigned_season_id: '22014'
+  assigned_game_id: '0021400046'
+  game_date: '2014-11-03'
+  visitor: BOS
+  home: DAL
+  minutes: 30
+  points: 27
+  rebounds: 7
+  assists: 4
+  steals: 0
+  blocks: 0
+  turnovers: 1
+  nba_player_id: 1869
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_007:
+  id: 59274
+  assigned_season_id: '22014'
+  assigned_game_id: '0021400027'
+  game_date: '2014-11-01'
+  visitor: DAL
+  home: NOP
+  minutes: 30
+  points: 17
+  rebounds: 6
+  assists: 3
+  steals: 0
+  blocks: 1
+  turnovers: 4
+  nba_player_id: 1869
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_008:
+  id: 59275
+  assigned_season_id: '22014'
+  assigned_game_id: 0021400019
+  game_date: '2014-10-30'
+  visitor: UTA
+  home: DAL
+  minutes: 24
+  points: 21
+  rebounds: 3
+  assists: 1
+  steals: 1
+  blocks: 1
+  turnovers: 1
+  nba_player_id: 1869
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'
+nba_player_games_009:
+  id: 59276
+  assigned_season_id: '22014'
+  assigned_game_id: '0021400002'
+  game_date: '2014-10-28'
+  visitor: DAL
+  home: SAS
+  minutes: 32
+  points: 18
+  rebounds: 6
+  assists: 2
+  steals: 1
+  blocks: 0
+  turnovers: 1
+  nba_player_id: 1869
+  created_at: '2015-01-27 23:33:15.467765'
+  updated_at: '2015-01-27 23:33:15.471592'

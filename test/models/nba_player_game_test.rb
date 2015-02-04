@@ -79,12 +79,12 @@ class NbaPlayerGameTest < ActiveSupport::TestCase
 
     NbaPlayerGame.stubs(:get_data).returns([gamenewest,gametoday])
     NbaPlayerGame.remote_load
-    assert_equal(1, NbaPlayerGame.all.size)
+    assert_equal(1, NbaPlayerGame.where({:nba_player_id => -1}).size)
     assert_equal(29, NbaPlayerGame.where({:assigned_game_id => "0021400568"}).first.minutes)
 
     NbaPlayerGame.stubs(:get_data).returns([gameoldest,gamenewest,gametoday])
     NbaPlayerGame.remote_load
-    assert_equal(1, NbaPlayerGame.all.size)
+    assert_equal(1, NbaPlayerGame.where({:nba_player_id => -1}).size)
     assert_equal(29, NbaPlayerGame.where({:assigned_game_id => "0021400568"}).first.minutes)
   end
 
@@ -93,7 +93,7 @@ class NbaPlayerGameTest < ActiveSupport::TestCase
 
     NbaPlayerGame.stubs(:get_data).returns(@rows)
     NbaPlayerGame.remote_load
-    assert_equal(2, NbaPlayerGame.all.size)
+    assert_equal(2, NbaPlayerGame.where({:nba_player_id => -2}).size)
     assert_equal(29, NbaPlayerGame.where({:assigned_game_id => "0021400568"}).first.minutes)
     assert_equal(30, NbaPlayerGame.where({:assigned_game_id => "0021400558"}).first.minutes)
   end

@@ -1,4 +1,11 @@
 ---
+nba_players_096:
+  id: 1864
+  name: Rajon Rondo
+  assigned_player_id: 200765
+  nba_team_id: 37
+  created_at: '2015-01-27 23:30:13.639974'
+  updated_at: '2015-01-27 23:30:13.640049'
 nba_players_177:
   id: 1945
   name: JJ Redick
@@ -18,5 +25,12 @@ nba_players_369:
   name: Darren Collison
   assigned_player_id: 201954
   nba_team_id: 56
+  created_at: '2015-01-27 23:30:13.639974'
+  updated_at: '2015-01-27 23:30:13.640049'
+nba_players_001:
+  id: 1869
+  name: Dirk Nowitzki
+  assigned_player_id: 1717
+  nba_team_id: 37
   created_at: '2015-01-27 23:30:13.639974'
   updated_at: '2015-01-27 23:30:13.640049'
