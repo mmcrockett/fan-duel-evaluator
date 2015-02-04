@@ -65,4 +65,8 @@ class NbaTeamTest < ActiveSupport::TestCase
     assert_equal(50, NbaTeam.where({:assigned_team_id => 1610612737}).first.gp)
     assert_equal(36, NbaTeam.where({:assigned_team_id => 1610612738}).first.gp)
   end
+
+  test "nba team names" do
+    assert_equal([],(NbaTeam::NICKNAMES.values - FanDuelNbaPlayer::TEAMS_BY_FD_ID.values))
+  end
 end
