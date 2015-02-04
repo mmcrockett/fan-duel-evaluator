@@ -68,5 +68,9 @@ class NbaTeamTest < ActiveSupport::TestCase
 
   test "nba team names" do
     assert_equal([],(NbaTeam::NICKNAMES.values - FanDuelNbaPlayer::TEAMS_BY_FD_ID.values))
+
+    OverUnder::TRANSLATIONS["NBA"].values do |name|
+      assert_true(NbaTeam::NICKNAMES.values.include?(name))
+    end
   end
 end
