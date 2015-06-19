@@ -97,4 +97,10 @@ class NbaPlayerGameTest < ActiveSupport::TestCase
     assert_equal(29, NbaPlayerGame.where({:assigned_game_id => "0021400568"}).first.minutes)
     assert_equal(30, NbaPlayerGame.where({:assigned_game_id => "0021400558"}).first.minutes)
   end
+
+  test "empty game" do
+    assert_not_nil(NbaPlayerGame.empty_game)
+    assert_equal(10, NbaPlayerGame.empty_game({:steals => 10}).steals)
+    assert_equal(0, NbaPlayerGame.empty_game({:steals => 10}).points)
+  end
 end

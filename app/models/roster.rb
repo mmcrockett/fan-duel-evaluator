@@ -27,7 +27,7 @@ class Roster < ActiveRecord::Base
   end
 
   def self.get_best_rosters(players, positions, budget, columns, unique = false)
-    strategies = [:xheavy, :heavy, :valuebalanced, :bestbalanced, :balanced]
+    strategies = [:xheavy, :heavy, :valuebalanced, :bestbalanced, :value]
     position_permutations = positions.permutation(positions.size).to_a
 
     best_rosters = {}
@@ -50,19 +50,23 @@ class Roster < ActiveRecord::Base
             options  = {:exclude => rosters[key].players}
 
             begin
-              if (true == Roster.find_best?(strategy, i))
-                type = :best
-              elsif (true == Roster.find_best_capped?(strategy, i, positions.size))
+              if (:bestbalanced == strategy)
                 type = :best
                 options[:max_cost] = rosters[key].remaining_avg_budget*1.2
-              elsif (true == Roster.find_value_capped?(strategy, i, positions.size))
+              elsif (:valuebalanced == strategy)
                 type = :value
                 options[:max_cost] = rosters[key].remaining_avg_budget*1.2
-              elsif (true == Roster.find_value?(strategy, i, positions.size))
-                type = :value
-                options[:max_cost] = rosters[key].remaining_avg_budget
+              elsif (true == Roster.find_best?(strategy, i))
+                type = :best
               else
-                type = :best
+                type = :value
+
+                if (:value != strategy)
+                  options[:max_cost] = rosters[key].remaining_avg_budget
+                end
+              end
+
+              if (i == (positions.size - 1))
                 options[:max_cost] = rosters[key].remaining_budget
               end
 
@@ -98,6 +102,7 @@ class Roster < ActiveRecord::Base
       best_rosters.each_pair do |scolumn, rosters|
         rosters.each_pair do |strategy, roster|
           return_rosters[scolumn] = Roster.best(return_rosters[scolumn], roster)
+          return_rosters["#{scolumn}_#{strategy}"] = roster
         end
       end
 
@@ -163,30 +168,6 @@ class Roster < ActiveRecord::Base
     if ((:xheavy == strategy) && (i < 3))
       return true
     elsif ((:heavy == strategy) && (i < 2))
-      return true
-    end
-
-    return false
-  end
-
-  def self.find_best_capped?(strategy, i, length)
-    if ((:bestbalanced == strategy) && (i < (length - 1)))
-      return true
-    end
-
-    return false
-  end
-
-  def self.find_value?(strategy, i, length)
-    if (i < (length - 1))
-      return true
-    end
-
-    return false
-  end
-
-  def self.find_value_capped?(strategy, i, length)
-    if ((:valuebalanced == strategy) && (i < (length - 1)))
       return true
     end
 

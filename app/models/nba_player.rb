@@ -16,33 +16,47 @@ class NbaPlayer < ActiveRecord::Base
   }
   MAX_RECENT_GAMES = 10
 
-  def game_data(max_date = Date.today)
+  def raw_game_data(max_date = Date.today, size = MAX_RECENT_GAMES)
     data = []
-    expected_dates = self.nba_team.nba_team_game.where("game_date < ?", max_date).order(:game_date => :desc).limit(MAX_RECENT_GAMES).pluck(:game_date)
+    expected_dates = self.nba_team.nba_team_game.where("game_date < ?", max_date).order(:game_date => :desc).limit(size).pluck(:game_date)
     teams = [self.nba_team.nickname]
 
-    self.nba_player_game.where("game_date < ?", max_date).order(:game_date => :desc).limit(MAX_RECENT_GAMES).each do |game|
+    self.nba_player_game.where("game_date < ?", max_date).order(:game_date => :desc).limit(size).each do |game|
       if ((game.visitor != teams[-1]) && (game.home != teams[-1]))
         teams <<  self.find_previous_team(teams)
         old_team = NbaTeam.where({:name => NbaTeam.team_name(teams[-1])}).first
         #ActiveRecord::Base.logger = Logger.new(STDOUT)
         #str = "#{old_team.nba_team_game.pluck(:game_date)}"
         #ActiveRecord::Base.logger = nil
-        expected_dates = old_team.nba_team_game.where("game_date <= ?", game.game_date).where("game_date < ?", max_date).order(:game_date => :desc).limit(MAX_RECENT_GAMES).pluck(:game_date)
+        expected_dates = old_team.nba_team_game.where("game_date <= ?", game.game_date).where("game_date < ?", max_date).order(:game_date => :desc).limit(size).pluck(:game_date)
       end
 
       while ((expected_dates[0] != game.game_date) && (0 != expected_dates.size))
-        data << 0
-        expected_dates.shift
+        data << NbaPlayerGame.empty_game({:game_date => expected_dates.shift,:nba_player_id => self.id})
       end
 
       if (0 != expected_dates.size)
-        data << game.fan_duel_points
+        data << game
         expected_dates.shift
       end
     end
 
-    return data[0,10]
+    while (0 != expected_dates.size)
+      data << NbaPlayerGame.empty_game({:game_date => expected_dates.shift,:nba_player_id => self.id})
+    end
+
+    return data[0,size]
+  end
+
+  def game_data(max_date = Date.today, size = MAX_RECENT_GAMES)
+    data = []
+    games = self.raw_game_data(max_date, size)
+
+    games.each do |game|
+      data << game.fan_duel_points
+    end
+
+    return data[0,size]
   end
 
   def find_previous_team(known_teams)

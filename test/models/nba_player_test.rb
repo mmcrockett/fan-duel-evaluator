@@ -97,10 +97,13 @@ class NbaPlayerTest < ActiveSupport::TestCase
   test "game data" do
     rondo = NbaPlayer.lookup_by_fd_player(FanDuelNbaPlayer.new({:name => "Rajon Rondo"}))
     dirk  = NbaPlayer.lookup_by_fd_player(FanDuelNbaPlayer.new({:name => "Dirk Nowitzki"}))
+    collison = NbaPlayer.lookup_by_fd_player(FanDuelNbaPlayer.new({:name => "Darren Collison"}))
     rondo_expected = [0,27.9,41.9,0,0,37.0,7.4,47.1,0,0]
     dirk_expected  = [0,0,0,0,0,0,0,0,0,0]
+    collison_expected  = [0,0,0,0,0,0,0,0,0,0]
 
     assert_equal(dirk_expected, dirk.game_data)
     assert_equal(rondo_expected, rondo.game_data)
+    assert_equal(collison_expected, collison.game_data)
   end
 end

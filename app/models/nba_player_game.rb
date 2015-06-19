@@ -74,19 +74,23 @@ class NbaPlayerGame < ActiveRecord::Base
     NbaPlayerGame.import(player_games)
   end
 
-  def self.actual_points(fd_players)
+  def self.actual_points(fd_players, verbose = false)
     points = 0
 
     fd_players.each do |fd_player|
       nba_player = NbaPlayer.lookup_by_fd_player(fd_player)
 
       if (nil == nba_player)
-        puts "Couldn't find player for '#{fd_player.id}' '#{fd_player.name}' on '#{fd_player.created_at.to_date}'."
+        if (true == verbose)
+          puts "Couldn't find player for '#{fd_player.id}' '#{fd_player.name}' on '#{fd_player.created_at.to_date}'."
+        end
       else
         nba_player_game = NbaPlayerGame.where("nba_player_id = ? AND game_date = ?", nba_player.id, fd_player.created_at.to_date).first
 
         if (nil == nba_player_game)
-          puts "Couldn't find game for '#{nba_player.id}' '#{fd_player.name}' on '#{fd_player.created_at.to_date}'."
+          if (true == verbose)
+            puts "Couldn't find game for '#{nba_player.id}' '#{fd_player.name}' on '#{fd_player.created_at.to_date}'."
+          end
         else
           points += nba_player_game.fan_duel_points
         end
@@ -94,5 +98,21 @@ class NbaPlayerGame < ActiveRecord::Base
     end
 
     return points
+  end
+
+  def self.empty_game(params = {})
+    defaults = {
+      :game_date => "1969-01-01",
+      :minutes => 0,
+      :points => 0,
+      :rebounds => 0,
+      :assists => 0,
+      :turnovers => 0,
+      :steals => 0,
+      :blocks => 0,
+      :nba_player_id => -1
+    }
+
+    return self.new(defaults.merge(params))
   end
 end
