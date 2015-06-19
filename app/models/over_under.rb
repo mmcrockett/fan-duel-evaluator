@@ -26,11 +26,16 @@ class OverUnder < ActiveRecord::Base
       "CLB" => "CLS",
     },
     "NBA" => {
-      "SAN" => "SA",
-      "NYN" => "NY",
-      "NOP" => "NO",
-      "GOL" => "GS",
+      "SAN" => "SAS",
+      "NYN" => "NYK",
+      "NOP" => "NOP",
+      "GOL" => "GSW",
       "LAK" => "LAL",
+    },
+    "MLB" => {
+      "SFO" => "SFG",
+      "CUB" => "CHC",
+      "SDG" => "SDP",
     },
     "CBB" => {
       "MISSISSIPPI ST" => "MISST",
@@ -63,8 +68,9 @@ class OverUnder < ActiveRecord::Base
 
   URLS = {
     "NFL" => "http://m.vegasinsider.com/thisweek/3/NFL",
-    "NBA" => "http://m.vegasinsider.com/today/3/NBA",
+    #"NBA" => "http://m.vegasinsider.com/today/3/NBA",
     "NHL" => "http://m.vegasinsider.com/today/3/NHL",
+    "MLB" => "http://m.vegasinsider.com/today/3/MLB",
     "CBB" => "http://m.vegasinsider.com/today/3/BKC"
   }
 

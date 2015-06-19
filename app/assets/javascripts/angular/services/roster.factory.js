@@ -8,6 +8,7 @@ app.factory('Roster', ['$filter', function($filter) {
         NHL: ["LW", "RW", "C", "D", "G"],
         NBA: ["PG", "SG", "SF", "PF", "C"],
         NFL: ["QB", "RB", "WR", "TE", "K", "D"],
+        MLB: ["P", "1B", "2B", "3B", "SS", "OF"],
         CBB: ["F", "G"]
       }
       var ordered_columns = league_ordered_columns[league];

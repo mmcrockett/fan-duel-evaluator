@@ -93,8 +93,7 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def mean
-    return self.avg
-    #return self.fpoints.mean.round(1)
+    return self.fpoints[0,3].mean.round(1)
   end
 
   def team
@@ -164,6 +163,8 @@ class FanDuelPlayer < ActiveRecord::Base
       klazz = FanDuelNbaPlayer
     elsif ("CBB" == import.league)
       klazz = CollegeBasketballPlayer
+    elsif ("MLB" == import.league)
+      klazz = MlbPlayer
     else
       raise "!ERROR: league type is unknown '#{import}'."
     end
@@ -190,16 +191,29 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def self.player(player_data)
+    status   = player_data[12]
+    position = player_data[0]
+    note     = player_data[10]
+
+    if ("P" == position)
+      status = player_data[9]
+      note   = "pitcher"
+
+      if ((5 == status) || (1 == status))
+        note = "Probable"
+      end
+    end
+
     return self.new({
       :name      => player_data[1],
       :team_id   => player_data[3].to_i,
       :game_id   => player_data[2].to_i,
-      :position  => player_data[0],
+      :position  => position,
       :average   => player_data[6].to_f,
       :cost      => player_data[5].to_i,
-      :status    => player_data[12],
+      :status    => status,
       :priority  => player_data[11],
-      :note      => player_data[10],
+      :note      => note,
       :game_data => [],
       :game_log_loaded => false
     })
@@ -358,7 +372,9 @@ class FanDuelPlayer < ActiveRecord::Base
         @@overunders[fd_player.opp][:mult]  = OverUnder.calculate_boost_multiplier(@@overunders[fd_player.opp][:score], @@overunders[:scores])
       end
 
-      if ((("D" == fd_player.position) && ("NFL" == import.league)) || (("G" == fd_player.position) && ("NHL" == import.league)))
+      if ((("D" == fd_player.position) && ("NFL" == import.league)) ||
+          (("P" == fd_player.position) && ("MLB" == import.league)) ||
+          (("G" == fd_player.position) && ("NHL" == import.league)))
         fd_player.exp  = -@@overunders[fd_player.opp][:boost]
         fd_player.expp = (fd_player.med * (1/@@overunders[fd_player.opp][:mult])).round(1)
       else
