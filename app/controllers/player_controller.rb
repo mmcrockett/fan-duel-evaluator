@@ -65,4 +65,18 @@ class PlayerController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def overunder
+    @expected_scores = []
+    scores = nil
+    OverUnder.get_expected_scores(Import.latest_by_league(params)).each_pair do |key, value|
+      if (true == value.include?(:score))
+        value[:team] = key
+        value[:mult] = OverUnder.calculate_boost_multiplier(value[:score], scores)
+        @expected_scores << value
+      else
+        scores = value
+      end
+    end
+  end
 end
