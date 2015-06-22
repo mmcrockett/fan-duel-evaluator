@@ -89,7 +89,7 @@ class Roster < ActiveRecord::Base
       #best_rosters[sort_column].keys.each do |key|
         post_optimize = true
         #while ((true == post_optimize) && (nil != best_rosters[sort_column][key]))
-        while (true == post_optimize)
+        while ((true == post_optimize) && (nil != best_rosters[sort_column]))
           #new_best = Roster.post_optimize(best_rosters[sort_column][key], player_finder, sort_column)
           new_best = Roster.post_optimize(best_rosters[sort_column], player_finder, sort_column)
 

@@ -113,7 +113,7 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
     assert_equal(@players[2].cost/5, sorted_players[3].value)
   end
 
-  test "expp" do
+  test "expmed" do
     players = FanDuelPlayer.player_data({:league => "NFL"})
 
     pmanning_exp_median = ((23.82 + 28.62)/2).round(1)
@@ -124,7 +124,7 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
     assert_equal(pmanning_exp_median,pmanning.med)
     assert_equal(11.6,ajgreen.med)
     assert_equal(30,pmanning.exp)
-    assert_equal((pmanning_exp_median*1.295).round(1),pmanning.expp)
+    assert_equal((pmanning_exp_median*1.295).round(1),pmanning.expmed)
   end
 
   test "player detail" do
@@ -153,6 +153,21 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
     assert_not_nil(FanDuelPlayer.parse_player_detail(Nokogiri::HTML(no_points_td).css('td'), @cutoff_date, @today))
     assert_not_nil(FanDuelPlayer.parse_player_detail(Nokogiri::HTML(no_minutes_td).css('td'), @cutoff_date, @today))
     assert_nil(FanDuelPlayer.parse_player_detail(Nokogiri::HTML(no_play_td).css('td'), @cutoff_date, @today))
+  end
+
+  test "player_news" do
+    div = <<-EOF
+    <div class="clear news-item" data-role="scrollable-body">
+			<h2><b>June 17th</b> 11:52pm EDT</h2>
+				<p><b>UPDATE:</b> Escobar went 2-for-5 with a triple, four RBI and a run Wednesday against the Brewers.</p>
+				<p><b>ANALYSIS:</b> Well, that's not your typical leadoff-hitter batting line. Escobar's got five hits and six RBI in the last three games, but we're still waiting for the speed to show up -- he's still stuck on four steals, with just one in the last month. He certainly doesn't make his bacon as a power hitter, so his fantasy owners have to hope that Escobar hits for some more average and starts running soon.</p>
+			</div>
+    EOF
+
+    data = FanDuelPlayer.parse_player_news(Nokogiri::HTML(div), @today)
+
+    assert_equal(Date.strptime("06/17/2010", "%m/%d/%Y"), data[:date])
+    assert_equal("Escobar went 2-for-5 with a triple, four RBI and a run Wednesday against the Brewers.", data[:note])
   end
 
   test "player details" do

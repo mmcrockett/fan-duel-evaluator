@@ -16,12 +16,12 @@ class NhlPlayerTest < ActiveSupport::TestCase
     neg_goalie = NhlPlayer.new({:import_id => -1, :opp => "TB", :position => "G", :game_data => [10]})
 
     assert_equal(17,  pos_player.exp)
-    assert_equal((10 * 1.17),  pos_player.expp)
+    assert_equal((10 * 1.17),  pos_player.expmed)
     assert_equal(-18,  neg_player.exp)
-    assert_equal((10 * 0.82),  neg_player.expp)
+    assert_equal((10 * 0.82),  neg_player.expmed)
     assert_equal(23, pos_goalie.exp)
-    assert_equal((10 * 1.23), pos_goalie.expp)
+    assert_equal((10 * 1.23), pos_goalie.expmed)
     assert_equal(-20, neg_goalie.exp)
-    assert_equal((10 * 0.8), neg_goalie.expp)
+    assert_equal((10 * 0.8), neg_goalie.expmed)
   end
 end
