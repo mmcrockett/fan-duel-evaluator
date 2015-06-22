@@ -4,7 +4,7 @@ require 'open-uri'
 class FanDuelPlayer < ActiveRecord::Base
   belongs_to :import
   serialize :game_data, JSON
-  attr_accessor :team, :opp, :exp, :expp, :max, :min, :med, :mean, :rgms, :value, :rvalue, :pos, :avg, :opponent, :comment, :last, :p80
+  attr_accessor :team, :opp, :exp, :expavg, :expmean, :expmed, :max, :min, :med, :mean, :rgms, :value, :rvalue, :pos, :avg, :opponent, :comment, :last, :p80
 
   @@overunders = nil
   @@most_recent_game = {}
@@ -112,8 +112,16 @@ class FanDuelPlayer < ActiveRecord::Base
     return @exp || 0
   end
 
-  def expp
-    return @expp || 0
+  def expmed
+    return @expmed || 0
+  end
+
+  def expavg
+    return @expavg || 0
+  end
+
+  def expmean
+    return @expmean || 0
   end
 
   def value
@@ -376,10 +384,14 @@ class FanDuelPlayer < ActiveRecord::Base
           (("P" == fd_player.position) && ("MLB" == import.league)) ||
           (("G" == fd_player.position) && ("NHL" == import.league)))
         fd_player.exp  = -@@overunders[fd_player.opp][:boost]
-        fd_player.expp = (fd_player.med * (1/@@overunders[fd_player.opp][:mult])).round(1)
+        fd_player.expmed = (fd_player.med * (1/@@overunders[fd_player.opp][:mult])).round(1)
+        fd_player.expavg = (fd_player.avg * (1/@@overunders[fd_player.opp][:mult])).round(1)
+        fd_player.expmean = (fd_player.mean * (1/@@overunders[fd_player.opp][:mult])).round(1)
       else
         fd_player.exp  = @@overunders[fd_player.team_name][:boost]
-        fd_player.expp = (fd_player.med * @@overunders[fd_player.team_name][:mult]).round(1)
+        fd_player.expmed = (fd_player.med * @@overunders[fd_player.team_name][:mult]).round(1)
+        fd_player.expavg = (fd_player.avg * @@overunders[fd_player.team_name][:mult]).round(1)
+        fd_player.expmean = (fd_player.mean * @@overunders[fd_player.team_name][:mult]).round(1)
       end
     end
   end
