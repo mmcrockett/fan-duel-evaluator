@@ -99,7 +99,7 @@ class NhlPlayer < FanDuelPlayer
     end
   end
 
-  def expp
+  def expmed
     NhlStandings.data(self.import_id)
     if (true == self.goalie?())
       return (self.med * (1 + -NhlStandings.goals_scored_exp(self.opp)/10)).round(1)

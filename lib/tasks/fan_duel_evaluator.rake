@@ -231,7 +231,7 @@ namespace :fan_duel_evaluator do
             opponent = NbaTeam.where(:name => NbaTeam.team_name(oppnickname)).first
 
             exp = (1.0 * (team.pace/100) * (opponent.pace/100) * (team.off_rating/100) * (opponent.def_rating/100)).round(3)
-            fd_player.expp = (fd_player.avg * exp).round(1)
+            fd_player.expavg = (fd_player.avg * exp).round(1)
             fd_evaluation_players << fd_player
           else
             puts "!WARNING: Couldn't find team game '#{fd_player.created_at.to_date}':'#{nickname}':#{fd_player.name}:#{fd_player.id}."
@@ -239,7 +239,7 @@ namespace :fan_duel_evaluator do
         end
       end
 
-      srosters   = Roster.get_best_rosters(fd_evaluation_players, FanDuelNbaPlayer::POSITIONS, FanDuelNbaPlayer::BUDGET, [:mean,:med,:avg,:expp,:p80], false)
+      srosters   = Roster.get_best_rosters(fd_evaluation_players, FanDuelNbaPlayer::POSITIONS, FanDuelNbaPlayer::BUDGET, [:mean,:med,:avg,:expavg,:p80], false)
 
       srosters.each_pair do |name, sroster|
         if (sroster != nil)
