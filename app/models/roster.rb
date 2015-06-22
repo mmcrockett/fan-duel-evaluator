@@ -27,14 +27,14 @@ class Roster < ActiveRecord::Base
   end
 
   def self.get_best_rosters(players, positions, budget, columns, unique = false)
-    strategies = [:xheavy, :heavy, :valuebalanced, :bestbalanced, :value]
+    strategies = [:heavy, :bestbalanced, :value]
     position_permutations = positions.permutation(positions.size).to_a
 
     best_rosters = {}
     return_rosters = {}
 
     columns.each do |sort_column|
-      best_rosters[sort_column] ||= {}
+      #best_rosters[sort_column] ||= {}
       sorted_players = FanDuelPlayer.sort(players, sort_column)
       player_finder  = PlayerFinder.new(sorted_players)
       post_optimize  = true
@@ -80,30 +80,32 @@ class Roster < ActiveRecord::Base
           end
 
           rosters.each_value do |roster|
-            #best_rosters[sort_column] = Roster.best(best_rosters[sort_column], roster)
-            best_rosters[sort_column][key] = Roster.best(best_rosters[sort_column][key], roster)
+            best_rosters[sort_column] = Roster.best(best_rosters[sort_column], roster)
+            #best_rosters[sort_column][key] = Roster.best(best_rosters[sort_column][key], roster)
           end
         end
       end
 
-      best_rosters[sort_column].keys.each do |key|
+      #best_rosters[sort_column].keys.each do |key|
         post_optimize = true
-        while ((true == post_optimize) && (nil != best_rosters[sort_column][key]))
-          new_best = Roster.post_optimize(best_rosters[sort_column][key], player_finder, sort_column)
+        #while ((true == post_optimize) && (nil != best_rosters[sort_column][key]))
+        while (true == post_optimize)
+          #new_best = Roster.post_optimize(best_rosters[sort_column][key], player_finder, sort_column)
+          new_best = Roster.post_optimize(best_rosters[sort_column], player_finder, sort_column)
 
-          if (new_best == best_rosters[sort_column][key])
+          if (new_best == best_rosters[sort_column])
             post_optimize = false
           else
-            best_rosters[sort_column][key] = new_best
+            best_rosters[sort_column] = new_best
           end
         end
-      end
+      #end
 
       best_rosters.each_pair do |scolumn, rosters|
-        rosters.each_pair do |strategy, roster|
-          return_rosters[scolumn] = Roster.best(return_rosters[scolumn], roster)
-          return_rosters["#{scolumn}_#{strategy}"] = roster
-        end
+        return_rosters[scolumn] = rosters
+        #rosters.each_pair do |strategy, roster|
+          #return_rosters["#{scolumn}_#{strategy}"] = roster
+        #end
       end
 
       if (true == unique)
