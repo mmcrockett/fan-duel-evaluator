@@ -1,0 +1,7 @@
+<%= render :partial => "common/nav_bar" %>
+<div ng-controller="OverUnderController">
+  <%= render :partial => "common/league_selector" %>
+  <div>
+    <div google-chart chart="overunder_chart" on-sort="set_sort(sortParams)" on-ready="set_overunder_wrapper(chartWrapper)"></div>
+  </div>
+</div>
