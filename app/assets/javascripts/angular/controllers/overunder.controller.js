@@ -21,7 +21,7 @@ app.controller('OverUnderController', ['$scope', 'Leagues', '$window', 'OverUnde
     } else if (false == angular.isNumber($scope.overunder_chart.options.sortColumn)) {
       var i = 0;
       angular.forEach($scope.overunder_data[0], function(v, k) {
-        if ("score" == k) {
+        if ("exp_score" == k) {
           $scope.overunder_chart.options.sortColumn = i;
           return true;
         } else {
