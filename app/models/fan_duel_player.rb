@@ -242,8 +242,22 @@ class FanDuelPlayer < ActiveRecord::Base
           begin
             page  = Nokogiri::HTML(open("#{uri}"))
             table = page.css('table.game-log')[0].css('tbody')[0]
+            
             fd_player.game_data = FanDuelPlayer.parse_player_details(table, klazz::MAX_GAMES, cutoff_date, Date.today)
             fd_player.game_log_loaded = true
+
+            begin
+              if (true == fd_player.note.empty?)
+                news_data = FanDuelPlayer.parse_player_news(page.css('div.news-item')[0], Date.today)
+
+                if (news_data[:date] > (Date.today - 5))
+                  fd_player.note = "#{news_data[:date].strftime("%D")}:#{news_data[:note]}"
+                end
+              end
+            rescue Exception => e
+              logger.warn "Failed to parse note on player '#{fd_player.name}' in import '#{fd_player.import_id}' - '#{uri}' - #{e}"
+            end
+
             altered_players << fd_player
           rescue
             logger.warn "Couldn't load player '#{fd_player.name}' in import '#{fd_player.import_id}' - '#{uri}'"
@@ -261,6 +275,25 @@ class FanDuelPlayer < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def self.parse_player_news(div, today)
+    news_data = {}
+
+    date_str = div.css('h2')[0].css('b').text().strip()
+    date_str = date_str[0..-3]
+    news_data[:date] = Date.strptime("#{date_str},#{today.year}", "%B %d,%Y")
+    div.css('p').each do |p_element|
+      if (true == p_element.css('b')[0].text().strip().upcase.include?("UPDATE"))
+        p_element.children.each do |child|
+          if (true == child.text?)
+            news_data[:note] = child.text().strip()
+          end
+        end
+      end
+    end
+
+    return news_data
   end
 
   def self.parse_player_details(table, max, cutoff_date, today)
