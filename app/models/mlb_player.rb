@@ -49,10 +49,10 @@ class MlbPlayer < FanDuelPlayer
       else
         return false
       end
-    end
-
-    if (self.avg < 2)
-      return false
+    else
+      if (self.avg < 1.2)
+        return false
+      end
     end
 
     if (true == status.include?("DL"))
