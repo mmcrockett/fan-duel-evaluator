@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121183449) do
+ActiveRecord::Schema.define(version: 20150623192138) do
 
   create_table "dvoas", force: true do |t|
     t.string   "team"
@@ -35,13 +35,13 @@ ActiveRecord::Schema.define(version: 20150121183449) do
     t.decimal  "average",         precision: 4, scale: 2,                 null: false
     t.integer  "cost",                                                    null: false
     t.string   "status",                                  default: ""
-    t.string   "note",                                    default: ""
     t.boolean  "ignore",                                  default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "game_data"
     t.boolean  "game_log_loaded",                         default: false
     t.string   "priority",                                default: ""
+    t.string   "notes"
   end
 
   create_table "imports", force: true do |t|

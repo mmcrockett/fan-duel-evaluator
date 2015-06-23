@@ -63,7 +63,7 @@ class NhlPlayer < FanDuelPlayer
           return (6500 <= self.cost)
         else
           if (true == @@unconfirmed_goalies.include?(lname))
-            self.note = "?#{self.note}"
+            self.notes << "?"
           end
           return true
         end

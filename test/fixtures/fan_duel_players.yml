@@ -9,7 +9,7 @@ fan_duel_players_2625:
   average: 25
   cost: 10400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.331957'
@@ -27,7 +27,7 @@ fan_duel_players_2626:
   average: 26.6
   cost: 10000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.336515'
@@ -45,7 +45,7 @@ fan_duel_players_2627:
   average: 23.2
   cost: 10100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.339923'
@@ -63,7 +63,7 @@ fan_duel_players_2628:
   average: 19.6
   cost: 9500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.359919'
@@ -81,7 +81,7 @@ fan_duel_players_2629:
   average: 20
   cost: 9300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.363106'
@@ -99,7 +99,7 @@ fan_duel_players_2630:
   average: 20
   cost: 9300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.366170'
@@ -117,7 +117,7 @@ fan_duel_players_2631:
   average: 21.8
   cost: 9200
   status: questionable
-  note: Groin
+  notes: "[Groin]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.385211'
@@ -135,7 +135,7 @@ fan_duel_players_2632:
   average: 19
   cost: 9000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.388764'
@@ -153,7 +153,7 @@ fan_duel_players_2633:
   average: 19.7
   cost: 9000
   status: probable
-  note: Calf
+  notes: "[Calf]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.391819'
@@ -171,7 +171,7 @@ fan_duel_players_2634:
   average: 19.7
   cost: 9000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.395190'
@@ -189,7 +189,7 @@ fan_duel_players_2635:
   average: 13.1
   cost: 8000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.412134'
@@ -207,7 +207,7 @@ fan_duel_players_2636:
   average: 18.3
   cost: 7000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.415450'
@@ -225,7 +225,7 @@ fan_duel_players_2637:
   average: 17.2
   cost: 7000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.418570'
@@ -243,7 +243,7 @@ fan_duel_players_2638:
   average: 15.3
   cost: 8700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.421708'
@@ -261,7 +261,7 @@ fan_duel_players_2639:
   average: 16.4
   cost: 7000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.436406'
@@ -279,7 +279,7 @@ fan_duel_players_2640:
   average: 17.6
   cost: 8600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.439917'
@@ -297,7 +297,7 @@ fan_duel_players_2641:
   average: 16.7
   cost: 8600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.443061'
@@ -315,7 +315,7 @@ fan_duel_players_2642:
   average: 15.6
   cost: 7000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.446118'
@@ -333,7 +333,7 @@ fan_duel_players_2643:
   average: 17.2
   cost: 7000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.465527'
@@ -351,7 +351,7 @@ fan_duel_players_2644:
   average: 19
   cost: 8500
   status: probable
-  note: Hand
+  notes: "[Hand]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.469026'
@@ -369,7 +369,7 @@ fan_duel_players_2645:
   average: 14.8
   cost: 8400
   status: questionable
-  note: Hip
+  notes: "[Hip]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.472066'
@@ -387,7 +387,7 @@ fan_duel_players_2646:
   average: 10.3
   cost: 8300
   status: Out
-  note: Suspension
+  notes: "[Suspension]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.645027'
@@ -405,7 +405,7 @@ fan_duel_players_2647:
   average: 21
   cost: 8300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.475142'
@@ -423,7 +423,7 @@ fan_duel_players_2648:
   average: 20.3
   cost: 8300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.478166'
@@ -441,7 +441,7 @@ fan_duel_players_2649:
   average: 15.8
   cost: 5500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.498388'
@@ -459,7 +459,7 @@ fan_duel_players_2650:
   average: 11
   cost: 8300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.513893'
@@ -477,7 +477,7 @@ fan_duel_players_2651:
   average: 12.8
   cost: 8200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.517493'
@@ -495,7 +495,7 @@ fan_duel_players_2652:
   average: 14.7
   cost: 8200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.520626'
@@ -513,7 +513,7 @@ fan_duel_players_2653:
   average: 15.4
   cost: 8100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.523771'
@@ -531,7 +531,7 @@ fan_duel_players_2654:
   average: 15.1
   cost: 8100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.561490'
@@ -549,7 +549,7 @@ fan_duel_players_2655:
   average: 13.3
   cost: 8100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.569075'
@@ -567,7 +567,7 @@ fan_duel_players_2656:
   average: 18.1
   cost: 8000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.572251'
@@ -585,7 +585,7 @@ fan_duel_players_2657:
   average: 17.2
   cost: 8000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.575340'
@@ -603,7 +603,7 @@ fan_duel_players_2658:
   average: 11.8
   cost: 7900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.603102'
@@ -621,7 +621,7 @@ fan_duel_players_2659:
   average: 18
   cost: 7900
   status: questionable
-  note: Shoulder
+  notes: "[Shoulder]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.606320'
@@ -639,7 +639,7 @@ fan_duel_players_2660:
   average: 14.3
   cost: 7900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.609380'
@@ -657,7 +657,7 @@ fan_duel_players_2661:
   average: 14.2
   cost: 7900
   status: probable
-  note: Shoulder
+  notes: "[Shoulder]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.628735'
@@ -675,7 +675,7 @@ fan_duel_players_2662:
   average: 16.1
   cost: 7800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.633243'
@@ -693,7 +693,7 @@ fan_duel_players_2663:
   average: 12.5
   cost: 7800
   status: probable
-  note: Groin
+  notes: "[Groin]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.640238'
@@ -711,7 +711,7 @@ fan_duel_players_2664:
   average: 18
   cost: 7700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.652736'
@@ -729,7 +729,7 @@ fan_duel_players_2665:
   average: 12.4
   cost: 7700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.663003'
@@ -747,7 +747,7 @@ fan_duel_players_2666:
   average: 10.4
   cost: 7700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.666304'
@@ -765,7 +765,7 @@ fan_duel_players_2667:
   average: 17.9
   cost: 7700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.669400'
@@ -783,7 +783,7 @@ fan_duel_players_2668:
   average: 17.8
   cost: 7600
   status: IR
-  note: Knee
+  notes: "[Knee]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.803606'
@@ -801,7 +801,7 @@ fan_duel_players_2669:
   average: 13.5
   cost: 7500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.672630'
@@ -819,7 +819,7 @@ fan_duel_players_2670:
   average: 14.8
   cost: 7500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.675650'
@@ -837,7 +837,7 @@ fan_duel_players_2671:
   average: 14.7
   cost: 7500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.694615'
@@ -855,7 +855,7 @@ fan_duel_players_2672:
   average: 17.3
   cost: 7400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.697906'
@@ -873,7 +873,7 @@ fan_duel_players_2673:
   average: 17.3
   cost: 7400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.700970'
@@ -891,7 +891,7 @@ fan_duel_players_2674:
   average: 9.3
   cost: 7400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.704014'
@@ -909,7 +909,7 @@ fan_duel_players_2675:
   average: 14
   cost: 7400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.707020'
@@ -927,7 +927,7 @@ fan_duel_players_2676:
   average: 15.3
   cost: 7300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.719584'
@@ -945,7 +945,7 @@ fan_duel_players_2677:
   average: 13.6
   cost: 7300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.736058'
@@ -963,7 +963,7 @@ fan_duel_players_2678:
   average: 11.9
   cost: 7300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.742427'
@@ -981,7 +981,7 @@ fan_duel_players_2679:
   average: 11.6
   cost: 7100
   status: questionable
-  note: Ankle
+  notes: "[Ankle]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.745806'
@@ -999,7 +999,7 @@ fan_duel_players_2680:
   average: 9.4
   cost: 7000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.748850'
@@ -1017,7 +1017,7 @@ fan_duel_players_2681:
   average: 12.1
   cost: 7000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.751902'
@@ -1035,7 +1035,7 @@ fan_duel_players_2682:
   average: 18.6
   cost: 7000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.754970'
@@ -1053,7 +1053,7 @@ fan_duel_players_2683:
   average: 14.5
   cost: 7000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.774006'
@@ -1071,7 +1071,7 @@ fan_duel_players_2684:
   average: 11.9
   cost: 6900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.777264'
@@ -1089,7 +1089,7 @@ fan_duel_players_2685:
   average: 10.4
   cost: 6900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.780316'
@@ -1107,7 +1107,7 @@ fan_duel_players_2686:
   average: 17.9
   cost: 6900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.783374'
@@ -1125,7 +1125,7 @@ fan_duel_players_2687:
   average: 12.2
   cost: 6900
   status: questionable
-  note: Ankle
+  notes: "[Ankle]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:40:21.720687'
@@ -1143,7 +1143,7 @@ fan_duel_players_2688:
   average: 11.8
   cost: 6900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.822794'
@@ -1161,7 +1161,7 @@ fan_duel_players_2689:
   average: 11
   cost: 6900
   status: questionable
-  note: Illness
+  notes: "[Illness]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.825965'
@@ -1179,7 +1179,7 @@ fan_duel_players_2690:
   average: 12
   cost: 6900
   status: questionable
-  note: Shoulder
+  notes: "[Shoulder]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.843195'
@@ -1197,7 +1197,7 @@ fan_duel_players_2691:
   average: 11.9
   cost: 6900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.846633'
@@ -1215,7 +1215,7 @@ fan_duel_players_2692:
   average: 14.7
   cost: 6800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.849739'
@@ -1233,7 +1233,7 @@ fan_duel_players_2693:
   average: 11.6
   cost: 6800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.852789'
@@ -1251,7 +1251,7 @@ fan_duel_players_2694:
   average: 11.6
   cost: 6800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.855795'
@@ -1269,7 +1269,7 @@ fan_duel_players_2695:
   average: 9.8
   cost: 6700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.859970'
@@ -1287,7 +1287,7 @@ fan_duel_players_2696:
   average: 8
   cost: 6700
   status: questionable
-  note: Groin
+  notes: "[Groin]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.807206'
@@ -1305,7 +1305,7 @@ fan_duel_players_2697:
   average: 12.9
   cost: 6700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.863034'
@@ -1323,7 +1323,7 @@ fan_duel_players_2698:
   average: 8.9
   cost: 6700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.866064'
@@ -1341,7 +1341,7 @@ fan_duel_players_2699:
   average: 12.6
   cost: 6600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.869098'
@@ -1359,7 +1359,7 @@ fan_duel_players_2700:
   average: 13.9
   cost: 6600
   status: probable
-  note: Ankle
+  notes: "[Ankle]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.872561'
@@ -1377,7 +1377,7 @@ fan_duel_players_2701:
   average: 13.2
   cost: 6600
   status: questionable
-  note: Knee
+  notes: "[Knee]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:21.866456'
@@ -1395,7 +1395,7 @@ fan_duel_players_2702:
   average: 8.9
   cost: 6600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.875688'
@@ -1413,7 +1413,7 @@ fan_duel_players_2703:
   average: 12.7
   cost: 6600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.878929'
@@ -1431,7 +1431,7 @@ fan_duel_players_2704:
   average: 7.4
   cost: 6600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.882080'
@@ -1449,7 +1449,7 @@ fan_duel_players_2705:
   average: 10.5
   cost: 6600
   status: probable
-  note: Knee
+  notes: "[Knee]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.885123'
@@ -1467,7 +1467,7 @@ fan_duel_players_2706:
   average: 9.3
   cost: 6500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.888132'
@@ -1485,7 +1485,7 @@ fan_duel_players_2707:
   average: 10.1
   cost: 6500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.891221'
@@ -1503,7 +1503,7 @@ fan_duel_players_2708:
   average: 9.7
   cost: 6500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.894322'
@@ -1521,7 +1521,7 @@ fan_duel_players_2709:
   average: 10.9
   cost: 6500
   status: questionable
-  note: Groin
+  notes: "[Groin]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.897355'
@@ -1539,7 +1539,7 @@ fan_duel_players_2710:
   average: 10.6
   cost: 6500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.901090'
@@ -1557,7 +1557,7 @@ fan_duel_players_2711:
   average: 10.8
   cost: 6500
   status: questionable
-  note: Shoulder
+  notes: "[Shoulder]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.904618'
@@ -1575,7 +1575,7 @@ fan_duel_players_2712:
   average: 4.7
   cost: 6500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.909858'
@@ -1593,7 +1593,7 @@ fan_duel_players_2713:
   average: 12.5
   cost: 6500
   status: probable
-  note: Ribs
+  notes: "[Ribs]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.913759'
@@ -1611,7 +1611,7 @@ fan_duel_players_2714:
   average: 9.4
   cost: 6500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.918193'
@@ -1629,7 +1629,7 @@ fan_duel_players_2715:
   average: 11.2
   cost: 6400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.921509'
@@ -1647,7 +1647,7 @@ fan_duel_players_2716:
   average: 9.3
   cost: 6400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.924550'
@@ -1665,7 +1665,7 @@ fan_duel_players_2717:
   average: 8.5
   cost: 6400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.927535'
@@ -1683,7 +1683,7 @@ fan_duel_players_2718:
   average: 13.4
   cost: 6400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.930541'
@@ -1701,7 +1701,7 @@ fan_duel_players_2719:
   average: 4.2
   cost: 6400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.933550'
@@ -1719,7 +1719,7 @@ fan_duel_players_2720:
   average: 9.6
   cost: 6400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.936780'
@@ -1737,7 +1737,7 @@ fan_duel_players_2721:
   average: 8.5
   cost: 6300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.940247'
@@ -1755,7 +1755,7 @@ fan_duel_players_2722:
   average: 11.9
   cost: 6300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.943358'
@@ -1773,7 +1773,7 @@ fan_duel_players_2723:
   average: 9.3
   cost: 6300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.946379'
@@ -1791,7 +1791,7 @@ fan_duel_players_2724:
   average: 7.9
   cost: 6300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.949475'
@@ -1809,7 +1809,7 @@ fan_duel_players_2725:
   average: 7.1
   cost: 6300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.952509'
@@ -1827,7 +1827,7 @@ fan_duel_players_2726:
   average: 9.1
   cost: 6300
   status: probable
-  note: Ankle
+  notes: "[Ankle]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.955507'
@@ -1845,7 +1845,7 @@ fan_duel_players_2727:
   average: 6.3
   cost: 6300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.958546'
@@ -1863,7 +1863,7 @@ fan_duel_players_2728:
   average: 9
   cost: 6300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.961778'
@@ -1881,7 +1881,7 @@ fan_duel_players_2729:
   average: 8.6
   cost: 6200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.965018'
@@ -1899,7 +1899,7 @@ fan_duel_players_2730:
   average: 7.1
   cost: 6200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.968052'
@@ -1917,7 +1917,7 @@ fan_duel_players_2731:
   average: 9.9
   cost: 6200
   status: questionable
-  note: Knee
+  notes: "[Knee]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.973991'
@@ -1935,7 +1935,7 @@ fan_duel_players_2732:
   average: 13.6
   cost: 6200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.976998'
@@ -1953,7 +1953,7 @@ fan_duel_players_2733:
   average: 13
   cost: 6200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.980032'
@@ -1971,7 +1971,7 @@ fan_duel_players_2734:
   average: 11.7
   cost: 6100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.983012'
@@ -1989,7 +1989,7 @@ fan_duel_players_2735:
   average: 10.3
   cost: 6100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:53.986987'
@@ -2007,7 +2007,7 @@ fan_duel_players_2736:
   average: 3.7
   cost: 6100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.000085'
@@ -2025,7 +2025,7 @@ fan_duel_players_2737:
   average: 8.9
   cost: 6100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.003181'
@@ -2043,7 +2043,7 @@ fan_duel_players_2738:
   average: 8.3
   cost: 6100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.006368'
@@ -2061,7 +2061,7 @@ fan_duel_players_2739:
   average: 8.7
   cost: 6100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.009471'
@@ -2079,7 +2079,7 @@ fan_duel_players_2740:
   average: 7.4
   cost: 6100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.012487'
@@ -2097,7 +2097,7 @@ fan_duel_players_2741:
   average: 6.5
   cost: 6100
   status: questionable
-  note: Ankle
+  notes: "[Ankle]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.182435'
@@ -2115,7 +2115,7 @@ fan_duel_players_2742:
   average: 6.1
   cost: 6100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.186178'
@@ -2133,7 +2133,7 @@ fan_duel_players_2743:
   average: 15.9
   cost: 6000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.015506'
@@ -2151,7 +2151,7 @@ fan_duel_players_2744:
   average: 14.8
   cost: 6000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.018519'
@@ -2169,7 +2169,7 @@ fan_duel_players_2745:
   average: 8.9
   cost: 6000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.021641'
@@ -2187,7 +2187,7 @@ fan_duel_players_2746:
   average: 7.4
   cost: 6000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.024640'
@@ -2205,7 +2205,7 @@ fan_duel_players_2747:
   average: 9.4
   cost: 5900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.027784'
@@ -2223,7 +2223,7 @@ fan_duel_players_2748:
   average: 2.9
   cost: 5900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.330012'
@@ -2241,7 +2241,7 @@ fan_duel_players_2749:
   average: 9.6
   cost: 5900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.030893'
@@ -2259,7 +2259,7 @@ fan_duel_players_2750:
   average: 4.4
   cost: 5800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.033891'
@@ -2277,7 +2277,7 @@ fan_duel_players_2751:
   average: 4.5
   cost: 5800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.036895'
@@ -2295,7 +2295,7 @@ fan_duel_players_2752:
   average: 7.7
   cost: 5800
   status: probable
-  note: Groin
+  notes: "[Groin]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.039884'
@@ -2313,7 +2313,7 @@ fan_duel_players_2753:
   average: 6.9
   cost: 5800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.042934'
@@ -2331,7 +2331,7 @@ fan_duel_players_2754:
   average: 4.5
   cost: 5800
   status: Out
-  note: Calf
+  notes: "[Calf]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.810433'
@@ -2349,7 +2349,7 @@ fan_duel_players_2755:
   average: 8.4
   cost: 5800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.067178'
@@ -2367,7 +2367,7 @@ fan_duel_players_2756:
   average: 6.8
   cost: 5800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.070553'
@@ -2385,7 +2385,7 @@ fan_duel_players_2757:
   average: 7.8
   cost: 5800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.073718'
@@ -2403,7 +2403,7 @@ fan_duel_players_2758:
   average: 8.9
   cost: 5700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.089107'
@@ -2421,7 +2421,7 @@ fan_duel_players_2759:
   average: 4.1
   cost: 5700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.092492'
@@ -2439,7 +2439,7 @@ fan_duel_players_2760:
   average: 5
   cost: 5700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.333699'
@@ -2457,7 +2457,7 @@ fan_duel_players_2761:
   average: 6.8
   cost: 5700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.117916'
@@ -2475,7 +2475,7 @@ fan_duel_players_2762:
   average: 7.4
   cost: 5700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.121617'
@@ -2493,7 +2493,7 @@ fan_duel_players_2763:
   average: 9.7
   cost: 5700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.154781'
@@ -2511,7 +2511,7 @@ fan_duel_players_2764:
   average: 5.6
   cost: 5600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.158637'
@@ -2529,7 +2529,7 @@ fan_duel_players_2765:
   average: 6.7
   cost: 5600
   status: questionable
-  note: Knee
+  notes: "[Knee]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.161954'
@@ -2547,7 +2547,7 @@ fan_duel_players_2766:
   average: 7.5
   cost: 5600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.193395'
@@ -2565,7 +2565,7 @@ fan_duel_players_2767:
   average: 6.1
   cost: 5600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.197035'
@@ -2583,7 +2583,7 @@ fan_duel_players_2768:
   average: 10.5
   cost: 5600
   status: questionable
-  note: Concussion
+  notes: "[Concussion]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.200130'
@@ -2601,7 +2601,7 @@ fan_duel_players_2769:
   average: 10.5
   cost: 5500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.203175'
@@ -2619,7 +2619,7 @@ fan_duel_players_2770:
   average: 7.2
   cost: 5500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.206230'
@@ -2637,7 +2637,7 @@ fan_duel_players_2771:
   average: 6.1
   cost: 5500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.221745'
@@ -2655,7 +2655,7 @@ fan_duel_players_2772:
   average: 5.1
   cost: 5500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.225235'
@@ -2673,7 +2673,7 @@ fan_duel_players_2773:
   average: 6.4
   cost: 5500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.228265'
@@ -2691,7 +2691,7 @@ fan_duel_players_2774:
   average: 8
   cost: 5400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.231368'
@@ -2709,7 +2709,7 @@ fan_duel_players_2775:
   average: 7.1
   cost: 5400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.251120'
@@ -2727,7 +2727,7 @@ fan_duel_players_2776:
   average: 9.8
   cost: 5400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.254420'
@@ -2745,7 +2745,7 @@ fan_duel_players_2777:
   average: 12
   cost: 5400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.257457'
@@ -2763,7 +2763,7 @@ fan_duel_players_2778:
   average: 3.5
   cost: 5400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.338241'
@@ -2781,7 +2781,7 @@ fan_duel_players_2779:
   average: 3
   cost: 5400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.268565'
@@ -2799,7 +2799,7 @@ fan_duel_players_2780:
   average: 8.2
   cost: 5400
   status: probable
-  note: Hip
+  notes: "[Hip]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.271919'
@@ -2817,7 +2817,7 @@ fan_duel_players_2781:
   average: 5
   cost: 5400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.275008'
@@ -2835,7 +2835,7 @@ fan_duel_players_2782:
   average: 9.4
   cost: 5400
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.278127'
@@ -2853,7 +2853,7 @@ fan_duel_players_2783:
   average: 9.6
   cost: 5300
   status: questionable
-  note: Thigh
+  notes: "[Thigh]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.289801'
@@ -2871,7 +2871,7 @@ fan_duel_players_2784:
   average: 6.6
   cost: 5300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.293193'
@@ -2889,7 +2889,7 @@ fan_duel_players_2785:
   average: -1.67
   cost: 5300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.296269'
@@ -2907,7 +2907,7 @@ fan_duel_players_2786:
   average: 8.25
   cost: 5300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.319074'
@@ -2925,7 +2925,7 @@ fan_duel_players_2787:
   average: 5.5
   cost: 5300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.322206'
@@ -2943,7 +2943,7 @@ fan_duel_players_2788:
   average: 4.2
   cost: 5300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.341684'
@@ -2961,7 +2961,7 @@ fan_duel_players_2789:
   average: 17
   cost: 5300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.325259'
@@ -2979,7 +2979,7 @@ fan_duel_players_2790:
   average: 6.3
   cost: 5300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.328340'
@@ -2997,7 +2997,7 @@ fan_duel_players_2791:
   average: 6.2
   cost: 5300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.351119'
@@ -3015,7 +3015,7 @@ fan_duel_players_2792:
   average: 8.1
   cost: 5300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.360329'
@@ -3033,7 +3033,7 @@ fan_duel_players_2793:
   average: 12.6
   cost: 5300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.369791'
@@ -3051,7 +3051,7 @@ fan_duel_players_2794:
   average: 5.3
   cost: 5300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.384745'
@@ -3069,7 +3069,7 @@ fan_duel_players_2795:
   average: 9.5
   cost: 5300
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.399960'
@@ -3087,7 +3087,7 @@ fan_duel_players_2796:
   average: 6
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.411223'
@@ -3105,7 +3105,7 @@ fan_duel_players_2797:
   average: 5.25
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.414534'
@@ -3123,7 +3123,7 @@ fan_duel_players_2798:
   average: 11.75
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.417615'
@@ -3141,7 +3141,7 @@ fan_duel_players_2799:
   average: 5.67
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.434531'
@@ -3159,7 +3159,7 @@ fan_duel_players_2800:
   average: 4.5
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.446542'
@@ -3177,7 +3177,7 @@ fan_duel_players_2801:
   average: 5.8
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.459821'
@@ -3195,7 +3195,7 @@ fan_duel_players_2802:
   average: 4.4
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:34:19.701045'
@@ -3213,7 +3213,7 @@ fan_duel_players_2803:
   average: 5
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.470531'
@@ -3231,7 +3231,7 @@ fan_duel_players_2804:
   average: 3.2
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.492213'
@@ -3249,7 +3249,7 @@ fan_duel_players_2805:
   average: 7.5
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.495994'
@@ -3267,7 +3267,7 @@ fan_duel_players_2806:
   average: 6.3
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.499126'
@@ -3285,7 +3285,7 @@ fan_duel_players_2807:
   average: 2.6
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.502235'
@@ -3303,7 +3303,7 @@ fan_duel_players_2808:
   average: 4.7
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.513683'
@@ -3321,7 +3321,7 @@ fan_duel_players_2809:
   average: 6.8
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.517111'
@@ -3339,7 +3339,7 @@ fan_duel_players_2810:
   average: 4.9
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:34:19.719953'
@@ -3357,7 +3357,7 @@ fan_duel_players_2811:
   average: 10.5
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.520169'
@@ -3375,7 +3375,7 @@ fan_duel_players_2812:
   average: 9.2
   cost: 5200
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.523272'
@@ -3393,7 +3393,7 @@ fan_duel_players_2813:
   average: 8.6
   cost: 5100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.539100'
@@ -3411,7 +3411,7 @@ fan_duel_players_2814:
   average: 5.1
   cost: 5100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.542439'
@@ -3429,7 +3429,7 @@ fan_duel_players_2815:
   average: 6.7
   cost: 5100
   status: probable
-  note: Knee
+  notes: "[Knee]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.556834'
@@ -3447,7 +3447,7 @@ fan_duel_players_2816:
   average: 7.2
   cost: 5100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.563529'
@@ -3465,7 +3465,7 @@ fan_duel_players_2817:
   average: 9.33
   cost: 5100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.566700'
@@ -3483,7 +3483,7 @@ fan_duel_players_2818:
   average: 5.3
   cost: 5100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.569826'
@@ -3501,7 +3501,7 @@ fan_duel_players_2819:
   average: 6.3
   cost: 5100
   status: questionable
-  note: Concussion
+  notes: "[Concussion]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.572957'
@@ -3519,7 +3519,7 @@ fan_duel_players_2820:
   average: 7.4
   cost: 5100
   status: probable
-  note: Quadriceps
+  notes: "[Quadriceps]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.575968'
@@ -3537,7 +3537,7 @@ fan_duel_players_2821:
   average: 4.6
   cost: 5100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.582750'
@@ -3555,7 +3555,7 @@ fan_duel_players_2822:
   average: 9.1
   cost: 5100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.588282'
@@ -3573,7 +3573,7 @@ fan_duel_players_2823:
   average: 3.1
   cost: 5100
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.603665'
@@ -3591,7 +3591,7 @@ fan_duel_players_2824:
   average: 5.67
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.607234'
@@ -3609,7 +3609,7 @@ fan_duel_players_2825:
   average: 4.6
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.344847'
@@ -3627,7 +3627,7 @@ fan_duel_players_2826:
   average: 8.5
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:29:09.972767'
@@ -3645,7 +3645,7 @@ fan_duel_players_2827:
   average: 16.2
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:29:09.977343'
@@ -3663,7 +3663,7 @@ fan_duel_players_2828:
   average: 4.6
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.610474'
@@ -3681,7 +3681,7 @@ fan_duel_players_2829:
   average: 15.4
   cost: 5000
   status: probable
-  note: Stomach
+  notes: "[Stomach]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.813648'
@@ -3699,7 +3699,7 @@ fan_duel_players_2830:
   average: 6.3
   cost: 5000
   status: questionable
-  note: Ankle
+  notes: "[Ankle]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.833127'
@@ -3717,7 +3717,7 @@ fan_duel_players_2831:
   average: 6.7
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:29:09.980687'
@@ -3735,7 +3735,7 @@ fan_duel_players_2832:
   average: 6
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:29:09.984937'
@@ -3753,7 +3753,7 @@ fan_duel_players_2833:
   average: 4.2
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:29:09.988145'
@@ -3771,7 +3771,7 @@ fan_duel_players_2834:
   average: 4.3
   cost: 5000
   status: questionable
-  note: Neck
+  notes: "[Neck]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.903938'
@@ -3789,7 +3789,7 @@ fan_duel_players_2835:
   average: 7
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.615746'
@@ -3807,7 +3807,7 @@ fan_duel_players_2836:
   average: 7.2
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:32.206976'
@@ -3825,7 +3825,7 @@ fan_duel_players_2837:
   average: 7.8
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.618774'
@@ -3843,7 +3843,7 @@ fan_duel_players_2838:
   average: 7.5
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:29:09.996782'
@@ -3861,7 +3861,7 @@ fan_duel_players_2839:
   average: 18.1
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.621843'
@@ -3879,7 +3879,7 @@ fan_duel_players_2840:
   average: 7.2
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.624762'
@@ -3897,7 +3897,7 @@ fan_duel_players_2841:
   average: 9
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:29:10.002804'
@@ -3915,7 +3915,7 @@ fan_duel_players_2842:
   average: 14
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:29:10.006051'
@@ -3933,7 +3933,7 @@ fan_duel_players_2843:
   average: 2.4
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:29:10.009216'
@@ -3951,7 +3951,7 @@ fan_duel_players_2844:
   average: 8.8
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.627924'
@@ -3969,7 +3969,7 @@ fan_duel_players_2845:
   average: 5.5
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.631525'
@@ -3987,7 +3987,7 @@ fan_duel_players_2846:
   average: 4
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.635899'
@@ -4005,7 +4005,7 @@ fan_duel_players_2847:
   average: 11.67
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.639660'
@@ -4023,7 +4023,7 @@ fan_duel_players_2848:
   average: 2.4
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:29:10.012227'
@@ -4041,7 +4041,7 @@ fan_duel_players_2849:
   average: 9.67
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.643204'
@@ -4059,7 +4059,7 @@ fan_duel_players_2850:
   average: 3.7
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.646265'
@@ -4077,7 +4077,7 @@ fan_duel_players_2851:
   average: 7.5
   cost: 5000
   status: questionable
-  note: Arm
+  notes: "[Arm]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.649294'
@@ -4095,7 +4095,7 @@ fan_duel_players_2852:
   average: 3.4
   cost: 5000
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:29:10.015454'
@@ -4113,7 +4113,7 @@ fan_duel_players_2853:
   average: 2.2
   cost: 5000
   status: questionable
-  note: Ankle
+  notes: "[Ankle]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.907549'
@@ -4131,7 +4131,7 @@ fan_duel_players_2854:
   average: 3.5
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.652260'
@@ -4149,7 +4149,7 @@ fan_duel_players_2855:
   average: 9.9
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.655313'
@@ -4167,7 +4167,7 @@ fan_duel_players_2856:
   average: 2.6
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.395095'
@@ -4185,7 +4185,7 @@ fan_duel_players_2857:
   average: 4
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.658375'
@@ -4203,7 +4203,7 @@ fan_duel_players_2858:
   average: 2.8
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:34:19.723801'
@@ -4221,7 +4221,7 @@ fan_duel_players_2859:
   average: 3.4
   cost: 4900
   status: probable
-  note: Concussion
+  notes: "[Concussion]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.910737'
@@ -4239,7 +4239,7 @@ fan_duel_players_2860:
   average: 6.9
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.661393'
@@ -4257,7 +4257,7 @@ fan_duel_players_2861:
   average: 2.4
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.434944'
@@ -4275,7 +4275,7 @@ fan_duel_players_2862:
   average: 2.5
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.438860'
@@ -4293,7 +4293,7 @@ fan_duel_players_2863:
   average: 2.2
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.478806'
@@ -4311,7 +4311,7 @@ fan_duel_players_2864:
   average: 5.1
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.664612'
@@ -4329,7 +4329,7 @@ fan_duel_players_2865:
   average: 9
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.667608'
@@ -4347,7 +4347,7 @@ fan_duel_players_2866:
   average: 8.5
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.670591'
@@ -4365,7 +4365,7 @@ fan_duel_players_2867:
   average: 6.2
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.673626'
@@ -4383,7 +4383,7 @@ fan_duel_players_2868:
   average: 6.4
   cost: 4900
   status: probable
-  note: Foot
+  notes: "[Foot]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.676655'
@@ -4401,7 +4401,7 @@ fan_duel_players_2869:
   average: 13.67
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.679619'
@@ -4419,7 +4419,7 @@ fan_duel_players_2870:
   average: 11.1
   cost: 4900
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.682641'
@@ -4437,7 +4437,7 @@ fan_duel_players_2871:
   average: 4.8
   cost: 4900
   status: questionable
-  note: Ankle
+  notes: "[Ankle]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.913938'
@@ -4455,7 +4455,7 @@ fan_duel_players_2872:
   average: 3.9
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.685744'
@@ -4473,7 +4473,7 @@ fan_duel_players_2873:
   average: 6.9
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.688793'
@@ -4491,7 +4491,7 @@ fan_duel_players_2874:
   average: 8.4
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.691783'
@@ -4509,7 +4509,7 @@ fan_duel_players_2875:
   average: 7.4
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.694838'
@@ -4527,7 +4527,7 @@ fan_duel_players_2876:
   average: 2.1
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.697876'
@@ -4545,7 +4545,7 @@ fan_duel_players_2877:
   average: 5.7
   cost: 4800
   status: questionable
-  note: Groin
+  notes: "[Groin]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.917040'
@@ -4563,7 +4563,7 @@ fan_duel_players_2878:
   average: 2.2
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.700911'
@@ -4581,7 +4581,7 @@ fan_duel_players_2879:
   average: 4
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.705190'
@@ -4599,7 +4599,7 @@ fan_duel_players_2880:
   average: 6.3
   cost: 4800
   status: IR-R
-  note: Foot
+  notes: "[Foot]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.920223'
@@ -4617,7 +4617,7 @@ fan_duel_players_2881:
   average: 4.2
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.709707'
@@ -4635,7 +4635,7 @@ fan_duel_players_2882:
   average: 5.1
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.713956'
@@ -4653,7 +4653,7 @@ fan_duel_players_2883:
   average: 8.5
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.717670'
@@ -4671,7 +4671,7 @@ fan_duel_players_2884:
   average: 4.9
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.720689'
@@ -4689,7 +4689,7 @@ fan_duel_players_2885:
   average: 6.4
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.723703'
@@ -4707,7 +4707,7 @@ fan_duel_players_2886:
   average: 8.8
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.726732'
@@ -4725,7 +4725,7 @@ fan_duel_players_2887:
   average: 3.6
   cost: 4800
   status: questionable
-  note: Hamstring
+  notes: "[Hamstring]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.938379'
@@ -4743,7 +4743,7 @@ fan_duel_players_2888:
   average: 9
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.733953'
@@ -4761,7 +4761,7 @@ fan_duel_players_2889:
   average: 7.9
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.737092'
@@ -4779,7 +4779,7 @@ fan_duel_players_2890:
   average: 4.6
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.746515'
@@ -4797,7 +4797,7 @@ fan_duel_players_2891:
   average: 7.8
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.749589'
@@ -4815,7 +4815,7 @@ fan_duel_players_2892:
   average: 7.67
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.752579'
@@ -4833,7 +4833,7 @@ fan_duel_players_2893:
   average: 2.2
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.482281'
@@ -4851,7 +4851,7 @@ fan_duel_players_2894:
   average: 3.9
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:34:19.727185'
@@ -4869,7 +4869,7 @@ fan_duel_players_2895:
   average: 2.6
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.755592'
@@ -4887,7 +4887,7 @@ fan_duel_players_2896:
   average: 3.3
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.514090'
@@ -4905,7 +4905,7 @@ fan_duel_players_2897:
   average: 5.7
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.758581'
@@ -4923,7 +4923,7 @@ fan_duel_players_2898:
   average: 8.1
   cost: 4800
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.761754'
@@ -4941,7 +4941,7 @@ fan_duel_players_2899:
   average: 3
   cost: 4800
   status: questionable
-  note: Knee
+  notes: "[Knee]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.941726'
@@ -4959,7 +4959,7 @@ fan_duel_players_2900:
   average: 2.2
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.517851'
@@ -4977,7 +4977,7 @@ fan_duel_players_2901:
   average: 6.1
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.764864'
@@ -4995,7 +4995,7 @@ fan_duel_players_2902:
   average: 2.7
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.767827'
@@ -5013,7 +5013,7 @@ fan_duel_players_2903:
   average: 2.4
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.770892'
@@ -5031,7 +5031,7 @@ fan_duel_players_2904:
   average: 8.2
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.773972'
@@ -5049,7 +5049,7 @@ fan_duel_players_2905:
   average: 3.7
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.777180'
@@ -5067,7 +5067,7 @@ fan_duel_players_2906:
   average: 5.7
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.780204'
@@ -5085,7 +5085,7 @@ fan_duel_players_2907:
   average: 8.75
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.783298'
@@ -5103,7 +5103,7 @@ fan_duel_players_2908:
   average: 5.25
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.786373'
@@ -5121,7 +5121,7 @@ fan_duel_players_2909:
   average: 3
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.789468'
@@ -5139,7 +5139,7 @@ fan_duel_players_2910:
   average: 13.33
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.792333'
@@ -5157,7 +5157,7 @@ fan_duel_players_2911:
   average: 7.4
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.795396'
@@ -5175,7 +5175,7 @@ fan_duel_players_2912:
   average: 5.2
   cost: 4700
   status: IR-R
-  note: Elbow
+  notes: "[Elbow]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.944873'
@@ -5193,7 +5193,7 @@ fan_duel_players_2913:
   average: 2.2
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.798422'
@@ -5211,7 +5211,7 @@ fan_duel_players_2914:
   average: 5.6
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.801490'
@@ -5229,7 +5229,7 @@ fan_duel_players_2915:
   average: 2.3
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.804477'
@@ -5247,7 +5247,7 @@ fan_duel_players_2916:
   average: 3
   cost: 4700
   status: questionable
-  note: Toe
+  notes: "[Toe]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.948006'
@@ -5265,7 +5265,7 @@ fan_duel_players_2917:
   average: 2.1
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.807476'
@@ -5283,7 +5283,7 @@ fan_duel_players_2918:
   average: 2.8
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.810471'
@@ -5301,7 +5301,7 @@ fan_duel_players_2919:
   average: 3.4
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.541513'
@@ -5319,7 +5319,7 @@ fan_duel_players_2920:
   average: 7.7
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.814491'
@@ -5337,7 +5337,7 @@ fan_duel_players_2921:
   average: 2.9
   cost: 4700
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.818614'
@@ -5355,7 +5355,7 @@ fan_duel_players_2922:
   average: 3.4
   cost: 4600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.822727'
@@ -5373,7 +5373,7 @@ fan_duel_players_2923:
   average: 3.7
   cost: 4600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.826785'
@@ -5391,7 +5391,7 @@ fan_duel_players_2924:
   average: 2.33
   cost: 4600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.830841'
@@ -5409,7 +5409,7 @@ fan_duel_players_2925:
   average: 2.5
   cost: 4600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.601895'
@@ -5427,7 +5427,7 @@ fan_duel_players_2926:
   average: 8.4
   cost: 4600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.834964'
@@ -5445,7 +5445,7 @@ fan_duel_players_2927:
   average: 3.1
   cost: 4600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.838933'
@@ -5463,7 +5463,7 @@ fan_duel_players_2928:
   average: 5.2
   cost: 4600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.843088'
@@ -5481,7 +5481,7 @@ fan_duel_players_2929:
   average: 1.33
   cost: 4600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.847195'
@@ -5499,7 +5499,7 @@ fan_duel_players_2930:
   average: 4.3
   cost: 4600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.851207'
@@ -5517,7 +5517,7 @@ fan_duel_players_2931:
   average: 6.67
   cost: 4600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.855357'
@@ -5535,7 +5535,7 @@ fan_duel_players_2932:
   average: 2.3
   cost: 4600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:33:12.828708'
@@ -5553,7 +5553,7 @@ fan_duel_players_2933:
   average: 3.9
   cost: 4600
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:31:22.605283'
@@ -5571,7 +5571,7 @@ fan_duel_players_2934:
   average: 2.8
   cost: 4500
   status: questionable
-  note: Ankle
+  notes: "[Ankle]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.964539'
@@ -5589,7 +5589,7 @@ fan_duel_players_2935:
   average: 2.2
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.859301'
@@ -5607,7 +5607,7 @@ fan_duel_players_2936:
   average: 3.4
   cost: 4500
   status: IR
-  note: Hamstring
+  notes: "[Hamstring]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.967773'
@@ -5625,7 +5625,7 @@ fan_duel_players_2937:
   average: 3.5
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.862999'
@@ -5643,7 +5643,7 @@ fan_duel_players_2938:
   average: 2.4
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.866196'
@@ -5661,7 +5661,7 @@ fan_duel_players_2939:
   average: 3.5
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.882660'
@@ -5679,7 +5679,7 @@ fan_duel_players_2940:
   average: 2.75
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.886020'
@@ -5697,7 +5697,7 @@ fan_duel_players_2941:
   average: 4.33
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.889086'
@@ -5715,7 +5715,7 @@ fan_duel_players_2942:
   average: 7.7
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.892067'
@@ -5733,7 +5733,7 @@ fan_duel_players_2943:
   average: 4.33
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.907694'
@@ -5751,7 +5751,7 @@ fan_duel_players_2944:
   average: 3.25
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.910759'
@@ -5769,7 +5769,7 @@ fan_duel_players_2945:
   average: 8.5
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.913841'
@@ -5787,7 +5787,7 @@ fan_duel_players_2946:
   average: 2.4
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.929644'
@@ -5805,7 +5805,7 @@ fan_duel_players_2947:
   average: 3.3
   cost: 4500
   status: questionable
-  note: Ankle
+  notes: "[Ankle]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.933027'
@@ -5823,7 +5823,7 @@ fan_duel_players_2948:
   average: 5.8
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.936060'
@@ -5841,7 +5841,7 @@ fan_duel_players_2949:
   average: 2.8
   cost: 4500
   status: questionable
-  note: Concussion
+  notes: "[Concussion]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.970930'
@@ -5859,7 +5859,7 @@ fan_duel_players_2950:
   average: 20.2
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.955882'
@@ -5877,7 +5877,7 @@ fan_duel_players_2951:
   average: 3.5
   cost: 4500
   status: Out
-  note: Ankle
+  notes: "[Ankle]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:28:07.990760'
@@ -5895,7 +5895,7 @@ fan_duel_players_2952:
   average: 2.4
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: t
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:34:19.731686'
@@ -5913,7 +5913,7 @@ fan_duel_players_2953:
   average: 2.7
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.958871'
@@ -5931,7 +5931,7 @@ fan_duel_players_2954:
   average: 3.3
   cost: 4500
   status: questionable
-  note: Concussion
+  notes: "[Concussion]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.961877'
@@ -5949,7 +5949,7 @@ fan_duel_players_2955:
   average: 3.4
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.977033'
@@ -5967,7 +5967,7 @@ fan_duel_players_2956:
   average: 8.2
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.980409'
@@ -5985,7 +5985,7 @@ fan_duel_players_2957:
   average: 5.9
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.983443'
@@ -6003,7 +6003,7 @@ fan_duel_players_2958:
   average: 3.5
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.986487'
@@ -6021,7 +6021,7 @@ fan_duel_players_2959:
   average: 4.4
   cost: 4500
   status: ''
-  note: ''
+  notes: "[]"
   ignore: f
   created_at: '2014-11-12 15:58:50.021201'
   updated_at: '2014-11-12 17:36:54.990875'

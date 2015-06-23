@@ -4,6 +4,7 @@ require 'open-uri'
 class FanDuelPlayer < ActiveRecord::Base
   belongs_to :import
   serialize :game_data, JSON
+  serialize :notes, JSON
   attr_accessor :team, :opp, :exp, :expavg, :expmean, :expmed, :max, :min, :med, :mean, :rgms, :value, :rvalue, :pos, :avg, :opponent, :comment, :last, :p80
 
   @@overunders = nil
@@ -47,16 +48,24 @@ class FanDuelPlayer < ActiveRecord::Base
   def comment
     comment = ""
 
-    if ("" != self.note)
+    if (1 < self.status.length)
+      comment += "#{self.status}"
+
       if ("breaking" == priority)
-        comment = "*"
+        comment += "*"
       elsif ("recent" == priority)
-        comment = "+"
+        comment += "+"
       elsif ("old" == priority)
-        comment = "o"
+        comment += "o"
+      end
+    end
+
+    self.notes.each_with_index do |v,i|
+      if (0 != i)
+        comment += " - "
       end
 
-      comment = "#{self.status}#{comment}#{self.note}"
+      comment += "#{v}"
     end
 
     return comment
@@ -202,14 +211,16 @@ class FanDuelPlayer < ActiveRecord::Base
     status   = player_data[12]
     position = player_data[0]
     note     = player_data[10]
-
+    notes    = []
+    
     if ("P" == position)
       status = player_data[9]
-      note   = "pitcher"
 
       if ((5 == status) || (1 == status))
-        note = "Probable"
+        notes << "Probable"
       end
+    elsif ((nil != note) && (false == note.empty?))
+      notes << note
     end
 
     return self.new({
@@ -221,7 +232,7 @@ class FanDuelPlayer < ActiveRecord::Base
       :cost      => player_data[5].to_i,
       :status    => status,
       :priority  => player_data[11],
-      :note      => note,
+      :notes     => notes,
       :game_data => [],
       :game_log_loaded => false
     })
@@ -247,12 +258,10 @@ class FanDuelPlayer < ActiveRecord::Base
             fd_player.game_log_loaded = true
 
             begin
-              if (true == fd_player.note.empty?)
-                news_data = FanDuelPlayer.parse_player_news(page.css('div.news-item')[0], Date.today)
+              news_data = FanDuelPlayer.parse_player_news(page.css('div.news-item')[0], Date.today)
 
-                if (news_data[:date] > (Date.today - 5))
-                  fd_player.note = "#{news_data[:date].strftime("%D")}:#{news_data[:note]}"
-                end
+              if (news_data[:date] > (Date.today - 5))
+                fd_player.notes << news_data[:note]
               end
             rescue Exception => e
               logger.warn "Failed to parse note on player '#{fd_player.name}' in import '#{fd_player.import_id}' - '#{uri}' - #{e}"
@@ -287,7 +296,7 @@ class FanDuelPlayer < ActiveRecord::Base
       if (true == p_element.css('b')[0].text().strip().upcase.include?("UPDATE"))
         p_element.children.each do |child|
           if (true == child.text?)
-            news_data[:note] = child.text().strip()
+            news_data[:note] = "#{div.css('h2')[0].text().strip()} #{child.text().strip()}"
           end
         end
       end
