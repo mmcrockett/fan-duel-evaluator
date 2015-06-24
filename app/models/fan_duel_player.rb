@@ -422,9 +422,7 @@ class FanDuelPlayer < ActiveRecord::Base
         @@overunders[fd_player.opp][:mult]  = OverUnder.calculate_boost_multiplier(@@overunders[fd_player.opp][:score], @@overunders[:scores])
       end
 
-      if ((("D" == fd_player.position) && ("NFL" == import.league)) ||
-          (("P" == fd_player.position) && ("MLB" == import.league)) ||
-          (("G" == fd_player.position) && ("NHL" == import.league)))
+      if (true == fd_player.defensive?)
         fd_player.exp  = -@@overunders[fd_player.opp][:boost]
         fd_player.expmed = (fd_player.med * (1/@@overunders[fd_player.opp][:mult])).round(1)
         fd_player.expavg = (fd_player.avg * (1/@@overunders[fd_player.opp][:mult])).round(1)
@@ -436,6 +434,10 @@ class FanDuelPlayer < ActiveRecord::Base
         fd_player.expmean = (fd_player.mean * @@overunders[fd_player.team_name][:mult]).round(1)
       end
     end
+  end
+
+  def defensive?
+    return false
   end
 
   def self.extract_latest_game(fd_player)

@@ -73,6 +73,10 @@ class NhlPlayer < FanDuelPlayer
     end
   end
 
+  def defensive?
+    return ("G" == self.position)
+  end
+
   def unified_name(name)
     first_name = ""
     last_name  = ""

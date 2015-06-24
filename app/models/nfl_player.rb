@@ -54,6 +54,10 @@ class NflPlayer < FanDuelPlayer
     end
   end
 
+  def defensive?
+    return ("D" == self.position)
+  end
+
   def self.get_players(params)
     players = FanDuelPlayer.get_players(params)
 

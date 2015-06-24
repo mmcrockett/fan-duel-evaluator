@@ -61,4 +61,8 @@ class MlbPlayer < FanDuelPlayer
 
     return true
   end
+
+  def defensive?
+    return ("P" == self.position)
+  end
 end
