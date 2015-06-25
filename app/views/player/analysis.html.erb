@@ -3,7 +3,8 @@
   <%= render :partial => "common/league_selector" %>
   <div>
     <div ng-repeat="roster in rosters">
-      <div google-chart chart="roster"></div>
+      <h2>{{roster.name}}</h2>
+      <div google-chart chart="roster.chart"></div>
     </div>
     <hr>
   </div>

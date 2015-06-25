@@ -20,7 +20,7 @@ app.controller('AnalysisController', ['$scope', 'AnalysisData', 'Roster', 'JsLit
               var data = Roster.create_roster(selectedLeague, v[i].players, v[i].notes);
               chart.data = JsLiteral.get_chart_data(data);
               $scope.update_chart_columns(data, chart);
-              $scope.rosters.push(chart);
+              $scope.rosters.push({chart:chart, name:v[i].notes});
             }
           },
           function(e){
