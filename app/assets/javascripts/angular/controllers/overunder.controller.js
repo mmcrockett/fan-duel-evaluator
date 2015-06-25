@@ -1,7 +1,4 @@
-app.controller('OverUnderController', ['$scope', 'Leagues', '$window', 'OverUnderData', 'JsLiteral', '$filter', function($scope, Leagues, $window, OverUnderData, JsLiteral, $filter) {
-  $scope.league_changed = false;
-  $scope.leagues = Leagues.options;
-  $scope.selectedLeague = "NONE";
+app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'JsLiteral', '$filter', function($scope, $window, OverUnderData, JsLiteral, $filter) {
   $scope.overunder_wrapper = null;
   $scope.overunder_data = [];
   $scope.set_overunder_wrapper = function(wrapper) {
@@ -68,10 +65,6 @@ app.controller('OverUnderController', ['$scope', 'Leagues', '$window', 'OverUnde
 
     $scope.avg_value = parseInt(cost/points);
   };
-  $scope.select_league = function() {
-    $scope.league_changed = true;
-    $scope.get_overunder_data();
-  };
   $scope.update_chart_columns = function(data, chart) {
     var i = 0;
     var show_columns = [];
@@ -88,18 +81,15 @@ app.controller('OverUnderController', ['$scope', 'Leagues', '$window', 'OverUnde
       chart.view = undefined;
     }
   };
-  $scope.get_overunder_data = function() {
+  $scope.select_league = function(selectedLeague) {
     $scope.message = "";
-    if ("NONE" != $scope.selectedLeague) {
+    if ("NONE" != selectedLeague) {
       $scope.message = "Retrieving overunder data...";
-      OverUnderData.query({league:$scope.selectedLeague},
+      OverUnderData.query({league:selectedLeague},
           function(v){
             $scope.message = "";
             $scope.overunder_data = v;
             $scope.select_overunder_data();
-            if (true == $scope.league_changed) {
-              $scope.league_changed = false;
-            }
           },
           function(e){
             $scope.message = "Couldn't load overunder data.";
@@ -108,12 +98,8 @@ app.controller('OverUnderController', ['$scope', 'Leagues', '$window', 'OverUnde
     } else {
       $scope.overunder_data = [];
       $scope.select_overunder_data();
-      if (true == $scope.league_changed) {
-        $scope.league_changed = false;
-      }
     }
   };
   $scope.$watch('overunder_data', $scope.create_overunder_chart);
-  $scope.$watch('selectedLeague', $scope.select_league);
   $scope.$watch('recalculate', $scope.calculate_value);
 }]);

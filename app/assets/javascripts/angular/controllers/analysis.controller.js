@@ -1,13 +1,11 @@
-app.controller('AnalysisController', ['$scope', 'Leagues', '$window', 'AnalysisData', 'Roster', 'JsLiteral', '$filter', function($scope, Leagues, $window, AnalysisData, Roster, JsLiteral, $filter) {
-  $scope.leagues = Leagues.options;
-  $scope.selectedLeague = "NONE";
+app.controller('AnalysisController', ['$scope', 'AnalysisData', 'Roster', 'JsLiteral', function($scope, AnalysisData, Roster, JsLiteral) {
   $scope.rosters = [];
   $scope.message = "";
-  $scope.get_rosters = function() {
+  $scope.select_league = function(selectedLeague) {
     $scope.message = "";
-    if ("NONE" != $scope.selectedLeague) {
+    if ("NONE" != selectedLeague) {
       $scope.message = "Retrieving rosters...";
-      AnalysisData.query({league:$scope.selectedLeague},
+      AnalysisData.query({league:selectedLeague},
           function(v){
             $scope.message = "";
             $scope.rosters = [];
@@ -19,7 +17,7 @@ app.controller('AnalysisController', ['$scope', 'Leagues', '$window', 'AnalysisD
                   sortAscending: false
                 }
               };
-              var data = Roster.create_roster($scope.selectedLeague, v[i].players, v[i].notes);
+              var data = Roster.create_roster(selectedLeague, v[i].players, v[i].notes);
               chart.data = JsLiteral.get_chart_data(data);
               $scope.update_chart_columns(data, chart);
               $scope.rosters.push(chart);
@@ -32,9 +30,6 @@ app.controller('AnalysisController', ['$scope', 'Leagues', '$window', 'AnalysisD
     } else {
       $scope.rosters = [];
     }
-  };
-  $scope.select_league = function() {
-    $scope.get_rosters();
   };
   $scope.update_chart_columns = function(data, chart) {
     var i = 0;
@@ -52,5 +47,4 @@ app.controller('AnalysisController', ['$scope', 'Leagues', '$window', 'AnalysisD
       chart.view = undefined;
     }
   };
-  $scope.$watch('selectedLeague', $scope.select_league);
 }]);

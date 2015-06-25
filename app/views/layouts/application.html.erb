@@ -2,14 +2,16 @@
 <html ng-app="FanDuelEvaluator">
 <head>
   <title>FanDuelEvaluator - <%= action_name %></title>
+  <% angular_version = "1.2.6" %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => false %>
   <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", :media => "all" %>
   <%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.4/themes/cupertino/jquery-ui.min.css", :media => "all" %>
   <%= javascript_include_tag "//code.jquery.com/jquery-2.1.1.min.js" %>
   <%= javascript_include_tag "http://code.jquery.com/ui/1.11.0/jquery-ui.min.js" %>
   <%= javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" %>
-  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js" %>
-  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-resource.min.js" %>
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/#{angular_version}/angular.min.js" %>
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/#{angular_version}/angular-resource.min.js" %>
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/#{angular_version}/angular-cookies.min.js" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
   <%= csrf_meta_tags %>
 </head>

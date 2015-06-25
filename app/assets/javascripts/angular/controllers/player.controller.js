@@ -1,6 +1,5 @@
-app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData', 'Roster', 'JsLiteral', '$filter', function($scope, Leagues, $window, PlayerData, Roster, JsLiteral, $filter) {
+app.controller('PlayerController', ['$scope', '$window', 'PlayerData', 'Roster', 'JsLiteral', '$filter', function($scope, $window, PlayerData, Roster, JsLiteral, $filter) {
   $scope.league_changed = false;
-  $scope.leagues = Leagues.options;
   $scope.selectedLeague = "NONE";
   $scope.positions = [{id:"NONE"}];
   $scope.selectedPosition = "NONE";
@@ -170,7 +169,8 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
       }
     });
   };
-  $scope.select_league = function() {
+  $scope.select_league = function(league) {
+    $scope.selectedLeague = league;
     $scope.league_changed = true;
     $scope.get_player_data();
   };
@@ -236,6 +236,5 @@ app.controller('PlayerController', ['$scope', 'Leagues', '$window', 'PlayerData'
   };
   $scope.$watch('filtered_player_data', $scope.create_player_chart);
   $scope.$watch('selectedPosition', $scope.select_player_data);
-  $scope.$watch('selectedLeague', $scope.select_league);
   $scope.$watch('recalculate', $scope.calculate_value);
 }]);

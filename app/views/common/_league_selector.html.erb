@@ -1,5 +1,5 @@
   <%= render :partial => "common/message_bar" %>
   <div>
-    <select ng-model="selectedLeague" ng-options="item.id as item.id for item in leagues"></select>
+    <ng-league-selector on-select-league="select_league(league)"></ng-league-selector>
   </div>
   <hr>
