@@ -8,7 +8,7 @@ class Roster < ActiveRecord::Base
   def self.analyze(league, unique = false)
     puts "Start Time: #{Time.now}"
     start_time = Time.now
-    players    = FanDuelPlayer.player_data({:league => league})
+    players    = FanDuelPlayer.player_data({:league => league, :ignore => false})
     import_id  = players.first.import_id
     positions  = players.first.class::POSITIONS
     budget     = players.first.class::BUDGET

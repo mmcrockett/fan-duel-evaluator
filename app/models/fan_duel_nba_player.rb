@@ -41,7 +41,7 @@ class FanDuelNbaPlayer < FanDuelPlayer
     708 => "WAS",
   }
 
-  def important?
-    return (8 < self.average)
+  def ignore?
+    return (8 > self.average)
   end
 end

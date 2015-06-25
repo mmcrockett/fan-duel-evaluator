@@ -167,7 +167,7 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
     data = FanDuelPlayer.parse_player_news(Nokogiri::HTML(div), @today)
 
     assert_equal(Date.strptime("06/17/2010", "%m/%d/%Y"), data[:date])
-    assert_equal("June 17th 11:52pm EDT Escobar went 2-for-5 with a triple, four RBI and a run Wednesday against the Brewers.", data[:note])
+    assert_equal("06/17 11:52pm EDT Escobar went 2-for-5 with a triple, four RBI and a run Wednesday against the Brewers.", data[:note])
   end
 
   test "player details" do

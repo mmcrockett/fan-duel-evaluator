@@ -42,24 +42,24 @@ class MlbPlayer < FanDuelPlayer
     604 => "TEX",
   }
 
-  def important?
+  def ignore?
     if ("P" == self.position)
       if ((5 == self.status) || (1 == self.status))
-        return true
-      else
         return false
+      else
+        return true
       end
     else
       if (self.avg < 1.2)
-        return false
+        return true
       end
     end
 
     if (true == status.include?("DL"))
-      return false
+      return true
     end
 
-    return true
+    return false
   end
 
   def defensive?

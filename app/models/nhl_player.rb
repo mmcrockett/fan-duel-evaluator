@@ -45,30 +45,28 @@ class NhlPlayer < FanDuelPlayer
     678 => "WAS",
   }
 
-  def important?
+  def ignore?
     if (0 == @@starting_goalies.size)
       set_starting_goalies
     end
 
-    if (3800 > self.cost)
+    if (3800 < self.cost)
       return false
     else
       if ("D" == self.position)
-        return (1 < self.average)
+        return (1 > self.average)
       elsif ("G" == self.position)
         lname = unified_name(self.name)
         if (false == @@starting_goalies.include?(lname))
-          self.ignore = true
-
-          return (6500 <= self.cost)
+          return true
         else
           if (true == @@unconfirmed_goalies.include?(lname))
             self.notes << "?"
           end
-          return true
+          return false
         end
       else
-        return (1.2 < self.average)
+        return (1.2 > self.average)
       end
     end
   end

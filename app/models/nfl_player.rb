@@ -46,11 +46,11 @@ class NflPlayer < FanDuelPlayer
     return @dvoa || 0
   end
 
-  def important?
+  def ignore?
     if (("D" == self.position) || ("K" == self.position))
-      return true
+      return false
     else
-      return (2 < self.average)
+      return (2 > self.average)
     end
   end
 

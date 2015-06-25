@@ -199,9 +199,11 @@ class FanDuelPlayer < ActiveRecord::Base
       player.player_id = player_id.to_i
       player.import_id = import.id
 
-      if (true == player.important?())
-        players << player
+      if (true == player.ignore?())
+        player.ignore = true
       end
+
+      players << player
     end
 
     FanDuelPlayer.import(players)
@@ -245,7 +247,7 @@ class FanDuelPlayer < ActiveRecord::Base
     if ((nil != import) && (nil != import.fd_game_id))
       klazz = FanDuelPlayer.factory(import)
 
-      klazz.where({:ignore => false, :import => import, :game_log_loaded => false}).each do |fd_player|
+      klazz.where({:import => import, :game_log_loaded => false}).each do |fd_player|
         if (true == fd_player.game_data.is_a?(Array))
           points = []
           uri  = "#{PLAYER_DETAIL_URL}#{fd_player.player_id}#{PLAYER_DETAIL_URL_EXT}#{import.fd_game_id}"
@@ -262,6 +264,13 @@ class FanDuelPlayer < ActiveRecord::Base
 
               if (news_data[:date] > (Date.today - 5))
                 fd_player.notes << news_data[:note]
+
+                if (new_data[:date] == Date.today)
+                  if ((true == news_data[:note].include?("is out of the lineup")) ||
+                      (true == news_data[:note].include?("not in the lineup")))
+                     fd_player.ignore = true
+                  end
+                end
               end
             rescue Exception => e
               logger.warn "Failed to parse note on player '#{fd_player.name}' in import '#{fd_player.import_id}' - '#{uri}' - #{e}"
@@ -289,14 +298,23 @@ class FanDuelPlayer < ActiveRecord::Base
   def self.parse_player_news(div, today)
     news_data = {}
 
-    date_str = div.css('h2')[0].css('b').text().strip()
+    timestamp_elem = div.css('h2')[0]
+    time_str = "?"
+    date_str = timestamp_elem.css('b').text().strip()
     date_str = date_str[0..-3]
     news_data[:date] = Date.strptime("#{date_str},#{today.year}", "%B %d,%Y")
+
+    timestamp_elem.children.each do |child|
+      if (true == child.text?)
+        time_str = "#{child.text().strip()}"
+      end
+    end
+
     div.css('p').each do |p_element|
       if (true == p_element.css('b')[0].text().strip().upcase.include?("UPDATE"))
         p_element.children.each do |child|
           if (true == child.text?)
-            news_data[:note] = "#{div.css('h2')[0].text().strip()} #{child.text().strip()}"
+            news_data[:note] = "#{news_data[:date].strftime("%m/%d")} #{time_str} #{child.text().strip()}"
           end
         end
       end
@@ -379,7 +397,7 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def self.get_players(params = {})
-    import = Import.latest_by_league(params)
+    import = Import.latest_by_league(params[:league])
 
     if (nil == import)
       return []
@@ -390,13 +408,17 @@ class FanDuelPlayer < ActiveRecord::Base
 
     players = []
 
-    klazz.where({:ignore => false, :import => import}).each do |fd_player|
+    klazz.where({:import => import}).each do |fd_player|
       fd_player.team     = fd_player.team_name
 
       FanDuelPlayer.process_overunder(fd_player, import)
       FanDuelPlayer.extract_latest_game(fd_player)
 
-      players << fd_player
+      if (false == params.include?(:ignore))
+        players << fd_player
+      elsif (params[:ignore] == fd_player.ignore)
+        players << fd_player
+      end
     end
 
     return players
