@@ -11,11 +11,11 @@ class PlayerFinder
     @players  = {}
 
     sorted_players.each do |player|
-      @by_cost[player.position]  ||= {}
+      @by_cost[player.pos]  ||= {}
 
-      if (false == @by_cost[player.position].include?(player.cost))
+      if (false == @by_cost[player.pos].include?(player.cost))
         add_player(player)
-      elsif (@by_cost[player.position][player.cost].size < player.class::POSITIONS.count(player.position))
+      elsif (@by_cost[player.pos][player.cost].size < player.class::POSITIONS.count(player.pos))
         add_player(player)
       end
     end
@@ -25,7 +25,7 @@ class PlayerFinder
     players = @players[position]
 
     players.each do |player|
-      if ((position == player.position) && (true == valid?(player, options)))
+      if ((position == player.pos) && (true == valid?(player, options)))
         return player
       end
     end
@@ -56,18 +56,18 @@ class PlayerFinder
 
   private
   def add_player(player)
-    @by_value[player.position] ||= []
-    @players[player.position]  ||= []
+    @by_value[player.pos] ||= []
+    @players[player.pos]  ||= []
 
-    if (false == @by_cost[player.position][player.cost].is_a?(Array))
-      @by_cost[player.position][player.cost]  = [player]
+    if (false == @by_cost[player.pos][player.cost].is_a?(Array))
+      @by_cost[player.pos][player.cost]  = [player]
     else
-      @by_cost[player.position][player.cost]  << player
+      @by_cost[player.pos][player.cost]  << player
     end
 
-    @by_value[player.position] << player
+    @by_value[player.pos] << player
 
-    @players[player.position] << player
+    @players[player.pos] << player
   end
 
   def valid?(player, options)
@@ -86,7 +86,7 @@ class PlayerFinder
     err_str  = "!ERROR: Unable to find player for '#{position}' with params "
     err_str += "'#{options[:max_cost]}'"
     options[:exclude].each do |p|
-      err_str += " '#{p.position}:#{p.name}:#{p.cost}' "
+      err_str += " '#{p.pos}:#{p.name}:#{p.cost}' "
     end
     raise PlayerFinderValidPlayerNotFoundException.new(err_str)
   end

@@ -50,7 +50,7 @@ class NflPlayer < FanDuelPlayer
     if (("D" == self.position) || ("K" == self.position))
       return false
     else
-      return (2 > self.average)
+      return (2 > self.fppg)
     end
   end
 

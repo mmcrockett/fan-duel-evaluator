@@ -99,7 +99,8 @@ app.controller('PlayerController',
   $scope.player_chart = {
     "type": "Table",
     "options": {
-      "sortAscending": false
+      "sortAscending": false,
+      "allowHtml": true
     }
   };
   $scope.roster_chart = {
@@ -142,6 +143,13 @@ app.controller('PlayerController',
     }
     if (true == $scope.hide_ignored) {
       $scope.filtered_player_data = $filter('filter')($scope.filtered_player_data, {ignore: false}, true);
+      var dataTable = $scope.player_wrapper.getDataTable();
+      for (var i = 0; i < dataTable.getNumberOfRows(); ++i) {
+        console.log("h");
+      }
+      for (var i = 0; i < dataTable.getNumberOfColumns(); ++i) {
+        console.log("i");
+      }
     }
   };
   $scope.build_positions = function() {

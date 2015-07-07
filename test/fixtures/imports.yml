@@ -1,6 +1,24 @@
 imports_011:
   id: 11
-  league: NFL
+  league: MLB
+  fd_contest_id: 10935
+  ignore: false
+  fd_team_data: '[]'
   created_at: '2014-11-12 15:58:49.204712'
   updated_at: '2014-11-12 15:58:49.204712'
-  fd_game_id: 10935
+imports_012:
+  id: 12
+  league: XYZ
+  fd_contest_id: 10935
+  ignore: false
+  fd_team_data: '[]'
+  created_at: '2014-11-12 15:58:49.204712'
+  updated_at: '2014-11-12 15:58:49.204712'
+imports_013:
+  id: 13
+  league: NFL
+  fd_contest_id: 10935
+  ignore: false
+  fd_team_data: '[]'
+  created_at: '2014-11-12 15:58:49.204712'
+  updated_at: '2014-11-12 15:58:49.204712'

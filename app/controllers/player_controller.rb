@@ -23,15 +23,12 @@ class PlayerController < ApplicationController
   end
 
   def create
-    params.merge!(Import.parse(params[:uri]))
+    data = Import.parse(params[:uri])
+    players = data.delete(:players)
 
-    params[:teams].each_pair do |k,v|
-      puts "#{k} => \"#{v}\","
-    end
+    @import = Import.create(data)
 
-    @import = Import.create({:league => params[:league], :fd_game_id => params[:fd_game_id]})
-
-    FanDuelPlayer.parse(params[:data], @import)
+    FanDuelPlayer.parse(players, @import)
 
     if ("NFL" == @import.league)
       Yahoo.load(@import.id)

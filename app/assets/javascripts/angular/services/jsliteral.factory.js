@@ -7,6 +7,8 @@ app.factory('JsLiteral', function() {
 
       angular.forEach(input, function(wdata, i) {
         var row = {c:[]};
+        var style = {};
+
         angular.forEach(wdata, function(v, k) {
           if (0 == i) {
             var type = "Unknown";
@@ -18,6 +20,10 @@ app.factory('JsLiteral', function() {
               type = "date";
             } else if ("boolean" === typeof v) {
               type = "boolean";
+
+              if (("ignore" == k) && (true == v)) {
+                style["style"] = "background-color:#E5E4E2;";
+              }
             } else {
               console.error("!ERROR: type unknown '" + typeof v + "'.");
             }
@@ -29,7 +35,7 @@ app.factory('JsLiteral', function() {
             });
           }
 
-          row.c.push({v:v});
+          row.c.push({v:v, p:style});
         });
         output.rows.push(row);
       });

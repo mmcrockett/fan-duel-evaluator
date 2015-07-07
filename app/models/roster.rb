@@ -151,7 +151,7 @@ class Roster < ActiveRecord::Base
 
     rplayers.each do |p|
       begin
-        better_player = player_finder.find_best(p.position, {:max_cost => rbudget + p.cost, :exclude => rplayers})
+        better_player = player_finder.find_best(p.pos, {:max_cost => rbudget + p.cost, :exclude => rplayers})
 
         if (better_player.send(sort_column) > p.send(sort_column))
           new_roster = best_roster.dup

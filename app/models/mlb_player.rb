@@ -42,20 +42,20 @@ class MlbPlayer < FanDuelPlayer
     604 => "TEX",
   }
 
+  def probable?
+    return self.fd_data['probable_pitcher']
+  end
+
+  def pitcher?
+    return ("P" == self.pos)
+  end
+
   def ignore?
-    if ("P" == self.position)
-      if ((5 == self.status) || (1 == self.status))
-        return false
-      else
-        return true
-      end
-    else
-      if (self.avg < 1.2)
-        return true
-      end
+    if (true == self.probable?)
+      return false
     end
 
-    if (true == status.include?("DL"))
+    if (true == self.disabled?)
       return true
     end
 
@@ -63,6 +63,6 @@ class MlbPlayer < FanDuelPlayer
   end
 
   def defensive?
-    return ("P" == self.position)
+    return self.pitcher?
   end
 end
