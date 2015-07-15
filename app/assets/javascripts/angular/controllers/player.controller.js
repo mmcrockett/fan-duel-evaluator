@@ -17,8 +17,6 @@ app.controller('PlayerController',
    )
   {
   $scope.league_changed = false;
-  $scope.hide_ignored   = $cookies.hide_ignored || true;
-  $scope.selectedLeague = "NONE";
   $scope.positions = [{id:"ALL"}];
   $scope.selectedPosition = "ALL";
   $scope.player_wrapper = null;
@@ -141,16 +139,6 @@ app.controller('PlayerController',
     } else {
       $scope.filtered_player_data = $filter('filter')($scope.player_data, {pos: $scope.selectedPosition}, true);
     }
-    if (true == $scope.hide_ignored) {
-      $scope.filtered_player_data = $filter('filter')($scope.filtered_player_data, {ignore: false}, true);
-      var dataTable = $scope.player_wrapper.getDataTable();
-      for (var i = 0; i < dataTable.getNumberOfRows(); ++i) {
-        console.log("h");
-      }
-      for (var i = 0; i < dataTable.getNumberOfColumns(); ++i) {
-        console.log("i");
-      }
-    }
   };
   $scope.build_positions = function() {
     $scope.selectedPosition = "ALL";
@@ -232,5 +220,4 @@ app.controller('PlayerController',
   };
   $scope.$watch('filtered_player_data', $scope.create_player_chart);
   $scope.$watch('selectedPosition', $scope.filter_player_data);
-  $scope.$watch('hide_ignored', function() {$cookies.hide_ignored = $scope.hide_ignored; $scope.filter_player_data()});
 }]);

@@ -7,7 +7,7 @@ app.directive('ngLeagueSelector', ['$cookies', 'Leagues', function($cookies, Lea
     },
     link: function (scope, elem, attrs) {
       scope.leagues = Leagues.options;
-      scope.selectedLeague = $cookies.selectedLeague;
+      scope.selectedLeague = $cookies.get('selectedLeague');
 
       if (false == angular.isString(scope.selectedLeague)) {
         scope.selectedLeague = "NONE";
