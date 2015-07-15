@@ -2,7 +2,18 @@ require 'open-uri'
 
 class PlayerController < ApplicationController
   def index
-    @players = FanDuelPlayer.player_data(params)
+    @players = []
+    possible_players = FanDuelPlayer.player_data(params)
+
+    if (nil != possible_players)
+      possible_players.each do |player|
+        if ((false != player.starting?) && (false == player.ignore))
+          @players << player
+        end
+      end
+    else
+      @players = nil
+    end
   end
 
   def analysis

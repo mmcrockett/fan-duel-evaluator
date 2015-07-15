@@ -51,11 +51,15 @@ class MlbPlayer < FanDuelPlayer
   end
 
   def ignore?
-    if (true == self.probable?)
-      return false
+    if (false == self.starting?)
+      return true
     end
 
     if (true == self.disabled?)
+      return true
+    end
+
+    if (0 >= self.fppg)
       return true
     end
 
@@ -64,5 +68,13 @@ class MlbPlayer < FanDuelPlayer
 
   def defensive?
     return self.pitcher?
+  end
+
+  def starting?
+    if (true == self.pitcher?)
+      return self.probable?
+    else
+      return super
+    end
   end
 end

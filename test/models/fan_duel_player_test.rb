@@ -6,6 +6,7 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
 
   def setup
     @today       = Date.strptime("01/10/2010", "%m/%d/%Y")
+    Date.stubs(:today).returns(@today)
     @cutoff_date = @today - 21
     @players = []
     @players << FanDuelPlayer.new({
@@ -16,6 +17,7 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
         "first_name"=>"Max",
         "last_name"=>"Avg",
         "probable_pitcher"=>false,
+        "starting_order"=>1,
         "played"=>16,
         "position"=>"X",
         "fppg"=>50,
@@ -31,6 +33,7 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
     @players << FanDuelPlayer.new({
       :id        => 1,
       :fd_data   => {
+        "starting_order"=>0,
         "salary"=>100,
         "injured"=>false,
         "first_name"=>"High",
@@ -43,10 +46,14 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
         "id"=>"13627"
       },
       :game_data => [
-        {"Date" => "01\/05","Opp" => "v PIT","IP" => "9.0","H" => "0","BB" => "0","K" => "10","ERA" => "1.76","W" => "1","FP" => "22"},
-        {"Date" => "12\/25","Opp" => "@MIL","IP" => "9.0","H" => "1","BB" => "1","K" => "16","ERA" => "1.93","W" => "1","FP" => "22"},
-        {"Date" => "12\/21","Opp" => "@NYY","IP" => "6.2","H" => "8","BB" => "1","K" => "7","ERA" => "2.13","W" => "0","FP" => "22"},
-        {"Date" => "12\/13","Opp" => "@NYM","IP" => "7.0","H" => "5","BB" => "1","K" => "10","ERA" => "1.26","W" => "0","FP" => "22"}],
+        {"date" => "2010-01-05",
+         "data" => {"Date" => "01\/05","Opp" => "v PIT","IP" => "9.0","H" => "0","BB" => "0","K" => "10","ERA" => "1.76","W" => "1","FP" => "22"}},
+        {"date" => "2010-01-05",
+         "data" => {"Date" => "12\/25","Opp" => "@MIL","IP" => "9.0","H" => "1","BB" => "1","K" => "16","ERA" => "1.93","W" => "1","FP" => "22"}},
+        {"date" => "2010-01-05",
+         "data" => {"Date" => "12\/21","Opp" => "@NYY","IP" => "6.2","H" => "8","BB" => "1","K" => "7","ERA" => "2.13","W" => "0","FP" => "22"}},
+        {"date" => "2010-01-05",
+         "data" => {"Date" => "12\/13","Opp" => "@NYM","IP" => "7.0","H" => "5","BB" => "1","K" => "10","ERA" => "1.26","W" => "0","FP" => "22"}}],
       :game_data_loaded => true})
     @players << FanDuelPlayer.new({
       :id        => 2,
@@ -105,9 +112,17 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
     assert_equal(0, rawplayer0.exp) # Because over unders aren't loaded
   end
 
-  test "parse json" do
+  test "parsing json and starting?" do
     data = JSON.parse(PLAYER_JSON)
     FanDuelPlayer.parse(data["players"], Import.new({:id => 999, :league => 'MLB'}))
+
+    ckluber  = FanDuelPlayer.where("fd_data LIKE '%Corey%Kluber%' AND import_id=999").first
+    zgreinke = FanDuelPlayer.where("fd_data LIKE '%Zack%Greinke%' AND import_id=999").first
+    carcher  = FanDuelPlayer.where("fd_data LIKE '%Chris%Archer%' AND import_id=999").first
+
+    assert_equal(false, ckluber.starting?)
+    assert_equal(nil, zgreinke.starting?)
+    assert_equal(true, carcher.starting?)
   end
 
   test "loading from json" do
@@ -228,26 +243,15 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
     assert_equal((exp_median*exp_mult).round(1),player0.exp(:med))
   end
 
-  test "player detail" do
-    past_cutoff = JSON.parse('{"Date":"12\/13"}')
-    last_year   = JSON.parse('{"Date":"12\/21"}')
-    this_year   = JSON.parse('{"Date":"01\/05"}')
-    past_cutoff_data = FanDuelPlayer.parse_player_detail(past_cutoff, @cutoff_date, @today)
-    last_year_data   = FanDuelPlayer.parse_player_detail(last_year, @cutoff_date, @today)
-    this_year_data   = FanDuelPlayer.parse_player_detail(this_year, @cutoff_date, @today)
-
-    assert_nil(past_cutoff_data)
-    assert_equal(Date.strptime("12/21/2009", "%m/%d/%Y"), last_year_data[:date])
-    assert_equal(last_year, last_year_data[:data])
-    assert_equal(Date.strptime("01/05/2010", "%m/%d/%Y"), this_year_data[:date])
-    assert_equal(this_year, this_year_data[:data])
-  end
-
   test "player_news" do
     player_detail = JSON.parse(PLAYER_DETAIL_JSON)
     data = FanDuelPlayer.parse_player_news(player_detail)
+    @players.first.news=data
+    expected_news="Scherzer threw his first career no-hitter Saturday against the Pirates, striking out 10 without issuing a walk."
 
-    assert_equal("Scherzer threw his first career no-hitter Saturday against the Pirates, striking out 10 without issuing a walk.", data)
+    assert_equal(expected_news, data)
+    assert_equal(expected_news, @players.first.news["summary"])
+    assert_equal("2015-06-27T02:34:44Z", @players.first.news["latest"])
 
     assert_raise RuntimeError do |x|
       data = FanDuelPlayer.parse_player_news(player_detail["news"])
@@ -260,13 +264,13 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
 
   test "player details" do
     player_detail = JSON.parse(PLAYER_DETAIL_JSON)
-    data = FanDuelPlayer.parse_player_details(player_detail["player"]["gamestats"], 2, @cutoff_date, @today)
+    data = FanDuelPlayer.parse_player_details(player_detail["player"]["gamestats"], 2, @cutoff_date)
 
     assert_equal(2, data.size)
-    assert_equal(Date.strptime("01/05/2010", "%m/%d/%Y"), data[0][:date])
-    assert_equal(player_detail["player"]["gamestats"][0], data[0][:data])
-    assert_equal(Date.strptime("12/25/2009", "%m/%d/%Y"), data[1][:date])
-    assert_equal(player_detail["player"]["gamestats"][1], data[1][:data])
+    assert_equal(Date.strptime("01/05/2010", "%m/%d/%Y"), data[0].date)
+    assert_equal(player_detail["player"]["gamestats"][0], data[0].data)
+    assert_equal(Date.strptime("12/25/2009", "%m/%d/%Y"), data[1].date)
+    assert_equal(player_detail["player"]["gamestats"][1], data[1].data)
   end
 
   test "extract latest game" do

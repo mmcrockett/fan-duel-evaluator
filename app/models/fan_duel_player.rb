@@ -12,16 +12,31 @@ class FanDuelPlayer < ActiveRecord::Base
   @@most_recent_game = {}
   @@overunderset     = nil
 
-  NEW_PLAYER_DETAIL_URL = "https://www.fanduel.com/eg/Player/5481/Stats/getPlayerData/12564"
   PLAYER_DETAIL_URL     = "https://www.fanduel.com/eg/Player/"
-  PLAYER_DETAIL_URL_EXT = "/Stats/showLB/"
-  DATE_FORMAT = "%m/%d/%Y"
+  PLAYER_DETAIL_URL_EXT = "/Stats/getPlayerData/"
   INF_VALUE   = 9999
+  MINIMUM_UPDATE_TIME   = 60*30
 
   ANALYZE_COLUMNS = [:med, :p80]
 
+  def player_id
+    return self.fd_data['id']
+  end
+
   def disabled?
     return self.fd_data['injured']
+  end
+
+  def starting?
+    starting_order = self.fd_data['starting_order']
+
+    if (nil == starting_order)
+      return nil
+    elsif (0 < starting_order.to_i)
+      return true
+    else
+      return false
+    end
   end
 
   def pos
@@ -102,14 +117,24 @@ class FanDuelPlayer < ActiveRecord::Base
     fpoints = []
 
     self.game_data.each do |gdata|
-      begin
-        fpoints << BigDecimal.new(gdata["FP"])
-      rescue
-        raise "!ERROR: '#{gdata}':'#{self.game_data}':'#{fpoints}'"
-      end
+      gd = GameData.new(gdata)
+
+      fpoints << gd.fp
     end
 
     return fpoints
+  end
+
+  def mean
+    return self.fpoints[0,3].mean.round(1)
+  end
+
+  def news
+    return self.fd_data["news"]
+  end
+
+  def news=(value)
+    self.fd_data["news"]["summary"] = value
   end
 
   ######## OLD METHODS ########
@@ -121,7 +146,7 @@ class FanDuelPlayer < ActiveRecord::Base
     if ((nil != self.last_game_date) && (true == @@most_recent_game.include?(self.team)))
       return (@@most_recent_game[self.team] == self.last_game_date)
     else
-      return false
+      return nil
     end
   end
 
@@ -131,32 +156,6 @@ class FanDuelPlayer < ActiveRecord::Base
     else
       return nil
     end
-  end
-
-  def comment
-    comment = ""
-
-    if (1 < self.status.length)
-      comment += "#{self.status}"
-
-      if ("breaking" == priority)
-        comment += "*"
-      elsif ("recent" == priority)
-        comment += "+"
-      elsif ("old" == priority)
-        comment += "o"
-      end
-    end
-
-    self.notes.each_with_index do |v,i|
-      if (0 != i)
-        comment += " - "
-      end
-
-      comment += "#{v}"
-    end
-
-    return comment
   end
 
   def rvalue
@@ -183,10 +182,6 @@ class FanDuelPlayer < ActiveRecord::Base
 
   def min
     return self.fpoints.min || 0
-  end
-
-  def mean
-    return self.fpoints[0,3].mean.round(1)
   end
 
   def value
@@ -227,10 +222,6 @@ class FanDuelPlayer < ActiveRecord::Base
     players  = []
     klazz    = FanDuelPlayer.factory(import)
 
-    #if (false == json_obj.include?("players"))
-      #raise "!ERROR: Assumption about json object broken, no 'players' key '#{json_obj.keys}'."
-    #end
-
     json_data.each do |player_data|
       player = klazz.player(player_data)
       player.import_id = import.id
@@ -246,7 +237,7 @@ class FanDuelPlayer < ActiveRecord::Base
   end
 
   def self.player(player_json)
-    return self.new({:fd_data => player_json})
+    return self.new({:fd_data => player_json, :game_data => [], :game_data_loaded => false})
   end
 
   def self.load_player_details(params = {})
@@ -256,28 +247,17 @@ class FanDuelPlayer < ActiveRecord::Base
     if ((nil != import) && (nil != import.fd_contest_id))
       klazz = FanDuelPlayer.factory(import)
 
-      klazz.where({:import => import, :game_data_loaded => false}).each do |fd_player|
-        if (true == fd_player.game_data.is_a?(Array))
+      klazz.where({:import => import, :ignore => false}).each do |fd_player|
+        if ((false == fd_player.game_data_loaded) || (DateTime.now > fd_player.updated_at + FanDuelPlayer::MINIMUM_UPDATE_TIME))
           points = []
-          uri  = "#{PLAYER_DETAIL_URL}#{fd_player.player_id}#{PLAYER_DETAIL_URL_EXT}#{import.fd_game_id}"
+          uri  = "#{PLAYER_DETAIL_URL}#{fd_player.player_id}#{PLAYER_DETAIL_URL_EXT}#{import.fd_contest_id}"
           cutoff_date = Date.today() - klazz::MAX_DATES
           begin
             details = JSON.parse(open("#{uri}", {}).read())
             
-            fd_player.game_data = FanDuelPlayer.parse_player_details(details["player"]["gamestats"], klazz::MAX_GAMES, cutoff_date, Date.today)
+            fd_player.game_data = FanDuelPlayer.parse_player_details(details["player"]["gamestats"], klazz::MAX_GAMES, cutoff_date)
             fd_player.game_data_loaded = true
-            news_data = FanDuelPlayer.parse_player_news(details)
-
-            if (news_data[:date] > (Date.today - 5))
-              fd_player.notes << news_data[:note]
-
-              if (new_data[:date] == Date.today)
-                if ((true == news_data[:note].include?("is out of the lineup")) ||
-                    (true == news_data[:note].include?("not in the lineup")))
-                   fd_player.ignore = true
-                end
-              end
-            end
+            fd_player.add_news(FanDuelPlayer.parse_player_news(details))
 
             altered_players << fd_player
           rescue
@@ -310,29 +290,21 @@ class FanDuelPlayer < ActiveRecord::Base
     end
 
     news_data["items"].each do |news_item|
-      #timestamp_elem = Nokogiri::HTML(news_item["date"])
-      #date_str = timestamp_elem.css('b').text().strip()
-      #time_str = timestamp_elem.text().sub(date_str, "").strip()
-      #date_str = date_str[0..-3]
-      #news_data[:date] = Date.strptime("#{date_str},#{today.year}", "%B %d,%Y")
-
-      #news_data[:note] = "#{news_data[:date].strftime("%m/%d")} #{time_str} #{news_item["summary"]}"
       return news_item["summary"]
-      break
     end
 
     return nil
   end
 
-  def self.parse_player_details(game_data, max, cutoff_date, today)
+  def self.parse_player_details(game_data, max, cutoff_date)
     modified_game_data = []
 
     game_data.each_with_index do |game, i|
       if (i < max)
-        data = FanDuelPlayer.parse_player_detail(game, cutoff_date, today)
+        game_data = GameData.new(game)
 
-        if (nil != data)
-          modified_game_data << data
+        if (cutoff_date < game_data.date)
+          modified_game_data << game_data
         end
       else
         break
@@ -340,25 +312,6 @@ class FanDuelPlayer < ActiveRecord::Base
     end
 
     return modified_game_data
-  end
-
-  def self.parse_player_detail(game, cutoff_date, today)
-    single_game_data = {}
-
-    date = Date.strptime("#{game["Date"]}/#{today.year}", DATE_FORMAT)
-
-    if (date > today)
-      date = date - 365
-    end
-
-    if (date > cutoff_date)
-      single_game_data[:date] = date
-      single_game_data[:data] = game
-    else
-      return nil
-    end
-
-    return single_game_data
   end
 
   def self.sort(players, sort_column, ascending = nil)
