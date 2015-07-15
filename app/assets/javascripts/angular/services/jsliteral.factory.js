@@ -18,7 +18,7 @@ app.factory('JsLiteral', function() {
               type = "string";
             } else if (true == angular.isDate(v)) {
               type = "date";
-            } else if ("boolean" === typeof v) {
+            } else if (("boolean" === typeof v) || (null == v)) {
               type = "boolean";
 
               if (("ignore" == k) && (true == v)) {
