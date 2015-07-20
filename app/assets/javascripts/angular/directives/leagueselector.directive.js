@@ -14,7 +14,7 @@ app.directive('ngLeagueSelector', ['$cookies', 'Leagues', function($cookies, Lea
       }
 
       scope.$watch('selectedLeague', function() {
-        $cookies.selectedLeague = scope.selectedLeague;
+        $cookies.put('selectedLeague', scope.selectedLeague);
         scope.onSelectLeague({league:scope.selectedLeague});
       });
     }
