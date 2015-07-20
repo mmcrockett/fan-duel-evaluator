@@ -24,8 +24,8 @@ class OverUnderSet
       end
 
       v_score = (overunder.overunder - h_score)
-      @expectations[home]    = {:opp => visitor, :score => h_score}
-      @expectations[visitor] = {:opp => home,    :score => v_score}
+      @expectations[home]    = {:team => home,    :opp => visitor, :score => h_score, :opp_score => v_score, :diff => (h_score - v_score)}
+      @expectations[visitor] = {:team => visitor, :opp => home,    :score => v_score, :opp_score => h_score, :diff => (v_score - h_score)}
 
       @scores << h_score
       @scores << v_score
@@ -72,5 +72,9 @@ class OverUnderSet
     else
       raise "!ERROR: Unknown type '#{type}'."
     end
+  end
+
+  def to_a
+    return @expectations.values
   end
 end

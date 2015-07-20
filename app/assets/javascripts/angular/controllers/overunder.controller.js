@@ -18,7 +18,7 @@ app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'Js
     } else if (false == angular.isNumber($scope.overunder_chart.options.sortColumn)) {
       var i = 0;
       angular.forEach($scope.overunder_data[0], function(v, k) {
-        if ("exp_score" == k) {
+        if ("score" == k) {
           $scope.overunder_chart.options.sortColumn = i;
           return true;
         } else {

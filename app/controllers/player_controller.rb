@@ -75,21 +75,6 @@ class PlayerController < ApplicationController
   end
 
   def overunder
-    @expected_scores = []
-    scores = nil
-    overunders = OverUnder.get_expected_scores(Import.latest_by_league(params))
-
-    overunders.each_pair do |key, value|
-      if (true == value.include?(:score))
-        value[:exp_score] = value[:score].round(1)
-        value[:exp_opp_score] = overunders[value[:opp]][:score].round(1)
-        value[:diff] = value[:exp_score] - value[:exp_opp_score]
-        value[:team] = key
-        value[:mult] = OverUnder.calculate_boost_multiplier(value[:score], scores)
-        @expected_scores << value
-      else
-        scores = value
-      end
-    end
+    @over_unders = OverUnderSet.new(Import.latest_by_league(params)).to_a
   end
 end
