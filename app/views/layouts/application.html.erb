@@ -2,16 +2,22 @@
 <html ng-app="FanDuelEvaluator">
 <head>
   <title>FanDuelEvaluator - <%= action_name %></title>
-  <% angular_version = "1.4.2" %>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => false %>
-  <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", :media => "all" %>
-  <%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.4/themes/cupertino/jquery-ui.min.css", :media => "all" %>
-  <%= javascript_include_tag "//code.jquery.com/jquery-2.1.1.min.js" %>
-  <%= javascript_include_tag "http://code.jquery.com/ui/1.11.0/jquery-ui.min.js" %>
-  <%= javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" %>
+  <% angular_version   = "1.4.2" %>
+  <% bootstrap_version = "3.3.5" %>
+  <% jquery_version    = "2.1.4" %>
+  <% jquery_ui_version = "1.11.4" %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => false %>
+  <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/#{bootstrap_version}/css/bootstrap.min.css", :media => "all" %>
+  <%= stylesheet_link_tag "http://code.jquery.com/ui/#{jquery_ui_version}/themes/cupertino/jquery-ui.min.css", :media => "all" %>
+  <%= javascript_include_tag "//code.jquery.com/jquery-#{jquery_version}.min.js" %>
+  <%= javascript_include_tag "http://code.jquery.com/ui/#{jquery_ui_version}/jquery-ui.min.js" %>
+  <%= javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/#{bootstrap_version}/js/bootstrap.min.js" %>
   <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/#{angular_version}/angular.min.js" %>
   <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/#{angular_version}/angular-resource.min.js" %>
   <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/#{angular_version}/angular-cookies.min.js" %>
+  <%= javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1'}]}" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap.min.js" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
   <%= csrf_meta_tags %>
 </head>

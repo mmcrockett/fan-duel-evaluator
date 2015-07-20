@@ -137,7 +137,6 @@ class FanDuelPlayer < ActiveRecord::Base
     self.fd_data["news"]["summary"] = value
   end
 
-  ######## OLD METHODS ########
   def p80
     self.fpoints.tolerance().round(1)
   end
@@ -257,7 +256,7 @@ class FanDuelPlayer < ActiveRecord::Base
             
             fd_player.game_data = FanDuelPlayer.parse_player_details(details["player"]["gamestats"], klazz::MAX_GAMES, cutoff_date)
             fd_player.game_data_loaded = true
-            fd_player.add_news(FanDuelPlayer.parse_player_news(details))
+            fd_player.news = FanDuelPlayer.parse_player_news(details)
 
             altered_players << fd_player
           rescue
