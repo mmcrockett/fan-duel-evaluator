@@ -34,9 +34,9 @@ class Import < ActiveRecord::Base
 
       alldata = JSON.parse(open("#{PLAYER_IMPORT_URL}/#{data[:fd_contest_id]}/players", {"Authorization" => "Basic #{authorization}"}).read())
 
-      alldata["teams"].each do |team|
-        data[:fd_team_data][team["code"].upcase] = team["id"]
-      end
+      data[:fd_team_data] = Import.convert_teams(alldata)
+
+      #weather = Weather.new(data[:fd_team_data], alldata["fixtures"])
 
       data[:players] = alldata["players"]
       data[:league]  = alldata["fixtures"][0]["sport"]
@@ -51,6 +51,16 @@ class Import < ActiveRecord::Base
     else
       return nil
     end
+  end
+
+  def self.convert_teams(data)
+    teams = {}
+
+    data["teams"].each do |team|
+      teams[team["id"].to_i] = team["code"].upcase
+    end
+
+    return teams
   end
 
   def self.latest_by_league(params)

@@ -27,16 +27,8 @@ class FanDuelPlayer < ActiveRecord::Base
     return self.fd_data['injured']
   end
 
-  def starting?
-    starting_order = self.fd_data['starting_order']
-
-    if (nil == starting_order)
-      return nil
-    elsif (0 < starting_order.to_i)
-      return true
-    else
-      return false
-    end
+  def starting_order
+    return self.fd_data['starting_order']
   end
 
   def pos
@@ -242,11 +234,15 @@ class FanDuelPlayer < ActiveRecord::Base
   def self.load_player_details(params = {})
     import = Import.latest_by_league(params)
     altered_players = []
+    skipped_players = []
 
     if ((nil != import) && (nil != import.fd_contest_id))
       klazz = FanDuelPlayer.factory(import)
+      fd_players = klazz.where({:import => import, :ignore => false})
 
-      klazz.where({:import => import, :ignore => false}).each do |fd_player|
+      logger.warn "Found '#{fd_players.size}' to process."
+
+      fd_players.each do |fd_player|
         if ((false == fd_player.game_data_loaded) || (DateTime.now > fd_player.updated_at + FanDuelPlayer::MINIMUM_UPDATE_TIME))
           points = []
           uri  = "#{PLAYER_DETAIL_URL}#{fd_player.player_id}#{PLAYER_DETAIL_URL_EXT}#{import.fd_contest_id}"
@@ -259,11 +255,19 @@ class FanDuelPlayer < ActiveRecord::Base
             fd_player.news = FanDuelPlayer.parse_player_news(details)
 
             altered_players << fd_player
+
+            if (0 == (altered_players.size % 10))
+              logger.warn "Processed '#{altered_players.size}' player details."
+            end
           rescue
             logger.warn "Couldn't load player '#{fd_player.name}' in import '#{fd_player.import_id}' - '#{uri}'"
           end
         else
-          raise "!ERROR: #{fd_player.name} in import #{import.id} has non-array in game_data."
+          skipped_players << fd_player
+
+          if (0 == (skipped_players.size % 10))
+            logger.warn "Skipped '#{skipped_players.size}' player details."
+          end
         end
       end
     end

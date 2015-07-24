@@ -16,7 +16,9 @@ class OverUnderSetTest < ActiveSupport::TestCase
     overunderset = OverUnderSet.new(Import.find(12))
 
     assert_equal(1.0/3.0, overunderset.multiplier("TWELVE_HOME").to_f)
-    assert_equal(1.0/3.0, overunderset.multiplier("EIGHT_VISITOR", {:defensive => true}).to_f)
+    assert_equal(-1.0/9.0, overunderset.multiplier("EIGHT_VISITOR").to_f)
+    assert_equal(overunderset.multiplier("EIGHT_VISITOR"), overunderset.multiplier("TWELVE_HOME", {:defensive => true}))
+    assert_equal(overunderset.multiplier("TWELVE_HOME"), overunderset.multiplier("EIGHT_VISITOR", {:defensive => true}))
     assert_equal(-1.0/3.0, overunderset.multiplier("SIX_HOME").to_f)
 
     assert_equal(33, overunderset.multiplier("TWELVE_HOME", {:output => :percentage}))

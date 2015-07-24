@@ -70,11 +70,33 @@ class MlbPlayer < FanDuelPlayer
     return self.pitcher?
   end
 
+  def starting
+    if (true == self.pitcher?)
+      if (true == self.probable?)
+        return "SP"
+      else
+        return "0"
+      end
+    else
+      if (nil == self.starting_order)
+        return "?"
+      else
+        return self.starting_order
+      end
+    end
+  end
+
   def starting?
     if (true == self.pitcher?)
       return self.probable?
     else
-      return super
+      if (nil == self.starting_order)
+        return nil
+      elsif (0 < self.starting_order.to_i)
+        return true
+      else
+        return false
+      end
     end
   end
 end
