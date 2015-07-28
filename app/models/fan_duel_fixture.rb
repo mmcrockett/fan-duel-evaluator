@@ -31,7 +31,11 @@ class FanDuelFixture
   end
 
   def gametime
-    return Time.strptime(@fixture["start_date"], DATE_FORMAT).in_time_zone('America/New_York')
+    return FanDuelFixture.time_conversion(@fixture["start_date"])
+  end
+
+  def self.time_conversion(time_str)
+    return Time.strptime(time_str, DATE_FORMAT).in_time_zone('America/New_York')
   end
 
   private
