@@ -3,10 +3,10 @@ FanDuelEvaluator::Application.routes.draw do
   get  'players'  => 'player#index'
   post 'players'  => 'player#ignore'
   put  'players'  => 'player#details'
-  get  'import'   => 'player#import'
-  post 'import'   => 'player#create'
   get  'analysis' => 'player#analysis'
   get  'overunder' => 'player#overunder'
+
+  resources :imports, only: [:index, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
