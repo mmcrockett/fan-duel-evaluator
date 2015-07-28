@@ -116,12 +116,16 @@ class FanDuelPlayerTest < ActiveSupport::TestCase
     data = JSON.parse(PLAYER_JSON)
     FanDuelPlayer.parse(data["players"], Import.new({:id => 999, :league => 'MLB'}))
 
-    ckluber  = FanDuelPlayer.where("fd_data LIKE '%Corey%Kluber%' AND import_id=999").first
-    zgreinke = FanDuelPlayer.where("fd_data LIKE '%Zack%Greinke%' AND import_id=999").first
-    carcher  = FanDuelPlayer.where("fd_data LIKE '%Chris%Archer%' AND import_id=999").first
+    ckluber  = MlbPlayer.where("fd_data LIKE '%Corey%Kluber%' AND import_id=999").first
+    gmreinke = MlbPlayer.where("fd_data LIKE '%Gack%Mreinke%' AND import_id=999").first
+    carcher  = MlbPlayer.where("fd_data LIKE '%Chris%Archer%' AND import_id=999").first
+    jcueto   = MlbPlayer.where("fd_data LIKE '%Johnny%Cueto%' AND import_id=999").first
+    dkeuchel = MlbPlayer.where("fd_data LIKE '%Dallas%Keuchel%' AND import_id=999").first
 
     assert_equal(false, ckluber.starting?)
-    assert_equal(nil, zgreinke.starting?)
+    assert_equal(true, dkeuchel.starting?)
+    assert_equal(nil, gmreinke.starting?)
+    assert_equal(false, jcueto.starting?)
     assert_equal(true, carcher.starting?)
   end
 
