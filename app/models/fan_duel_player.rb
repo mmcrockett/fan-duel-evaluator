@@ -254,6 +254,16 @@ class FanDuelPlayer < ActiveRecord::Base
             fd_player.game_data_loaded = true
             fd_player.news = FanDuelPlayer.parse_player_news(details)
 
+            if ((0 == p.rgms) && (false == p.ignore))
+              if (nil != p.news["latest"])
+                if ((Date.today() - 5) > FanDuelFixture.time_conversion(p.news["latest"]))
+                  fd_player.ignore = true
+                end
+              else
+                logger.warn "Unsure of whether to ignore '#{fd_player.name}':'#{fd_player.news}'."
+              end
+            end
+
             altered_players << fd_player
 
             if (0 == (altered_players.size % 10))
