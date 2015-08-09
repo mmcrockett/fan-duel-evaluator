@@ -1,15 +1,10 @@
-app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'JsLiteral', '$filter', function($scope, $window, OverUnderData, JsLiteral, $filter) {
+app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'DefaultChart', 'JsLiteral', '$filter', function($scope, $window, OverUnderData, DefaultChart, JsLiteral, $filter) {
   $scope.overunder_wrapper = null;
   $scope.overunder_data = [];
   $scope.set_overunder_wrapper = function(wrapper) {
     $scope.overunder_wrapper = wrapper;
   };
-  $scope.overunder_chart = {
-    "type": "Table",
-    "options": {
-      "sortAscending": false
-    }
-  };
+  $scope.overunder_chart = DefaultChart.default_chart();
   $scope.set_sort = function(sortParams) {
     if (true == angular.isObject(sortParams)) {
       $scope.overunder_chart.options.sortColumn = sortParams.column;

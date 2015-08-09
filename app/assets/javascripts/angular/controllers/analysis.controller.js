@@ -1,4 +1,4 @@
-app.controller('AnalysisController', ['$scope', 'AnalysisData', 'Roster', 'JsLiteral', function($scope, AnalysisData, Roster, JsLiteral) {
+app.controller('AnalysisController', ['$scope', 'AnalysisData', 'Roster', 'DefaultChart', 'JsLiteral', function($scope, AnalysisData, Roster, DefaultChart, JsLiteral) {
   $scope.rosters = [];
   $scope.message = "";
   $scope.select_league = function(selectedLeague) {
@@ -11,12 +11,7 @@ app.controller('AnalysisController', ['$scope', 'AnalysisData', 'Roster', 'JsLit
             $scope.rosters = [];
 
             for (var i = 0; i < v.length; i += 1) {
-              var chart = {
-                type: "Table",
-                options: {
-                  sortAscending: false
-                }
-              };
+              var chart = DefaultChart.default_chart();
               var data = Roster.create_roster(selectedLeague, v[i].players, v[i].notes);
               chart.data = JsLiteral.get_chart_data(data);
               $scope.update_chart_columns(data, chart);

@@ -1,6 +1,6 @@
 app.factory('JsLiteral', function() {
   return {
-    get_chart_data: function(input) {
+    get_chart_data: function(input, ignore_callback) {
       var output = {};
       output.cols = [];
       output.rows = [];
@@ -8,6 +8,7 @@ app.factory('JsLiteral', function() {
       angular.forEach(input, function(wdata, i) {
         var row = {c:[]};
         var style = {};
+        var player_id = -1;
 
         angular.forEach(wdata, function(v, k) {
           if (0 == i) {
@@ -31,11 +32,24 @@ app.factory('JsLiteral', function() {
             });
           }
 
-          if (("ignore" == k) && (true == v)) {
-            style["style"] = "color:#B6B6B4;background-color:#E5E4E2;";
+          if ("ignore" == k) {
+            if (true == v) {
+              style["style"] = "color:#848482;background-color:#E5E4E2;";
+            }
+
+            output.cols[output.cols.length - 1].type  = "string";
+            output.cols[output.cols.length - 1].label = "";
+
+            if (true == angular.isFunction(ignore_callback)) {
+              v = ignore_callback(v, player_id);
+            }
           }
 
-          if ("news" == k) {
+          if ("id" == k) {
+            player_id = v;
+          }
+
+          if (("news" == k) && (true == angular.isObject(v))) {
             var DAY = 86400000;
             var WEEK = DAY * 7;
 
