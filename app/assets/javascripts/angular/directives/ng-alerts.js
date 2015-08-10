@@ -1,7 +1,7 @@
-app.directive('ngAlerts', [function() {
+app.directive('ngAlerts', ['$filter', function($filter) {
   return {
     restrict: 'E',
-    template: '<div ng-repeat="alert in alerts" ng-class="alert.classes" role="alert">' +
+    template: '<div ng-repeat="alert in alerts" ng-class="alert.classes" data="{{alert.index}}" role="alert">' +
                 '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
                 '<strong>{{alert.prefix}}</strong>{{alert.msg}}' +
               '</div>',
@@ -11,8 +11,16 @@ app.directive('ngAlerts', [function() {
     link: function ($scope, elem, attrs) {
       if (false == angular.isArray($scope.messages)) {
         $scope.messages = [];
-        $scope.alerts   = [];
       }
+
+      if (false == angular.isArray($scope.alerts)) {
+        $scope.alerts = [];
+      }
+
+      elem.on('close.bs.alert', function(ngEvent) {
+        var i = Number(ngEvent.target.getAttribute('data'));
+        $scope.messages.splice(i, 1);
+      });
 
       $scope.$watch(
         function() {
@@ -20,6 +28,8 @@ app.directive('ngAlerts', [function() {
         },
         function() {
           $scope.alerts = [];
+
+          $scope.messages = $filter('unique')($scope.messages);
 
           for(var i = 0; i < $scope.messages.length; i += 1) {
             var type   = 'info';
@@ -43,7 +53,8 @@ app.directive('ngAlerts', [function() {
             $scope.alerts.push({
               prefix  : prefix,
               msg     : msg,
-              classes : ['alert', 'alert-' + type, 'alert-dismissible']
+              classes : ['alert', 'alert-' + type, 'alert-dismissible'],
+              index   : i
             });
           }
         }
