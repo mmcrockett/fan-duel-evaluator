@@ -6,7 +6,7 @@ app.controller('PlayerController',
    'JsLiteral',
    'KeyCodes',
    'DefaultChart',
-   '$cookies',
+   'localStorageService',
    '$filter',
    function(
      $scope,
@@ -16,12 +16,12 @@ app.controller('PlayerController',
      JsLiteral,
      KeyCodes,
      DefaultChart,
-     $cookies,
+     LocalStorage,
      $filter
    )
   {
-  $scope.hide_ignored   = $cookies.getObject('hide_ignored');
-  $scope.roster         = $cookies.getObject('roster');
+  $scope.hide_ignored   = LocalStorage.get('hide_ignored');
+  $scope.roster         = LocalStorage.get('roster');
 
   if (false == angular.isDefined($scope.hide_ignored)) {
     $scope.hide_ignored = true;
@@ -269,10 +269,10 @@ app.controller('PlayerController',
     });
   };
   $scope.save_hide_ignored = function() {
-    $cookies.putObject('hide_ignored', $scope.hide_ignored);
+    LocalStorage.set('hide_ignored', $scope.hide_ignored);
   };
   $scope.save_roster = function() {
-    $cookies.putObject('roster', $scope.roster);
+    LocalStorage.set('roster', $scope.roster);
   };
   $scope.$watch('filtered_player_data', $scope.create_player_chart, true);
   $scope.$watch('selectedPosition', $scope.filter_player_data);

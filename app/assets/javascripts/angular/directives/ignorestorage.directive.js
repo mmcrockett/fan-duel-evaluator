@@ -1,4 +1,4 @@
-app.directive('ngIgnoreStorage', ['$cookies', 'Import', function($cookies, Import) {
+app.directive('ngIgnoreStorage', ['localStorageService', 'Import', function(LocalStorage, Import) {
   return {
     restrict: 'E',
     scope: {
@@ -8,14 +8,14 @@ app.directive('ngIgnoreStorage', ['$cookies', 'Import', function($cookies, Impor
     link: function (scope, elem, attrs) {
       scope.$watch('ignoreList', function() {
         if ((true == angular.isArray(scope.ignoreList)) && (true == angular.isNumber(scope.ignore_id))) {
-          var ignore_lists = $cookies.getObject('ignoreLists');
+          var ignore_lists = LocalStorage.get('ignoreLists');
 
           if (false == angular.isObject(ignore_lists)) {
             ignore_lists = {};
           }
 
           ignore_lists[scope.ignore_id] = scope.ignoreList;
-          $cookies.putObject('ignoreLists', ignore_lists);
+          LocalStorage.set('ignoreLists', ignore_lists);
         }
       });
 
@@ -27,7 +27,7 @@ app.directive('ngIgnoreStorage', ['$cookies', 'Import', function($cookies, Impor
               league:scope.league
             },
             function(v) {
-              var ignore_lists = $cookies.getObject('ignoreLists');
+              var ignore_lists = LocalStorage.get('ignoreLists');
 
               if ((false == angular.isObject(ignore_lists)) || (false == angular.isNumber(v.id)) || (false == angular.isArray(ignore_lists[v.id]))) {
                 scope.ignoreList= [];
