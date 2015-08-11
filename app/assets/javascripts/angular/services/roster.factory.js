@@ -14,7 +14,10 @@ app.factory('Roster', ['$filter', function($filter) {
       var ordered_columns = league_ordered_columns[league];
 
       if (false == angular.isArray(ordered_columns)) {
-        console.error("!ERROR: Missing sort for '" + league + "'.");
+        if (true == angular.isString(league)) {
+          console.warn("Missing sort for '" + league + "'.");
+        }
+
         return roster
       }
 
