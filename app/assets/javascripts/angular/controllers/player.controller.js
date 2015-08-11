@@ -21,14 +21,15 @@ app.controller('PlayerController',
    )
   {
   $scope.hide_ignored   = LocalStorage.get('hide_ignored');
-  $scope.roster         = LocalStorage.get('roster');
 
   if (false == angular.isDefined($scope.hide_ignored)) {
     $scope.hide_ignored = true;
   }
 
-  if (false == angular.isArray($scope.roster)) {
-    $scope.roster = [];
+  $scope.roster_ids     = LocalStorage.get('roster_ids');
+
+  if (false == angular.isArray($scope.roster_ids)) {
+    $scope.roster_ids = [];
   }
 
   $scope.league_changed = false;
@@ -63,28 +64,41 @@ app.controller('PlayerController',
     return selected_ids;
   };
   $scope.add_player_to_roster = function() {
-    var ids = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);
-    for (var i = 0; i < ids.length; i += 1) {
-      var player_on_roster = $filter('filter')($scope.roster, {id: ids[i]}, true)[0];
+    var selected_ids = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);
 
-      if (false == angular.isObject(player_on_roster)) {
-        $scope.roster.push($filter('filter')($scope.player_data, {id: ids[i]}, true)[0]);
+    angular.forEach(selected_ids, function(player_id, i) {
+      if (-1 == jQuery.inArray(player_id, $scope.roster_ids)) {
+        $scope.roster_ids.push(player_id);
       } else {
+        var player_on_roster = $filter('filter')($scope.player_data, {id: player_id}, true)[0];
+
         $scope.messages.push("warning You've already added '" + player_on_roster.name + "' to your roster.");
       }
-    }
-    $scope.calculate_roster();
+    });
   };
   $scope.remove_player_from_roster = function() {
-    var ids = $scope.get_selected_ids($scope.roster_wrapper, $scope.roster_selected);
-    var roster = [];
-    for (var i = 0; i < $scope.roster.length; i += 1) {
-      if (-1 == ids.indexOf($scope.roster[i].id)) {
-        roster.push($scope.roster[i]);
+    var selected_ids = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);
+
+    angular.forEach(selected_ids, function(player_id, i) {
+      var roster_id_index = jQuery.inArray(player_id, $scope.roster_ids);
+
+      if (-1 == roster_id_index) {
+        console.warn("Player not found on roster to remove '" + player_id + "'.");
+      } else {
+        $scope.roster_ids.splice(roster_id_index, 1);
       }
-    }
-    $scope.roster = roster;
-    $scope.calculate_roster();
+    });
+  };
+  $scope.render_roster = function() {
+    var roster = [];
+
+    angular.forEach($scope.roster_ids, function(player_id, i) {
+      roster.push($filter('filter')($scope.player_data, {id: player_id}, true)[0]);
+    });
+
+    $scope.roster = Roster.create_roster($scope.selectedLeague, roster, "");
+    $scope.create_roster_chart();
+    $scope.update_chart_columns($scope.roster, $scope.roster_chart);
   };
   $scope.ignore_players = function() {
     var ids_to_ignore = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);
@@ -152,13 +166,13 @@ app.controller('PlayerController',
   };
   $scope.create_player_chart = function() {
     $scope.set_sort(null);
-    $scope.player_chart.data = JsLiteral.get_chart_data($scope.filtered_player_data, $scope.add_ignore_dropdown);
+    $scope.player_chart.data = JsLiteral.get_chart_data($scope.filtered_player_data, $scope.create_player_dropdown);
   };
-  $scope.add_ignore_dropdown = function(v, player_id) {
+  $scope.create_player_dropdown = function(v, player_id) {
     var on_roster = false;
 
-    for (var i = 0; i < $scope.roster.length; i += 1) {
-      if (player_id == $scope.roster[i].id) {
+    for (var i = 0; i < $scope.roster_ids.length; i += 1) {
+      if (player_id == $scope.roster_ids[i]) {
         on_roster = true;
         break;
       }
@@ -217,11 +231,6 @@ app.controller('PlayerController',
       chart.view = undefined;
     }
   };
-  $scope.calculate_roster = function() {
-    $scope.roster = Roster.create_roster($scope.selectedLeague, $scope.roster, "");
-    $scope.create_roster_chart();
-    $scope.update_chart_columns($scope.roster, $scope.roster_chart);
-  };
   $scope.get_player_data = function() {
     $scope.message = "";
     if ("NONE" != $scope.selectedLeague) {
@@ -230,11 +239,10 @@ app.controller('PlayerController',
           function(v){
             $scope.message = "";
             $scope.player_data = v;
-            $scope.roster = [];
             $scope.filter_player_data();
+
             if (true == $scope.league_changed) {
               $scope.build_positions();
-              $scope.calculate_roster();
               $scope.league_changed = false;
             }
           },
@@ -272,13 +280,15 @@ app.controller('PlayerController',
     LocalStorage.set('hide_ignored', $scope.hide_ignored);
   };
   $scope.save_roster = function() {
-    LocalStorage.set('roster', $scope.roster);
+    LocalStorage.set('roster_ids', $scope.roster_ids);
   };
   $scope.$watch('filtered_player_data', $scope.create_player_chart, true);
+  $scope.$watch('filtered_player_data', $scope.render_roster, true);
   $scope.$watch('selectedPosition', $scope.filter_player_data);
   $scope.$watch('ignore_list',  $scope.player_data_add_ignore);
   $scope.$watch('ignore_list',  $scope.filter_player_data);
   $scope.$watch('hide_ignored', $scope.filter_player_data);
   $scope.$watch('hide_ignored', $scope.save_hide_ignored);
-  $scope.$watch('roster', $scope.save_roster);
+  $scope.$watchCollection('roster_ids', $scope.render_roster);
+  $scope.$watchCollection('roster_ids', $scope.save_roster);
 }]);
