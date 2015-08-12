@@ -5,10 +5,11 @@
   <meta name="keywords" content="fantasy, daily fantasy, advanced stats, fantasy stats, fantasy football, fantasy baseball, fantasy basketball, fantasy sports" />
   <meta name="description" content="Make your daily fantasy leagues better! Advanced metrics, roster building, easily accessible stats!" />
   <%= favicon_link_tag "favicon.ico" %>
-  <% angular_version   = "1.4.2" %>
-  <% bootstrap_version = "3.3.5" %>
-  <% jquery_version    = "2.1.4" %>
-  <% jquery_ui_version = "1.11.4" %>
+  <% angular_version              = "1.4.2" %>
+  <% angular_ui_bootstrap_version = "0.13.3" %>
+  <% bootstrap_version            = "3.3.5" %>
+  <% jquery_version               = "2.1.4" %>
+  <% jquery_ui_version            = "1.11.4" %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => false %>
   <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/#{bootstrap_version}/css/bootstrap.min.css", :media => "all" %>
   <%= stylesheet_link_tag "http://code.jquery.com/ui/#{jquery_ui_version}/themes/cupertino/jquery-ui.min.css", :media => "all" %>
@@ -20,8 +21,8 @@
   <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/#{angular_version}/angular-cookies.min.js" %>
   <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.5/angular-filter.min.js" %>
   <%= javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1'}]}" %>
-  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap.min.js" %>
-  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/#{angular_ui_bootstrap_version}/ui-bootstrap.min.js" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/#{angular_ui_bootstrap_version}/ui-bootstrap-tpls.min.js" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
   <%= csrf_meta_tags %>
 </head>
