@@ -1,21 +1,3 @@
-/**
- * An Angular module that gives you access to the browsers local storage
- * @version v0.2.2 - 2015-05-29
- * @link https://github.com/grevory/angular-local-storage
- * @author grevory <greg@gregpike.ca>
- * @license MIT License, http://www.opensource.org/licenses/MIT
- */
-(function ( window, angular, undefined ) {
-/*jshint globalstrict:true*/
-'use strict';
-
-var isDefined = angular.isDefined,
-  isUndefined = angular.isUndefined,
-  isNumber = angular.isNumber,
-  isObject = angular.isObject,
-  isArray = angular.isArray,
-  extend = angular.extend,
-  toJson = angular.toJson;
 var angularLocalStorage = angular.module('LocalStorageModule', []);
 
 angularLocalStorage.provider('localStorageService', function() {
@@ -164,21 +146,25 @@ angularLocalStorage.provider('localStorageService', function() {
 
     // Directly get a value from local storage
     // Example use: localStorageService.get('library'); // returns 'angular'
-    var getFromLocalStorage = function (key) {
+    var getFromLocalStorage = function (key, defaultValue) {
 
       if (!browserSupportsLocalStorage || self.storageType === 'cookie') {
         if (!browserSupportsLocalStorage) {
           $rootScope.$broadcast('LocalStorageModule.notification.warning','LOCAL_STORAGE_NOT_SUPPORTED');
         }
 
-        return getFromCookies(key);
+        return getFromCookies(key, defaultValue);
       }
 
       var item = webStorage ? webStorage.getItem(deriveQualifiedKey(key)) : null;
       // angular.toJson will convert null to 'null', so a proper conversion is needed
       // FIXME not a perfect solution, since a valid 'null' string can't be stored
       if (!item || item === 'null') {
-        return null;
+        if (isUndefined(defaultValue)) {
+          return null;
+        } else {
+          return defaultValue;
+        }
       }
 
       try {
@@ -341,7 +327,7 @@ angularLocalStorage.provider('localStorageService', function() {
 
     // Directly get a value from a cookie
     // Example use: localStorageService.cookie.get('library'); // returns 'angular'
-    var getFromCookies = function (key) {
+    var getFromCookies = function (key, defaultValue) {
       if (!browserSupportsCookies) {
         $rootScope.$broadcast('LocalStorageModule.notification.error', 'COOKIES_NOT_SUPPORTED');
         return false;
@@ -362,7 +348,12 @@ angularLocalStorage.provider('localStorageService', function() {
           }
         }
       }
-      return null;
+
+      if (isUndefined(defaultValue)) {
+        return null;
+      } else {
+        return defaultValue;
+      }
     };
 
     var removeFromCookies = function (key) {
@@ -444,4 +435,3 @@ angularLocalStorage.provider('localStorageService', function() {
     };
   }];
 });
-})( window, window.angular );
