@@ -20,10 +20,8 @@ app.controller('PlayerController',
      $filter
    )
 {
-  $scope.hide_ignored   = LocalStorage.get('hide_ignored', true);
-  $scope.roster_ids     = LocalStorage.get('roster_ids', []);
-  LocalStorage.bind($scope, 'hide_ignored');
-  LocalStorage.bind($scope, 'roster_ids');
+  LocalStorage.bind($scope, 'hide_ignored', true);
+  LocalStorage.bind($scope, 'roster_ids',   []);
   $scope.league_changed = false;
   $scope.positions = [{id:"ALL"}];
   $scope.selectedPosition = "ALL";
@@ -96,10 +94,6 @@ app.controller('PlayerController',
     var ids_to_ignore = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);
 
     if (0 <= ids_to_ignore.length) {
-      if (false == angular.isArray($scope.ignore_list)) {
-        $scope.ignore_list = [];
-      }
-
       $scope.ignore_list = $scope.ignore_list.concat(ids_to_ignore);
 
       if (true == $scope.hide_ignored) {
