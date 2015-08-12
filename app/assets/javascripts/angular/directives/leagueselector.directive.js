@@ -5,17 +5,13 @@ app.directive('ngLeagueSelector', ['localStorageService', 'Leagues', function(Lo
     scope: {
       onSelectLeague: '&'
     },
-    link: function (scope, elem, attrs) {
-      scope.leagues = Leagues.options;
-      scope.selectedLeague = LocalStorage.get('selectedLeague');
+    link: function ($scope, elem, attrs) {
+      $scope.leagues        = Leagues.options;
+      $scope.selectedLeague = LocalStorage.get('selectedLeague', 'NONE');
+      LocalStorage.bind($scope, 'selectedLeague');
 
-      if (false == angular.isString(scope.selectedLeague)) {
-        scope.selectedLeague = "NONE";
-      }
-
-      scope.$watch('selectedLeague', function() {
-        LocalStorage.set('selectedLeague', scope.selectedLeague);
-        scope.onSelectLeague({league:scope.selectedLeague});
+      $scope.$watch('selectedLeague', function() {
+        $scope.onSelectLeague({league:$scope.selectedLeague});
       });
     }
   }

@@ -19,19 +19,11 @@ app.controller('PlayerController',
      LocalStorage,
      $filter
    )
-  {
-  $scope.hide_ignored   = LocalStorage.get('hide_ignored');
-
-  if (false == angular.isDefined($scope.hide_ignored)) {
-    $scope.hide_ignored = true;
-  }
-
-  $scope.roster_ids     = LocalStorage.get('roster_ids');
-
-  if (false == angular.isArray($scope.roster_ids)) {
-    $scope.roster_ids = [];
-  }
-
+{
+  $scope.hide_ignored   = LocalStorage.get('hide_ignored', true);
+  $scope.roster_ids     = LocalStorage.get('roster_ids', []);
+  LocalStorage.bind($scope, 'hide_ignored');
+  LocalStorage.bind($scope, 'roster_ids');
   $scope.league_changed = false;
   $scope.positions = [{id:"ALL"}];
   $scope.selectedPosition = "ALL";
@@ -276,19 +268,11 @@ app.controller('PlayerController',
       }
     });
   };
-  $scope.save_hide_ignored = function() {
-    LocalStorage.set('hide_ignored', $scope.hide_ignored);
-  };
-  $scope.save_roster = function() {
-    LocalStorage.set('roster_ids', $scope.roster_ids);
-  };
   $scope.$watch('filtered_player_data', $scope.create_player_chart, true);
   $scope.$watch('filtered_player_data', $scope.render_roster, true);
   $scope.$watch('selectedPosition', $scope.filter_player_data);
   $scope.$watch('ignore_list',  $scope.player_data_add_ignore);
   $scope.$watch('ignore_list',  $scope.filter_player_data);
   $scope.$watch('hide_ignored', $scope.filter_player_data);
-  $scope.$watch('hide_ignored', $scope.save_hide_ignored);
   $scope.$watchCollection('roster_ids', $scope.render_roster);
-  $scope.$watchCollection('roster_ids', $scope.save_roster);
 }]);
