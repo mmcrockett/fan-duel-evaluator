@@ -32,23 +32,39 @@ app.directive('ngAlerts', ['$filter', function($filter) {
           $scope.messages = $filter('unique')($scope.messages);
 
           for(var i = 0; i < $scope.messages.length; i += 1) {
-            var type   = 'info';
-            var prefix = 'Note! ';
-            var msg  = $scope.messages[i];
-            var first_space = msg.indexOf(' ');
+            var type        = null;
+            var prefix      = null;
+            var type_found  = false;
+            var msg         = $scope.messages[i];
 
             if (-1 != msg.toLowerCase().indexOf('warn')) {
-              type = 'warning';
-              prefix = 'WARN! ';
+              type       = 'warning';
+              prefix     = 'WARN! ';
+              type_found = true;
             } else if (-1 != msg.toLowerCase().indexOf('error')) {
-              type   = 'danger';
-              prefix = 'ERROR! ';
+              type       = 'danger';
+              prefix     = 'ERR! ';
+              type_found = true;
             } else if (-1 != msg.toLowerCase().indexOf('success')) {
-              type = 'success';
-              prefix = 'Success!: ';
+              type       = 'success';
+              prefix     = 'Success! ';
+              type_found = true;
+            } else {
+              type       = 'info';
+              prefix     = 'Note! ';
+
+              if (-1 != msg.toLowerCase().indexOf('info')) {
+                type_found = true;
+              } else {
+                type_found = false;
+              }
             }
 
-            msg = msg.substr(first_space + 1);
+            if (true == type_found) {
+              var first_space = msg.indexOf(' ');
+
+              msg = msg.substr(first_space + 1);
+            }
 
             $scope.alerts.push({
               prefix  : prefix,
