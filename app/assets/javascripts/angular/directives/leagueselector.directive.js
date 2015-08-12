@@ -7,8 +7,7 @@ app.directive('ngLeagueSelector', ['localStorageService', 'Leagues', function(Lo
     },
     link: function ($scope, elem, attrs) {
       $scope.leagues        = Leagues.options;
-      $scope.selectedLeague = LocalStorage.get('selectedLeague', 'NONE');
-      LocalStorage.bind($scope, 'selectedLeague');
+      LocalStorage.bind($scope, 'selectedLeague', 'NONE');
 
       $scope.$watch('selectedLeague', function() {
         $scope.onSelectLeague({league:$scope.selectedLeague});

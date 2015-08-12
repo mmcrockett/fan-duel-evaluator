@@ -10,7 +10,6 @@ app.directive('ngIgnoreStorage', ['localStorageService', 'Import', function(Loca
         return $scope.league;
       }, function() {
         if (true == angular.isString($scope.league)) {
-          console.log("Calling import get.");
           Import.get({
               league:$scope.league
             },
@@ -18,8 +17,6 @@ app.directive('ngIgnoreStorage', ['localStorageService', 'Import', function(Loca
               if (true == angular.isNumber(v.id)) {
                 var key = 'ignoreList_' + $scope.league + '_' + v.id;
                 LocalStorage.bind($scope, 'ignoreList', [], key);
-              } else {
-                console.warn("Import id not a number '" + v.id + "'");
               }
             },
             function(e) {
