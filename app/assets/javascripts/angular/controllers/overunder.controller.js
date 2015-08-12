@@ -28,7 +28,6 @@ app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'De
     $scope.overunder_chart.data = JsLiteral.get_chart_data($scope.overunder_data);
   };
   $scope.select_overunder_data = function() {
-    $scope.message = "";
     $scope.update_chart_columns($scope.overunder_data, $scope.overunder_chart);
     $scope.recalculate += 1;
   };
@@ -77,17 +76,15 @@ app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'De
     }
   };
   $scope.select_league = function(selectedLeague) {
-    $scope.message = "";
     if ("NONE" != selectedLeague) {
-      $scope.message = "Retrieving overunder data...";
+      $scope.messages.push("Retrieving overunder data.");
       OverUnderData.query({league:selectedLeague},
           function(v){
-            $scope.message = "";
             $scope.overunder_data = v;
             $scope.select_overunder_data();
           },
           function(e){
-            $scope.message = "Couldn't load overunder data.";
+            $scope.messages.push("error Couldn't load over-under data '" + e.message + "'.");
           }
       );
     } else {

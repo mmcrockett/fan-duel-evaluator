@@ -1,13 +1,10 @@
 app.controller('AnalysisController', ['$scope', 'AnalysisData', 'Roster', 'DefaultChart', 'JsLiteral', function($scope, AnalysisData, Roster, DefaultChart, JsLiteral) {
   $scope.rosters = [];
-  $scope.message = "";
   $scope.select_league = function(selectedLeague) {
-    $scope.message = "";
     if ("NONE" != selectedLeague) {
-      $scope.message = "Retrieving rosters...";
+      $scope.messages.push("Retrieving rosters.");
       AnalysisData.query({league:selectedLeague},
           function(v){
-            $scope.message = "";
             $scope.rosters = [];
 
             for (var i = 0; i < v.length; i += 1) {
@@ -19,7 +16,7 @@ app.controller('AnalysisController', ['$scope', 'AnalysisData', 'Roster', 'Defau
             }
           },
           function(e){
-            $scope.message = "Couldn't load rosters.";
+            $scope.messages.push("error Couldn't load rosters '" + e.message + "'.");
           }
       );
     } else {

@@ -103,19 +103,18 @@ app.controller('PlayerController',
     }
   };
   $scope.remove_players = function() {
-    var ids_to_ignore = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);
+    var ids_to_remove = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);
 
-    if (0 <= ids_to_ignore.length) {
-      $scope.message = "Adding players to removed list...";
-      new PlayerData({ignore:ids_to_ignore}).$save({},
+    if (0 <= ids_to_remove.length) {
+      new PlayerData({ignore:ids_to_remove}).$save({},
         function(v){
           $scope.player_wrapper.getChart().setSelection();
           $scope.player_selected = [];
           $scope.get_player_data();
-          $scope.message = "Removed " + ids_to_ignore.length + " players."
+          $scope.messages.push("success Removed '" + ids_to_remove.length + "' players."
         },
         function(e){
-          $scope.message = "!ERROR: Unable to remove players.";
+          $scope.messages.push("!ERROR: Unable to remove players.");
         }
       );
     }
@@ -170,7 +169,6 @@ app.controller('PlayerController',
     $scope.roster_chart.data = JsLiteral.get_chart_data($scope.roster);
   };
   $scope.filter_player_data = function() {
-    $scope.message = "";
     $scope.update_chart_columns($scope.player_data, $scope.player_chart);
 
     if ("ALL" == $scope.selectedPosition) {
@@ -218,12 +216,10 @@ app.controller('PlayerController',
     }
   };
   $scope.get_player_data = function() {
-    $scope.message = "";
     if ("NONE" != $scope.selectedLeague) {
-      $scope.message = "Retrieving player data...";
+      $scope.messages.push("Retrieving player data.");
       PlayerData.query({league:$scope.selectedLeague},
           function(v){
-            $scope.message = "";
             $scope.player_data = v;
             $scope.filter_player_data();
 
@@ -233,7 +229,7 @@ app.controller('PlayerController',
             }
           },
           function(e){
-            $scope.message = "Couldn't load player data.";
+            $scope.messages.push("error Couldn't load player data '" + e.message + "'.");
           }
       );
     } else {
@@ -245,14 +241,14 @@ app.controller('PlayerController',
     }
   };
   $scope.get_player_details = function() {
-    $scope.message = "Processing player details...";
+    $scope.messages.push("Processing player details.");
     new PlayerData({league:$scope.selectedLeague}).$update({},
         function(v){
           $scope.message="Retrieved player details.";
           $scope.get_player_data();
         },
         function(e){
-          $scope.message = "!ERROR: Unable to get game details.";
+          $scope.messages.push("error Unable to get game details '" + e.message + "'.");
         });
   };
   $scope.player_data_add_ignore = function() {
