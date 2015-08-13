@@ -2,23 +2,29 @@ app.controller('AnalysisController', ['$scope', 'AnalysisData', 'Roster', 'Defau
   $scope.rosters = [];
   $scope.select_league = function(selectedLeague) {
     if ("NONE" != selectedLeague) {
-      $scope.messages.push("Retrieving rosters.");
-      AnalysisData.query({league:selectedLeague},
-          function(v){
-            $scope.rosters = [];
+      $scope.progress.message = "Retrieving rosters.";
+      AnalysisData
+      .query({league:selectedLeague})
+      .$promise
+      .then(
+        function(v){
+          $scope.rosters = [];
 
-            for (var i = 0; i < v.length; i += 1) {
-              var chart = DefaultChart.default_chart();
-              var data = Roster.create_roster(selectedLeague, v[i].players, v[i].notes);
-              chart.data = JsLiteral.get_chart_data(data);
-              $scope.update_chart_columns(data, chart);
-              $scope.rosters.push({chart:chart, name:v[i].notes});
-            }
-          },
-          function(e){
-            $scope.messages.push("error Couldn't load rosters '" + e.message + "'.");
+          for (var i = 0; i < v.length; i += 1) {
+            var chart = DefaultChart.default_chart();
+            var data = Roster.create_roster(selectedLeague, v[i].players, v[i].notes);
+            chart.data = JsLiteral.get_chart_data(data);
+            $scope.update_chart_columns(data, chart);
+            $scope.rosters.push({chart:chart, name:v[i].notes});
           }
-      );
+        }
+      ).catch(
+        function(e){
+          $scope.alerts.create_error("Couldn't load rosters", e);
+        }
+      ).finally(function() {
+        $scope.progress.message = "";
+      });
     } else {
       $scope.rosters = [];
     }

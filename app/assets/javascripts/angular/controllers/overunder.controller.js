@@ -77,16 +77,22 @@ app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'De
   };
   $scope.select_league = function(selectedLeague) {
     if ("NONE" != selectedLeague) {
-      $scope.messages.push("Retrieving overunder data.");
-      OverUnderData.query({league:selectedLeague},
-          function(v){
-            $scope.overunder_data = v;
-            $scope.select_overunder_data();
-          },
-          function(e){
-            $scope.messages.push("error Couldn't load over-under data '" + e.message + "'.");
-          }
-      );
+      $scope.progress.message = "Retrieving overunder data.";
+      OverUnderData
+      .query({league:selectedLeague})
+      .$promise
+      .then(
+        function(v){
+          $scope.overunder_data = v;
+          $scope.select_overunder_data();
+        }
+      ).catch(
+        function(e){
+          $scope.alerts.create_error("Couldn't load over-under data", e);
+        }
+      ).finally(function() {
+        $scope.progress.message = "";
+      });
     } else {
       $scope.overunder_data = [];
       $scope.select_overunder_data();

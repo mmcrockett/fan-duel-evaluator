@@ -1,2 +1,3 @@
-  <ng-alerts messages="messages"></ng-alerts>
-  <hr>
+<progressbar class="progress-striped active" ng-show="progress.message" max="progress.total" value="100"><span style="color:white; white-space:nowrap;">{{progress.message}}</span></progressbar>
+<ng-alerts messages="messages" factory="alerts"></ng-alerts>
+<hr>

@@ -6,11 +6,33 @@ app.directive('ngAlerts', ['$filter', function($filter) {
                 '<strong>{{alert.prefix}}</strong>{{alert.msg}}' +
               '</div>',
     scope: {
-      messages: '=messages'
+      messages     : '=messages',
+      alertFactory : '=factory'
     },
     link: function ($scope, elem, attrs) {
       if (false == angular.isArray($scope.messages)) {
         $scope.messages = [];
+      }
+
+      if (false == angular.isObject($scope.alertFactory)) {
+        $scope.alertFactory = {
+          create_error : function(msg, e) {
+            if (true == angular.isObject(e)) {
+              $scope.messages.push("error " + msg + " '" + e.statusText + "'.");
+            } else {
+              $scope.messages.push("error " + msg);
+            }
+          },
+          create_warn  : function(msg) {
+            $scope.messages.push("warn " + msg);
+          },
+          create_success  : function(msg) {
+            $scope.messages.push("success " + msg);
+          },
+          create_info  : function(msg) {
+            $scope.messages.push("info " + msg);
+          }
+        }
       }
 
       if (false == angular.isArray($scope.alerts)) {

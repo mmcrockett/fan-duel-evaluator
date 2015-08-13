@@ -42,6 +42,9 @@ app.controller('PlayerController',
       $scope.$apply($scope.remove_player_from_roster());
     }
   });
+  $scope.clear_progress = function() {
+    $scope.progress.message = "";
+  };
   $scope.get_selected_ids = function(wrapper, selection) {
     var selected_ids = [];
 
@@ -62,7 +65,7 @@ app.controller('PlayerController',
       } else {
         var player_on_roster = $filter('filter')($scope.player_data, {id: player_id}, true)[0];
 
-        $scope.messages.push("warning You've already added '" + player_on_roster.name + "' to your roster.");
+        $scope.alerts.create_warn("You've already added '" + player_on_roster.name + "' to your roster.");
       }
     });
   };
@@ -106,17 +109,22 @@ app.controller('PlayerController',
     var ids_to_remove = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);
 
     if (0 <= ids_to_remove.length) {
-      new PlayerData({ignore:ids_to_remove}).$save({},
+      $scope.progress.message = "Removing players.";
+      PlayerData
+      .save({ignore:ids_to_remove})
+      .$promise
+      .then(
         function(v){
           $scope.player_wrapper.getChart().setSelection();
           $scope.player_selected = [];
           $scope.get_player_data();
-          $scope.messages.push("success Removed '" + ids_to_remove.length + "' players."
-        },
-        function(e){
-          $scope.messages.push("!ERROR: Unable to remove players.");
+          $scope.alerts.create_success("Removed '" + ids_to_remove.length + "' players.");
         }
-      );
+      ).catch(
+        function(e){
+          $scope.alerts.create_error("Unable to remove players.");
+        }
+      ).finally($scope.clear_progress);
     }
   };
   $scope.set_player_selected = function(selected_items) {
@@ -217,21 +225,25 @@ app.controller('PlayerController',
   };
   $scope.get_player_data = function() {
     if ("NONE" != $scope.selectedLeague) {
-      $scope.messages.push("Retrieving player data.");
-      PlayerData.query({league:$scope.selectedLeague},
-          function(v){
-            $scope.player_data = v;
-            $scope.filter_player_data();
+      $scope.progress.message = "Retrieving player data.";
+      PlayerData
+      .query({league:$scope.selectedLeague})
+      .$promise
+      .then(
+        function(v){
+          $scope.player_data = v;
+          $scope.filter_player_data();
 
-            if (true == $scope.league_changed) {
-              $scope.build_positions();
-              $scope.league_changed = false;
-            }
-          },
-          function(e){
-            $scope.messages.push("error Couldn't load player data '" + e.message + "'.");
+          if (true == $scope.league_changed) {
+            $scope.build_positions();
+            $scope.league_changed = false;
           }
-      );
+        }
+      ).catch(
+        function(e){
+          $scope.alerts.create_error("Couldn't load player data", e);
+        }
+      ).finally($scope.clear_progress);
     } else {
       $scope.player_data = [];
       $scope.filter_player_data();
@@ -241,15 +253,20 @@ app.controller('PlayerController',
     }
   };
   $scope.get_player_details = function() {
-    $scope.messages.push("Processing player details.");
-    new PlayerData({league:$scope.selectedLeague}).$update({},
-        function(v){
-          $scope.message="Retrieved player details.";
-          $scope.get_player_data();
-        },
-        function(e){
-          $scope.messages.push("error Unable to get game details '" + e.message + "'.");
-        });
+    $scope.progress.message = "Processing player details.";
+    PlayerData
+    .update({league:$scope.selectedLeague})
+    .$promise
+    .then(
+      function(v){
+        $scope.alerts.create_success("Retrieved player details.");
+        $scope.get_player_data();
+      }
+    ).catch(
+      function(e){
+        $scope.alerts.create_error("Unable to get game details", e);
+      }
+    ).finally($scope.clear_progress);
   };
   $scope.player_data_add_ignore = function() {
     angular.forEach($scope.player_data, function(player, i) {
