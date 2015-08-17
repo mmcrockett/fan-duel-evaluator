@@ -287,7 +287,7 @@ app.controller('PlayerController',
     });
   };
   $scope.roster_remove_players = function() {
-    var selected_ids = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);
+    var selected_ids = $scope.get_selected_ids($scope.roster_wrapper, $scope.roster_selected);
 
     angular.forEach(selected_ids, function(player_id, i) {
       $scope.roster_remove_player(player_id);
