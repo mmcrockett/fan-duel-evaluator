@@ -8,6 +8,56 @@ app.factory('Roster', [function() {
         MLB: ["P","C","1B","2B","3B","SS","OF","OF","OF"],
         CBB: ["F", "G"]
     },
+    get_roster_status: function(roster, league) {
+      var roster_status      = {};
+
+      if (true == angular.isString(league)) {
+        var missing_columns    = _.extend([], this.COLUMNS_BY_LEAGUE_ORDERED[league]);
+        var overfilled_columns = [];
+
+        positions_filled = _.pluck(roster, 'pos');
+
+        angular.forEach(positions_filled, function(position, i) {
+          var index = _.indexOf(missing_columns, position);
+
+          if (-1 == index) {
+            overfilled_columns.push(position);
+          } else {
+            missing_columns.splice(index, 1);
+          }
+        });
+
+        missing_columns = _.uniq(missing_columns);
+
+        if ((0 == missing_columns.length) && (0 == overfilled_columns.length)) {
+          roster_status = {
+            classes : 'roster-valid',
+            message : 'Roster complete!',
+            alerts  : ['alert', 'alert-success']
+          };
+        } else if ((0 != missing_columns.length) && (0 == overfilled_columns.length)) {
+          roster_status = {
+            classes : 'roster-in-progress',
+            message : 'Still need ' + missing_columns + '.',
+            alerts  : ['alert', 'alert-warning']
+          };
+        } else if ((0 == missing_columns.length) && (0 != overfilled_columns.length)) {
+          roster_status = {
+          classes : 'roster-invalid',
+          message : '!Too many ' + overfilled_columns + '.',
+          alerts  : ['alert', 'alert-danger']
+          };
+        } else { // ((0 != missing_columns.length) && (0 != overfilled_columns.length))
+          roster_status = {
+            classes : 'roster-invalid',
+            message : '!Too many ' + overfilled_columns + '. And still need ' + missing_columns + '.',
+            alerts  : ['alert', 'alert-danger']
+          };
+        }
+      }
+
+      return roster_status;
+    },
     format_row: function(row, n) {
       angular.forEach(row, function(v, k) {
         if (true == angular.isNumber(v)) {

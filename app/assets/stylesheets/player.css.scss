@@ -15,6 +15,24 @@ img.news {
   color: black;
   padding: 0px;
 }
+div.roster-in-progress {
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-top-color: transparent;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+}
+div.roster-invalid {
+  @extend .roster-in-progress;
+  border-top-color: #ebccd1;
+  border-bottom-color: #ebccd1;
+}
+div.roster-valid {
+  @extend .roster-in-progress;
+  border-top-color: #d6e9c6;
+  border-bottom-color: #d6e9c6;
+}
 div.alert {
   font-size: 0.8em;
   padding-top: 5px;

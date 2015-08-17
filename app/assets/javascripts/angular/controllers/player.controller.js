@@ -20,6 +20,7 @@ app.controller('PlayerController',
 {
   LocalStorage.bind($scope, 'hide_ignored', true);
   LocalStorage.bind($scope, 'roster_ids',   []);
+  $scope.roster_indicator = {};
   $scope.league_changed = false;
   $scope.positions = [{id:"ALL"}];
   $scope.selectedPosition = "ALL";
@@ -67,6 +68,7 @@ app.controller('PlayerController',
     $scope.roster = Roster.create_roster($scope.selectedLeague, roster, "");
     $scope.create_roster_chart();
     $scope.update_chart_columns($scope.roster, $scope.roster_chart);
+    $scope.roster_indicator = Roster.get_roster_status(roster, $scope.selectedLeague);
   };
   $scope.remove_players = function() {
     var ids_to_remove = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);

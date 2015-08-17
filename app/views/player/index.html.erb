@@ -12,7 +12,8 @@
   </div>
   <ng-ignore-storage league="selectedLeague" ignore-list="ignore_list"></ng-ignore-storage>
   <hr>
-  <div>
+  <div ng-class="roster_indicator.alerts" role="alert">{{roster_indicator.message}}</div>
+  <div ng-class="roster_indicator.classes">
     <div google-chart chart="roster_chart" on-select="set_roster_selected(selectedItems)" on-ready="set_roster_wrapper(chartWrapper)"></div>
   </div>
   <hr>
