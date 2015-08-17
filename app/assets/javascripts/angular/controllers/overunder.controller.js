@@ -1,4 +1,4 @@
-app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'DefaultChart', 'JsLiteral', '$filter', function($scope, $window, OverUnderData, DefaultChart, JsLiteral, $filter) {
+app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'DefaultChart', 'JsLiteral', function($scope, $window, OverUnderData, DefaultChart, JsLiteral) {
   $scope.overunder_wrapper = null;
   $scope.overunder_data = [];
   $scope.set_overunder_wrapper = function(wrapper) {

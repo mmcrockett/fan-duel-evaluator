@@ -1,4 +1,4 @@
-app.factory('Roster', ['$filter', function($filter) {
+app.factory('Roster', [function() {
   return {
     IGNORE_COLUMNS : ['id'],
     COLUMNS_BY_LEAGUE_ORDERED : {
@@ -40,11 +40,7 @@ app.factory('Roster', ['$filter', function($filter) {
 
       if (0 != roster.length) {
         angular.forEach(roster, function(player, i) {
-          var index = jQuery.inArray(player.pos, missing_columns);
-
-          if (-1 != index) {
-            missing_columns.splice(index, 1);
-          }
+          missing_columns = _.without(missing_columns, player.pos);
         });
 
         angular.forEach(missing_columns, function(column, i) {
@@ -104,8 +100,8 @@ app.factory('Roster', ['$filter', function($filter) {
         return roster
       }
 
-      angular.forEach($filter('unique')(ordered_columns), function(column, i) {
-        angular.forEach($filter('filter')(roster, {pos:column}, true), function(player, i) {
+      angular.forEach(_.uniq(ordered_columns), function(column, i) {
+        angular.forEach(_.where(roster, {pos:column}), function(player, i) {
           new_roster.push(player);
         });
       });

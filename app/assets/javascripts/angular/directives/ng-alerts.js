@@ -1,4 +1,4 @@
-app.directive('ngAlerts', ['$filter', function($filter) {
+app.directive('ngAlerts', [function() {
   return {
     restrict: 'E',
     template: '<div ng-repeat="alert in alerts" ng-class="alert.classes" data="{{alert.index}}" role="alert">' +
@@ -51,7 +51,7 @@ app.directive('ngAlerts', ['$filter', function($filter) {
         function() {
           $scope.alerts = [];
 
-          $scope.messages = $filter('unique')($scope.messages);
+          $scope.messages = _.uniq($scope.messages);
 
           for(var i = 0; i < $scope.messages.length; i += 1) {
             var type        = null;
