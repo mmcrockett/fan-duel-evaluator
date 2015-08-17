@@ -1,17 +1,100 @@
 app.factory('Roster', ['$filter', function($filter) {
   return {
-    create_roster: function(league, roster, name) {
-      var total_row = {};
-      var ignore_columns = ["id"];
-      var new_roster = [];
-      var league_ordered_columns = {
+    IGNORE_COLUMNS : ['id'],
+    COLUMNS_BY_LEAGUE_ORDERED : {
         NHL: ["LW", "RW", "C", "D", "G"],
         NBA: ["PG", "SG", "SF", "PF", "C"],
         NFL: ["QB", "RB", "WR", "TE", "K", "D"],
-        MLB: ["P","C","1B","2B","3B","SS","OF"],
+        MLB: ["P","C","1B","2B","3B","SS","OF","OF","OF"],
         CBB: ["F", "G"]
+    },
+    format_row: function(row, n) {
+      angular.forEach(row, function(v, k) {
+        if (true == angular.isNumber(v)) {
+          if ((-1 != k.indexOf('value')) && (true == angular.isNumber(n))) {
+            row[k] = Math.round(v.toFixed(1)/n);
+          } else {
+            row[k] = +v.toFixed(1);
+          }
+        }
+      });
+
+      return row;
+    },
+    column_default_values: function(k,v) {
+      if ("id" == k) {
+        return 0;
+      } else if (true == angular.isNumber(v)) {
+        return 0;
+      } else if (true == angular.isString(v)) {
+        return "";
+      } else if (("boolean" === typeof v) || (null == v)) {
+        return null;
+      } else {
+        return "";
       }
-      var ordered_columns = league_ordered_columns[league];
+    },
+    add_missing_players: function(columns, roster) {
+      var $scope = this;
+      var missing_columns = angular.copy(columns);
+
+      if (0 != roster.length) {
+        angular.forEach(roster, function(player, i) {
+          var index = jQuery.inArray(player.pos, missing_columns);
+
+          if (-1 != index) {
+            missing_columns.splice(index, 1);
+          }
+        });
+
+        angular.forEach(missing_columns, function(column, i) {
+          var new_player = angular.merge({}, roster[0]);
+
+          angular.forEach(new_player, function(v, k) {
+            if ("name" == k) {
+              new_player[k] = 'Empty ' + column;
+            } else if ("pos" == k) {
+              new_player[k] = column;
+            } else {
+              new_player[k] = $scope.column_default_values(k,v);
+            }
+          });
+
+          roster.push(new_player);
+        });
+
+        return roster;
+      }
+
+      return roster;
+    },
+    create_total_row: function(roster) {
+      var $scope = this;
+      var total_row = {};
+
+      angular.forEach(roster, function(player, i) {
+        angular.forEach(player, function(v, k) {
+          if (0 == i) {
+            if ("name" == k) {
+              total_row[k] = "Totals (" + name + ")";
+            } else {
+              total_row[k] = $scope.column_default_values(k,v);
+            }
+          }
+
+          if ((true == angular.isNumber(v)) && (-1 == jQuery.inArray(k, $scope.IGNORE_COLUMNS))) {
+            total_row[k] += v;
+          }
+        });
+      });
+
+      return total_row;
+    },
+    create_roster: function(league, roster, name) {
+      var $scope = this;
+      var total_row = null;
+      var new_roster = [];
+      var ordered_columns = angular.copy($scope.COLUMNS_BY_LEAGUE_ORDERED[league]);
 
       if (false == angular.isArray(ordered_columns)) {
         if (true == angular.isString(league)) {
@@ -21,45 +104,16 @@ app.factory('Roster', ['$filter', function($filter) {
         return roster
       }
 
-      for (var i = 0; i < ordered_columns.length; i += 1) {
-        angular.forEach($filter('filter')(roster, {pos:ordered_columns[i]}, true), function(player, i) {
+      angular.forEach($filter('unique')(ordered_columns), function(column, i) {
+        angular.forEach($filter('filter')(roster, {pos:column}, true), function(player, i) {
           new_roster.push(player);
         });
-      }
-
-      angular.forEach(new_roster, function(player, i) {
-        angular.forEach(player, function(v, k) {
-          if (0 == i) {
-            if ("name" == k) {
-              total_row[k] = "Totals (" + name + ")";
-            } else if ("id" == k) {
-              total_row[k] = 0;
-            } else if (true == angular.isNumber(v)) {
-              total_row[k] = 0;
-            } else if (true == angular.isString(v)) {
-              total_row[k] = "";
-            } else if (("boolean" === typeof v) || (null == v)) {
-              total_row[k] = null;
-            } else {
-              total_row[k] = "";
-            }
-          }
-
-          if ((true == angular.isNumber(v)) && (-1 == ignore_columns.indexOf(k))) {
-            total_row[k] += v;
-          }
-        });
       });
 
-      angular.forEach(total_row, function(v, k) {
-        if (true == angular.isNumber(v)) {
-          if (-1 != k.indexOf('value')) {
-            total_row[k] = Math.round(v.toFixed(1)/new_roster.length);
-          } else {
-            total_row[k] = +v.toFixed(1);
-          }
-        }
-      });
+      total_row = $scope.create_total_row(new_roster);
+      total_row = $scope.format_row(total_row);
+
+      new_roster = $scope.add_missing_players(ordered_columns, new_roster);
 
       new_roster.push(total_row);
 
