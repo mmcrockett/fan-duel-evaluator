@@ -59,16 +59,15 @@ app.controller('PlayerController',
     return selected_ids;
   };
   $scope.render_roster = function() {
-    var roster = [];
+    var roster = new Roster($scope.selectedLeague);
 
     angular.forEach($scope.roster_ids, function(player_id, i) {
-      roster.push($scope.find_player(player_id));
+      roster.add_player($scope.find_player(player_id));
     });
 
-    $scope.roster = Roster.create_roster($scope.selectedLeague, roster, "");
-    $scope.create_roster_chart();
-    $scope.update_chart_columns($scope.roster, $scope.roster_chart);
-    $scope.roster_indicator = Roster.get_roster_status(roster, $scope.selectedLeague);
+    $scope.create_roster_chart(roster.players_with_ghosts());
+    $scope.update_chart_columns(roster.players(), $scope.roster_chart);
+    $scope.roster_indicator = roster.get_status();
   };
   $scope.remove_players = function() {
     var ids_to_remove = $scope.get_selected_ids($scope.player_wrapper, $scope.player_selected);
@@ -147,8 +146,8 @@ app.controller('PlayerController',
            ' player-on-roster="' + on_roster + '"' +
            '</ng-player-drop-down>';
   };
-  $scope.create_roster_chart = function() {
-    $scope.roster_chart.data = JsLiteral.get_chart_data($scope.roster, $scope.create_player_dropdown);
+  $scope.create_roster_chart = function(players) {
+    $scope.roster_chart.data = JsLiteral.get_chart_data(players, $scope.create_player_dropdown);
   };
   $scope.filter_player_data = function() {
     $scope.update_chart_columns($scope.player_data, $scope.player_chart);

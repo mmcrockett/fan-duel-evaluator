@@ -12,8 +12,13 @@ app.controller('AnalysisController', ['$scope', 'AnalysisData', 'Roster', 'Defau
 
           for (var i = 0; i < v.length; i += 1) {
             var chart = DefaultChart.default_chart();
-            var data = Roster.create_roster(selectedLeague, v[i].players, v[i].notes);
-            chart.data = JsLiteral.get_chart_data(data);
+            var roster = new Roster(selectedLeague, v[i].notes);
+
+            angular.forEach(v[i].players, function(player, i) {
+              roster.add_player(player);
+            });
+
+            chart.data = JsLiteral.get_chart_data(roster.players_ordered_with_totals());
             $scope.update_chart_columns(data, chart);
             $scope.rosters.push({chart:chart, name:v[i].notes});
           }
