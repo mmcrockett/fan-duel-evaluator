@@ -14,7 +14,7 @@ class SimpleRoster
   attr_reader :cost, :points, :players, :budget, :pcolumn
   attr_writer :cost, :points, :players
 
-  def initialize(budget, max_roster_size, pcolumn = :avg)
+  def initialize(budget, max_roster_size, pcolumn = :fppg)
     @max_roster_size = max_roster_size
     @budget  = budget
     @points  = 0
@@ -65,6 +65,7 @@ class SimpleRoster
 
       @cost    += player.cost
       @points  += player.send(@pcolumn)
+      @points   = @points.round(3)
       @players << player
     end
 
@@ -79,6 +80,7 @@ class SimpleRoster
     @players.delete(player)
     @cost    -= player.cost
     @points  -= player.send(@pcolumn)
+    @points   = @points.round(3)
 
     return self
   end

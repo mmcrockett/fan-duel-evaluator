@@ -124,3 +124,21 @@ over_unders_086:
   import_id: 11
   created_at: '2014-11-12 16:03:47.556330'
   updated_at: '2014-11-12 16:03:47.556330'
+over_unders_100:
+  id: 100
+  overunder: 16
+  home_spread: 4
+  home: SIX_HOME
+  visitor: TEN_VISITOR
+  import_id: 12
+  created_at: '2014-11-12 16:03:43.519736'
+  updated_at: '2014-11-12 16:03:43.519736'
+over_unders_101:
+  id: 101
+  overunder: 20
+  home_spread: -4
+  home: TWELVE_HOME
+  visitor: EIGHT_VISITOR
+  import_id: 12
+  created_at: '2014-11-12 16:03:43.519736'
+  updated_at: '2014-11-12 16:03:43.519736'

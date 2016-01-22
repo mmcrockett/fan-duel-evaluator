@@ -2,16 +2,16 @@
 require 'thor'
 lock '3.2.1'
 
-set :application, 'fan-duel-evaluator'
-set :repo_url, 'https://github.com/mmcrockett/fan-duel-evaluator.git'
+set :application, 'fantasyevaluator'
+set :repo_url, 'git@github.com:fantasyevaluators/FantasyEvaluatorRails.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
-set :branch, 'unified'
+set :branch, 'develop'
 
 # Default deploy_to directory is /var/www/my_app
-set :tmp_dir, '/home/fanduel/tmp'
-set :deploy_to, '/home/fanduel/fanduel.mmcrockett.com'
+set :tmp_dir, '/tmp'
+#set :deploy_to, '/var/www/fantasyevaluator'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -63,8 +63,21 @@ namespace :deploy do
     end
   end
 
+  desc 'Copy Secrets Config'
+  task :copy_secret_config do
+    on roles(:app), in: :sequence, wait: 5 do
+      shared_location = shared_path.join('secrets.yml')
+      if test("[ -f #{shared_location} ]")
+        execute :cp, shared_location, release_path.join('config/secrets.yml')
+      else
+        raise "Can't find file '#{shared_location}', need to copy to this server manually."
+      end
+    end
+  end
+
   after :started, :backup_db
   before :migrate, :copy_db
+  before :restart, :copy_secret_config
   after :publishing, :restart
 
   after :restart, :clear_cache do

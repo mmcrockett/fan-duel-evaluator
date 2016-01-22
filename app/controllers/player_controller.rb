@@ -2,7 +2,18 @@ require 'open-uri'
 
 class PlayerController < ApplicationController
   def index
-    @players = FanDuelPlayer.player_data(params)
+    @players = []
+    possible_players = FanDuelPlayer.player_data(params)
+
+    if (nil != possible_players)
+      possible_players.each do |player|
+        if ((false != player.starting?) && (false == player.ignore))
+          @players << player
+        end
+      end
+    else
+      @players = nil
+    end
   end
 
   def analysis
@@ -19,34 +30,6 @@ class PlayerController < ApplicationController
     end
   end
 
-  def import
-  end
-
-  def create
-    params.merge!(Import.parse(params[:uri]))
-
-    params[:teams].each_pair do |k,v|
-      puts "#{k} => \"#{v}\","
-    end
-
-    @import = Import.create({:league => params[:league], :fd_game_id => params[:fd_game_id]})
-
-    FanDuelPlayer.parse(params[:data], @import)
-
-    if ("NFL" == @import.league)
-      Yahoo.load(@import.id)
-      Dvoa.load(@import.id)
-    elsif ("NHL" == @import.league)
-      NhlStandings.load(@import.id)
-    end
-
-    OverUnder.load(@import)
-
-    respond_to do |format|
-      format.json { head :no_content }
-    end
-  end
-
   def ignore
     fd_players = FanDuelPlayer.find(params[:ignore])
 
@@ -59,29 +42,18 @@ class PlayerController < ApplicationController
   end
 
   def details
-    FanDuelPlayer.load_player_details(params)
+    status = FanDuelPlayer.load_player_details(params)
 
     respond_to do |format|
-      format.json { head :no_content }
+      if (false == status[:status])
+        format.json { render :json  => status, :status => :unprocessable_entity }
+      else
+        format.json { render :json  => status }
+      end
     end
   end
 
   def overunder
-    @expected_scores = []
-    scores = nil
-    overunders = OverUnder.get_expected_scores(Import.latest_by_league(params))
-
-    overunders.each_pair do |key, value|
-      if (true == value.include?(:score))
-        value[:exp_score] = value[:score].round(1)
-        value[:exp_opp_score] = overunders[value[:opp]][:score].round(1)
-        value[:diff] = value[:exp_score] - value[:exp_opp_score]
-        value[:team] = key
-        value[:mult] = OverUnder.calculate_boost_multiplier(value[:score], scores)
-        @expected_scores << value
-      else
-        scores = value
-      end
-    end
+    @over_unders = OverUnderSet.new(Import.latest_by_league(params)).to_a
   end
 end

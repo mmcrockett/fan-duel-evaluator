@@ -4,11 +4,16 @@
   <div>
     <select ng-model="selectedPosition" ng-options="item.id as item.id for item in positions"></select>
     <input class="ui-widget ui-state-default ui-corner-all ui-button-text-only" ng-model="filtered_player_data.length" name="name" size="8" type="text" ng-disabled="true">
+    <label>
+      <input class="ui-widget ui-state-default ui-corner-all ui-button-text-only" ng-model="hide_ignored" ng-true-value="false" ng-false-value="true" name="name" size="8" type="checkbox" >
+      Show Ignored?
+    </label>
     <button id="import-games-button" ng-click="get_player_details()">Import Games</button>
-    <input class="ui-widget ui-state-default ui-corner-all ui-button-text-only" ng-model="avg_value" name="name" size="8" type="text" ng-disabled="true">
   </div>
+  <ng-ignore-storage league="selectedLeague" ignore-list="ignore_list"></ng-ignore-storage>
   <hr>
-  <div>
+  <div ng-class="roster_indicator.alerts" role="alert">{{roster_indicator.message}}</div>
+  <div ng-class="roster_indicator.classes">
     <div google-chart chart="roster_chart" on-select="set_roster_selected(selectedItems)" on-ready="set_roster_wrapper(chartWrapper)"></div>
   </div>
   <hr>

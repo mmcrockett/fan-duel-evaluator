@@ -10,5 +10,5 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require fanduelevaluator_angular_app.js
+//= require fantasy_evaluator_angular_app.js
 //= require_tree .

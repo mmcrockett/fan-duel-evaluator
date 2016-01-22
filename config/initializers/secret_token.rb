@@ -9,4 +9,3 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-FanDuelEvaluator::Application.config.secret_key_base = 'f13b4ae02c7b048ac8a841fd67fffed31ff46e7a0a6a52658847cae8f072c21de71d8707e2cba4fe55769958484a6efa65080fd62be17bc96ef3e4fccd7cbe19'

@@ -1,15 +1,10 @@
-app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'JsLiteral', '$filter', function($scope, $window, OverUnderData, JsLiteral, $filter) {
+app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'DefaultChart', 'JsLiteral', function($scope, $window, OverUnderData, DefaultChart, JsLiteral) {
   $scope.overunder_wrapper = null;
   $scope.overunder_data = [];
   $scope.set_overunder_wrapper = function(wrapper) {
     $scope.overunder_wrapper = wrapper;
   };
-  $scope.overunder_chart = {
-    "type": "Table",
-    "options": {
-      "sortAscending": false
-    }
-  };
+  $scope.overunder_chart = DefaultChart.default_chart();
   $scope.set_sort = function(sortParams) {
     if (true == angular.isObject(sortParams)) {
       $scope.overunder_chart.options.sortColumn = sortParams.column;
@@ -18,7 +13,7 @@ app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'Js
     } else if (false == angular.isNumber($scope.overunder_chart.options.sortColumn)) {
       var i = 0;
       angular.forEach($scope.overunder_data[0], function(v, k) {
-        if ("exp_score" == k) {
+        if ("score" == k) {
           $scope.overunder_chart.options.sortColumn = i;
           return true;
         } else {
@@ -33,7 +28,6 @@ app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'Js
     $scope.overunder_chart.data = JsLiteral.get_chart_data($scope.overunder_data);
   };
   $scope.select_overunder_data = function() {
-    $scope.message = "";
     $scope.update_chart_columns($scope.overunder_data, $scope.overunder_chart);
     $scope.recalculate += 1;
   };
@@ -82,19 +76,23 @@ app.controller('OverUnderController', ['$scope', '$window', 'OverUnderData', 'Js
     }
   };
   $scope.select_league = function(selectedLeague) {
-    $scope.message = "";
     if ("NONE" != selectedLeague) {
-      $scope.message = "Retrieving overunder data...";
-      OverUnderData.query({league:selectedLeague},
-          function(v){
-            $scope.message = "";
-            $scope.overunder_data = v;
-            $scope.select_overunder_data();
-          },
-          function(e){
-            $scope.message = "Couldn't load overunder data.";
-          }
-      );
+      $scope.progress.message = "Retrieving overunder data.";
+      OverUnderData
+      .query({league:selectedLeague})
+      .$promise
+      .then(
+        function(v){
+          $scope.overunder_data = v;
+          $scope.select_overunder_data();
+        }
+      ).catch(
+        function(e){
+          $scope.alerts.create_error("Couldn't load over-under data", e);
+        }
+      ).finally(function() {
+        $scope.progress.message = "";
+      });
     } else {
       $scope.overunder_data = [];
       $scope.select_overunder_data();

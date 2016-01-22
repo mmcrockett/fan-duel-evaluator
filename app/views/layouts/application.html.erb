@@ -1,17 +1,34 @@
 <!DOCTYPE html>
-<html ng-app="FanDuelEvaluator">
+<html ng-app="FantasyEvaluator">
 <head>
-  <title>FanDuelEvaluator - <%= action_name %></title>
-  <% angular_version = "1.3.16" %>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => false %>
-  <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", :media => "all" %>
-  <%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.4/themes/cupertino/jquery-ui.min.css", :media => "all" %>
-  <%= javascript_include_tag "//code.jquery.com/jquery-2.1.1.min.js" %>
-  <%= javascript_include_tag "http://code.jquery.com/ui/1.11.0/jquery-ui.min.js" %>
-  <%= javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" %>
-  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/#{angular_version}/angular.min.js" %>
-  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/#{angular_version}/angular-resource.min.js" %>
-  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/#{angular_version}/angular-cookies.min.js" %>
+  <title>FantasyEvaluator - <%= action_name %></title>
+  <meta name="keywords" content="daily contest, daily fantasy, advanced stats, fantasy stats, fantasy football, fantasy baseball, fantasy basketball, fantasy sports, fanduel stats, fan duel helper" />
+  <meta name="description" content="Make your daily fantasy leagues better! Advanced metrics, roster building, easily accessible stats!" />
+
+  <% if (true == Rails.env.development?) %>
+    <% minified = "" %>
+  <% else %>
+    <% minified = ".min" %>
+  <% end %>
+
+  <%= favicon_link_tag "favicon.ico" %>
+  <% angular_version              = "1.4.2" %>
+  <% angular_ui_bootstrap_version = "0.13.3" %>
+  <% bootstrap_version            = "3.3.5" %>
+  <% jquery_version               = "2.1.4" %>
+  <% jquery_ui_version            = "1.11.4" %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => false %>
+  <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/#{bootstrap_version}/css/bootstrap#{minified}.css", :media => "all" %>
+  <%= stylesheet_link_tag "http://code.jquery.com/ui/#{jquery_ui_version}/themes/cupertino/jquery-ui#{minified}.css", :media => "all" %>
+  <%= javascript_include_tag "//code.jquery.com/jquery-#{jquery_version}#{minified}.js" %>
+  <%= javascript_include_tag "http://code.jquery.com/ui/#{jquery_ui_version}/jquery-ui#{minified}.js" %>
+  <%= javascript_include_tag "http://underscorejs.org/underscore#{minified.gsub('.','-')}.js" %>
+  <%= javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/#{bootstrap_version}/js/bootstrap#{minified}.js" %>
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/#{angular_version}/angular#{minified}.js" %>
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/#{angular_version}/angular-resource#{minified}.js" %>
+  <%= javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1'}]}" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/#{angular_ui_bootstrap_version}/ui-bootstrap#{minified}.js" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/#{angular_ui_bootstrap_version}/ui-bootstrap-tpls#{minified}.js" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
   <%= csrf_meta_tags %>
 </head>
@@ -22,5 +39,6 @@
       <hr>
       <div style="height:10px;width:100px;"></div>
     </div>
+  </div>
 </body>
 </html>

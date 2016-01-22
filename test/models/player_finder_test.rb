@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PlayerFinderTest < ActiveSupport::TestCase
   def setup
-    sort_column = :avg
+    sort_column = :fppg
     players     = FanDuelPlayer.player_data({:league => "NFL", :ignore => false})
     sorted_players = FanDuelPlayer.sort(players, sort_column)
 

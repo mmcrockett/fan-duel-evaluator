@@ -42,27 +42,79 @@ class MlbPlayer < FanDuelPlayer
     604 => "TEX",
   }
 
+  def probable?
+    return self.fd_data['probable_pitcher']
+  end
+
+  def pitcher?
+    return ("P" == self.pos)
+  end
+
   def ignore?
-    if ("P" == self.position)
-      if ((5 == self.status) || (1 == self.status))
-        return false
-      else
-        return true
-      end
-    else
-      if (self.avg < 1.2)
-        return true
-      end
+    if (false == self.starting?)
+      return true
     end
 
-    if (true == status.include?("DL"))
+    if (true == self.disabled?)
       return true
+    end
+
+    if (0 >= self.fppg)
+      return true
+    end
+
+    if ((true == self.game_data_loaded) && (false == self.ignore))
+      if (nil != self.news["summary"])
+        if (true == self.news["summary"].include?("optioned"))
+          return true
+        end
+      end
+
+      if (0 == self.rgms)
+        if (nil != self.news["latest"])
+          if ((Date.today() - 5) > FanDuelFixture.time_conversion(self.news["latest"]))
+            return true
+          end
+        else
+          logger.warn "Unsure of whether to ignore '#{self.name}':'#{self.news}'."
+        end
+      end
     end
 
     return false
   end
 
   def defensive?
-    return ("P" == self.position)
+    return self.pitcher?
+  end
+
+  def starting
+    if (true == self.pitcher?)
+      if (true == self.probable?)
+        return "SP"
+      else
+        return "0"
+      end
+    else
+      if (nil == self.starting_order)
+        return "?"
+      else
+        return self.starting_order
+      end
+    end
+  end
+
+  def starting?
+    if (true == self.pitcher?)
+      return self.probable?
+    else
+      if (nil == self.starting_order)
+        return nil
+      elsif (0 < self.starting_order.to_i)
+        return true
+      else
+        return false
+      end
+    end
   end
 end

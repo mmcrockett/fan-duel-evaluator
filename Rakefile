@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-FanDuelEvaluator::Application.load_tasks
+FantasyEvaluator::Application.load_tasks

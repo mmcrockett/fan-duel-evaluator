@@ -10,27 +10,79 @@ class RosterTest < ActiveSupport::TestCase
     @players = []
     @players << TestPlayer.new({
       :id        => 0,
-      :position  => "X",
-      :cost      => 5,
-      :game_data => [0,10,-2]
+      :fd_data   => {
+        "salary"=>5,
+        "injured"=>false,
+        "first_name"=>"Max",
+        "last_name"=>"Avg",
+        "probable_pitcher"=>false,
+        "played"=>16,
+        "position"=>"X",
+        "fppg"=>50,
+        "news"=>{"latest"=>"2015-06-27T02:34:44Z"},
+        "id"=>"13627"
+      },
+      :game_data => [
+        {"Date" => "01\/05","Opp" => "v PIT","IP" => "9.0","H" => "0","BB" => "0","K" => "10","ERA" => "1.76","W" => "1","FP" => "0"},
+        {"Date" => "12\/25","Opp" => "@MIL","IP" => "9.0","H" => "1","BB" => "1","K" => "16","ERA" => "1.93","W" => "1","FP" => "10"},
+        {"Date" => "12\/13","Opp" => "@NYM","IP" => "7.0","H" => "5","BB" => "1","K" => "10","ERA" => "1.26","W" => "0","FP" => "-2"}],
     })
     @players << TestPlayer.new({
       :id        => 1,
-      :position  => "X",
-      :cost      => 5,
-      :game_data => [2,1,9]
+      :fd_data   => {
+        "salary"=>5,
+        "injured"=>false,
+        "first_name"=>"Max",
+        "last_name"=>"Avg",
+        "probable_pitcher"=>false,
+        "played"=>16,
+        "position"=>"X",
+        "fppg"=>50,
+        "news"=>{"latest"=>"2015-06-27T02:34:44Z"},
+        "id"=>"13627"
+      },
+      :game_data => [
+        {"Date" => "01\/05","Opp" => "v PIT","IP" => "9.0","H" => "0","BB" => "0","K" => "10","ERA" => "1.76","W" => "1","FP" => "2"},
+        {"Date" => "12\/25","Opp" => "@MIL","IP" => "9.0","H" => "1","BB" => "1","K" => "16","ERA" => "1.93","W" => "1","FP" => "1"},
+        {"Date" => "12\/13","Opp" => "@NYM","IP" => "7.0","H" => "5","BB" => "1","K" => "10","ERA" => "1.26","W" => "0","FP" => "9"}],
     })
     @players << TestPlayer.new({
       :id        => 2,
-      :position  => "X",
-      :cost      => 5,
-      :game_data => [6,4,0]
+      :fd_data   => {
+        "salary"=>5,
+        "injured"=>false,
+        "first_name"=>"Max",
+        "last_name"=>"Avg",
+        "probable_pitcher"=>false,
+        "played"=>16,
+        "position"=>"X",
+        "fppg"=>50,
+        "news"=>{"latest"=>"2015-06-27T02:34:44Z"},
+        "id"=>"13627"
+      },
+      :game_data => [
+        {"Date" => "01\/05","Opp" => "v PIT","IP" => "9.0","H" => "0","BB" => "0","K" => "10","ERA" => "1.76","W" => "1","FP" => "6"},
+        {"Date" => "12\/25","Opp" => "@MIL","IP" => "9.0","H" => "1","BB" => "1","K" => "16","ERA" => "1.93","W" => "1","FP" => "4"},
+        {"Date" => "12\/13","Opp" => "@NYM","IP" => "7.0","H" => "5","BB" => "1","K" => "10","ERA" => "1.26","W" => "0","FP" => "0"}],
     })
     @players << TestPlayer.new({
       :id        => 3,
-      :position  => "X",
-      :cost      => 5,
-      :game_data => [4,4,4]
+      :fd_data   => {
+        "salary"=>5,
+        "injured"=>false,
+        "first_name"=>"Max",
+        "last_name"=>"Avg",
+        "probable_pitcher"=>false,
+        "played"=>16,
+        "position"=>"X",
+        "fppg"=>50,
+        "news"=>{"latest"=>"2015-06-27T02:34:44Z"},
+        "id"=>"13627"
+      },
+      :game_data => [
+        {"Date" => "01\/05","Opp" => "v PIT","IP" => "9.0","H" => "0","BB" => "0","K" => "10","ERA" => "1.76","W" => "1","FP" => "4"},
+        {"Date" => "12\/25","Opp" => "@MIL","IP" => "9.0","H" => "1","BB" => "1","K" => "16","ERA" => "1.93","W" => "1","FP" => "4"},
+        {"Date" => "12\/13","Opp" => "@NYM","IP" => "7.0","H" => "5","BB" => "1","K" => "10","ERA" => "1.26","W" => "0","FP" => "4"}],
     })
   end
 
@@ -47,10 +99,10 @@ class RosterTest < ActiveSupport::TestCase
   end
 
   test "best rosters" do
-    @players[0].cost = 70
-    @players[1].cost = 50
-    @players[2].cost = 50
-    @players[3].cost = 20
+    @players[0].stubs(:cost).returns(70)
+    @players[1].stubs(:cost).returns(50)
+    @players[2].stubs(:cost).returns(50)
+    @players[3].stubs(:cost).returns(20)
 
     best_rosters = Roster.get_best_rosters(@players, TestPlayer::POSITIONS, TestPlayer::BUDGET, [:max, :min, :med])
 
@@ -150,10 +202,11 @@ class RosterTest < ActiveSupport::TestCase
   end
 
   test "finishes" do
-    @players[0].cost = 70
-    @players[1].cost = 70
-    @players[2].cost = 70
-    @players[3].cost = 70
+    FanDuelPlayer.any_instance.stubs(:cost).returns(70)
+    #@players[0].cost = 70
+    #@players[1].cost = 70
+    #@players[2].cost = 70
+    #@players[3].cost = 70
 
     best_rosters = Roster.get_best_rosters(@players, TestPlayer::POSITIONS, TestPlayer::BUDGET, [:max, :min, :med])
 

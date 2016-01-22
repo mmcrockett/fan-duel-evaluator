@@ -1,3 +1,3 @@
-json.array!(@expected_scores) do |escore|
-  json.extract! escore, :team, :opp, :exp_score, :exp_opp_score, :diff, :mult
+json.array!(@over_unders) do |over_under|
+  json.extract! over_under, :team, :opp, :score, :opp_score, :diff
 end
