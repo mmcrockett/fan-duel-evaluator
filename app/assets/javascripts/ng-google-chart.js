@@ -14,7 +14,7 @@
         .value('googleChartApiConfig', {
             version: '1',
             optionalSettings: {
-                packages: ['corechart']
+                packages: ['corechart', 'table']
             }
         })
 
@@ -76,7 +76,7 @@
 
             return apiReady.promise;
         }])
-        .directive('googleChart', ['$timeout', '$window', '$rootScope', 'googleChartApiPromise', function ($timeout, $window, $rootScope, googleChartApiPromise) {
+        .directive('googleChart', ['$timeout', '$compile', '$window', '$rootScope', 'googleChartApiPromise', function ($timeout, $compile, $window, $rootScope, googleChartApiPromise) {
             return {
                 restrict: 'A',
                 scope: {
@@ -188,6 +188,7 @@
 
                                     $scope.chartWrapper = new google.visualization.ChartWrapper(chartWrapperArgs);
                                     google.visualization.events.addListener($scope.chartWrapper, 'ready', function () {
+                                        $compile($elm[0])($scope);
                                         $scope.chart.displayed = true;
                                         $scope.$apply(function (scope) {
                                             scope.onReady({ chartWrapper: scope.chartWrapper });

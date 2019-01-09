@@ -3,7 +3,7 @@ require 'open-uri'
 class Dvoa < ActiveRecord::Base
   belongs_to :import
 
-  URL = "http://www.footballoutsiders.com/stats/"
+  URL = "https://www.footballoutsiders.com/stats/"
   PAGES = {
     :offense => "teamoff",
     :special => "teamst",

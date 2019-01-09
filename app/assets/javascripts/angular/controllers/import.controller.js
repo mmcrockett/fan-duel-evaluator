@@ -1,4 +1,5 @@
 app.controller('ImportController', ['$scope', 'Leagues', 'Import', function($scope, Leagues, Import) {
+  $scope.progress = {message: ''};
   $scope.parse_fan_duel_uri = function() {
     $scope.progress.message = "Importing";
     Import

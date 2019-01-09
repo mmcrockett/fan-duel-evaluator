@@ -20,6 +20,8 @@ app.controller('PlayerController',
 {
   LocalStorage.bind($scope, 'hide_ignored', true);
   LocalStorage.bind($scope, 'roster_ids',   []);
+  $scope.progress = {};
+  $scope.progress.message = '';
   $scope.roster_indicator = {};
   $scope.league_changed = false;
   $scope.positions = [{id:"ALL"}];

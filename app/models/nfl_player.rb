@@ -21,7 +21,7 @@ class NflPlayer < FanDuelPlayer
     11 => "HOU",
     12 => "JAC",
     13 => "DEN",
-    14 => "SD",
+    14 => "LAC",
     15 => "OAK",
     16 => "KC",
     17 => "NYG",
@@ -39,7 +39,7 @@ class NflPlayer < FanDuelPlayer
     29 => "ARI",
     30 => "SF",
     31 => "SEA",
-    32 => "STL"
+    32 => "LAR"
   }
 
   def dvoa

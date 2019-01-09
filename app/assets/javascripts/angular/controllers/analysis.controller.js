@@ -1,5 +1,7 @@
 app.controller('AnalysisController', ['$scope', 'AnalysisData', 'Roster', 'DefaultChart', 'JsLiteral', function($scope, AnalysisData, Roster, DefaultChart, JsLiteral) {
   $scope.rosters = [];
+  $scope.progress = {};
+  $scope.progress.message = '';
   $scope.select_league = function(selectedLeague) {
     if ("NONE" != selectedLeague) {
       $scope.progress.message = "Retrieving rosters.";

@@ -3,6 +3,8 @@ require 'open-uri'
 class OverUnder < ActiveRecord::Base
   belongs_to :import
 
+  ONE_HALF_SYMBOL = 189.chr("UTF-8")
+
   TRANSLATIONS = {
     "NFL" => {
       "GBP" => "GB",
@@ -12,6 +14,14 @@ class OverUnder < ActiveRecord::Base
       "TAM" => "TB",
       "NEP" => "NE",
       "SDC" => "SD",
+      "Philadelphia".upcase => "PHI",
+      "Chicago".upcase => "CHI",
+      "L.A. Chargers".upcase => "LAC",
+      "Baltimore".upcase => "BAL",
+      "Seattle".upcase => "SEA",
+      "Dallas".upcase => "DAL",
+      "Indianapolis".upcase => "IND",
+      "Houston".upcase => "HOU"
     },
     "NHL" => {
       "LAK" => "LA",
@@ -67,7 +77,7 @@ class OverUnder < ActiveRecord::Base
   }
 
   URLS = {
-    "NFL" => "http://m.vegasinsider.com/thisweek/3/NFL",
+    "NFL" => "http://www.vegasinsider.com/nfl/odds/las-vegas/",
     #"NBA" => "http://m.vegasinsider.com/today/3/NBA",
     "NHL" => "http://m.vegasinsider.com/today/3/NHL",
     "MLB" => "http://m.vegasinsider.com/today/3/MLB",
@@ -89,12 +99,14 @@ class OverUnder < ActiveRecord::Base
     if (nil == spread_text)
       spread = 0.0
     else
+      spread_text.gsub!(ONE_HALF_SYMBOL, ".5")
+
       if (true == spread_text.include?('o'))
         (spread,moneyline) = spread_text.split('o')
-        spread = spread.to_f * 2 * OverUnder.moneyline_to_decimal(-(100+moneyline.to_i))
+        spread = spread.to_f * 2 * (1 - OverUnder.moneyline_to_decimal(-(100+moneyline.to_i)))
       elsif (true == spread_text.include?('u'))
         (spread,moneyline) = spread_text.split('u')
-        spread = spread.to_f * 2 * (1 - OverUnder.moneyline_to_decimal(-(100+moneyline.to_i)))
+        spread = spread.to_f * 2 * OverUnder.moneyline_to_decimal(-(100+moneyline.to_i))
       else
         spread = spread_text.to_f
       end
@@ -115,46 +127,49 @@ class OverUnder < ActiveRecord::Base
     if (false == URLS.include?(import.league))
       return
     end
-    page = Nokogiri::HTML(open(URLS[import.league]))
-    games = {}
-    page.css('[data-game-id]').each do |game|
-      game_id = game['data-game-id']
 
-      if ("NFL" == import.league)
-        team = game.css('span.team-abbr').text()
-      else
-        game.css('span.column-team').text().split(" ").each_with_index do |name, i|
-          if (1 == i)
-            team = "#{name}"
-          elsif (0 != i)
-            team += " #{name}"
+    page = Nokogiri::HTML(open(URLS[import.league]))
+
+    games = []
+
+    page.css('.frodds-data-tbl tr').each do |game|
+      parts    = game.css('td')
+
+      if (1 < parts.size)
+        game = {
+          overunder: 0,
+          home_spread: 0,
+          home: '',
+          visitor: ''
+        }
+
+        td_teams = parts.first.css('a')
+        td_line  = parts[2]
+
+        away_team = td_teams.first.text()
+        home_team = td_teams.last.text()
+
+        game[:visitor] = OverUnder.translate(import.league, away_team)
+        game[:home] = OverUnder.translate(import.league, home_team)
+
+        [td_line.css('a').first.children()[2].text(), td_line.css('a').first.children()[4].text()].each_with_index do |v, i|
+          spread = OverUnder.parse_spread(v)
+
+          if (0 < spread)
+            game[:overunder] = spread.to_f
+          elsif (0 == i)
+            game[:home_spread] = -spread
+          else
+            game[:home_spread] = spread
           end
         end
-      end
 
-      team = OverUnder.translate(import.league, team)
-
-      spread = OverUnder.parse_spread(game.css('span.column-current').text().split(" ")[0])
-
-      games[game_id] ||= {:overunder => 0, :home_spread => 0}
-
-      if (nil != game['data-away-team'])
-        games[game_id][:visitor] = team
-      else
-        games[game_id][:home] = team
-      end
-
-      if (0 < spread)
-        games[game_id][:overunder] = spread.to_f
-      elsif (nil != game['data-away-team'])
-        games[game_id][:home_spread] = -spread
-      else
-        games[game_id][:home_spread] = spread
+        games << game
       end
     end
 
-    games.each_value do |game|
-      OverUnder.create(game.merge({:import_id => import.id}))
+    games.each do |game|
+      OverUnder.create(game.merge(import_id: import.id))
     end
   end
 end
